@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Joni Godwin — Portfolio</title>
+    <meta name="description" content="The portfolio of creative designer Joni Godwin, graphic design, branding, motion and shop." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <!-- voor de effecten fade in -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target); // Zorgt ervoor dat de animatie maar 1x gebeurt
+            }
+          });
+        }, {
+          threshold: 0.1, // Trigger als 10% van het element in beeld is
+          rootMargin: "0px 0px -50px 0px" // Wacht iets langer met animeren voor een mooier effect
+        });
+
+        fadeElements.forEach(el => observer.observe(el));
+      });
+    </script>
+    <!--/script voor de typewriter effect -->
+    <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Hier kun je de woorden aanpassen of toevoegen!
+    const words = ["Designer", "Amateur cook", "Levensgenieter", "Gymjunkie", "Bingewatcher"];
+    
+    let wordIndex = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    const typewriterElement = document.getElementById("typewriter");
+
+    function typeEffect() {
+      const currentWord = words[wordIndex];
+
+      // Typen of wissen
+      if (isDeleting) {
+        typewriterElement.textContent = currentWord.substring(0, charIndex - 1);
+        charIndex--;
+      } else {
+        typewriterElement.textContent = currentWord.substring(0, charIndex + 1);
+        charIndex++;
+      }
+
+      // Snelheid van het typen bepalen
+      let typingSpeed = isDeleting ? 50 : 100; // Wissen gaat sneller (50ms) dan typen (100ms)
+
+      // Wat te doen aan het einde van een woord
+      if (!isDeleting && charIndex === currentWord.length) {
+        typingSpeed = 2000; // Wacht 2 seconden als het woord volledig getypt is
+        isDeleting = true;
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        wordIndex = (wordIndex + 1) % words.length; // Ga naar het volgende woord
+        typingSpeed = 500; // Wacht een halve seconde voordat het nieuwe woord begint
+      }
+
+      setTimeout(typeEffect, typingSpeed);
+    }
+
+    // Start de animatie
+    if (typewriterElement) {
+      setTimeout(typeEffect, 1000);
+    }
+  });
+</script>
+
+  <body class="home-page">
+    <div class="page-shell">
+    <div class="header-brand-wrapper">
+  <!-- De interactieve foto knop -->
+  <a href="me.html" class="profile-hover-btn">
+    <div class="profile-backdrop"></div>
+    <img src="Assets/Images/_MG_4456.jpg" alt="Joni Godwin" class="profile-img">
+  </a>
+  
+  <!-- Je naam ernaast -->
+  <a href="home.html" class="brand-name">JONI GODWIN</a>
+</div>
+        <!-- Fixed wrapper keeps the bar centered at the top while scrolling -->
+        <div class="floating-nav-wrapper">
+          <nav class="floating-nav" aria-label="Primary navigation">
+            <a href="home.html" aria-current="page">Home</a>
+            <a href="index.html">Projects</a>
+            <a href="me.html">Me</a>
+            <a href="404.html" class="nav-btn">STUDIO JOONS</a>
+          </nav>
+        </div>
+      </header>
+
+      <main class="home-main fade-in">
+        <section class="hero-showcase">
+          <div class="hero-copy">
+            <p class="section-label">Designer</p>
+            <h1>I'm <span><a href="me.html">Joni Godwin</a></span>. A visual <span>designer</span> based in The Netherlands. I'm currently making cool stuff at <a href="https://www.mediahuis.com/nl/jobs/" target="_blank">Mediahuis</a>.</h1>
+            
+                    <a href="#work" class="explore-link">
+  <!-- De SVG pijl, gelinkt aan jouw '--accent' kleur -->
+  <svg width="32" height="34" viewBox="0 0 38 34" fill="none" >
+    <path d="M19 2.85786V31.1421M4.85785 17L19 31.1421L33.1421 17" stroke="var(--accent)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  <span>Explore my work</span>
+</a>
+            
+          
+        </section>
+
+       <section id="work" class="section section-work">
+          <div class="section-heading">
+            <a href="projects.html">
+              <p class="section-label">Selected work</p>
+            </a>
+          </div>
+          <div class="project-grid">
+        <a href="project.html?id=domibo" class="project-card fade-in">
+  <img src="Assets/Projecten/DoMiBo/DoMiBo_1200x800.webp" alt="DoMiBo preview" />
+  <h3>DoMiBo</h3>
+</a>
+
+<a href="project.html?id=andgage" class="project-card fade-in" style="transition-delay: 0.2s;">
+  <img src="Assets/Projecten/Andgage/Andgage_1200_800.webp" alt="Andgage preview" />
+  <h3>Andgage</h3>
+</a>
+            <a href="project.html?id=dqdb" class="project-card fade-in" style="transition-delay: 0.4s;">
+              <img src="Assets/Projecten/DQDB/DQDB_1200_800.webp" alt="Drag Queen Disco Bingo preview" />
+              <h3>Drag Queen Disco Bingo</h3>
+            </a>
+          </div>
+              </div>
+            </article>
+          </div>
+          <div class="explore-link-container">
+<!---- <a href="projects.html" class="hero-explore-link">Explore my work</a> -->
+</div>
+        
+        </section>
+          
+
+
+        <section class="about-preview">
+          <div class="about-preview__copy">
+            <p class="section-label">About</p>
+            <h2><span class="witte-tekst">JONI GODWIN</span></h2>
+
+            <section class="about-ticker-section">
+  <div class="ticker-content">
+    <h3>I am a <span id="typewriter" class="highlight-word"></span><span class="cursor">|</span></h3>
+    <p>I'm open for freelance projects, feel free to email me to see how can we collaborate.</p>
+  </div>
+
+            
+            <a class="btn btn-primary" href="index.html">My work</a>
+            <a class="btn btn-secondary" href="me.html">Me</a>
+            </section>
+          </div>
+          <div class="about-preview__panel">
+            <img src="Assets/Images/_MG_4456 kopie.jpg" alt="Picture of Joni Godwin" />
+
+          </div>
+
+
+        </section>
+        <!-- Experience Section -->
+        <section class="section experience-section">
+          <div class="experience-header">
+            <span class="eyebrow-number">02</span>
+            <h2>Experience</h2>
+          </div>
+
+          <div class="experience-list">
+            <!-- Job 1 -->
+            <article class="experience-item fade-in">
+              <p class="experience-date">Nov, 2025 - Current</p>
+              <div class="experience-title-row">
+                <h3>Junior Creative Designer, Mediahuis</h3>
+                <span class="badge-new">New!</span>
+              </div>
+              <p class="experience-desc">Currently, I work within the creative heart of Mediahuis Radio, contributing to major brands such as Radio Veronica, 100% NL, SLAM!, and Sublime. In this dual role, I bridge the gap between concept and creation, splitting my time evenly between brainstorming impactful campaign narratives and executing graphic designs. My responsibilities range from developing creative formats to producing high-quality visuals for social media, brand activations, and promotional materials. This position allows me to apply a storytelling approach to design while ensuring visual consistency across a diverse and dynamic media landscape.</p>
+            </article>
+
+            <!-- Job 2 -->
+            <article class="experience-item fade-in">
+              <p class="experience-date">Feb, 2025 - Jun, 2025</p>
+              <h3>Graduation Project (UX/UI), LiveWall</h3>
+              <p class="experience-desc">During my graduation internship at LiveWall, I worked within the Experiences team on optimizing Andgage, an interactive tool that helps clients create live engagement moments. My focus is on improving the user experience for new users by making the interface more intuitive and faster. Through UX research, prototyping, and testing, I developed a smoother experience that aligns with user needs and lowers the barrier to entry.</p>
+            </article>
+
+            <!-- Job 3 -->
+            <article class="experience-item fade-in">
+              <p class="experience-date">Jul, 2024 - Aug, 2024</p>
+              <h3>Junior Graphic Designer, Conscious Group</h3>
+              <p class="experience-desc">Following my internship, I stepped into the role of Junior Graphic Designer, where I took on increased responsibilities within the design team. I continued to work independently on a range of creative projects, from concept to execution. My tasks included designing promotional materials for various campaigns, ensuring brand consistency, and collaborating with cross-functional teams to align visuals with strategic goals. This role deepened my understanding of the impact of design on brand identity and allowed me to gain hands-on experience in managing design projects on my own.</p>
+            </article>
+
+            <!-- Job 4 -->
+            <article class="experience-item fade-in">
+              <p class="experience-date">Feb, 2024 - Jun, 2024</p>
+              <h3>Graphic Design Intern, Conscious Hotels</h3>
+              <p class="experience-desc">During my internship as a graphic designer, I actively contributed to various multidisciplinary projects, including commercial campaigns and the creation of online and offline marketing materials. Together with the marketing team, I developed and executed creative campaigns. I also ensured consistent and accurate application of branding across all design work. This experience helped me to further develop both my creative and technical skills and build a solid foundation for my portfolio.</p>
+            </article>
+          </div>
+        </section>
+
+
+      </main>
+
+      <!-- Footer Section -->
+      <footer class="site-footer">
+        <div class="footer-links">
+          <a href="https://linkedin.com/in/jonigodwin" target="_blank">Linkedin</a>
+          <a href="mailto:info@studiojoons.com">Email</a>
+        </div>
+        
+        <div class="footer-bottom">
+          <div class="footer-brand">
+            <span class="brand-line"></span>
+            <strong>PORTFOLIO JONI GODWIN</strong>
+          </div>
+          <div class="footer-copyright">
+            &copy; Joni Godwin 2026
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

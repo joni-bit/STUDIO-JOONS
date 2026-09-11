@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Joni Godwin — Project</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+    <!-- Lottie speler script -->
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  </head>
+ 
+  <body class="project-page">
+    <div class="about-shell">
+      <header class="topbar">
+        <div class="floating-nav-wrapper">
+          <nav class="floating-nav" aria-label="Primary navigation">
+            <a href="home.html">Home</a>
+            <a href="projects.html" aria-current="page">Projects</a>
+            <a href="me.html">Me</a>
+            <a href="404.html" class="nav-btn">STUDIO JOONS</a>
+          </nav>
+        </div>
+      </header>
+
+      <main class="project-main">
+        <!-- De Back Knop -->
+        <a class="back-link back-dark fade-in" href="#" onclick="window.history.back(); return false;">← Back</a>
+
+        <!-- Dynamische content container -->
+        <div id="project-container"></div>
+      </main>
+      
+       <!-- Footer Section -->
+      <footer class="site-footer">
+        <div class="footer-links">
+          <a href="https://linkedin.com/in/jonigodwin" target="_blank">Linkedin</a>
+          <a href="mailto:info@studiojoons.com">Email</a>
+        </div>
+        
+        <div class="footer-bottom">
+          <div class="footer-brand">
+            <span class="brand-line"></span>
+            <strong>PORTFOLIO JONI GODWIN</strong>
+          </div>
+          <div class="footer-copyright">
+            &copy; Joni Godwin 2026
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Data en Script -->
+    <script src="css/js/projects.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const projectId = urlParams.get('id');
+        const container = document.getElementById('project-container');
+        const project = projectsData[projectId];
+        
+        if (project) {
+          document.title = `Joni Godwin — ${project.title}`;
+
+          // Een handig hulp-functie om de items in de kolommen te genereren
+          const renderItems = (items) => {
+            if (!items) return '';
+            return items.map(item => {
+              if (item.type === 'text') {
+                return item.content === 'Style Guide' 
+                  ? `<h3 class="style-guide-title">${item.content}</h3>` 
+                  : `<p class="project-text">${item.content}</p>`;
+              }
+              if (item.type === 'image') {
+                return `<img class="project-image" src="${item.src}" alt="Project visual" />`;
+              }
+              if (item.type === 'video') {
+                return `
+                  <div class="project-video fade-in">
+                    <!-- autoplay, loop en muted zorgen ervoor dat de video direct zonder geluid begint te spelen (zoals een GIF) -->
+                    <video src="${item.src}" class="project-image" autoplay loop muted playsinline style="width: 100%; border-radius: 12px;"></video>
+                  </div>
+                `;
+              }
+              if (item.type === 'lottie') {
+                return `
+                  <div class="project-lottie fade-in">
+                    <lottie-player 
+                      src="${item.src}" 
+                      background="transparent" 
+                      speed="1" 
+                      style="width: 100%; height: auto; border-radius: 12px;" 
+                      loop 
+                      autoplay>
+                    </lottie-player>
+                  </div>
+                `;
+
+              
+              }
+              if (item.type === 'carousel') {
+                // Maak alle slides aan voor de slider
+                let slides = item.images.map(img => `<img class="carousel-slide" src="${img}" alt="Carousel slide" />`).join('');
+                return `
+                  <div class="project-carousel-wrapper fade-in">
+                    <button class="carousel-btn prev-btn" aria-label="Previous image">←</button>
+                    <div class="project-carousel">
+                      ${slides}
+                    </div>
+                    <button class="carousel-btn next-btn" aria-label="Next image">→</button>
+                  </div>
+                `;
+              }
+              if (item.type === 'marquee') {
+                let imagesHTML = item.images.map(img => `<img class="marquee-img" src="${img}" alt="UI Screen" />`).join('');
+                return `
+                  <div class="project-marquee-wrapper fade-in">
+                    <div class="project-marquee-track">
+                      <!-- We plaatsen de beelden 2 keer naast elkaar voor een naadloze, oneindige loop -->
+                      <div class="marquee-content">${imagesHTML}</div>
+                      <div class="marquee-content">${imagesHTML}</div>
+                    </div>
+                  </div>
+                `;
+              }
+              return '';
+            }).join('');
+          };
+
+          // 1. De Header, Hero Image en Introductie
+          let html = `
+            <div class="project-header fade-in">
+              <h1 class="project-title accent-text">${project.title}</h1>
+            </div>
+            
+            <div class="project-hero-image fade-in" style="transition-delay: 0.1s;">
+              <img src="${project.heroImage}" alt="${project.title} hero" />
+            </div>
+
+            <div class="project-intro fade-in" style="transition-delay: 0.2s;">
+              <h2>${project.intro}</h2>
+            </div>
+            
+            <div class="project-blocks">
+          `;
+
+      
+          // 2. Loop door de asymmetrische blokken heen
+          project.content.forEach((block) => {
+            if (block.type === 'two-column') {
+              html += `
+                <div class="project-row two-col fade-in">
+                  <div class="col-left">${renderItems(block.left)}</div>
+                  <div class="col-right">${renderItems(block.right)}</div>
+                </div>
+              `;
+            } else if (block.type === 'two-column-1-2') {
+              // HIER IS HET NIEUWE BLOK!
+              html += `
+                <div class="project-row two-col-1-2 fade-in">
+                  <div class="col-left">${renderItems(block.left)}</div>
+                  <div class="col-right">${renderItems(block.right)}</div>
+                </div>
+              `;
+            } else if (block.type === 'full-width') {
+              html += `
+                <div class="project-row full-width fade-in">
+                  ${renderItems(block.items)}
+                </div>
+              `;
+              } else if (block.type === 'two-column-1-2') {
+              html += `
+                <div class="project-row two-col-1-2 fade-in">
+                  <div class="col-left">${renderItems(block.left)}</div>
+                  <div class="col-right">${renderItems(block.right)}</div>
+                </div>
+              `;
+            // --- HIER IS HET NIEUWE 3-KOLOMS BLOK! ---
+            } else if (block.type === 'three-column') {
+              html += `
+                <div class="project-row three-col fade-in">
+                  <div class="col-left">${renderItems(block.left)}</div>
+                  <div class="col-middle">${renderItems(block.middle)}</div>
+                  <div class="col-right">${renderItems(block.right)}</div>
+                </div>
+              `;
+            } else if (block.type === 'full-width') {
+            }
+          });
+
+          html += `</div>`; // Sluit project-blocks
+          container.innerHTML = html;
+
+          // 3. Activeer de Carousel knoppen nadat de HTML op de pagina is gezet
+          const carousels = document.querySelectorAll('.project-carousel-wrapper');
+          carousels.forEach(wrapper => {
+            const track = wrapper.querySelector('.project-carousel');
+            const prev = wrapper.querySelector('.prev-btn');
+            const next = wrapper.querySelector('.next-btn');
+            
+            prev.addEventListener('click', () => {
+              // Schuif de breedte van 1 foto naar links
+              track.scrollBy({ left: -track.clientWidth, behavior: 'smooth' });
+            });
+            next.addEventListener('click', () => {
+              // Schuif de breedte van 1 foto naar rechts
+              track.scrollBy({ left: track.clientWidth, behavior: 'smooth' });
+            });
+          });
+
+        } else {
+          container.innerHTML = `<h1>Project not found</h1><p>Sorry, this project doesn't exist.</p>`;
+        }
+
+        // Fade-in waarnemer
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.05, rootMargin: "0px 0px -50px 0px" });
+
+        fadeElements.forEach(el => observer.observe(el));
+      });
+    </script>
+  </body>
+</html>
