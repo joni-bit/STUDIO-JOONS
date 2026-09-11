@@ -1,0 +1,1733 @@
+:root {
+  --bg: #f4f1eb;
+  --surface: #ffffff;
+  --ink: #121212;
+  --muted: #5c5c6a;
+  --accent: #1900ff;
+  --border: rgba(18, 18, 18, 0.12);
+  --shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
+  --sky: #dbefff;
+  --dark: #161616;
+  --cream: #f7efe7;
+}
+/* --- Floating Navigation Bar --- */
+.floating-nav-wrapper {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+}
+
+.floating-nav {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  /* Asymmetrische padding: extra ruimte links, strak rechts om de knop */
+  padding: 8px 8px 8px 32px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.floating-nav a {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.floating-nav a:hover,
+.floating-nav a[aria-current="page"] {
+  color: var(--ink);
+}
+
+/* De zwarte, ronde 'Shop' / 'Contact' knop */
+.floating-nav a.nav-btn {
+  background-color: var(--ink);
+  color: #ffffff;
+  padding: 10px 24px;
+  border-radius: 999px;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.floating-nav a.nav-btn:hover {
+  opacity: 0.85;
+  color: #ffffff;
+}
+* {
+  box-sizing: border-box;
+}
+
+body.home-page {
+  background: linear-gradient(135deg, var(--cream) 0%, var(--bg) 100%);
+}
+/* Applies the brand color to the spans and the link inside the hero heading */
+.hero-copy h1 span,
+.hero-copy h1 a {
+  color: var(--accent);
+  text-decoration: none; /* Removes the default underline from the link */
+}
+
+/* Optional: Adds a subtle hover effect for the Mediahuis link */
+.hero-copy h1 a:hover {
+  opacity: 0.85;
+}
+.hero-copy h1 {
+  margin: 0 0 24px 0; /* Behoudt ook de ruimte onder de tekst, richting je intro-paragraaf */
+  font-size: clamp(3rem, min(7.5vw, 12vh), 12rem); 
+  
+  /* DIT IS DE TRUC VOOR DE REGELAFSTAND: */
+  line-height: 0.95; /* 0.95 betekent 95% van de huidige lettergrootte. Het schaalt altijd mee! */
+  
+  letter-spacing: -0.04em; 
+  font-weight: 600; 
+  max-width: 100%; 
+}
+.home-main {
+  display: grid;
+  gap: 24px;
+}
+
+/* --- Header Brand & Interactieve Foto --- */
+.header-brand-wrapper {
+  display: flex;
+  align-items: center; /* Zorgt dat de foto en je naam perfect verticaal uitgelijnd zijn */
+  gap: 16px; /* De ruimte tussen de foto en je naam */
+}
+
+.brand-name {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #000;
+  text-decoration: none;
+  letter-spacing: 0.05em; /* Net even wat extra ruimte tussen de letters */
+}
+
+/* De knop zelf - afmetingen passend voor een header */
+.profile-hover-btn {
+  position: relative;
+  display: inline-block;
+  width: 64px;  /* Mooi compact voor in de header */
+  height: 80px; 
+  border-radius: 8px; /* Iets minder ronde hoeken voor een kleiner vlak */
+  cursor: pointer;
+}
+
+/* Lichtblauwe achtergrond */
+.profile-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #8AD4FF; 
+  border-radius: 8px;
+  z-index: 1;
+}
+
+/* De foto */
+.profile-img {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+  
+  /* Standaard Zwart-Wit */
+  filter: grayscale(100%); 
+  
+  /* Soepele animatie */
+  transition: transform 0.3s ease, filter 0.3s ease;
+  transform-origin: center;
+}
+
+/* Het Hover Effect! */
+.profile-hover-btn:hover .profile-img {
+  transform: rotate(-15deg); 
+  filter: grayscale(0%); /* Kleur komt terug */
+}
+
+.hero-showcase {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 120px); 
+  padding: 24px 0 10px;
+}
+
+.hero-copy {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /
+}
+
+.hero-intro {
+  margin: 18px 0 0;
+  max-width: none;
+  font-size: 1.06rem;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  padding: 0;
+  margin: 28px 0 0;
+  list-style: none;
+}
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: auto; /* Dit duwt de knoppen naar de bodem van de viewport */
+  padding-bottom: 24px; /* Een beetje ademruimte vanaf de onderkant van het scherm */
+}
+.hero-stats li {
+  padding: 14px 16px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.74);
+  border: 1px solid rgba(18, 18, 18, 0.08);
+  backdrop-filter: blur(10px);
+}
+
+.hero-stats strong {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 1.1rem;
+}
+
+.hero-stats span {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.hero-visual {
+  display: flex;
+  justify-content: center;
+}
+
+.hero-card {
+  width: min(100%, 360px);
+  padding: 18px;
+  border-radius: 28px;
+  background: var(--dark);
+  color: white;
+  box-shadow: var(--shadow);
+}
+
+.hero-card img {
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 20px;
+  margin-bottom: 16px;
+}
+
+.hero-card__body p {
+  margin: 0;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.72;
+}
+
+.hero-card__body span {
+  display: block;
+  margin-top: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.section-work {
+  padding-top: 28px;
+}
+
+.section-heading h2 {
+  margin: 0;
+  max-width: 720px;
+  font-size: clamp(1.8rem, 2.4vw, 2.4rem);
+  line-height: 1.2;
+}
+
+.project-card__body {
+  padding: 18px 20px 22px;
+}
+
+.project-card__body h3 {
+  margin: 0 0 8px;
+  font-size: 1.08rem;
+  font-weight: 700;
+}
+
+.project-card__body p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+/* --- Explore Work Link (Homepage) --- */
+.explore-link-container {
+  width: 100%;
+  display: flex;
+  justify-content: center; /* Centreert de tekst */
+  margin-top: 32px; /* Bepaalt de afstand tot de kaarten. Maak dit kleiner (bijv. 16px) als hij nog dichterbij moet! */
+  margin-bottom: 64px; /* Zorgt voor wat ademruimte eronder */
+}
+
+.explore-link {
+  color: #000000; /* Zwarte tekst */
+  background: transparent; /* Geen achtergrondkleur meer */
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-decoration: none;
+  padding: 8px 16px;
+  transition: color 0.2s ease; /* Zorgt voor een soepele overgang */
+}
+
+/* De blauwe kleur als je er met je muis overheen gaat */
+.explore-link:hover {
+  color: #1900ff; 
+}
+.about-preview {
+  display: grid;
+  grid-template-columns: 1fr 0.95fr;
+  gap: 24px;
+  align-items: top;
+  padding: 28px;
+  border-radius: 0px;
+
+  background-color: #1a1a1a;
+  border: 1px solid rgba(18, 18, 18, 0.08);
+  box-shadow: var(--shadow);
+}
+
+.about-preview__copy h2 {
+  margin: 0 0 12px;
+  font-size: clamp(1.8rem, 2.4vw, 2.4rem);
+  line-height: 1.2;
+}
+
+.about-preview__copy p {
+  margin: 0 0 18px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.about-preview__panel {
+  padding: 0px;
+  border-radius: 24px;
+  
+}
+
+.about-preview__panel img {
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 18px;
+  margin-bottom: 0px;  
+  /*  om de border weg te halen */
+}
+
+.about-preview__panel h3 {
+  margin: 0 0 6px;
+  font-size: 1.1rem;
+}
+
+.about-preview__panel p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+
+/* --- About Me Content Layout --- */
+.about-section__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  width: 100%;
+}
+
+/* Zet de tekstkolom op precies 50% (0,5) van het frame */
+.about-me-copy {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+
+/* Verplaatsen van de scheidingslijn */
+.about-ticker-gallery {
+  display: flex;
+  
+  /* Reset: Haal de oude lijn en marge aan de bovenkant weg */
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+
+  /* Nieuw: Zet de lijn aan de onderkant */
+  padding-bottom: 32px;
+  margin-bottom: 32px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Zorg dat op mobiele schermen de tekst weer 100% breed wordt */
+@media (max-width: 800px) {
+  .about-section__content {
+    flex-direction: column;
+  }
+  
+  .about-me-copy {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+}
+/* --- Typewriter / Ticker Section --- */
+.about-ticker-section {
+
+  color: #ffffff;
+  padding: 60px 32px;
+  border-radius: 24px;
+  margin: 40px auto;
+  max-width: 900px;
+}
+
+.ticker-content h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 400;
+  margin: 0 0 16px 0;
+  line-height: 1.2;
+}
+
+.ticker-content p {
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  color: #e0e0e0; /* Iets zachter wit voor de paragraaf */
+  line-height: 1.5;
+  margin: 0;
+  max-width: 700px;
+}
+
+/* Het woord dat verandert */
+.highlight-word {
+  font-weight: 700;
+}
+
+/* Het knipperende streepje van de typemachine */
+.cursor {
+  display: inline-block;
+  font-weight: 700;
+  color: var(--accent); /* Gebruikt jouw blauwe merkkleur voor de cursor! */
+  animation: blink 1s step-end infinite;
+  margin-left: 2px;
+}
+
+/* --- Footer --- */
+.site-footer {
+  padding: 80px 0 20px;
+  width: 100%;
+}
+
+.footer-links {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 24px;
+}
+
+.footer-links a {
+  color: #b3b3b3; /* Light muted color for the links */
+  font-size: 1.5rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+  color: var(--ink); /* Turns dark when you hover over it */
+}
+
+.footer-bottom {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border); /* The horizontal separator line */
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: var(--ink);
+  font-size: 0.95rem;
+}
+
+/* The small horizontal line before your name */
+.brand-line {
+  display: block;
+  width: 32px;
+  height: 1px;
+  background-color: var(--ink);
+}
+
+.footer-brand strong {
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.footer-copyright {
+  color: #b3b3b3;
+  font-size: 0.95rem;
+}
+
+/* Responsive: Stack elements neatly on mobile phones */
+@media (max-width: 680px) {
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+/* --- Experience Section --- */
+.experience-section {
+  padding: 80px 0;
+  max-width: 900px; /* Houdt de tekst op een comfortabele leesbreedte */
+  margin: 0 auto;
+}
+
+.experience-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 48px;
+}
+
+.eyebrow-number {
+  font-size: 0.9rem;
+  color: var(--muted);
+  font-weight: 500;
+  margin-top: 6px;
+}
+
+.experience-header h2 {
+  font-size: clamp(1.8rem, 3vw, 2.2rem);
+  margin: 0;
+  font-weight: 500;
+}
+
+.experience-item {
+  padding: 40px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.experience-item:first-child {
+  padding-top: 0;
+}
+
+.experience-item:last-child {
+  border-bottom: none;
+}
+
+.experience-date {
+  font-size: 0.8rem;
+  color: #999;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 12px 0;
+}
+
+.experience-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.experience-item h3 {
+  font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+  color: var(--muted); /* Grijze tekstkleur zoals in de screenshot */
+  font-weight: 400; /* Iets dunnere letters voor elegantie */
+  margin: 0 0 16px 0; 
+}
+
+.experience-title-row h3 {
+  margin: 0;
+}
+
+.badge-new {
+  background-color: var(--accent);
+  color: white;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 6px 16px;
+  border-radius: 999px;
+  transform: rotate(10deg); /* Draait de badge iets scheef zoals in het ontwerp */
+}
+
+.experience-desc {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--ink);
+  margin: 0;
+}
+/* --- Resume / Dark Sections (Experience & Education) --- */
+.dark-section {
+  background-color: #1c1c1c; /* Donkere achtergrondkleur uit screenshot */
+  color: #ffffff;
+  padding: 60px 40px;
+  border-radius: 24px;
+  margin: 60px 0;
+}
+
+.dark-section h2 {
+  font-size: 2rem;
+  font-weight: 500;
+  margin-bottom: 40px;
+  color: #ffffff;
+}
+
+.resume-item {
+  padding: 40px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Subtiele lichtgrijze scheidingslijn */
+}
+
+/* Verwijder borders waar we ze niet willen (zoals de laatste in een lijst) */
+.resume-item:last-child,
+.resume-item.no-border {
+  border-bottom: none;
+}
+
+.resume-date {
+  font-size: 0.75rem;
+  color: #a0a0a0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 0 0 16px 0;
+}
+
+.resume-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.resume-item h3 {
+  font-size: clamp(1.4rem, 2.5vw, 1.8rem);
+  font-weight: 400;
+  margin: 0 0 16px 0;
+  color: #ffffff;
+  line-height: 1.3;
+}
+
+.resume-title-row h3 {
+  margin: 0;
+}
+
+.resume-desc {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #cccccc;
+  margin: 0;
+  max-width: 95%; /* Zorgt dat de tekst niet he-le-maal tot de rand loopt */
+}
+
+/* --- Education Grid Layout --- */
+.education-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+/* De rand boven het full-width BSc blok */
+.education-full {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 40px;
+  margin-top: 20px;
+}
+
+/* Responsief maken voor mobiel */
+@media (max-width: 800px) {
+  .dark-section {
+    padding: 40px 24px;
+  }
+  
+  .education-grid {
+    grid-template-columns: 1fr; /* Zet ze onder elkaar op mobiel */
+    gap: 0;
+  }
+  
+  .education-grid .resume-item {
+    padding: 32px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Voeg lijntje toe tussen mobiele items */
+  }
+}
+/* --- Fade-In On Scroll Animatie --- */
+.fade-in {
+  opacity: 0;
+  transform: translateY(40px); /* Start de elementen 40px lager */
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in.is-visible {
+  opacity: 1;
+  transform: translateY(0); /* Schuift ze naar hun originele positie */
+}
+.witte-tekst {
+  color: #ffffff;
+}
+
+@media (max-width: 980px) {
+  .hero-showcase,
+  .about-preview {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-visual {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 680px) {
+  .page-shell {
+    padding: 22px 18px 34px;
+  }
+
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .hero-showcase {
+    padding-top: 10px;
+  }
+
+  .hero-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .about-preview {
+    padding: 22px;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.5;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.page-shell {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 28px 32px 48px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0 36px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.brand-mark {
+  width: 110px;
+  height: 150px;
+  border-radius: 6px;
+  background: linear-gradient(140deg, var(--accent), #6d7cff);
+  box-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.25);
+}
+
+.topnav {
+  display: flex;
+  gap: 24px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.topnav a {
+  transition: color 180ms ease;
+}
+
+.topnav a:hover {
+  color: var(--accent);
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 40px;
+  align-items: center;
+  padding: 36px 0 56px;
+}
+
+.eyebrow,
+.section-label {
+  margin: 0 0 12px;
+  color: var(--muted);
+  font-size: 1.05rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.hero h1 {
+  margin: 0;
+  font-size: clamp(2.4rem, 4.2vw, 4.8rem);
+  line-height: 1.05;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  max-width: 760px;
+}
+
+.hero h1 span {
+  color: var(--accent);
+}
+
+.hero-intro {
+  margin: 24px 0 0;
+  max-width: 620px;
+  font-size: 1.1rem;
+  color: var(--muted);
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  border-radius: 999px;
+  font-weight: 700;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+  margin-top: 12px; /* Zorgt voor een beetje ruimte tussen de knoppen en andere elementen erboven */
+  margin-bottom: 12px; /* Zorgt voor een beetje ruimte tussen de knoppen en andere elementen eronder */
+  gap: 4px; /* Ruimte tussen de tekst en eventuele iconen in de knop */
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: white;
+  box-shadow: var(--shadow);
+  width: 200px; /* Pas dit getal aan naar de breedte die jij wilt */
+ margin-left: auto;
+  margin-right: auto;
+  /* ... je bestaande kleuren en breedte ... */
+  
+  justify-content: center; /* Zorgt ervoor dat de tekst netjes in het midden van de brede knop blijft staan */
+}
+
+.btn-secondary {
+  background: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--border);
+    width: 200px; /* Pas dit getal aan naar de breedte die jij wilt */
+ margin-left: auto;
+  margin-right: auto;
+}
+
+.hero-visual {
+  display: flex;
+  justify-content: center;
+}
+
+.hero-card {
+  width: min(100%, 320px);
+  padding: 20px;
+  border-radius: 28px;
+  background: linear-gradient(145deg, #1f1f1f, #0f0f14);
+  color: white;
+  box-shadow: var(--shadow);
+}
+
+.hero-card__image {
+  height: 300px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.02)),
+    url('https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80') center/cover;
+}
+
+.hero-card p {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.section {
+  padding: 56px 0;
+}
+
+.section-heading {
+  margin-bottom: 28px;
+}
+
+.section-heading h2,
+.about-copy h2 {
+  margin: 0;
+  font-size: clamp(1.8rem, 2.4vw, 2.4rem);
+  font-weight: 700;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.project-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.project-card img {
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.project-card h3 {
+  margin: 0;
+  padding: 18px 20px 22px;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.section-about {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 40px;
+  align-items: center;
+  background: #212121;
+  color: white;
+  border-radius: 32px;
+  padding: 36px;
+}
+
+.about-visual img {
+  border-radius: 24px;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+.about-copy p {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.about-list {
+  padding-left: 18px;
+  margin: 20px 0 28px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.about-list li + li {
+  margin-top: 8px;
+}
+
+.footer {
+  padding: 28px 0 0;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* --- Dynamic Project Page Styling (Asymmetric Layout) --- */
+.project-main {
+  max-width: 900px; /* Iets smaller voor die mooie leesbaarheid */
+  margin: 0 auto;
+  padding: 80px 24px 60px;
+}
+
+/* Donkere back-knop zoals in de screenshot */
+.back-dark {
+  background: #000;
+  color: #fff;
+  margin-bottom: 40px;
+}
+
+/* De opvallende paars/blauwe kleur */
+.accent-text {
+  color: #1900ff; /* Pas dit aan naar jouw exacte kleurcode! */
+}
+
+.project-header {
+  margin-bottom: 24px;
+}
+
+.project-title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Afbeeldingen styling */
+.project-hero-image,
+.project-image {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 24px;
+  display: block;
+}
+
+.project-hero-image {
+  margin-bottom: 48px;
+}
+
+/* Introductie tekst */
+.project-intro {
+  margin-bottom: 60px;
+}
+
+.project-intro h2 {
+  font-size: 1.5rem;
+  line-height: 1.4;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* 2-koloms Grid */
+.project-row {
+  margin-bottom: 60px;
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start; /* Zorgt dat de blokken bovenaan uitlijnen */
+}
+
+/* Tekst in de blokken */
+.project-text {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0 0 24px 0;
+}
+
+.style-guide-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0 0 16px 0;
+}
+/* --- Project Carousel --- */
+.project-carousel-wrapper {
+  position: relative;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.project-carousel {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory; /* Zorgt dat hij strak op de foto 'snapt' bij het scrollen */
+  -ms-overflow-style: none;  /* Verberg scrollbar IE/Edge */
+  scrollbar-width: none;  /* Verberg scrollbar Firefox */
+  border-radius: 12px;
+}
+
+.project-carousel::-webkit-scrollbar {
+  display: none; /* Verberg scrollbar Chrome/Safari */
+}
+
+.carousel-slide {
+  flex: 0 0 100%; /* Elke slide neemt 100% van de breedte in */
+  width: 100%;
+  object-fit: cover;
+  scroll-snap-align: start;
+}
+
+/* Knoppen op de carousel */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.9);
+  color: #000;
+  border: 1px solid rgba(0,0,0,0.1);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
+}
+
+.carousel-btn:hover {
+  transform: translateY(-50%) scale(1.05);
+}
+
+.prev-btn { left: 16px; }
+.next-btn { right: 16px; }
+
+@media (max-width: 680px) {
+  /* Op mobiel de knoppen verbergen (swipen is makkelijker) */
+  .carousel-btn { display: none; }
+}
+
+/* Responsief voor telefoons */
+@media (max-width: 768px) {
+  .two-col {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+@media (max-width: 768px) {
+  .project-meta { gap: 24px; }
+  .project-image-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 980px) {
+  .hero,
+  .section-about,
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-visual {
+    justify-content: flex-start;
+  }
+
+  .project-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.about-hero {
+  padding-bottom: 24px;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 24px;
+}
+
+.about-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: var(--shadow);
+}
+
+.about-panel h2,
+.about-panel h3 {
+  margin-top: 0;
+}
+
+.accent-panel {
+  background: linear-gradient(145deg, #1f1f1f, #0f0f14);
+  color: white;
+}
+
+.accent-panel .about-list {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.about-card__image {
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.2), rgba(255,255,255,0.04)),
+    url('https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=900&q=80') center/cover;
+}
+
+.about-page-section {
+  margin-top: 20px;
+}
+
+@media (max-width: 680px) {
+  .page-shell {
+    padding: 22px 18px 34px;
+  }
+
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .hero {
+    padding-top: 10px;
+  }
+
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-about {
+    padding: 24px;
+  }
+}
+
+.about-page {
+  background: linear-gradient(180deg, var(--sky) 0%, #cbeeff 100%);
+  color: var(--ink);
+  min-height: 100vh;
+}
+
+.about-shell {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 24px 32px 56px;
+}
+
+.about-page .topbar {
+  padding-bottom: 20px;
+}
+
+.about-page .brand,
+.about-page .topnav a {
+  color: var(--ink);
+}
+
+.about-main {
+  display: grid;
+  gap: 24px;
+}
+
+.hero-banner {
+  position: relative;
+  padding: 40px 32px 40px;
+  border-radius: 28px;
+  background: var(--sky);
+  overflow: hidden;
+}
+
+.hero-banner__content {
+  display: grid;
+  grid-template-columns: minmax(280px, 360px) 1fr;
+  gap: 36px;
+  align-items: center;
+}
+
+.hero-banner__photo {
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.hero-banner__photo img {
+  aspect-ratio: 2 / 3;
+  object-fit: cover;
+}
+
+.hero-banner__copy h1 {
+  margin: 0;
+  font-size: clamp(2.6rem, 4.6vw, 4.7rem);
+  line-height: 1.05;
+  font-weight: 700;
+  color: var(--ink);
+  max-width: 720px;
+}
+
+.hero-banner__copy .eyebrow {
+  margin-bottom: 8px;
+  color: var(--accent);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.back-link {
+  /* We halen position: absolute; weg zodat hij niet meer over de foto valt */
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: #0c0c13;
+  color: white;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  margin-bottom: 32px; /* Zorgt voor lekker veel ademruimte tussen de knop en de foto */
+  transition: opacity 0.2s ease;
+}
+
+.back-link:hover {
+  opacity: 0.8;
+}
+/* --- About Image Ticker (Crossfade) --- */
+.about-ticker-gallery {
+  margin-top: 48px;
+  padding-top: 48px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  display: flex;
+}
+
+.ticker-image-wrapper {
+  position: relative;
+  width: 180px; /* Exact de helft van de grote hero-foto (360px) */
+  aspect-ratio: 2 / 3;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+.ticker-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0; /* Standaard zijn alle foto's onzichtbaar */
+  transition: opacity 1.2s ease-in-out; /* Een hele vloeiende fade-overgang */
+  z-index: 1;
+}
+
+/* Alleen de actieve foto is zichtbaar */
+.ticker-img.active {
+  opacity: 1;
+  z-index: 2;
+}
+
+@media (max-width: 680px) {
+  .ticker-image-wrapper { 
+    width: 140px; 
+  }
+}
+
+.about-section,
+.skills-section,
+.timeline-section,
+.contact-section {
+  padding: 32px;
+  border-radius: 28px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+}
+
+.section-title {
+  margin-bottom: 18px;
+  font-size: clamp(1.8rem, 2.2vw, 2.4rem);
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.about-section__content {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: start;
+}
+
+.about-copy {
+  display: grid;
+  gap: 12px;
+  color: var(#ffffff);
+  font-size: 1.05rem;
+  line-height: 1.8;
+  
+}
+
+.about-me-copy {
+  display: grid;
+  gap: 12px;
+  color: var(#000000);
+  font-size: 1.05rem;
+  line-height: 1.4;
+  
+}
+
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 20px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: white;
+  font-weight: 700;
+}
+
+.skills-section {
+  background: #f8fbff;
+}
+
+.skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.skills-list span {
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: white;
+  border: 1px solid rgba(25, 0, 255, 0.12);
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.dark-section {
+  background: var(--dark);
+  color: white;
+  position: relative;
+}
+
+.dark-section .section-title {
+  color: white;
+}
+
+.timeline-badge {
+  position: absolute;
+  top: 28px;
+  right: 32px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: white;
+  font-weight: 700;
+  
+  
+}
+.timeline-badge.fade-in {
+  transform: translateY(40px) rotate(20deg);
+}
+
+.timeline-badge.fade-in.is-visible {
+  opacity: 1;
+  transform: translateY(0) rotate(20deg);
+}
+
+.experience-figma-section {
+  display: grid;
+  gap: 24px;
+}
+
+.experience-figma-section__header {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.experience-figma-section__item {
+  display: grid;
+  gap: 10px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.experience-figma-section__item:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.experience-figma-section__meta {
+  margin: 0;
+  color: rgba(22, 20, 20, 0.7);
+  font-size: 0.92rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.experience-figma-section__item h3 {
+  margin: 0;
+  font-size: clamp(1.35rem, 2vw, 2rem);
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.experience-figma-section__item p {
+  margin: 0;
+  max-width: 1000px;
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.8;
+}
+
+.timeline-list {
+  display: grid;
+  gap: 18px;
+}
+
+.timeline-item {
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.timeline-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.timeline-date {
+  margin: 0 0 8px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.92rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+.timeline-item h3 {
+  margin: 0 0 8px;
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+
+.timeline-item p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.7;
+}
+
+.contact-section {
+  background: #f5f5f5;
+}
+
+.contact-section h2 {
+  margin: 0 0 20px;
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  font-weight: 700;
+}
+
+.contact-form {
+  display: grid;
+  gap: 16px;
+  max-width: 620px;
+}
+
+.contact-form label {
+  display: grid;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 13px 15px;
+  border: 1px solid rgba(18, 18, 18, 0.14);
+  border-radius: 10px;
+  font: inherit;
+  background: white;
+  color: var(--ink);
+}
+
+.contact-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.contact-form button {
+  width: fit-content;
+  padding: 12px 22px;
+  border: 0;
+  border-radius: 999px;
+  background: var(--accent);
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* --- Infinite Marquee Slider (Lopende band) --- */
+.project-marquee-wrapper {
+  width: 100%;
+  overflow: hidden; 
+  margin-bottom: 40px;
+  display: flex;
+  
+  /* Dit creëert de vervaagde randen aan de linker- en rechterkant */
+  -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+}
+
+.project-marquee-track {
+  display: flex;
+  gap: 20px; /* De 20px tussenruimte tussen de 2 groepen */
+  width: max-content;
+  /* 40s bepaalt de snelheid. Maak dit getal hoger voor langzamer, lager voor sneller */
+  animation: marqueeScroll 40s linear infinite; 
+}
+
+/* Pauzeer de animatie als de muis erop staat */
+.project-marquee-track:hover {
+  animation-play-state: paused; 
+}
+
+.marquee-content {
+  display: flex;
+  gap: 20px; /* De 20px tussenruimte tussen de individuele foto's */
+}
+
+.marquee-img {
+  height: 400px; /* Vaste hoogte zodat ze mooi strak naast elkaar staan */
+  width: auto;
+  border-radius: 12px;
+  object-fit: contain;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+/* --- 1/3 en 2/3 Kolommen Layout --- */
+.two-col-1-2 {
+  display: grid;
+  grid-template-columns: 1fr 2fr; /* 1 deel links, 2 delen rechts */
+  gap: 40px;
+  align-items: start;
+}
+/* --- 3 Kolommen Layout --- */
+.three-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+  align-items: start; /* Zorgt dat alles netjes aan de bovenkant begint */
+}
+.carousel-slide {
+  flex: 0 0 100%;
+  width: 100%;
+  max-height: 80vh; /* Voorkomt dat verticale foto's van je beeldscherm af vallen */
+  object-fit: contain; /* Zorgt dat de 9:16 foto helemaal zichtbaar is, gebruik 'cover' als je ze beeldvullend wilt afsnijden */
+  scroll-snap-align: start;
+}
+
+/* Op telefoons zetten we alles weer netjes onder elkaar */
+@media (max-width: 768px) {
+  .three-col {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Op telefoons zetten we het weer netjes onder elkaar */
+  .two-col-1-2 {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+/* De magische rekenformule voor een oneindige loop */
+@keyframes marqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-50% - 10px)); } 
+}
+
+/* Mobiele optimalisatie: maak de schermen iets kleiner */
+@media (max-width: 768px) {
+  .marquee-img {
+    height: 350px;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero-banner__content,
+  .about-section__content {
+    grid-template-columns: 1fr;
+  }
+
+  .about-section__content {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 680px) {
+  .page-shell {
+    padding: 22px 18px 34px;
+  }
+
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .hero-banner,
+  .about-section,
+  .skills-section,
+  .timeline-section,
+  .contact-section {
+    padding: 24px;
+  }
+
+  .back-link {
+    position: static;
+    margin-top: 16px;
+  }
+
+  .timeline-badge {
+    position: static;
+    display: inline-block;
+    margin-bottom: 12px;
+    transform: none;
+  }
+  /* Shop & Project Grids */
+.shop-grid, .project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+/* Free-standing sticker graphics for promotional assets without a solid white background block */
+.sticker-graphic {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.08));
+}
+
+}
