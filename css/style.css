@@ -1729,5 +1729,18 @@ a {
   box-shadow: none !important;
   filter: drop-shadow(0 10px 20px rgba(0,0,0,0.08));
 }
+  @media (max-width: 768px) {
+  /* Zorgt voor padding aan de linker- en rechterkant van de Experience sectie */
+  .experience-section {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  /* Zorgt voor padding aan de linker- en rechterkant van de footer */
+  .site-footer {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
 
 }
