@@ -1,63 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Thanks! — STUDIO Joons</title>
   <meta name="description" content="Thx for shooting a message! We'll be in touch soon!" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Script toegevoegd om de 'fade-in' animatie te activeren -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const fadeElements = document.querySelectorAll('.fade-in');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target); 
+          }
+        });
+      }, {
+        threshold: 0.1, 
+        rootMargin: "0px 0px -50px 0px" 
+      });
+      fadeElements.forEach(el => observer.observe(el));
+    });
+  </script>
 </head>
 <body>
   <div class="page-shell">
-    <div class="header-brand-wrapper">
-  <!-- De interactieve foto knop -->
-  <a href="me" class="profile-hover-btn">
-    <div class="profile-backdrop"></div>
-    <img src="./Assets/Images/IMG4456.jpg" alt="Joni Godwin" class="profile-img">
-  </a>
-  
-  <!-- Je naam ernaast -->
-  <a href="home.html" class="brand-name">JONI GODWIN</a>
-</div>
-        <!-- Fixed wrapper keeps the bar centered at the top while scrolling -->
-        <div class="floating-nav-wrapper">
-          <nav class="floating-nav" aria-label="Primary navigation">
-            <a href="index" aria-current="page">Home</a>
-            <a href="overview">Projects</a>
-            <a href="me">Me</a>
-            <a href="404" class="nav-btn">STUDIO JOONS</a>
-          </nav>
-        </div>
     
-
+    <!-- Hier miste de topbar header tag -->
+    <header class="topbar">
+      <div class="header-brand-wrapper">
+        <!-- De interactieve foto knop -->
+        <a href="me.html" class="profile-hover-btn">
+          <div class="profile-backdrop"></div>
+          <img src="./Assets/Images/IMG4456.jpg" alt="Joni Godwin" class="profile-img">
+        </a>
+        
+        <!-- Je naam ernaast -->
+        <a href="home.html" class="brand-name">JONI GODWIN</a>
+      </div>
+      
+      <!-- Fixed wrapper keeps the bar centered at the top while scrolling -->
+      <div class="floating-nav-wrapper">
+        <nav class="floating-nav" aria-label="Primary navigation">
+          <a href="home.html" aria-current="page">Home</a>
+          <a href="index.html">Projects</a>
+          <a href="me.html">Me</a>
+          <a href="404.html" class="nav-btn">STUDIO JOONS</a>
+        </nav>
+      </div>
+    </header>
 
     <main class="fade-in" style="text-align: center; padding: 120px 24px; min-height: 60vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
       <h2>Message sent!</h2>
       <p style="margin-bottom: 32px;">Thanks for reaching out. I'll get back to you as soon as possible.</p>
-      <a href="index" class="btn btn-primary" style="display: inline-block; padding: 12px 24px; background: #1900ff; color: #fff; text-decoration: none; border-radius: 8px;">Back to Home</a>
+      <!-- Zorg dat de href hier klopt met jouw homepage naam -->
+      <a href="home.html" class="btn btn-primary" style="display: inline-block; padding: 12px 24px; background: #1900ff; color: #fff; text-decoration: none; border-radius: 8px;">Back to Home</a>
     </main>
 
-   <!-- Footer Section -->
-      <footer class="site-footer">
-        <div class="footer-links">
-          <a href="https://linkedin.com/in/jonigodwin" target="_blank">Linkedin</a>
-          <a href="mailto:info@studiojoons.com">Email</a>
+    <!-- Footer Section -->
+    <footer class="site-footer">
+      <div class="footer-links">
+        <a href="https://linkedin.com/in/jonigodwin" target="_blank">Linkedin</a>
+        <a href="mailto:info@studiojoons.com">Email</a>
+      </div>
+      
+      <div class="footer-bottom">
+        <div class="footer-brand">
+          <span class="brand-line"></span>
+          <strong>PORTFOLIO JONI GODWIN</strong>
         </div>
-        
-        <div class="footer-bottom">
-          <div class="footer-brand">
-            <span class="brand-line"></span>
-            <strong>PORTFOLIO JONI GODWIN</strong>
-          </div>
-          <div class="footer-copyright">
-            &copy; Joni Godwin 2026
-          </div>
+        <div class="footer-copyright">
+          &copy; Joni Godwin 2026
         </div>
-      </footer>
+      </div>
+    </footer>
     
   </div>
 </body>
