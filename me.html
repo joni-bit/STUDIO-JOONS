@@ -197,9 +197,7 @@
   <h2 id="contact-title">Let’s chat!</h2>
   
   <form class="contact-form" action="https://formspree.io/f/moeqzynq" method="POST">
-    
-    <!-- Deze regel stuurt de bezoeker naar jouw bedankpagina -->
-    <input type="hidden" name="_next" value="[https://studiojoons.com/bedankt.html] (https://studiojoons.com/bedankt.html)">
+  
     
     <label>
       Name
@@ -275,7 +273,37 @@
         }
       });
     </script>
-
+<script>
+  // Selecteer jouw contactformulier
+  const contactForm = document.querySelector('.contact-form');
+  
+  if (contactForm) {
+    contactForm.addEventListener('submit', function(e) {
+      e.preventDefault(); // Dit blokkeert de irritante Formspree doorsturing
+      
+      const formData = new FormData(contactForm);
+      
+      // Stuur de data stiekem op de achtergrond naar Formspree
+      fetch(contactForm.action, {
+        method: contactForm.method,
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      }).then(response => {
+        if (response.ok) {
+          // Als het gelukt is, stuur je ze naar jouw eigen URL!
+          // VERVANG DEZE URL MET JOUW ECHTE DOMEINNAAM
+          window.location.href = "https://jouwwebsite.nl/bedankt.html"; 
+        } else {
+          alert("Oops! Something went wrong. Please try again.");
+        }
+      }).catch(error => {
+        alert("Oops! Something went wrong. Please try again.");
+      });
+    });
+  }
+</script>
     
   </body>
 </html>
