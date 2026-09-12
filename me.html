@@ -194,23 +194,25 @@
         
 
         <section class="contact-section fade-in" id="contact" aria-labelledby="contact-title">
-          <h2 id="contact-title">Let’s chat!</h2>
-          <form class="contact-form" action="mailto:hello@jonigodwin.com" method="post" enctype="text/plain">
-            <label>
-              Name
-              <input type="text" name="name" placeholder="Your name" />
-            </label>
-            <label>
-              Email
-              <input type="email" name="email" placeholder="your@email.com" />
-            </label>
-            <label>
-              Message
-              <textarea name="message" placeholder="Write me a message ;)"></textarea>
-            </label>
-            <button type="submit">Submit</button>
-          </form>
-        </section>
+  <h2 id="contact-title">Let’s chat!</h2>
+  
+  <!-- Vervang de link hieronder met jouw eigen Formspree link -->
+  <form class="contact-form" action="https://formspree.io/f/moeqzynq" method="POST">
+    <label>
+      Name
+      <input type="text" name="name" placeholder="Your name" required />
+    </label>
+    <label>
+      Email
+      <input type="email" name="email" placeholder="your@email.com" required />
+    </label>
+    <label>
+      Message
+      <textarea name="message" placeholder="Write me a message ;)" required></textarea>
+    </label>
+    <button type="submit">Submit</button>
+  </form>
+</section>
       </main>
        <!-- Footer Section -->
       <footer class="site-footer">
