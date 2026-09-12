@@ -193,11 +193,14 @@
         </section>
         
 
-        <section class="contact-section fade-in" id="contact" aria-labelledby="contact-title">
+    <section class="contact-section fade-in" id="contact" aria-labelledby="contact-title">
   <h2 id="contact-title">Let’s chat!</h2>
   
-  <!-- Vervang de link hieronder met jouw eigen Formspree link -->
-  <form class="contact-form" action="https://formspree.io/f/moeqzynq" method="POST">
+  <form class="contact-form" action="https://formspree.io/f/JOUW_UNIEKE_CODE" method="POST">
+    
+    <!-- Deze regel stuurt de bezoeker naar jouw bedankpagina -->
+    <input type="hidden" name="_next" value="https://jouwwebsite.nl/bedankt.html">
+    
     <label>
       Name
       <input type="text" name="name" placeholder="Your name" required />
