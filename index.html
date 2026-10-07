@@ -1,229 +1,260 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="antialiased scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title> STUDIO Joons </title>
-    <link rel="icon" type="image/png" href="./Assets/Images/favicon.png" />
-    <meta name="description" content="The portfolio of creative designer Joni Godwin, graphic design, branding, motion and shop." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+    <title>Joni Godwin — Portfolio</title>
+    <meta name="description" content="The portfolio of creative designer Joni Godwin: visual design, brand identity, digital products, and motion." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css" />
   </head>
-  <!-- voor de effecten fade in -->
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const fadeElements = document.querySelectorAll('.fade-in');
-        
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('is-visible');
-              observer.unobserve(entry.target); // Zorgt ervoor dat de animatie maar 1x gebeurt
-            }
-          });
-        }, {
-          threshold: 0.1, // Trigger als 10% van het element in beeld is
-          rootMargin: "0px 0px -50px 0px" // Wacht iets langer met animeren voor een mooier effect
-        });
-
-        fadeElements.forEach(el => observer.observe(el));
-      });
-    </script>
-    <!--/script voor de typewriter effect -->
-    <script>
-  document.addEventListener("DOMContentLoaded", function() {
-    // Hier kun je de woorden aanpassen of toevoegen!
-    const words = ["Designer", "Amateur cook", "Levensgenieter", "Gymjunkie", "Bingewatcher"];
-    
-    let wordIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    const typewriterElement = document.getElementById("typewriter");
-
-    function typeEffect() {
-      const currentWord = words[wordIndex];
-
-      // Typen of wissen
-      if (isDeleting) {
-        typewriterElement.textContent = currentWord.substring(0, charIndex - 1);
-        charIndex--;
-      } else {
-        typewriterElement.textContent = currentWord.substring(0, charIndex + 1);
-        charIndex++;
-      }
-
-      // Snelheid van het typen bepalen
-      let typingSpeed = isDeleting ? 50 : 100; // Wissen gaat sneller (50ms) dan typen (100ms)
-
-      // Wat te doen aan het einde van een woord
-      if (!isDeleting && charIndex === currentWord.length) {
-        typingSpeed = 2000; // Wacht 2 seconden als het woord volledig getypt is
-        isDeleting = true;
-      } else if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        wordIndex = (wordIndex + 1) % words.length; // Ga naar het volgende woord
-        typingSpeed = 500; // Wacht een halve seconde voordat het nieuwe woord begint
-      }
-
-      setTimeout(typeEffect, typingSpeed);
-    }
-
-    // Start de animatie
-    if (typewriterElement) {
-      setTimeout(typeEffect, 1000);
-    }
-  });
-</script>
-
   <body class="home-page">
     <div class="page-shell">
-    <div class="header-brand-wrapper">
-  <!-- De interactieve foto knop -->
-  <a href="me" class="profile-hover-btn">
-    <div class="profile-backdrop"></div>
-    <img src="./Assets/Images/IMG4456.jpg" alt="Joni Godwin" class="profile-img">
-  </a>
-  
-  <!-- Je naam ernaast -->
-  <a href="index" class="brand-name">JONI GODWIN</a>
-</div>
-        <!-- Fixed wrapper keeps the bar centered at the top while scrolling -->
+      
+      <!-- Topbar with Floating Glass Island Navigation -->
+      <header class="topbar">
+        <div class="header-brand-wrapper fade-in">
+          <a href="me.html" class="profile-hover-btn" aria-label="About Joni Godwin">
+            <div class="profile-backdrop"></div>
+            <img src="Assets/Images/_MG_4456.jpg" alt="Portrait of Joni Godwin" class="profile-img" />
+          </a>
+          <a href="home.html" class="brand-name">JONI GODWIN</a>
+        </div>
+
         <div class="floating-nav-wrapper">
           <nav class="floating-nav" aria-label="Primary navigation">
-            <a href="index" aria-current="page">Home</a>
-            <a href="overview">Projects</a>
-            <a href="me">Me</a>
-            <a href="404" class="nav-btn">STUDIO JOONS</a>
+            <a href="home.html" aria-current="page">Home</a>
+            <a href="index.html">Projects</a>
+            <a href="me.html">Me</a>
+            <a href="shop.html" class="nav-btn">STUDIO JOONS</a>
           </nav>
         </div>
       </header>
 
-      <main class="home-main fade-in">
-        <section class="hero-showcase">
+      <main class="home-main">
+        
+        <!-- Hero Introduction -->
+        <section class="hero-showcase fade-in">
           <div class="hero-copy">
             <p class="section-label">Designer</p>
-            <h1>I'm <span><a href="me">Joni Godwin</a></span>. A visual <span>designer</span> based in The Netherlands. I'm currently making cool stuff at <a href="https://www.mediahuis.com/nl/jobs/" target="_blank">Mediahuis</a>.</h1>
+            <h1>
+              I'm <span><a href="me.html">Joni Godwin</a></span>. A visual <span>designer</span> based in The Netherlands. I'm currently making cool stuff at <a href="https://www.mediahuis.com/nl/jobs/" target="_blank" rel="noopener noreferrer">Mediahuis</a>.
+            </h1>
             
-                    <a href="#work" class="explore-link">
-  <!-- De SVG pijl, gelinkt aan jouw '--accent' kleur -->
-  <svg width="32" height="34" viewBox="0 0 38 34" fill="none" >
-    <path d="M19 2.85786V31.1421M4.85785 17L19 31.1421L33.1421 17" stroke="var(--accent)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>
-  <span>Explore my work</span>
-</a>
-            
-          
+            <a href="#work" class="explore-link" aria-label="Scroll down to explore featured work">
+              <svg width="32" height="34" viewBox="0 0 38 34" fill="none" aria-hidden="true">
+                <path d="M19 2.85786V31.1421M4.85785 17L19 31.1421L33.1421 17" stroke="var(--accent)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <span>Explore my work</span>
+            </a>
+          </div>
         </section>
 
-       <section id="work" class="section section-work">
+        <!-- ==================================================================
+             FEATURED SHOWCASE (Dynamic #1d1d1d Dark Mode Zone)
+             ================================================================== -->
+        <section id="work" class="section section-work fade-in" aria-labelledby="selected-work-title">
           <div class="section-heading">
-            <a href="projects">
-              <p class="section-label">Selected work</p>
+            <a href="index.html" class="showcase-header-link" aria-label="Browse full projects archive">
+              
             </a>
           </div>
-          <div class="project-grid">
-        <a href="project.html?id=domibo" class="project-card fade-in">
-  <img src="./Assets/Projecten/DoMiBo/DoMiBo_1200x800.webp" alt="DoMiBo preview" />
-  <h3>DoMiBo</h3>
-</a>
 
-<a href="project.html?id=andgage" class="project-card fade-in" style="transition-delay: 0.2s;">
-  <img src="./Assets/Projecten/Andgage/Andgage_1200_800.webp" alt="Andgage preview" />
-  <h3>Andgage</h3>
-</a>
-            <a href="project.html?id=dqdb" class="project-card fade-in" style="transition-delay: 0.4s;">
-              <img src="./Assets/Projecten/DQDB/DQDB_1200_800.webp" alt="Drag Queen Disco Bingo preview" />
-              <h3>Drag Queen Disco Bingo</h3>
-            </a>
+          <!-- Apple Segmented Control for State Simulation 
+          <div class="split-state-controls" role="tablist" aria-label="Showcase display states">
+            <button class="split-tab-btn active" role="tab" aria-selected="true" onclick="setShowcaseState('catalog')">Active Showcase</button>
+            <button class="split-tab-btn" role="tab" aria-selected="false" onclick="setShowcaseState('loading')">Simulate Loading</button>
+            <button class="split-tab-btn" role="tab" aria-selected="false" onclick="setShowcaseState('empty')">Simulate Empty</button>
           </div>
+        -->
+
+          <!-- 1. Active Showcase State (50/50 Split Frames) -->
+          <div id="showcase-active" class="split-showcase-list" aria-label="Featured projects list">
+            
+            <!-- Project 1: DoMiBo (Text Left, Visual Right) -->
+            <article class="split-showcase-item">
+              <div class="split-copy-col">
+                <span class="split-project-eyebrow">Visual Identity</span>
+                <h3 href="project.html?id=domibo" class="split-project-text">
+                  A visual identity for a monthly &ldquo;after work drinks&rdquo; event. 
+                  <span class="accent-highlight">Thursday is the new friday!</span>
+                </h3>
+                <a href="project.html?id=domibo" class="apple-touch-pill" aria-label="Explore DoMiBo project">
+                  <span>Explore DoMiBo</span>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </a>
+              </div>
+
+              <div class="split-visual-col">
+                <a href="project.html?id=domibo" class="split-media-card domibo-stage" aria-label="View DoMiBo posters">
+                  <div class="stage-peek peek-left" aria-hidden="true">
+                    <img src="Assets/Projecten/DoMiBo/poster/Domibo_2.png" alt="" loading="lazy" />
+                  </div>
+                  <div class="stage-center-card">
+                    <img src="Assets/Projecten/DoMiBo/poster/Domibo_1.png" alt="DoMiBo character poster visual" loading="lazy" />
+                  </div>
+                  <div class="stage-peek peek-right" aria-hidden="true">
+                    <img src="Assets/Projecten/DoMiBo/poster/Domibo_2.png" alt="" loading="lazy" />
+                  </div>
+                </a>
               </div>
             </article>
+
+            <!-- Project 2: Drag Queen Disco Bingo (Visual Left, Text Right) -->
+            <article class="split-showcase-item is-reversed">
+              <div class="split-copy-col">
+                <span class="split-project-eyebrow">Visual Identity &amp; Campaign</span>
+                <h3 class="split-project-text">
+                  A new <span class="accent-highlight">visual identity</span> for a reoccurring Drag Bingo event at Barkantoor.
+                </h3>
+                <a href="project.html?id=dqdb" class="apple-touch-pill" aria-label="Explore Drag Queen Disco Bingo project">
+                  <span>Explore DQDB</span>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </a>
+              </div>
+
+              <div class="split-visual-col">
+                <a href="project.html?id=dqdb" class="split-media-card dqdb-stage" aria-label="View Drag Queen Disco Bingo artwork">
+                  <div class="stage-framed-card">
+                    <img src="Assets/Projecten/DQDB/DQDB_BK.png" alt="Drag Queen Disco Bingo poster artwork" loading="lazy" />
+                  </div>
+                </a>
+              </div>
+            </article>
+
+            <!-- Project 3: Andgage (Text Left, Visual Right) -->
+            <article class="split-showcase-item">
+              <div class="split-copy-col">
+                <span class="split-project-eyebrow">UX / UI Architecture</span>
+                <h3 class="split-project-text">
+                  Streamlining live audience interaction through an intuitive, <span class="accent-highlight">component-driven interface</span> for LiveWall.
+                </h3>
+                <a href="project.html?id=andgage" class="apple-touch-pill" aria-label="Explore Andgage project">
+                  <span>Explore Andgage</span>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </a>
+              </div>
+
+              <div class="split-visual-col">
+                <a href="project.html?id=andgage" class="split-media-card andgage-stage" aria-label="View Andgage interface case study">
+                  <div class="stage-framed-card">
+                    <img src="Assets/Projecten/Andgage/Hero_Andgage.webp" alt="Andgage interactive presentation tool UI preview" loading="lazy" />
+                  </div>
+                </a>
+              </div>
+            </article>
+
           </div>
-          <div class="explore-link-container">
-<!---- <a href="overview" class="hero-explore-link">Explore my work</a> -->
-</div>
-        
+
+          <!-- 2. Apple Skeleton Loading State -->
+          <div id="showcase-loading" class="split-showcase-list is-hidden" aria-label="Loading showcase items" aria-live="polite">
+            <div class="split-showcase-item">
+              <div class="split-copy-col">
+                <div class="split-skeleton-box skeleton-eyebrow"></div>
+                <div class="split-skeleton-box skeleton-headline-1"></div>
+                <div class="split-skeleton-box skeleton-headline-2"></div>
+                <div class="split-skeleton-box skeleton-pill-action"></div>
+              </div>
+              <div class="split-visual-col">
+                <div class="split-skeleton-box skeleton-media-stage"></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. Apple Empty State Panel -->
+          <div id="showcase-empty" class="split-empty-panel is-hidden" aria-label="Showcase status notice" aria-live="polite">
+            <div class="split-empty-icon" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+              </svg>
+            </div>
+            <h3 class="split-empty-title">Featured selections are updating</h3>
+            <p class="split-empty-desc">New exhibition and brand identity documentation will deploy shortly. Explore the complete archive below.</p>
+            <a href="index.html" class="apple-touch-pill">Browse Archive</a>
+          </div>
         </section>
-          
 
-
-        <section class="about-preview">
+        <!-- About Preview Section -->
+        <section class="about-preview fade-in">
           <div class="about-preview__copy">
             <p class="section-label">About</p>
             <h2><span class="witte-tekst">JONI GODWIN</span></h2>
-
-            <section class="about-ticker-section">
-  <div class="ticker-content">
-    <h3>I am a <span id="typewriter" class="highlight-word"></span><span class="cursor">|</span></h3>
-    <p>I'm open for freelance projects, feel free to email me to see how can we collaborate.</p>
-  </div>
-
-            
-            <a class="btn btn-primary" href="index.html">My work</a>
-            <a class="btn btn-secondary" href="me.html">Me</a>
-            </section>
+            <div class="about-ticker-section">
+              <div class="ticker-content">
+                <h3>I am a <span id="typewriter" class="highlight-word"></span><span class="cursor">|</span></h3>
+                <p>I'm open for freelance projects, feel free to email me to see how we can collaborate.</p>
+              </div>
+              <div style="display: flex; gap: 12px; margin-top: 24px; flex-wrap: wrap;">
+                <a class="btn btn-primary" href="index.html">My work</a>
+                <a class="btn btn-secondary" href="me.html">Me</a>
+              </div>
+            </div>
           </div>
           <div class="about-preview__panel">
-            
-            <img src="./Assets/Images/IMG4456.jpg"   filter: grayscale(100%);  alt="Picture of Joni Godwin" />
-
+            <img src="Assets/Images/_MG_4456.jpg" alt="Joni Godwin working portrait" loading="lazy" />
           </div>
-
-
         </section>
+
         <!-- Experience Section -->
-        <section class="section experience-section">
+        <section class="section experience-section fade-in">
           <div class="experience-header">
             <span class="eyebrow-number">02</span>
             <h2>Experience</h2>
           </div>
-
           <div class="experience-list">
-            <!-- Job 1 -->
             <article class="experience-item fade-in">
               <p class="experience-date">Nov, 2025 - Current</p>
               <div class="experience-title-row">
                 <h3>Junior Creative Designer, Mediahuis</h3>
                 <span class="badge-new">New!</span>
               </div>
-              <p class="experience-desc">Currently, I work within the creative heart of Mediahuis Radio, contributing to major brands such as Radio Veronica, 100% NL, SLAM!, and Sublime. In this dual role, I bridge the gap between concept and creation, splitting my time evenly between brainstorming impactful campaign narratives and executing graphic designs. My responsibilities range from developing creative formats to producing high-quality visuals for social media, brand activations, and promotional materials. This position allows me to apply a storytelling approach to design while ensuring visual consistency across a diverse and dynamic media landscape.</p>
+              <p class="experience-desc">Currently, I work within the creative heart of Mediahuis Radio, contributing to major brands such as Radio Veronica, 100% NL, SLAM!, and Sublime.</p>
             </article>
-
-            <!-- Job 2 -->
             <article class="experience-item fade-in">
               <p class="experience-date">Feb, 2025 - Jun, 2025</p>
-              <h3>Graduation Project (UX/UI), LiveWall</h3>
-              <p class="experience-desc">During my graduation internship at LiveWall, I worked within the Experiences team on optimizing Andgage, an interactive tool that helps clients create live engagement moments. My focus is on improving the user experience for new users by making the interface more intuitive and faster. Through UX research, prototyping, and testing, I developed a smoother experience that aligns with user needs and lowers the barrier to entry.</p>
+              <div class="experience-title-row">
+                <h3>Graduation Project (UX/UI), LiveWall</h3>
+              </div>
+              <p class="experience-desc">During my graduation internship at LiveWall, I worked within the Experiences team on optimizing Andgage, an interactive tool that helps clients create live engagement moments.</p>
             </article>
-
-            <!-- Job 3 -->
             <article class="experience-item fade-in">
               <p class="experience-date">Jul, 2024 - Aug, 2024</p>
-              <h3>Junior Graphic Designer, Conscious Group</h3>
-              <p class="experience-desc">Following my internship, I stepped into the role of Junior Graphic Designer, where I took on increased responsibilities within the design team. I continued to work independently on a range of creative projects, from concept to execution. My tasks included designing promotional materials for various campaigns, ensuring brand consistency, and collaborating with cross-functional teams to align visuals with strategic goals. This role deepened my understanding of the impact of design on brand identity and allowed me to gain hands-on experience in managing design projects on my own.</p>
+              <div class="experience-title-row">
+                <h3>Junior Graphic Designer, Conscious Group</h3>
+              </div>
+              <p class="experience-desc">Following my internship, I stepped into the role of Junior Graphic Designer, where I took on increased responsibilities within the design team.</p>
             </article>
-
-            <!-- Job 4 -->
             <article class="experience-item fade-in">
               <p class="experience-date">Feb, 2024 - Jun, 2024</p>
-              <h3>Graphic Design Intern, Conscious Hotels</h3>
-              <p class="experience-desc">During my internship as a graphic designer, I actively contributed to various multidisciplinary projects, including commercial campaigns and the creation of online and offline marketing materials. Together with the marketing team, I developed and executed creative campaigns. I also ensured consistent and accurate application of branding across all design work. This experience helped me to further develop both my creative and technical skills and build a solid foundation for my portfolio.</p>
+              <div class="experience-title-row">
+                <h3>Graphic Design Intern, Conscious Hotels</h3>
+              </div>
+              <p class="experience-desc">During my internship as a graphic designer, I actively contributed to various multidisciplinary projects, including commercial campaigns and brand activations.</p>
             </article>
           </div>
         </section>
 
-
       </main>
 
-      <!-- Footer Section -->
+      <!-- Site Footer -->
       <footer class="site-footer">
         <div class="footer-links">
-          <a href="https://linkedin.com/in/jonigodwin" target="_blank">Linkedin</a>
+          <a href="https://linkedin.com/in/jonigodwin" target="_blank" rel="noopener noreferrer">Linkedin</a>
           <a href="mailto:info@studiojoons.com">Email</a>
         </div>
-        
         <div class="footer-bottom">
           <div class="footer-brand">
             <span class="brand-line"></span>
@@ -235,5 +266,119 @@
         </div>
       </footer>
     </div>
+
+    <!-- Apple Navigation Scroll Engine, Dynamic Dark Mode Observer & States -->
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // 1. DYNAMIC #1d1d1d DARK MODE SCROLL OBSERVER
+        const workSection = document.getElementById('work');
+        if (workSection) {
+          const darkObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                document.body.classList.add('theme-dark');
+              } else {
+                document.body.classList.remove('theme-dark');
+              }
+            });
+          }, {
+            // Buffer zone: triggers when showcase is within the active reading viewport
+            rootMargin: "-10% 0px -10% 0px",
+            threshold: 0.05
+          });
+          darkObserver.observe(workSection);
+        }
+
+        // 2. Floating Island Navigation Scroll Visibility Controller
+        const navWrapper = document.querySelector('.floating-nav-wrapper');
+        if (navWrapper) {
+          let lastScrollY = window.pageYOffset || document.documentElement.scrollTop;
+          let isTicking = false;
+          const scrollThreshold = 10;
+          const pinOffset = 60;
+
+          const handleScroll = () => {
+            const currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
+            const delta = currentScrollY - lastScrollY;
+
+            if (currentScrollY <= pinOffset) {
+              navWrapper.classList.remove('nav-hidden');
+            } else if (delta > scrollThreshold) {
+              navWrapper.classList.add('nav-hidden');
+            } else if (delta < -scrollThreshold) {
+              navWrapper.classList.remove('nav-hidden');
+            }
+
+            lastScrollY = Math.max(0, currentScrollY);
+            isTicking = false;
+          };
+
+          window.addEventListener('scroll', () => {
+            if (!isTicking) {
+              window.requestAnimationFrame(handleScroll);
+              isTicking = true;
+            }
+          }, { passive: true });
+        }
+
+        // 3. Fluid Intersection Observer for Elements
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.08, rootMargin: "0px 0px -40px 0px" });
+        fadeElements.forEach(el => observer.observe(el));
+
+        // 4. Typewriter Loop
+        const words = ["Designer", "Amateur cook", "Levensgenieter", "Gymjunkie", "Bingewatcher"];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        const typewriterEl = document.getElementById("typewriter");
+
+        function typeEffect() {
+          if (!typewriterEl) return;
+          const currentWord = words[wordIndex];
+          if (isDeleting) {
+            typewriterEl.textContent = currentWord.substring(0, charIndex - 1);
+            charIndex--;
+          } else {
+            typewriterEl.textContent = currentWord.substring(0, charIndex + 1);
+            charIndex++;
+          }
+
+          let typingSpeed = isDeleting ? 50 : 100;
+          if (!isDeleting && charIndex === currentWord.length) {
+            typingSpeed = 2000;
+            isDeleting = true;
+          } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            wordIndex = (wordIndex + 1) % words.length;
+            typingSpeed = 500;
+          }
+          setTimeout(typeEffect, typingSpeed);
+        }
+        if (typewriterEl) setTimeout(typeEffect, 800);
+      });
+
+      // 5. Showcase State Simulation Manager
+      function setShowcaseState(state) {
+        const states = ['catalog', 'loading', 'empty'];
+        states.forEach(s => {
+          const el = document.getElementById(s === 'catalog' ? 'showcase-active' : `showcase-${s}`);
+          if (el) el.classList.toggle('is-hidden', s !== state);
+        });
+
+        document.querySelectorAll('.split-tab-btn').forEach(btn => {
+          const isSelected = btn.getAttribute('onclick').includes(state);
+          btn.classList.toggle('active', isSelected);
+          btn.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+        });
+      }
+    </script>
   </body>
 </html>
