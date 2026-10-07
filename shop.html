@@ -1,52 +1,269 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="antialiased scroll-smooth">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Studio Joons - Shop</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>Studio Joons — Tangible Graphics &amp; Limited Drops</title>
+  <meta name="description" content="Shop limited-edition embroidered carnival emblems, pop-art patches, and collectible design prints from Studio Joons." />
   <link rel="stylesheet" href="css/style.css" />
-<link rel="icon" type="image/png" href="Assets/Images/favicon.png" /> 
 </head>
-<body>
+<body class="shop-page">
   <div class="page-shell">
+    
+    <!-- Topbar: Left Brand Identity + Centered Floating Glass Navigation Island -->
     <header class="topbar">
-      <a class="brand" href="index.html">
-        <span class="brand-mark"></span>
-        <span class="brand-name">Joni Godwin</span>
-      </a>
-            <!-- Fixed wrapper keeps the bar centered at the top while scrolling -->
-<div class="floating-nav-wrapper">
-          <nav class="floating-nav" aria-label="Primary navigation">
-            <a href="index" >Home</a>
-            <a href="overview">Projects</a>
-            <a href="me" >Me</a>
-            <a href="shop"  aria-current="page "class="nav-btn">STUDIO JOONS</a>
-          </nav>
-        </div>
+      <div class="header-brand-wrapper fade-in">
+        <a href="me.html" class="profile-hover-btn" aria-label="About Joni Godwin">
+          <div class="profile-backdrop"></div>
+          <img src="Assets/Images/_MG_4456.jpg" alt="Portrait of Joni Godwin" class="profile-img" />
+        </a>
+        <a href="home.html" class="brand-name">JONI GODWIN</a>
+      </div>
+
+      <!-- Symmetrical Floating Nav -->
+      <div class="floating-nav-wrapper">
+        <nav class="floating-nav" aria-label="Primary navigation">
+          <a href="home.html">Home</a>
+          <a href="index.html">Projects</a>
+          <a href="me.html">Me</a>
+          <a href="shop.html" class="nav-btn" aria-current="page">STUDIO JOONS</a>
+          <!-- Cart Drawer Toggle Pill -->
+          <button id="cart-nav-btn" class="nav-cart-btn" aria-label="Open shopping bag" onclick="cartEngine.toggleDrawer(true)">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-2z"></path>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+            <span class="cart-count-badge" id="cart-nav-count">0</span>
+          </button>
+        </nav>
+      </div>
     </header>
-    <main>
-      <section class="section">
-        <div class="section-heading">
-          <h2>Studio Joons Shop</h2>
+
+    <!-- Main Store Canvas -->
+    <main class="projects-container" style="max-width: 1240px; margin: 0 auto; padding: 40px 0 120px;">
+      
+      <!-- Centered Editorial Hero Section -->
+      <header class="shop-header fade-in">
+        <p class="shop-eyebrow">STUDIO JOONS STORE</p>
+        <h1 class="shop-large-title">Tangible Graphics &amp; Limited Drops</h1>
+        <p class="shop-body-lead">
+          Tactile emblems, embroidered carnival patches, and limited pop-art editions crafted with independent studio precision.
+        </p>
+      </header>
+
+      <!-- Segmented Control Mode Switcher -->
+      <nav class="segmented-control-wrapper fade-in" aria-label="Store display mode switcher" style="justify-content: center; margin-bottom: 48px;">
+        <div class="segmented-control" role="tablist">
+          <button class="segment-btn active" role="tab" aria-selected="true" onclick="setCatalogState('catalog')">In Stock (2)</button>
         </div>
-        <div class="shop-grid project-grid">
-          <article class="project-card sticker-graphic">
-            <div style="padding: 40px; text-align: center; background: #f4f1eb;">
-              <h2 style="font-size: 3rem; margin: 0;">🎭</h2>
+      </nav>
+
+      <!-- State 1: Active Interactive Catalog -->
+      <section id="state-catalog" class="project-grid-apple fade-in" aria-label="Available Products">
+        
+        <!-- Product 1: FREAKandel Embleem -->
+        <article class="apple-gradient-card" data-product-id="freakandel">
+          <div class="card-media-backdrop">
+            <img src="Assets/Items/STUDIO JOONS_embleem_FREAKandel.jpg" alt="FREAKandel Embleem - STUDIO Joons" loading="lazy" />
+          </div>
+          <div class="card-gradient-scrim"></div>
+          <div class="card-gradient-tint tint-blue"></div>
+          
+          <div class="card-badge-container">
+            <span class="product-badge">Carnival '27 Drop</span>
+          </div>
+
+          <div class="card-floating-content">
+            <span class="card-eyebrow">Carnival '27 Embleem</span>
+            <h2 class="card-title">FREAKandel embleem</h2>
+            
+            <div class="card-action-row">
+              <span class="card-price-tag">&euro;6.95</span>
+              <button 
+                class="apple-card-action-btn add-to-cart-btn" 
+                aria-label="Add FREAKandel Embleem to bag"
+                data-id="freakandel"
+                data-name="FREAKandel embleem"
+                data-price="6.95"
+                data-image="Assets/Items/STUDIO JOONS_embleem_FREAKandel.jpg">
+                <span>Add to Bag</span>
+              </button>
             </div>
-            <h3>Custom Carnival Patches</h3>
-            <p style="padding: 0 20px 20px;">Exclusive 2026 collection of custom insignias.</p>
-          </article>
-          <article class="project-card sticker-graphic">
-            <div style="padding: 40px; text-align: center; background: #f4f1eb;">
-              <h2 style="font-size: 3rem; margin: 0;">🍟</h2>
+          </div>
+        </article>
+
+        <!-- Product 2: BitterB00Bs Embleem -->
+        <article class="apple-gradient-card" data-product-id="bitterboobs">
+          <div class="card-media-backdrop">
+            <img src="Assets/Items/STUDIO JOONS_embeelm_BitterB00Bs.jpg" alt="BitterB00Bs Embleem - STUDIO Joons" loading="lazy" />
+          </div>
+          <div class="card-gradient-scrim"></div>
+          <div class="card-gradient-tint tint-orange"></div>
+
+          <div class="card-badge-container">
+            <span class="product-badge badge-orange">Carnival '27 Drop</span>
+          </div>
+
+          <div class="card-floating-content">
+            <span class="card-eyebrow">Carnival '27 Embleem</span>
+            <h2 class="card-title">BitterB00Bs embleem</h2>
+            
+            <div class="card-action-row">
+              <span class="card-price-tag">&euro;6.95</span>
+              <button 
+                class="apple-card-action-btn add-to-cart-btn" 
+                aria-label="Add BitterB00Bs Embleem to bag"
+                data-id="bitterboobs"
+                data-name="BitterB00Bs embleem"
+                data-price="6.95"
+                data-image="Assets/Items/STUDIO JOONS_embeelm_BitterB00Bs.jpg">
+                <span>Add to Bag</span>
+              </button>
             </div>
-            <h3>Pop-Art Snack Prints</h3>
-            <p style="padding: 0 20px 20px;">Humorous illustrations of frikandellen and kroketten.</p>
-          </article>
+          </div>
+        </article>
+
+      </section>
+
+      <!-- State 2: Shimmer Screen -->
+      <section id="state-loading" class="project-grid-apple is-hidden" aria-label="Loading catalog content" aria-live="polite">
+        <div class="apple-gradient-card skeleton-card">
+          <div class="card-floating-content">
+            <div class="skeleton-shimmer skeleton-text-eyebrow"></div>
+            <div class="skeleton-shimmer skeleton-text-title"></div>
+            <div class="skeleton-shimmer skeleton-text-body"></div>
+          </div>
         </div>
       </section>
+
+      <!-- State 3: Sold Out State -->
+      <section id="state-empty" class="state-panel is-hidden" aria-label="Store empty announcement" aria-live="polite">
+        <div class="state-icon-stage" aria-hidden="true">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-2z"></path>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <path d="M16 10a4 4 0 0 1-8 0"></path>
+          </svg>
+        </div>
+        <h2 class="state-title">The studio drop has cleared.</h2>
+        <p class="state-subtitle">
+          Our current run of handcrafted patches and insignias is spoken for. Join our dispatch list to be notified when batch 03 enters production.
+        </p>
+        <button class="apple-reset-btn" onclick="setCatalogState('catalog')">Return to Archive</button>
+      </section>
+
     </main>
+
+    <!-- Slide-Out Shopping Bag Drawer -->
+    <div id="cart-drawer-backdrop" class="cart-backdrop is-hidden" onclick="cartEngine.toggleDrawer(false)"></div>
+    <aside id="cart-drawer" class="cart-drawer" aria-labelledby="cart-heading" aria-modal="true" role="dialog">
+      <div class="cart-drawer-header">
+        <div class="cart-title-row">
+          <h2 id="cart-heading" class="cart-header-title">Studio Bag</h2>
+          <span class="cart-header-count" id="cart-header-count">(0)</span>
+        </div>
+        <button class="cart-close-btn" aria-label="Close bag" onclick="cartEngine.toggleDrawer(false)">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="cart-items-container" id="cart-items-list">
+        <!-- Rendered dynamically by cart.js -->
+      </div>
+
+      <div class="cart-drawer-footer">
+        <form id="checkout-form" onsubmit="cartEngine.handleCheckout(event)">
+          <label for="customer-email" class="checkout-label">Dispatch Receipt Email</label>
+          <input 
+            type="email" 
+            id="customer-email" 
+            class="checkout-email-input" 
+            placeholder="your@email.com" 
+            required 
+          />
+
+          <div class="cart-subtotal-row">
+            <span class="subtotal-label">Subtotal</span>
+            <span class="subtotal-val" id="cart-subtotal-amount">&euro;0.00</span>
+          </div>
+          <p class="shipping-note">Taxes &amp; standard NL/EU parcel shipping calculated during checkout via Mollie.</p>
+
+          <button type="submit" id="cart-checkout-btn" class="apple-checkout-btn">
+            <span class="checkout-btn-text">Checkout with Mollie</span>
+            <span class="checkout-spinner is-hidden" aria-hidden="true"></span>
+          </button>
+        </form>
+      </div>
+    </aside>
+
+    <!-- Site Footer -->
+    <footer class="site-footer">
+      <div class="footer-links">
+        <a href="https://linkedin.com/in/jonigodwin" target="_blank" rel="noopener noreferrer">Linkedin</a>
+        <a href="mailto:info@studiojoons.com">Email</a>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-brand">
+          <span class="brand-line"></span>
+          <strong>PORTFOLIO JONI GODWIN</strong>
+        </div>
+        <div class="footer-copyright">
+          &copy; Joni Godwin 2026
+        </div>
+      </div>
+    </footer>
   </div>
+
+  <script src="css/js/cart.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Nav scroll and intersection observers
+      const navWrapper = document.querySelector('.floating-nav-wrapper');
+      if (navWrapper) {
+        let lastScrollY = window.pageYOffset || document.documentElement.scrollTop;
+        let isTicking = false;
+        window.addEventListener('scroll', () => {
+          if (!isTicking) {
+            window.requestAnimationFrame(() => {
+              const currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
+              const delta = currentScrollY - lastScrollY;
+              if (currentScrollY <= 60) {
+                navWrapper.classList.remove('nav-hidden');
+              } else if (delta > 10) {
+                navWrapper.classList.add('nav-hidden');
+              } else if (delta < -10) {
+                navWrapper.classList.remove('nav-hidden');
+              }
+              lastScrollY = Math.max(0, currentScrollY);
+              isTicking = false;
+            });
+            isTicking = true;
+          }
+        }, { passive: true });
+      }
+
+      const fadeElements = document.querySelectorAll('.fade-in');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: "0px 0px -40px 0px" });
+      fadeElements.forEach(el => observer.observe(el));
+    });
+
+    function setCatalogState(state) {
+      ['catalog', 'loading', 'empty'].forEach(s => {
+        const el = document.getElementById(`state-${s}`);
+        if (el) el.classList.toggle('is-hidden', s !== state);
+      });
+    }
+  </script>
 </body>
 </html>
