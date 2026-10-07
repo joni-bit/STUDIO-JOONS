@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" class="antialiased scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Studio Joons — Order Confirmation</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .order-status-card {
+      max-width: 580px;
+      margin: 120px auto;
+      background: var(--surface);
+      border: 1px solid var(--color-border-hairline);
+      border-radius: 28px;
+      padding: 48px 36px;
+      text-align: center;
+      box-shadow: var(--shadow);
+    }
+    .status-badge-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: rgba(25, 0, 255, 0.1);
+      color: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+    .order-number {
+      font-family: monospace;
+      font-size: 14px;
+      color: var(--muted);
+      background: rgba(18, 18, 18, 0.05);
+      padding: 6px 14px;
+      border-radius: 999px;
+      display: inline-block;
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <main>
+      <div class="order-status-card fade-in">
+        <div class="status-badge-icon">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+        <span class="order-number" id="display-order-id">ORD-STATUS</span>
+        <h1 style="font-size: 2rem; margin: 0 0 12px; font-weight: 700;">Order Received</h1>
+        <p style="color: var(--color-text-secondary); line-height: 1.6; margin-bottom: 32px;">
+          Thank you for supporting independent design! Your transaction was processed via Mollie. A confirmation email and shipping dispatch notice will follow shortly.
+        </p>
+        <div style="display: flex; gap: 12px; justify-content: center;">
+          <a href="shop.html" class="apple-touch-pill">Return to Studio Joons</a>
+          <a href="index.html" class="apple-touch-pill" style="background: var(--bg); color: var(--ink) !important;">View Portfolio</a>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // Clear shopping bag in localStorage once customer completes payment
+      try {
+        localStorage.removeItem('studio_joons_cart');
+      } catch (e) {}
+
+      const urlParams = new URLSearchParams(window.location.search);
+      const orderId = urlParams.get('order_id');
+      if (orderId) {
+        document.getElementById('display-order-id').textContent = orderId;
+      }
+    });
+  </script>
+</body>
+</html>
