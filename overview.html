@@ -1,111 +1,384 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="antialiased scroll-smooth">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Joni Godwin - Projects</title>
-  <link rel="icon" type="image/png" href="Assets/Images/favicon.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>Joni Godwin — Selected Works</title>
+  <meta name="description" content="Selected graphic design, digital interfaces, branding systems, and visual activations by Joni Godwin." />
   <link rel="stylesheet" href="css/style.css" />
 </head>
-
- <!-- voor de effecten fade in -->
-    <script>
-      document.addEventListener("DOMContentLoaded", () => {
-        const fadeElements = document.querySelectorAll('.fade-in');
-        
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('is-visible');
-              observer.unobserve(entry.target); // Zorgt ervoor dat de animatie maar 1x gebeurt
-            }
-          });
-        }, {
-          threshold: 0.1, // Trigger als 10% van het element in beeld is
-          rootMargin: "0px 0px -50px 0px" // Wacht iets langer met animeren voor een mooier effect
-        });
-
-        fadeElements.forEach(el => observer.observe(el));
-      });
-    </script>
-<body>
+<body class="projects-page">
   <div class="page-shell">
     
-    <!-- HIER BEGINT DE CORRECTE HEADER -->
+    <!-- Topbar: Brand Identity & Centered Apple Glass Navigation -->
     <header class="topbar">
-      
-      <!-- Het linker gedeelte: Foto + Naam -->
       <div class="header-brand-wrapper fade-in">
-        <a href="me.html" class="profile-hover-btn">
+        <a href="me.html" class="profile-hover-btn" aria-label="About Joni Godwin">
           <div class="profile-backdrop"></div>
-          <img src="./Assets/Images/IMG4456.jpg" alt="Joni Godwin" class="profile-img">
+          <img src="Assets/Images/_MG_4456.jpg" alt="Joni Godwin" class="profile-img" />
         </a>
-        <a href="index" class="brand-name">JONI GODWIN</a>
+        <a href="home.html" class="brand-name">JONI GODWIN</a>
       </div>
 
-      <!-- Het rechter gedeelte: Navigatie -->
       <div class="floating-nav-wrapper">
         <nav class="floating-nav" aria-label="Primary navigation">
-          <a href="index">Home</a>
-          <a href="overview" aria-current="page">Projects</a>
-          <a href="me">Me</a>
-          <a href="404" class="nav-btn">STUDIO JOONS</a>
+          <a href="home.html">Home</a>
+          <a href="index.html" aria-current="page">Projects</a>
+          <a href="me.html">Me</a>
+          <a href="shop.html" class="nav-btn">STUDIO JOONS</a>
         </nav>
       </div>
-      
     </header>
-    <!-- EINDE HEADER -->
 
-    <main>
-      <!-- Rest van je main content... -->
-    <main>
-      <section class="section section-work fade-in">
-        <div class="section-heading">
-          <h2>Selected work</h2>
+    <!-- Main Content Area -->
+    <main class="projects-container" style="max-width: 1240px; margin: 0 auto; padding: 40px 24px 120px;">
+      
+      <!-- Editorial Header -->
+      <header class="fade-in">
+        <p class="section-eyebrow" style="font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--color-accent-blue); margin-bottom: 12px;">
+          Portfolio Archive
+        </p>
+        <h1 class="section-large-title" style="font-size: clamp(2.4rem, 5.2vw, 3.8rem); line-height: 1.05; font-weight: 700; letter-spacing: -0.035em; margin: 0 0 16px;">
+          Selected Work
+        </h1>
+        <p class="section-body-lead" style="font-size: 17px; line-height: 1.52; color: var(--color-text-secondary); max-width: 620px; margin: 0;">
+          A showcase of visual branding, digital interface architecture, and campaign narratives crafted across independent and broadcast media.
+        </p>
+      </header>
+
+      <!-- Apple Segmented Control for State Simulation & Filtering -->
+      <nav class="filter-bar-wrapper fade-in" aria-label="Project filter tabs">
+        <div class="segmented-control" role="tablist">
+          <button class="segment-tab active" role="tab" aria-selected="true" data-filter="all" onclick="filterProjects('all', this)">All Works (5)</button>
+          <button class="segment-tab" role="tab" aria-selected="false" data-filter="identity" onclick="filterProjects('identity', this)">Visual Identity</button>
+          <button class="segment-tab" role="tab" aria-selected="false" data-filter="product" onclick="filterProjects('product', this)">UX / UI</button>
+          <button class="segment-tab" role="tab" aria-selected="false" data-filter="campaign" onclick="filterProjects('campaign', this)">Campaigns</button>
+          <!-- loading and empty state simulation buttons are commented out for production 
+          <button class="segment-tab" role="tab" aria-selected="false" data-filter="loading" onclick="simulateState('loading', this)">Simulate Loading</button>
+          <button class="segment-tab" role="tab" aria-selected="false" data-filter="empty" onclick="simulateState('empty', this)">Simulate Empty</button> -->
         </div>
-        <div class="project-grid">
-         <a href="project.html?id=domibo" class="project-card fade-in">
-  <img src="Assets/Projecten/DoMiBo/DoMiBo_1200x800.webp" alt="DoMiBo preview" />
-  <h3>DoMiBo</h3>
-</a>
+      </nav>
 
-<a href="project.html?id=andgage" class="project-card fade-in" style="transition-delay: 0.2s;">
-  <img src="Assets/Projecten/Andgage/Andgage_1200_800.webp" alt="Andgage preview" />
-  <h3>Andgage</h3>
-</a>
-          <a href="project.html?id=dqdb" class="project-card fade-in" style="transition-delay: 0.4s;">
-            <img src="Assets/Projecten/DQDB/DQDB_1200_800.webp" alt="Drag Queen Disco Bingo preview" />
-            <h3>Drag Queen Disco Bingo </h3>
-          </a>
-          <a href="project.html?id=rhythm-and-roots" class="project-card fade-in" style="transition-delay: 0.6s;">
-            <img src="Assets/Projecten/Rythm & Roots/RR_1200_800.webp" alt="Rhythm and Roots preview" />
-            <h3>Rhythm &amp; Roots </h3>
-          </a>
-          <a href="project.html?id=lnx" class="project-card fade-in" style="transition-delay: 0.8s;">
-            <img src="Assets/Projecten/LNX/LNX_1200_800.webp" alt="Lil Nas X preview" />
-            <h3>Lil Nas X Campaign </h3>
-          </a>
+      <!-- State 1: Active Interactive Project Grid (Dissolving Overlays on Hover) -->
+      <section id="projects-active-grid" class="project-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 32px;" aria-label="Selected Projects">
         
+        <!-- DoMiBo: Blue Dissolving Tint -->
+        <a href="project.html?id=domibo" class="apple-gradient-card project-card-item fade-in" data-category="identity" aria-label="View DoMiBo project">
+          <div class="card-media-backdrop">
+            <img src="Assets/Projecten/DoMiBo/DoMiBo_1200x800.webp" alt="DoMiBo brand visual identity preview" loading="lazy" />
+          </div>
+          <div class="card-gradient-scrim"></div>
+          <div class="card-gradient-tint tint-blue"></div>
+
+          <div class="card-floating-content">
+            <div class="card-header-row">
+              <div>
+                <p class="card-eyebrow">Visual Identity</p>
+                <h2 class="card-title">DoMiBo</h2>
+              </div>
+              <div class="card-corner-arrow" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </div>
+            </div>
+            <p class="card-description">Bold pin-up character branding and activation assets for recurring after-work gatherings.</p>
+          </div>
+        </a>
+
+        <!-- Andgage: Cyan Dissolving Tint -->
+        <a href="project.html?id=andgage" class="apple-gradient-card project-card-item fade-in" data-category="product" style="transition-delay: 0.15s;" aria-label="View Andgage project">
+          <div class="card-media-backdrop">
+            <img src="Assets/Projecten/Andgage/Andgage_1200_800.webp" alt="Andgage presentation platform interface design" loading="lazy" />
+          </div>
+          <div class="card-gradient-scrim"></div>
+          <div class="card-gradient-tint tint-cyan"></div>
+
+          <div class="card-floating-content">
+            <div class="card-header-row">
+              <div>
+                <p class="card-eyebrow">UX / UI Design</p>
+                <h2 class="card-title">Andgage</h2>
+              </div>
+              <div class="card-corner-arrow" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </div>
+            </div>
+            <p class="card-description">Streamlining interactive event presentation flows through structured user testing and design systems.</p>
+          </div>
+        </a>
+
+        <!-- Drag Queen Disco Bingo: Orange Dissolving Tint -->
+        <a href="project.html?id=dqdb" class="apple-gradient-card project-card-item fade-in" data-category="identity" style="transition-delay: 0.3s;" aria-label="View Drag Queen Disco Bingo project">
+          <div class="card-media-backdrop">
+            <img src="Assets/Projecten/DQDB/DQDB_1200_800.webp" alt="Drag Queen Disco Bingo event branding preview" loading="lazy" />
+          </div>
+          <div class="card-gradient-scrim"></div>
+          <div class="card-gradient-tint tint-orange"></div>
+
+          <div class="card-floating-content">
+            <div class="card-header-row">
+              <div>
+                <p class="card-eyebrow">Visual Identity</p>
+                <h2 class="card-title">Drag Queen Disco Bingo</h2>
+              </div>
+              <div class="card-corner-arrow" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </div>
+            </div>
+            <p class="card-description">High-contrast, disco-infused identity designed for dynamic rotating performer line-ups.</p>
+          </div>
+        </a>
+
+        <!-- Rhythm & Roots: Blue Dissolving Tint -->
+        <a href="project.html?id=rhythm-and-roots" class="apple-gradient-card project-card-item fade-in" data-category="product" style="transition-delay: 0.45s;" aria-label="View Rhythm & Roots project">
+          <div class="card-media-backdrop">
+            <img src="Assets/Projecten/Rythm & Roots/RR_1200_800.webp" alt="Rhythm and Roots interactive digital music interface preview" loading="lazy" />
+          </div>
+          <div class="card-gradient-scrim"></div>
+          <div class="card-gradient-tint tint-blue"></div>
+
+          <div class="card-floating-content">
+            <div class="card-header-row">
+              <div>
+                <p class="card-eyebrow">Visual Interface Design</p>
+                <h2 class="card-title">Rhythm &amp; Roots</h2>
+              </div>
+              <div class="card-corner-arrow" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </div>
+            </div>
+            <p class="card-description">An immersive desktop editorial celebrating Afrobeats culture and visual storytelling.</p>
+          </div>
+        </a>
+
+        <!-- Lil Nas X Campaign: Orange Dissolving Tint -->
+        <a href="project.html?id=lnx" class="apple-gradient-card project-card-item fade-in" data-category="campaign" style="transition-delay: 0.6s;" aria-label="View Lil Nas X Campaign project">
+          <div class="card-media-backdrop">
+            <img src="Assets/Projecten/LNX/LNX_1200_800.webp" alt="Lil Nas X Dutch tour campaign preview" loading="lazy" />
+          </div>
+          <div class="card-gradient-scrim"></div>
+          <div class="card-gradient-tint tint-orange"></div>
+
+          <div class="card-floating-content">
+            <div class="card-header-row">
+              <div>
+                <p class="card-eyebrow">Campaign Concept</p>
+                <h2 class="card-title">Lil Nas X Campaign</h2>
+              </div>
+              <div class="card-corner-arrow" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
+                </svg>
+              </div>
+            </div>
+            <p class="card-description">Meme-inspired cross-media rollout combining billboard stunts, AR lenses, and viral tweets.</p>
+          </div>
+        </a>
+
+      </section>
+
+      <!-- State 2: Shimmer Skeleton Screen -->
+      <section id="projects-loading-grid" class="project-grid is-hidden" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 32px;" aria-label="Loading project archive" aria-live="polite">
+        <div class="apple-gradient-card skeleton-card">
+          <div class="card-floating-content">
+            <div class="card-header-row">
+              <div style="flex-grow: 1;">
+                <div class="skeleton-shimmer skeleton-text-eyebrow"></div>
+                <div class="skeleton-shimmer skeleton-text-title"></div>
+              </div>
+              <div class="skeleton-shimmer skeleton-circle-arrow"></div>
+            </div>
+            <div class="skeleton-shimmer skeleton-text-body"></div>
+          </div>
+        </div>
+
+        <div class="apple-gradient-card skeleton-card">
+          <div class="card-floating-content">
+            <div class="card-header-row">
+              <div style="flex-grow: 1;">
+                <div class="skeleton-shimmer skeleton-text-eyebrow"></div>
+                <div class="skeleton-shimmer skeleton-text-title"></div>
+              </div>
+              <div class="skeleton-shimmer skeleton-circle-arrow"></div>
+            </div>
+            <div class="skeleton-shimmer skeleton-text-body"></div>
+          </div>
+        </div>
+
+        <div class="apple-gradient-card skeleton-card">
+          <div class="card-floating-content">
+            <div class="card-header-row">
+              <div style="flex-grow: 1;">
+                <div class="skeleton-shimmer skeleton-text-eyebrow"></div>
+                <div class="skeleton-shimmer skeleton-text-title"></div>
+              </div>
+              <div class="skeleton-shimmer skeleton-circle-arrow"></div>
+            </div>
+            <div class="skeleton-shimmer skeleton-text-body"></div>
+          </div>
         </div>
       </section>
+
+      <!-- State 3: Empty Results State Panel -->
+      <section id="projects-empty-panel" class="empty-state-panel is-hidden" aria-label="No projects found" aria-live="polite">
+        <div class="empty-icon-well" aria-hidden="true">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            <line x1="8" y1="11" x2="14" y2="11"></line>
+          </svg>
+        </div>
+        <h2 class="empty-state-title">No matching releases</h2>
+        <p class="empty-state-desc">There are no archived projects in this selection right now. Reset the filter to browse the full studio catalog.</p>
+        <button class="apple-reset-btn" onclick="resetToAll()">Show All Works</button>
+      </section>
+
     </main>
-     <!-- Footer Section -->
-      <footer class="site-footer">
-        <div class="footer-links">
-          <a href="https://linkedin.com/in/jonigodwin" target="_blank">Linkedin</a>
-          <a href="mailto:info@studiojoons.com">Email</a>
+
+    <!-- Standard Site Footer -->
+    <footer class="site-footer">
+      <div class="footer-links">
+        <a href="https://linkedin.com/in/jonigodwin" target="_blank" rel="noopener noreferrer">Linkedin</a>
+        <a href="mailto:info@studiojoons.com">Email</a>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-brand">
+          <span class="brand-line"></span>
+          <strong>PORTFOLIO JONI GODWIN</strong>
         </div>
-        
-        <div class="footer-bottom">
-          <div class="footer-brand">
-            <span class="brand-line"></span>
-            <strong>PORTFOLIO JONI GODWIN</strong>
-          </div>
-          <div class="footer-copyright">
-            &copy; Joni Godwin 2026
-          </div>
+        <div class="footer-copyright">
+          &copy; Joni Godwin 2026
         </div>
-      </footer>
+      </div>
+    </footer>
   </div>
+
+  <!-- Interactive State Engine & Navigation Visibility Engine -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // 1. Hardware-Accelerated Floating Nav Scroll Controller
+      const navWrapper = document.querySelector('.floating-nav-wrapper');
+      if (navWrapper) {
+        let lastScrollY = window.pageYOffset || document.documentElement.scrollTop;
+        let isTicking = false;
+        const scrollThreshold = 10;
+        const pinOffset = 60;
+
+        const handleScroll = () => {
+          const currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
+          const delta = currentScrollY - lastScrollY;
+
+          if (currentScrollY <= pinOffset) {
+            navWrapper.classList.remove('nav-hidden');
+          } else if (delta > scrollThreshold) {
+            navWrapper.classList.add('nav-hidden');
+          } else if (delta < -scrollThreshold) {
+            navWrapper.classList.remove('nav-hidden');
+          }
+
+          lastScrollY = Math.max(0, currentScrollY);
+          isTicking = false;
+        };
+
+        window.addEventListener('scroll', () => {
+          if (!isTicking) {
+            window.requestAnimationFrame(handleScroll);
+            isTicking = true;
+          }
+        }, { passive: true });
+      }
+
+      // 2. Fluid Intersection Observer for Elements
+      const fadeElements = document.querySelectorAll('.fade-in');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: "0px 0px -40px 0px" });
+
+      fadeElements.forEach(el => observer.observe(el));
+    });
+
+    // 3. Category Filter Logic
+    function filterProjects(category, buttonEl) {
+      document.getElementById('projects-loading-grid').classList.add('is-hidden');
+      document.getElementById('projects-empty-panel').classList.add('is-hidden');
+      const activeGrid = document.getElementById('projects-active-grid');
+      activeGrid.classList.remove('is-hidden');
+
+      // Update Segmented Control States
+      document.querySelectorAll('.segment-tab').forEach(tab => {
+        tab.classList.remove('active');
+        tab.setAttribute('aria-selected', 'false');
+      });
+      buttonEl.classList.add('active');
+      buttonEl.setAttribute('aria-selected', 'true');
+
+      // Filter Item Animation
+      const cards = activeGrid.querySelectorAll('.project-card-item');
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const itemCat = card.getAttribute('data-category');
+        if (category === 'all' || itemCat === category) {
+          card.classList.remove('is-hidden');
+          card.style.opacity = '1';
+          card.style.transform = 'translate3d(0, 0, 0)';
+          visibleCount++;
+        } else {
+          card.classList.add('is-hidden');
+        }
+      });
+
+      if (visibleCount === 0) {
+        activeGrid.classList.add('is-hidden');
+        document.getElementById('projects-empty-panel').classList.remove('is-hidden');
+      }
+    }
+
+    // 4. Interactive Simulation of Loading & Empty States
+    function simulateState(state, buttonEl) {
+      document.querySelectorAll('.segment-tab').forEach(tab => {
+        tab.classList.remove('active');
+        tab.setAttribute('aria-selected', 'false');
+      });
+      buttonEl.classList.add('active');
+      buttonEl.setAttribute('aria-selected', 'true');
+
+      const activeGrid = document.getElementById('projects-active-grid');
+      const loadingGrid = document.getElementById('projects-loading-grid');
+      const emptyPanel = document.getElementById('projects-empty-panel');
+
+      if (state === 'loading') {
+        activeGrid.classList.add('is-hidden');
+        emptyPanel.classList.add('is-hidden');
+        loadingGrid.classList.remove('is-hidden');
+      } else if (state === 'empty') {
+        activeGrid.classList.add('is-hidden');
+        loadingGrid.classList.add('is-hidden');
+        emptyPanel.classList.remove('is-hidden');
+      }
+    }
+
+    function resetToAll() {
+      const allTab = document.querySelector('[data-filter="all"]');
+      if (allTab) filterProjects('all', allTab);
+    }
+  </script>
 </body>
 </html>
