@@ -623,6 +623,7 @@ body.theme-dark .floating-nav a.nav-btn:hover {
     rgba(18, 18, 18, 0.94) 100%
   );
   pointer-events: none;
+  border-radius: inherit; /* Deze fix houdt de gradient strak binnen de hoeken */
 }
 
 .card-gradient-tint {
@@ -633,6 +634,16 @@ body.theme-dark .floating-nav a.nav-btn:hover {
   pointer-events: none;
   will-change: opacity;
   transition: opacity 0.55s var(--spring-smooth);
+  border-radius: inherit; /* Deze fix houdt de gekleurde waas binnen de hoeken */
+}
+
+.card-media-backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  border-radius: inherit; /* Zorgt ook dat de foto niet meer kan uitsteken */
 }
 
 .card-gradient-tint.tint-blue {
