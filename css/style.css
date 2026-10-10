@@ -1278,14 +1278,17 @@ body.theme-dark .floating-nav a.nav-btn:hover {
 .marquee-content {
   display: flex;
   gap: 20px;
+   align-items: center;
 }
 
 .marquee-img {
-  height: 400px;
+   height: auto; /* Behoudt de natuurlijke verhouding */
+  max-height: 400px; /* Zorgt dat ze niet groter worden dan je oorspronkelijke design */
   width: auto;
   border-radius: 12px;
   object-fit: contain;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  display: block;
 }
 
 @keyframes marqueeScroll {
@@ -2294,6 +2297,12 @@ body.theme-dark .segmented-control button.active {
 .apple-checkout-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+/* --- Fix voor de Marquee in CSS Grid --- */
+.project-row.full-width {
+  max-width: 100%;
+  min-width: 0; /* Belangrijke fix voor CSS Grid! */
+  overflow: hidden;
 }
 /* --- Fix voor uitrekkende blokken in de Marquee --- */
 .project-marquee-track,
