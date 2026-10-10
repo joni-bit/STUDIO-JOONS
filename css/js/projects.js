@@ -398,11 +398,11 @@ const projectsData = {
             type: "carousel", 
             images: [
 
-              "Assets/Projecten/LNX/Carousel /85582e64-e681-4550-92db-8518873b5bc6.jpeg", // Jouw 9:16 (verticale) afbeeldingen
-              "Assets/Projecten/LNX/Carousel /a53f77b2-f70b-4b41-a5eb-6b27ebd207c6.jpeg", 
-              "Assets/Projecten/LNX/Carousel /d6c998e5-1184-4ea9-837f-4676fc95a23e.jpeg",
-              "Assets/Projecten/LNX/Carousel /IMG_3419.jpeg",
-              "Assets/Projecten/LNX/Carousel /IMG_3421.jpeg"
+              "Assets/Projecten/LNX/Carousel/85582e64-e681-4550-92db-8518873b5bc6.jpeg", // Jouw 9:16 (verticale) afbeeldingen
+              "Assets/Projecten/LNX/Carousel/a53f77b2-f70b-4b41-a5eb-6b27ebd207c6.jpeg", 
+              "Assets/Projecten/LNX/Carousel/d6c998e5-1184-4ea9-837f-4676fc95a23e.jpeg",
+              "Assets/Projecten/LNX/Carousel/IMG_3419.jpeg",
+              "Assets/Projecten/LNX/Carousel/IMG_3421.jpeg"
             ] 
           }
         ]
