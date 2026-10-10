@@ -1870,16 +1870,16 @@ body.theme-dark .floating-nav a.nav-btn:hover {
 
 
 @media (max-width: 680px) {
-  /* 1. Navigatie & Header Ruimte */
-  /* Duwt de hele pagina naar beneden zodat de navigatiebalk ruimte heeft */
+  /* 1. Header & Navigatie Ruimte Fix */
   .page-shell, .about-shell { 
-    padding: 100px 20px 34px; 
+    /* 110px top-padding duwt de profielfoto en naam ruim onder de zwevende balk */
+    padding: 110px 16px 34px !important; 
   }
   
   .topbar { 
     flex-direction: column; 
     align-items: flex-start; 
-    gap: 24px; 
+    gap: 16px; 
   }
   
   .floating-nav { 
@@ -1898,37 +1898,35 @@ body.theme-dark .floating-nav a.nav-btn:hover {
     font-size: 13px; 
   }
 
-  /* 2. Logische mobiele filter tabs (Swipeable) */
+  /* 2. Kaarten kleiner schalen en centreren */
+  .project-grid, 
+  .project-grid-apple, 
+  .shop-grid {
+    /* De kaarten worden max 350px breed en worden centraal op het scherm gezet */
+    grid-template-columns: minmax(260px, 350px); 
+    justify-content: center; 
+    gap: 24px;
+  }
+  
+  .apple-gradient-card {
+    min-height: 380px; /* Iets minder hoog zodat ze beter in beeld passen */
+    border-radius: 24px; /* Optische correctie voor mobiele schermen */
+  }
+
+  /* 3. Veegbare Tabs (Swipeable) */
   .filter-bar-wrapper {
-    /* Negatieve margin trekt hem naar de schermranden, padding duwt de content terug */
-    margin: 0 -20px 32px; 
-    padding: 4px 20px 12px; 
-    scroll-padding-left: 20px;
-    
-    /* Optioneel: Voegt een subtiele 'fade' toe aan de rechterkant zodat je ziet dat je kunt scrollen */
+    margin: 0 -16px 32px; 
+    padding: 4px 16px 12px; 
+    scroll-padding-left: 16px;
     -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
     mask-image: linear-gradient(to right, black 85%, transparent 100%);
   }
   
   .segmented-control {
-    flex-wrap: nowrap; /* Zorgt dat de tabs nooit op een 2e regel belanden */
+    flex-wrap: nowrap; /* Forceert de tabs op één horizontale lijn */
   }
 
-  /* 3. Project Blokken passend maken */
-  /* Overschrijft de minmax(340px) zodat hij op kleine schermen niet uit de breedte breekt */
-  .project-grid,
-  .project-grid-apple,
-  .shop-grid {
-    grid-template-columns: 1fr; /* Exact 1 kaart per rij op mobiel */
-    gap: 24px; /* Iets minder ruimte tussen de kaarten voor een compacter overzicht */
-  }
-
-  /* Maak de grote verloopkaarten iets compacter op mobiel */
-  .apple-gradient-card {
-    min-height: 400px; 
-  }
-
-  /* Footer en overige mobiele instellingen behouden */
+  /* 4. Footer & Overige */
   .site-footer { 
     padding: 60px 20px 32px; 
   }
@@ -1942,12 +1940,7 @@ body.theme-dark .floating-nav a.nav-btn:hover {
   .ticker-image-wrapper { 
     width: 140px; 
   }
-  .page-shell, .about-shell { padding: 22px 18px 34px; }
- 
-  .ticker-image-wrapper { width: 140px; }
 }
-}
-
 /* ==========================================================================
    Apple Segmented Control Filter Bar (Index Page)
    ========================================================================== */
