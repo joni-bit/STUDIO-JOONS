@@ -1940,6 +1940,9 @@ body.theme-dark .floating-nav a.nav-btn:hover {
   .ticker-image-wrapper { 
     width: 140px; 
   }
+  .card-gradient-tint {
+    display: none !important;
+  }
 }
 /* ==========================================================================
    Apple Segmented Control Filter Bar (Index Page)
