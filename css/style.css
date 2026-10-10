@@ -2295,3 +2295,9 @@ body.theme-dark .segmented-control button.active {
   opacity: 0.5;
   cursor: not-allowed;
 }
+/* --- Fix voor de Marquee in CSS Grid --- */
+.project-row.full-width {
+  max-width: 100%;
+  min-width: 0; /* Belangrijke fix voor CSS Grid! */
+  overflow: hidden;
+}
