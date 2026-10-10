@@ -1870,10 +1870,14 @@ body.theme-dark .floating-nav a.nav-btn:hover {
 
 
 @media (max-width: 680px) {
-  /* 1. Header & Navigatie Ruimte Fix */
-  .page-shell, .about-shell { 
-    /* 110px top-padding duwt de profielfoto en naam ruim onder de zwevende balk */
+  /* Index en projecten (waar de foto en naam wel staan) */
+  .page-shell { 
     padding: 110px 16px 34px !important; 
+  }
+
+  /* About Me pagina (alleen ruimte nodig voor de navigatiebalk) */
+  .about-shell { 
+    padding: 80px 16px 34px !important; 
   }
   
   .topbar { 
