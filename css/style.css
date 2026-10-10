@@ -2295,9 +2295,20 @@ body.theme-dark .segmented-control button.active {
   opacity: 0.5;
   cursor: not-allowed;
 }
-/* --- Fix voor de Marquee in CSS Grid --- */
-.project-row.full-width {
-  max-width: 100%;
-  min-width: 0; /* Belangrijke fix voor CSS Grid! */
-  overflow: hidden;
+/* --- Fix voor uitrekkende blokken in de Marquee --- */
+.project-marquee-track,
+.marquee-content {
+  display: flex;
+  gap: 20px;
+  align-items: center; /* Dit is de magic fix: voorkomt verticaal uitrekken */
+}
+
+.marquee-img {
+  height: auto; /* Behoudt de natuurlijke verhouding */
+  max-height: 400px; /* Zorgt dat ze niet groter worden dan je oorspronkelijke design */
+  width: auto;
+  border-radius: 12px;
+  object-fit: contain;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  display: block; /* Verwijdert de onzichtbare witruimte die standaard onder images zit */
 }
