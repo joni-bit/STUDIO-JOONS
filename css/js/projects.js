@@ -387,7 +387,7 @@ const projectsData = {
         // Hier is je 9:16 carousel aan de linkerkant!
         left: [
                     { type: "text", content: "As the third expression, I went with a <span class='accent-text'>social media filter</span>. The filter asked users what could be done at the locations where Lil Nas would perform, framed as a tweet from Lil Nas himself.<br><br>This added an <span class='accent-text'>interactive</span> and playful layer to the campaign, encouraging fans to join in and share their own spin." },
-{ type: "image", src: "Assets/Projecten/LNX/Lil_Nas_X_filter.jpg" }
+
         ],
         middle: [
           { type: "image", src: "Assets/Projecten/LNX/snapchat_filter.png" }
