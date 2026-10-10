@@ -1870,13 +1870,13 @@ body.theme-dark .floating-nav a.nav-btn:hover {
 
 
 @media (max-width: 680px) {
-  /* Index en projecten (waar de foto en naam wel staan) */
-  .page-shell { 
-    padding: 110px 16px 34px !important; 
+  /* 1. Verberg de profielfoto en 'JONI GODWIN' */
+  .projects-page .header-brand-wrapper .shop-page {
+    display: none !important;
   }
 
-  /* About Me pagina (alleen ruimte nodig voor de navigatiebalk) */
-  .about-shell { 
+  /* 2. Verlaag de padding omdat de foto weg is (net als bij about) */
+  .projects-page .page-shell {
     padding: 80px 16px 34px !important; 
   }
   
