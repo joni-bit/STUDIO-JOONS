@@ -117,7 +117,7 @@ const projectsData = {
         items: [
           { type: "image", src: "Assets/Projecten/Andgage/Andgage flow.webp" },
           { type: "text", content: "These deliverables served as the blueprints for low fidelity wireframes. I used these wireframes to further refine my designs through usability testing." },
-          { type: "image", src: "Assets/Projecten/Andgage/Flow 3/Andgage_wireframegrid.webp" }
+          { type: "image", src: "Assets/Projecten/Andgage/Flow 3/Andgag_wireframegrid.webp" }
         ]
       },
       {
@@ -156,10 +156,10 @@ const projectsData = {
           { type: "text", content: "The user is guided through a simplified, step-by-step wizard to configure the basic parameters of a new event such as the name, date, and core settings. This process is designed to lower the initial barrier by breaking down the setup into logical, manageable phases." },
            { type: "marquee", 
             images: [
-              "Assets/Projecten/Andgage/Flow 2/Flow2.1.avif",
               "Assets/Projecten/Andgage/Flow 2/Flow2.2.avif",
               "Assets/Projecten/Andgage/Flow 2/Flow2.3.avif",
-              "Assets/Projecten/Andgage/Flow 2/Flow2.4.avif" // Voeg hier gerust meer schermen toe!
+              "Assets/Projecten/Andgage/Flow 2/Flow2.4.avif",
+              "Assets/Projecten/Andgage/Flow 2/12.avif" // Voeg hier gerust meer schermen toe!
             ] 
           }
         ]
