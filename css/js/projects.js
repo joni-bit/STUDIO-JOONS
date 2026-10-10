@@ -402,6 +402,7 @@ const projectsData = {
               "Assets/Projecten/LNX/Carousel/a53f77b2-f70b-4b41-a5eb-6b27ebd207c6.jpeg", 
               "Assets/Projecten/LNX/Carousel/d6c998e5-1184-4ea9-837f-4676fc95a23e.jpeg",
               "Assets/Projecten/LNX/Carousel/IMG_3419.jpeg",
+              "Assets/Projecten/LNX/Carousel/280b7529-65e7-4215-a5d8-fdc5bdae014f.jpeg",
               "Assets/Projecten/LNX/Carousel/IMG_3421.jpeg"
             ] 
           }
