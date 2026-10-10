@@ -370,7 +370,7 @@ const projectsData = {
           { type: "text", content: "For a project commissioned by Mojo Concerts, the goal was to promote a new international artist who had never performed in the Netherlands before. The artist would be giving four shows at different locations across the country.<br><br>To support this, a <span class='accent-text'>promotional campaign</span> was developed with the aim of attracting as many fans as possible and fostering real interaction between the artist and the audience.<br><br>As part of the campaign, a poster, a video, and a third medium were created to bring the concept to life." }
         ],
         right: [
-          { type: "video", src: "Assets/Projecten/LNX/LilnasX.mp4" }
+          { type: "youtube", src: "6eHQ5aSrE-k" }
         ]
       },
       {
