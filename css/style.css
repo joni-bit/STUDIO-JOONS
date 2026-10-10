@@ -141,7 +141,7 @@ body.home-page.theme-dark::before {
   opacity: 0 !important;
 }
 
-body.theme-dark .floating-nav {
+body.theme-dark ting-nav {
   background: var(--color-surface-translucent);
   backdrop-filter: blur(28px) saturate(190%);
   -webkit-backdrop-filter: blur(28px) saturate(190%);
@@ -151,12 +151,12 @@ body.theme-dark .floating-nav {
     inset 0 1px 0.5px rgba(255, 255, 255, 0.16);
 }
 
-body.theme-dark .floating-nav a {
+body.theme-dark ting-nav a {
   color: rgba(245, 245, 247, 0.6);
 }
 
-body.theme-dark .floating-nav a:hover,
-body.theme-dark .floating-nav a[aria-current="page"] {
+body.theme-dark ting-nav a:hover,
+body.theme-dark ting-nav a[aria-current="page"] {
   color: #ffffff;
 }
 
@@ -307,7 +307,11 @@ body.theme-dark .split-empty-icon {
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  
+  /* DE FIX: We zetten ze vast aan de linkerkant met een vaste ruimte ertussen */
+  justify-content: flex-start;
+  gap: 22px; 
+  
   padding: 6px 6px 6px 28px;
   background: var(--color-surface-translucent);
   backdrop-filter: blur(28px) saturate(190%);
@@ -315,8 +319,35 @@ body.theme-dark .split-empty-icon {
   border: 0.5px solid var(--color-border-glass);
   border-radius: 999px;
   box-shadow: var(--shadow-elevated), inset 0 1px 0.5px rgba(255, 255, 255, 0.85);
-  transform-origin: center center;
-  transition: transform 0.4s var(--spring-smooth), box-shadow 0.4s var(--spring-smooth);
+  transform-origin: left center; /* Laat hem vanuit links uitschuiven in plaats van vanuit het midden */
+  
+  /* De dynamische 'Apple' stretch animatie */
+  transition: 
+    width 0.6s var(--spring-smooth), 
+    transform 0.4s var(--spring-smooth), 
+    box-shadow 0.4s var(--spring-smooth);
+    
+  overflow: hidden; /* Zorgt dat de cart niet buiten de randen tekent tijdens het uitschuiven */
+}
+/* Duw de Studio Joons knop (en alles wat erna komt) strak naar rechts */
+.floating-nav a.nav-btn {
+  margin-left: auto; 
+}
+
+/* De balk uitschuiven zodra we op de shop pagina zijn */
+body.shop-page .floating-nav {
+  width: 520px; /* Originele breedte + breedte van het karretje */
+}
+
+/* Zorg voor een 'bounce-in' effect op het karretje zelf */
+.nav-cart-btn {
+  margin-left: 8px; /* Ademruimte tussen Studio Joons en de cart */
+  animation: dynamicPop 0.6s var(--spring-bouncy) forwards;
+}
+
+@keyframes dynamicPop {
+  0% { opacity: 0; transform: scale(0.7) translateX(-15px); }
+  100% { opacity: 1; transform: scale(1) translateX(0); }
 }
 
 .floating-nav:hover {
@@ -1897,9 +1928,12 @@ body.theme-dark .floating-nav a.nav-btn:hover {
     gap: 16px; 
   }
   
+@media (max-width: 680px) {
   .floating-nav { 
     height: 52px; 
     padding: 4px 4px 4px 18px; 
+    gap: 8px; /* <-- Voeg deze toe: maakt de ruimte tussen links kleiner op mobiel */
+    width: 100% !important; /* Zorgt dat hij altijd de volle breedte benut */
   }
   
   .floating-nav a { 
