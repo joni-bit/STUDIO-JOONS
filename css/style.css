@@ -328,6 +328,9 @@ body.theme-dark .split-empty-icon {
 /* De balk uitschuiven zodra we op de shop pagina zijn */
 body.shop-page .floating-nav {
   width: 520px; 
+  /* DE FIX: Dit houdt de content-ruimte exact gelijk aan de 440px balk! */
+  padding-right: 86px; 
+}
 }
 
 @keyframes dynamicPop {
