@@ -2401,3 +2401,13 @@ body.theme-dark .segmented-control button.active {
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
   display: block; /* Verwijdert de onzichtbare witruimte die standaard onder images zit */
 }
+/* --- Specifiek voor de Project Overview pagina --- */
+  /* 1. Verberg de profielfoto en 'JONI GODWIN' */
+  .projects-page .header-brand-wrapper {
+    display: none !important;
+  }
+
+  /* 2. Verlaag de padding omdat de foto weg is (net als bij about) */
+  .projects-page .page-shell {
+    padding: 80px 16px 34px !important; 
+  }
