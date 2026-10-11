@@ -1986,6 +1986,11 @@ body.theme-dark .segmented-control button.active {
    ========================================================================== */
 
 /* Nav Cart Toggle Button */
+/* ==========================================================================
+   Studio Joons Cart Engine & Slide-Out Drawer Styles
+   ========================================================================== */
+
+/* Nav Cart Toggle Button */
 .nav-cart-btn {
   display: inline-flex;
   align-items: center;
@@ -1999,14 +2004,12 @@ body.theme-dark .segmented-control button.active {
   color: var(--color-text-primary);
   transition: background-color 0.2s ease, transform 0.2s var(--spring-smooth);
   
-  margin-left: auto; /* FIX: Duwt alléén het winkelwagentje helemaal naar rechts */
-  margin-right: 2px; /* Kleine optische correctie binnen de pil */
-  animation: dynamicPop 0.6s var(--spring-bouncy) forwards; /* Soepele pop-in */
-}
-
-@keyframes dynamicPop {
-  0% { opacity: 0; transform: scale(0.7) translateX(-15px); }
-  100% { opacity: 1; transform: scale(1) translateX(0); }
+  /* FIX: Absoluut gepositioneerd in de nieuw gecreëerde padding-ruimte */
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  margin-top: -22px; 
+  animation: dynamicPop 0.6s var(--spring-bouncy) forwards; 
 }
 
 .nav-cart-btn:hover {
