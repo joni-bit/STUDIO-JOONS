@@ -2403,11 +2403,11 @@ body.theme-dark .segmented-control button.active {
 }
 /* --- Specifiek voor de Project Overview pagina --- */
   /* 1. Verberg de profielfoto en 'JONI GODWIN' */
-  .projects-page .header-brand-wrapper {
+  .projects-page .header-brand-wrapper .shop-page {
     display: none !important;
   }
 
   /* 2. Verlaag de padding omdat de foto weg is (net als bij about) */
-  .projects-page .page-shell {
+  .projects-page .page-shell .shop-page {
     padding: 40px 16px 34px !important; 
   }
