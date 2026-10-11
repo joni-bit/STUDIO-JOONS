@@ -2001,7 +2001,12 @@ body.theme-dark .segmented-control button.active {
   cursor: pointer;
   color: var(--color-text-primary);
   transition: background-color 0.2s ease, transform 0.2s var(--spring-smooth);
-  margin-left: 8px; 
+  
+  /* DE FIX: Absoluut gepositioneerd in de nieuw gecreëerde padding-ruimte */
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  margin-top: -22px; /* Perfect verticaal gecentreerd */
   animation: dynamicPop 0.6s var(--spring-bouncy) forwards; 
 }
 
@@ -2384,5 +2389,12 @@ body.theme-dark .segmented-control button.active {
   
   .card-gradient-tint {
     display: none !important;
+  }
+   /* Houdt de knop ook op mobiel netjes op z'n plek */
+  body.shop-page .floating-nav {
+    padding-right: 74px !important; 
+  }
+  .nav-cart-btn {
+    right: 4px;
   }
 }
