@@ -2324,23 +2324,51 @@ body.theme-dark .segmented-control button.active {
     gap: 16px; 
   }
   
-  .floating-nav { 
-    height: 52px; 
-    padding: 4px 4px 4px 18px; 
-    gap: 8px; /* FIX: Maakt de ruimte op mobiel passend */
-    width: 100% !important; /* FIX: Forceert de breedte op kleine schermen */
-  }
+/* DYNAMIC ISLAND NAVIGATIE BALK FIX */
+.floating-nav {
+  width: 440px;
+  max-width: calc(100vw - 32px);
+  height: 58px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
   
-  .floating-nav a { 
-    font-size: 14px; 
-    padding: 0 4px; 
-  }
+  /* FIX: We zetten ze vast aan de linkerkant met een vaste ruimte ertussen */
+  justify-content: flex-start;
+  gap: 22px; 
   
-  .floating-nav a.nav-btn { 
-    height: 42px; 
-    padding: 0 16px; 
-    font-size: 13px; 
-  }
+  padding: 6px 6px 6px 28px;
+  background: var(--color-surface-translucent);
+  backdrop-filter: blur(28px) saturate(190%);
+  -webkit-backdrop-filter: blur(28px) saturate(190%);
+  border: 0.5px solid var(--color-border-glass);
+  border-radius: 999px;
+  box-shadow: var(--shadow-elevated), inset 0 1px 0.5px rgba(255, 255, 255, 0.85);
+  
+  /* FIX: Laat hem vanuit links uitschuiven in plaats van vanuit het midden */
+  transform-origin: left center; 
+  
+  /* De dynamische 'Apple' stretch animatie */
+  transition: 
+    width 0.6s var(--spring-smooth), 
+    transform 0.4s var(--spring-smooth), 
+    box-shadow 0.4s var(--spring-smooth);
+    
+  overflow: visible; /* Zorgt dat de paarse glow zichtbaar blijft */
+}
+
+/* Duw de Studio Joons knop (en alles wat erna komt) strak naar rechts */
+.floating-nav a.nav-btn {
+  margin-left: auto; 
+  white-space: nowrap; 
+  flex-shrink: 0; 
+}
+
+/* De balk uitschuiven zodra we op de shop pagina zijn */
+body.shop-page .floating-nav {
+  width: 520px; 
+  padding-right: 86px; /* Houdt content-ruimte gelijk aan 440px balk */
+}
 
   /* (laat .project-grid en de rest daaronder gewoon intact) */
 
