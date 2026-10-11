@@ -2343,6 +2343,26 @@ body.theme-dark .segmented-control button.active {
   }
 
   /* (laat .project-grid en de rest daaronder gewoon intact) */
+  /* =======================================================
+     FIX: About Me Hero Banner (Mobiele weergave)
+     ======================================================= */
+  .hero-banner__content {
+    display: flex !important;
+    flex-direction: column !important; /* Zet foto en tekst netjes onder elkaar */
+    gap: 24px;
+  }
+
+  /* Zorgt dat de foto mooi gecentreerd is en niet gigantisch wordt */
+  .hero-banner__photo {
+    width: 100%;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  /* Optioneel: Maakt de blauwe randen iets smaller voor meer ademruimte op mobiel */
+  .hero-banner {
+    padding: 32px 20px !important;
+  }
 
   /* 2. Kaarten kleiner schalen en centreren */
   .project-grid, 
