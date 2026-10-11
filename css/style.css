@@ -2307,17 +2307,14 @@ body.theme-dark .segmented-control button.active {
 }
 
 @media (max-width: 680px) {
-  /* 1. Verberg de profielfoto en 'JONI GODWIN' op project en shop pagina's */
-  .projects-page .header-brand-wrapper,
-  .shop-page .header-brand-wrapper,
-   .index-page .header-brand-wrapper{
+  /* 1. Verberg de profielfoto en 'JONI GODWIN' op mobiele pagina's */
+ .header-brand-wrapper{
     display: none !important;
   }
 
   /* 2. Verlaag de padding omdat de foto weg is */
-  .projects-page .page-shell,
-  .shop-page .page-shell,
-   .index-page .header-brand-wrapper{
+  .page-shell,
+  .about-shell {
     padding: 40px 16px 34px !important; 
   }
   
