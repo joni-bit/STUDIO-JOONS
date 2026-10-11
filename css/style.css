@@ -308,8 +308,8 @@ body.theme-dark .split-empty-icon {
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* FIX: Anker links */
-  gap: 22px; /* FIX: Vaste afstand tussen links */
+  justify-content: flex-start; /* FIX: Anker de links aan de linkerkant */
+  gap: 22px; /* FIX: Vaste afstand tussen de tekst-links */
   padding: 6px 6px 6px 28px;
   background: var(--color-surface-translucent);
   backdrop-filter: blur(28px) saturate(190%);
@@ -317,20 +317,17 @@ body.theme-dark .split-empty-icon {
   border: 0.5px solid var(--color-border-glass);
   border-radius: 999px;
   box-shadow: var(--shadow-elevated), inset 0 1px 0.5px rgba(255, 255, 255, 0.85);
-  transform-origin: left center; /* FIX: Laat de balk organisch vanuit links uitschuiven */
+  transform-origin: left center; /* FIX: Schuif uit vanuit links */
   transition: 
     width 0.6s var(--spring-smooth), 
     transform 0.4s var(--spring-smooth), 
     box-shadow 0.4s var(--spring-smooth);
-  overflow: visible; /* FIX: Zorgt dat content niet lekt bij vergroten */
+  overflow: visible; /* FIX: Laat de paarse glow netjes uitstralen */
 }
 
-/* De balk uitschuiven zodra we op de shop pagina zijn */
+/* FIX: Uitschuiven van de navigatiebalk op de shop pagina */
 body.shop-page .floating-nav {
-  width: 520px; 
-  /* DE FIX: Dit houdt de content-ruimte exact gelijk aan de 440px balk! */
-  padding-right: 86px; 
-}
+  width: 520px;
 }
 
 @keyframes dynamicPop {
@@ -2002,12 +1999,14 @@ body.theme-dark .segmented-control button.active {
   color: var(--color-text-primary);
   transition: background-color 0.2s ease, transform 0.2s var(--spring-smooth);
   
-  /* DE FIX: Absoluut gepositioneerd in de nieuw gecreëerde padding-ruimte */
-  position: absolute;
-  right: 6px;
-  top: 50%;
-  margin-top: -22px; /* Perfect verticaal gecentreerd */
-  animation: dynamicPop 0.6s var(--spring-bouncy) forwards; 
+  margin-left: auto; /* FIX: Duwt alléén het winkelwagentje helemaal naar rechts */
+  margin-right: 2px; /* Kleine optische correctie binnen de pil */
+  animation: dynamicPop 0.6s var(--spring-bouncy) forwards; /* Soepele pop-in */
+}
+
+@keyframes dynamicPop {
+  0% { opacity: 0; transform: scale(0.7) translateX(-15px); }
+  100% { opacity: 1; transform: scale(1) translateX(0); }
 }
 
 .nav-cart-btn:hover {
@@ -2308,7 +2307,7 @@ body.theme-dark .segmented-control button.active {
 }
 
 @media (max-width: 680px) {
-  /* 1. Verberg de profielfoto en 'JONI GODWIN' */
+  /* 1. Verberg de profielfoto en 'JONI GODWIN' op project en shop pagina's */
   .projects-page .header-brand-wrapper,
   .shop-page .header-brand-wrapper {
     display: none !important;
@@ -2329,8 +2328,8 @@ body.theme-dark .segmented-control button.active {
   .floating-nav { 
     height: 52px; 
     padding: 4px 4px 4px 18px; 
-    gap: 8px; 
-    width: 100% !important;
+    gap: 8px; /* FIX: Maakt de ruimte op mobiel passend */
+    width: 100% !important; /* FIX: Forceert de breedte op kleine schermen */
   }
   
   .floating-nav a { 
@@ -2343,6 +2342,8 @@ body.theme-dark .segmented-control button.active {
     padding: 0 16px; 
     font-size: 13px; 
   }
+
+  /* (laat .project-grid en de rest daaronder gewoon intact) */
 
   /* 2. Kaarten kleiner schalen en centreren */
   .project-grid, 
