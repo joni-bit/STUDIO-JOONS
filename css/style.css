@@ -322,7 +322,7 @@ body.theme-dark .split-empty-icon {
     width 0.6s var(--spring-smooth), 
     transform 0.4s var(--spring-smooth), 
     box-shadow 0.4s var(--spring-smooth);
-  overflow: hidden; /* FIX: Zorgt dat content niet lekt bij vergroten */
+  overflow: visible; /* FIX: Zorgt dat content niet lekt bij vergroten */
 }
 
 /* De balk uitschuiven zodra we op de shop pagina zijn */
