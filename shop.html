@@ -265,30 +265,5 @@
       });
     }
   </script>
-  <script>
-  // Pak alle links in je navigatiebalk
-  document.querySelectorAll('.floating-nav a').forEach(link => {
-    link.addEventListener('click', function(e) {
-      const target = this.getAttribute('href');
-      
-      // Als de link naar een andere pagina gaat (en het is niet de winkelwagen knop)
-      if (target && target !== '#' && !this.classList.contains('nav-cart-btn')) {
-        e.preventDefault(); // Pauzeer de klik tijdelijk
-        
-        // Verwijder de shop-breedte zodat hij soepel terug krimpt
-        document.body.classList.remove('shop-page');
-        
-        // Laat het winkelwagentje zachtjes uitfaden
-        const cartBtn = document.querySelector('.nav-cart-btn');
-        if (cartBtn) cartBtn.style.opacity = '0';
-        
-        // Wacht exact 450 milliseconden (zodat je Apple animatie kan afspelen) en ga dan door!
-        setTimeout(() => {
-          window.location.href = target;
-        }, 450);
-      }
-    });
-  });
-</script>
 </body>
 </html>
