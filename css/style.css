@@ -300,6 +300,7 @@ body.theme-dark .split-empty-icon {
   pointer-events: none;
 }
 
+/* DYNAMIC ISLAND NAVIGATIE BALK FIX */
 .floating-nav {
   width: 440px;
   max-width: calc(100vw - 32px);
@@ -307,7 +308,11 @@ body.theme-dark .split-empty-icon {
   box-sizing: border-box;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  
+  /* Zet de links vast aan de linkerkant met vaste afstand */
+  justify-content: flex-start;
+  gap: 22px; 
+  
   padding: 6px 6px 6px 28px;
   background: var(--color-surface-translucent);
   backdrop-filter: blur(28px) saturate(190%);
@@ -315,8 +320,31 @@ body.theme-dark .split-empty-icon {
   border: 0.5px solid var(--color-border-glass);
   border-radius: 999px;
   box-shadow: var(--shadow-elevated), inset 0 1px 0.5px rgba(255, 255, 255, 0.85);
-  transform-origin: center center;
-  transition: transform 0.4s var(--spring-smooth), box-shadow 0.4s var(--spring-smooth);
+  
+  /* Laat de balk organisch vanuit links uitschuiven */
+  transform-origin: left center; 
+  transition: 
+    width 0.6s var(--spring-smooth), 
+    transform 0.4s var(--spring-smooth), 
+    box-shadow 0.4s var(--spring-smooth);
+  
+  overflow: hidden; /* Zorgt dat content niet lekt bij vergroten */
+}
+
+/* Duw de Studio Joons knop strak naar rechts */
+.floating-nav a.nav-btn {
+  margin-left: auto; 
+}
+
+/* De balk uitschuiven zodra we op de shop pagina zijn */
+body.shop-page .floating-nav {
+  width: 520px; 
+}
+
+/* De bounce-in animatie voor het winkelwagentje */
+@keyframes dynamicPop {
+  0% { opacity: 0; transform: scale(0.7) translateX(-15px); }
+  100% { opacity: 1; transform: scale(1) translateX(0); }
 }
 
 .floating-nav:hover {
@@ -357,8 +385,6 @@ body.theme-dark .split-empty-icon {
   height: 46px;
   border-radius: 999px;
   position: relative;
-  /* Ambient Blue Halo */
-  
 }
 
 .floating-nav a.nav-btn:hover {
@@ -417,7 +443,7 @@ body.theme-dark .floating-nav a.nav-btn:hover {
 .project-card {
   background: var(--surface);
   border: 1px solid var(--color-border-hairline);
-  border-radius: 26px; /* Apple Continuous Squircle */
+  border-radius: 26px;
   overflow: hidden;
   box-shadow: var(--shadow-ambient);
   display: flex;
@@ -458,7 +484,7 @@ body.theme-dark .floating-nav a.nav-btn:hover {
 .project-card h3 {
   margin: 0;
   padding: 22px 24px;
-  font-size: 1.25rem; /* Apple Title 3 Role */
+  font-size: 1.25rem;
   font-weight: 600;
   letter-spacing: -0.02em;
   color: var(--ink);
@@ -503,51 +529,6 @@ body.theme-dark .floating-nav a.nav-btn:hover {
   color: var(--color-text-secondary);
   max-width: 580px;
   margin: 0 auto;
-}
-
-.segmented-control-wrapper {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 48px;
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-.segmented-control-wrapper::-webkit-scrollbar { display: none; }
-
-.segmented-control {
-  display: inline-flex;
-  background: rgba(18, 18, 18, 0.05);
-  border-radius: 999px;
-  padding: 3px;
-  border: 0.5px solid var(--color-border-hairline);
-  gap: 2px;
-}
-
-.segment-btn {
-  min-height: 44px;
-  padding: 0 20px;
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  border: none;
-  background: transparent;
-  color: var(--color-text-secondary);
-  border-radius: 999px;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  white-space: nowrap;
-  transition: all 0.25s var(--spring-smooth);
-}
-
-.segment-btn:hover { color: var(--color-text-primary); }
-
-.segment-btn.active {
-  background: #ffffff;
-  color: var(--color-text-primary);
-  font-weight: 600;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
 
 /* --------------------------------------------------------------------------
@@ -599,6 +580,7 @@ body.theme-dark .floating-nav a.nav-btn:hover {
   width: 100%;
   height: 100%;
   z-index: 1;
+  border-radius: inherit; /* Zorgt dat de foto niet meer kan uitsteken */
 }
 
 .card-media-backdrop img {
@@ -623,7 +605,7 @@ body.theme-dark .floating-nav a.nav-btn:hover {
     rgba(18, 18, 18, 0.94) 100%
   );
   pointer-events: none;
-  border-radius: inherit; /* Deze fix houdt de gradient strak binnen de hoeken */
+  border-radius: inherit; /* Houdt de gradient strak binnen de hoeken */
 }
 
 .card-gradient-tint {
@@ -634,16 +616,7 @@ body.theme-dark .floating-nav a.nav-btn:hover {
   pointer-events: none;
   will-change: opacity;
   transition: opacity 0.55s var(--spring-smooth);
-  border-radius: inherit; /* Deze fix houdt de gekleurde waas binnen de hoeken */
-}
-
-.card-media-backdrop {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  border-radius: inherit; /* Zorgt ook dat de foto niet meer kan uitsteken */
+  border-radius: inherit; /* Houdt de gekleurde waas binnen de hoeken */
 }
 
 .card-gradient-tint.tint-blue {
@@ -1268,6 +1241,13 @@ body.theme-dark .floating-nav a.nav-btn:hover {
 .prev-btn { left: 16px; }
 .next-btn { right: 16px; }
 
+/* --- Fix voor de Marquee in CSS Grid --- */
+.project-row.full-width {
+  max-width: 100%;
+  min-width: 0; 
+  overflow: hidden;
+}
+
 .project-marquee-wrapper {
   width: 100%;
   overflow: hidden;
@@ -1282,6 +1262,7 @@ body.theme-dark .floating-nav a.nav-btn:hover {
   gap: 20px;
   width: max-content;
   animation: marqueeScroll 40s linear infinite;
+  align-items: center; 
 }
 
 .project-marquee-track:hover { animation-play-state: paused; }
@@ -1289,12 +1270,12 @@ body.theme-dark .floating-nav a.nav-btn:hover {
 .marquee-content {
   display: flex;
   gap: 20px;
-   align-items: center;
+  align-items: center;
 }
 
 .marquee-img {
-   height: auto; /* Behoudt de natuurlijke verhouding */
-  max-height: 400px; /* Zorgt dat ze niet groter worden dan je oorspronkelijke design */
+  height: auto; 
+  max-height: 400px; 
   width: auto;
   border-radius: 12px;
   object-fit: contain;
@@ -1850,130 +1831,19 @@ body.theme-dark .floating-nav a.nav-btn:hover {
 
 .is-hidden { display: none !important; }
 
-/* --------------------------------------------------------------------------
-   12. Responsive Breakpoint Matrix
-   -------------------------------------------------------------------------- */
-@media (max-width: 900px) {
-  .split-showcase-item {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
-  .split-showcase-item.is-reversed .split-copy-col { order: 1; }
-  .split-showcase-item.is-reversed .split-visual-col { order: 2; }
-  .split-project-text { max-width: 100%; }
-  .domibo-stage { min-height: 440px; }
-  .about-preview { grid-template-columns: 1fr; }
-  .hero-banner__content { grid-template-columns: 1fr; }
-  .about-section__content { flex-direction: column; }
-  .about-me-copy, .about-right-column { flex: 1 1 100%; max-width: 100%; }
-}
-
-@media (max-width: 768px) {
-  .two-col, .two-col-1-2, .three-col {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-  .education-grid { grid-template-columns: 1fr; gap: 0; }
-  .education-grid .resume-item { padding: 32px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
-  .carousel-btn { display: none; }
-  .marquee-img { height: 320px; }
-}
-
-
-@media (max-width: 680px) {
-  /* 1. Verberg de profielfoto en 'JONI GODWIN' */
-  .projects-page .header-brand-wrapper .shop-page .home-page {
-    display: none !important;
-  }
-
-  /* 2. Verlaag de padding omdat de foto weg is (net als bij about) */
-  .projects-page .page-shell . home-page {
-    padding: 80px 16px 34px !important; 
-  }
-  
-  .topbar { 
-    flex-direction: column; 
-    align-items: flex-start; 
-    gap: 16px; 
-  }
-  
-  .floating-nav { 
-    height: 52px; 
-    padding: 4px 4px 4px 18px; 
-  }
-  
-  .floating-nav a { 
-    font-size: 14px; 
-    padding: 0 4px; 
-  }
-  
-  .floating-nav a.nav-btn { 
-    height: 42px; 
-    padding: 0 16px; 
-    font-size: 13px; 
-  }
-
-  /* 2. Kaarten kleiner schalen en centreren */
-  .project-grid, 
-  .project-grid-apple, 
-  .shop-grid {
-    /* De kaarten worden max 350px breed en worden centraal op het scherm gezet */
-    grid-template-columns: minmax(260px, 350px); 
-    justify-content: center; 
-    gap: 24px;
-  }
-  
-  .apple-gradient-card {
-    min-height: 380px; /* Iets minder hoog zodat ze beter in beeld passen */
-    border-radius: 24px; /* Optische correctie voor mobiele schermen */
-  }
-
-  /* 3. Veegbare Tabs (Swipeable) */
-  .filter-bar-wrapper {
-    margin: 0 -16px 32px; 
-    padding: 4px 16px 12px; 
-    scroll-padding-left: 16px;
-    -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
-    mask-image: linear-gradient(to right, black 85%, transparent 100%);
-  }
-  
-  .segmented-control {
-    flex-wrap: nowrap; /* Forceert de tabs op één horizontale lijn */
-  }
-
-  /* 4. Footer & Overige */
-  .site-footer { 
-    padding: 60px 20px 32px; 
-  }
-  
-  .footer-bottom { 
-    flex-direction: column; 
-    align-items: flex-start; 
-    gap: 16px; 
-  }
-  
-  .ticker-image-wrapper { 
-    width: 140px; 
-  }
-  .card-gradient-tint {
-    display: none !important;
-  }
-}
 /* ==========================================================================
    Apple Segmented Control Filter Bar (Index Page)
    ========================================================================== */
 
-/* Editorial Subtitle / Lead Typography */
 .section-body-lead,
 .section-heading p {
-  font-size: 17px; /* Apple Standard 17pt Body */
+  font-size: 17px; 
   line-height: 1.52;
   color: var(--color-text-secondary, rgba(18, 18, 18, 0.64));
   max-width: 640px;
   margin: 0 0 36px 0;
 }
 
-/* Scrollable Container Wrapper */
 .filter-bar-wrapper {
   display: flex;
   justify-content: flex-start;
@@ -1988,7 +1858,6 @@ body.theme-dark .floating-nav a.nav-btn:hover {
   display: none;
 }
 
-/* Glassmorphic Track Pill */
 .segmented-control {
   display: inline-flex;
   align-items: center;
@@ -2001,28 +1870,21 @@ body.theme-dark .floating-nav a.nav-btn:hover {
   gap: 2px;
 }
 
-/* Individual Segment Tab Buttons */
 .segment-tab,
 .segmented-control button {
-  /* Reset browser button defaults */
   appearance: none;
   -webkit-appearance: none;
   background: transparent;
   border: none;
   outline: none;
-  
-  /* Apple 44pt Touch Target */
   min-height: 44px;
   padding: 0 20px;
-  
-  /* Typography */
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", sans-serif;
   font-size: 14px;
   font-weight: 500;
   letter-spacing: -0.01em;
   color: var(--color-text-secondary, rgba(18, 18, 18, 0.62));
   white-space: nowrap;
-  
   border-radius: 999px;
   cursor: pointer;
   display: inline-flex;
@@ -2030,8 +1892,6 @@ body.theme-dark .floating-nav a.nav-btn:hover {
   justify-content: center;
   user-select: none;
   -webkit-tap-highlight-color: transparent;
-  
-  /* Apple Fluid Spring Transition */
   transition: 
     background-color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
     color 0.25s cubic-bezier(0.16, 1, 0.3, 1),
@@ -2039,19 +1899,16 @@ body.theme-dark .floating-nav a.nav-btn:hover {
     transform 0.15s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Pointer Hover State */
 .segment-tab:hover,
 .segmented-control button:hover {
   color: var(--color-text-primary, #121212);
 }
 
-/* Tactile Spring Press */
 .segment-tab:active,
 .segmented-control button:active {
   transform: scale(0.96);
 }
 
-/* Active Segment Surface (Floating White Pill) */
 .segment-tab.active,
 .segment-tab[aria-selected="true"],
 .segmented-control button.active {
@@ -2063,7 +1920,6 @@ body.theme-dark .floating-nav a.nav-btn:hover {
     0 1px 2px rgba(0, 0, 0, 0.04);
 }
 
-/* Dark Mode Contrast Adaptation */
 body.theme-dark .segmented-control {
   background: rgba(255, 255, 255, 0.06);
   border-color: rgba(255, 255, 255, 0.10);
@@ -2087,12 +1943,10 @@ body.theme-dark .segmented-control button.active {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
 }
 
- /*-- added for shop -- */
-  /* ==========================================================================
+/* ==========================================================================
    Studio Joons Cart Engine & Slide-Out Drawer Styles
    ========================================================================== */
 
-/* Nav Cart Toggle Button */
 .nav-cart-btn {
   display: inline-flex;
   align-items: center;
@@ -2105,11 +1959,15 @@ body.theme-dark .segmented-control button.active {
   cursor: pointer;
   color: var(--color-text-primary);
   transition: background-color 0.2s ease, transform 0.2s var(--spring-smooth);
+  margin-left: 8px; /* Ademruimte naast de Studio Joons knop */
+  animation: dynamicPop 0.6s var(--spring-bouncy) forwards; /* Pop-in effect */
 }
+
 .nav-cart-btn:hover {
   background: rgba(18, 18, 18, 0.12);
   transform: scale(1.04);
 }
+
 .cart-count-badge {
   background: var(--accent);
   color: #ffffff;
@@ -2124,7 +1982,6 @@ body.theme-dark .segmented-control button.active {
   padding: 0 4px;
 }
 
-/* Modal Backdrop */
 .cart-backdrop {
   position: fixed;
   inset: 0;
@@ -2135,7 +1992,6 @@ body.theme-dark .segmented-control button.active {
   transition: opacity 0.3s ease;
 }
 
-/* Slide-out Drawer Panel */
 .cart-drawer {
   position: fixed;
   top: 0;
@@ -2155,7 +2011,6 @@ body.theme-dark .segmented-control button.active {
   transform: translate3d(0, 0, 0);
 }
 
-/* Header */
 .cart-drawer-header {
   padding: 24px 28px;
   display: flex;
@@ -2195,7 +2050,6 @@ body.theme-dark .segmented-control button.active {
   background: rgba(18, 18, 18, 0.08);
 }
 
-/* Line Items Container */
 .cart-items-container {
   flex: 1;
   overflow-y: auto;
@@ -2215,7 +2069,6 @@ body.theme-dark .segmented-control button.active {
   text-align: center;
 }
 
-/* Line Item */
 .cart-line-item {
   display: flex;
   gap: 16px;
@@ -2304,7 +2157,6 @@ body.theme-dark .segmented-control button.active {
   color: var(--color-text-primary);
 }
 
-/* Footer & Checkout Form */
 .cart-drawer-footer {
   padding: 24px 28px;
   border-top: 1px solid var(--color-border-hairline);
@@ -2378,36 +2230,117 @@ body.theme-dark .segmented-control button.active {
   opacity: 0.5;
   cursor: not-allowed;
 }
-/* --- Fix voor de Marquee in CSS Grid --- */
-.project-row.full-width {
-  max-width: 100%;
-  min-width: 0; /* Belangrijke fix voor CSS Grid! */
-  overflow: hidden;
-}
-/* --- Fix voor uitrekkende blokken in de Marquee --- */
-.project-marquee-track,
-.marquee-content {
-  display: flex;
-  gap: 20px;
-  align-items: center; /* Dit is de magic fix: voorkomt verticaal uitrekken */
+
+/* --------------------------------------------------------------------------
+   12. Responsive Breakpoint Matrix (All Media Queries at Bottom)
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .split-showcase-item {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .split-showcase-item.is-reversed .split-copy-col { order: 1; }
+  .split-showcase-item.is-reversed .split-visual-col { order: 2; }
+  .split-project-text { max-width: 100%; }
+  .domibo-stage { min-height: 440px; }
+  .about-preview { grid-template-columns: 1fr; }
+  .hero-banner__content { grid-template-columns: 1fr; }
+  .about-section__content { flex-direction: column; }
+  .about-me-copy, .about-right-column { flex: 1 1 100%; max-width: 100%; }
 }
 
-.marquee-img {
-  height: auto; /* Behoudt de natuurlijke verhouding */
-  max-height: 400px; /* Zorgt dat ze niet groter worden dan je oorspronkelijke design */
-  width: auto;
-  border-radius: 12px;
-  object-fit: contain;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-  display: block; /* Verwijdert de onzichtbare witruimte die standaard onder images zit */
+@media (max-width: 768px) {
+  .two-col, .two-col-1-2, .three-col {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+  .education-grid { grid-template-columns: 1fr; gap: 0; }
+  .education-grid .resume-item { padding: 32px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+  .carousel-btn { display: none; }
+  .marquee-img { height: 320px; }
 }
-/* --- Specifiek voor de Project Overview pagina --- */
-  /* 1. Verberg de profielfoto en 'JONI GODWIN' */
-  .projects-page .header-brand-wrapper .shop-page {
+
+@media (max-width: 680px) {
+  /* 1. Verberg de profielfoto en 'JONI GODWIN' op overview en shop */
+  .projects-page .header-brand-wrapper,
+  .shop-page .header-brand-wrapper {
     display: none !important;
   }
 
-  /* 2. Verlaag de padding omdat de foto weg is (net als bij about) */
-  .projects-page .page-shell .shop-page {
-    padding: 40px 16px 34px !important; 
+  /* 2. Verlaag de padding op overview en shop (omdat de foto weg is) */
+  .projects-page .page-shell,
+  .shop-page .page-shell {
+    padding: 80px 16px 34px !important; 
   }
+  
+  .topbar { 
+    flex-direction: column; 
+    align-items: flex-start; 
+    gap: 16px; 
+  }
+  
+  .floating-nav { 
+    height: 52px; 
+    padding: 4px 4px 4px 18px; 
+    gap: 8px; 
+    width: 100% !important; 
+  }
+  
+  .floating-nav a { 
+    font-size: 14px; 
+    padding: 0 4px; 
+  }
+  
+  .floating-nav a.nav-btn { 
+    height: 42px; 
+    padding: 0 16px; 
+    font-size: 13px; 
+  }
+
+  /* 3. Kaarten kleiner schalen en centreren */
+  .project-grid, 
+  .project-grid-apple, 
+  .shop-grid {
+    grid-template-columns: minmax(260px, 350px); 
+    justify-content: center; 
+    gap: 24px;
+  }
+  
+  .apple-gradient-card {
+    min-height: 380px; 
+    border-radius: 24px; 
+  }
+
+  /* 4. Veegbare Tabs (Swipeable) */
+  .filter-bar-wrapper {
+    margin: 0 -16px 32px; 
+    padding: 4px 16px 12px; 
+    scroll-padding-left: 16px;
+    -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
+    mask-image: linear-gradient(to right, black 85%, transparent 100%);
+  }
+  
+  .segmented-control {
+    flex-wrap: nowrap; 
+  }
+
+  /* 5. Footer & Overige */
+  .site-footer { 
+    padding: 60px 20px 32px; 
+  }
+  
+  .footer-bottom { 
+    flex-direction: column; 
+    align-items: flex-start; 
+    gap: 16px; 
+  }
+  
+  .ticker-image-wrapper { 
+    width: 140px; 
+  }
+  
+  .card-gradient-tint {
+    display: none !important;
+  }
+}
