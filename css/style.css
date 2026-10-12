@@ -2277,10 +2277,57 @@ body.theme-dark .segmented-control button.active {
   cursor: not-allowed;
 }
 
+/* ==========================================================================
+   Modal Gallery Navigation Arrows (Desktop Only)
+   ========================================================================== */
+.product-modal-gallery-wrapper {
+  position: relative;
+  width: 100%;
+  height: 360px;
+  flex-shrink: 0;
+}
+
+.product-modal-gallery {
+  height: 100% !important; 
+}
+
+.gallery-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  color: var(--ink);
+  box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+  transition: transform 0.2s var(--spring-smooth), background-color 0.2s ease;
+}
+
+.gallery-arrow:hover {
+  transform: translateY(-50%) scale(1.08);
+  background: #ffffff;
+}
+
+.gallery-arrow:active {
+  transform: translateY(-50%) scale(0.96);
+}
+
+.prev-arrow { left: 16px; }
+.next-arrow { right: 16px; }
+
 /* --------------------------------------------------------------------------
    12. Responsive Breakpoint Matrix
    -------------------------------------------------------------------------- */
- (max-width: 900px) {
+@media (max-width: 900px) {
   .split-showcase-item {
     grid-template-columns: 1fr;
     gap: 40px;
@@ -2304,11 +2351,16 @@ body.theme-dark .segmented-control button.active {
   .education-grid .resume-item { padding: 32px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
   .carousel-btn { display: none; }
   .marquee-img { height: 320px; }
+  
+  /* Verberg de pijltjes van de pop-up op mobiel, want daar swipen we */
+  .gallery-arrow {
+    display: none !important;
+  }
 }
 
 @media (max-width: 680px) {
   /* 1. Verberg de profielfoto en 'JONI GODWIN' op mobiele pagina's */
- .header-brand-wrapper{
+  .header-brand-wrapper {
     display: none !important;
   }
 
@@ -2327,8 +2379,8 @@ body.theme-dark .segmented-control button.active {
   .floating-nav { 
     height: 52px; 
     padding: 4px 4px 4px 18px; 
-    gap: 8px; /* FIX: Maakt de ruimte op mobiel passend */
-    width: 100% !important; /* FIX: Forceert de breedte op kleine schermen */
+    gap: 8px; /* Maakt de ruimte op mobiel passend */
+    width: 100% !important; /* Forceert de breedte op kleine schermen */
   }
   
   .floating-nav a { 
@@ -2342,24 +2394,19 @@ body.theme-dark .segmented-control button.active {
     font-size: 13px; 
   }
 
-  /* (laat .project-grid en de rest daaronder gewoon intact) */
-  /* =======================================================
-     FIX: About Me Hero Banner (Mobiele weergave)
-     ======================================================= */
+  /* FIX: About Me Hero Banner */
   .hero-banner__content {
     display: flex !important;
-    flex-direction: column !important; /* Zet foto en tekst netjes onder elkaar */
+    flex-direction: column !important; 
     gap: 24px;
   }
 
-  /* Zorgt dat de foto mooi gecentreerd is en niet gigantisch wordt */
   .hero-banner__photo {
     width: 100%;
     max-width: 320px;
     margin: 0 auto;
   }
 
-  /* Optioneel: Maakt de blauwe randen iets smaller voor meer ademruimte op mobiel */
   .hero-banner {
     padding: 32px 20px !important;
   }
@@ -2368,18 +2415,17 @@ body.theme-dark .segmented-control button.active {
   .project-grid, 
   .project-grid-apple, 
   .shop-grid {
-    /* De kaarten worden max 350px breed en worden centraal op het scherm gezet */
     grid-template-columns: minmax(260px, 350px); 
     justify-content: center; 
     gap: 24px;
   }
   
   .apple-gradient-card {
-    min-height: 380px; /* Iets minder hoog zodat ze beter in beeld passen */
-    border-radius: 24px; /* Optische correctie voor mobiele schermen */
+    min-height: 380px; 
+    border-radius: 24px; 
   }
 
-  /* 3. Veegbare Tabs (Swipeable) */
+  /* 3. Veegbare Tabs */
   .filter-bar-wrapper {
     margin: 0 -16px 32px; 
     padding: 4px 16px 12px; 
@@ -2389,10 +2435,10 @@ body.theme-dark .segmented-control button.active {
   }
   
   .segmented-control {
-    flex-wrap: nowrap; /* Forceert de tabs op één horizontale lijn */
+    flex-wrap: nowrap; 
   }
 
-  /* 4. Footer & Overige */
+  /* 4. Footer */
   .site-footer { 
     padding: 60px 20px 32px; 
   }
@@ -2410,153 +2456,12 @@ body.theme-dark .segmented-control button.active {
   .card-gradient-tint {
     display: none !important;
   }
-   /* Houdt de knop ook op mobiel netjes op z'n plek */
+  
+  /* Houdt de knop ook op mobiel netjes op z'n plek */
   body.shop-page .floating-nav {
     padding-right: 74px !important; 
   }
   .nav-cart-btn {
     right: 4px;
   }
-}
-/* ==========================================================================
-   Product Detail Modal (Overlay & Swipe Gallery)
-   ========================================================================== */
-.product-modal-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.42);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  z-index: 2005; /* Boven de standaard website elementen */
-  transition: opacity 0.3s ease;
-}
-
-.product-modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -48%) scale(0.96);
-  width: 90%;
-  max-width: 420px;
-  max-height: 85vh;
-  background: var(--surface);
-  border-radius: 32px;
-  z-index: 2006;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.2);
-  opacity: 0;
-  pointer-events: none;
-  transition: transform 0.4s var(--spring-smooth), opacity 0.3s ease;
-  overflow: hidden;
-}
-
-.product-modal.is-open {
-  transform: translate(-50%, -50%) scale(1);
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.modal-close-btn {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  width: 36px;
-  height: 36px;
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: none;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 10;
-  color: var(--ink);
-  box-shadow: 0 4px 14px rgba(0,0,0,0.1);
-  transition: transform 0.2s var(--spring-smooth);
-}
-
-.modal-close-btn:hover { transform: scale(1.08); }
-
-.product-modal-gallery {
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none; /* Verbergt de scrollbalk in Firefox */
-  -ms-overflow-style: none; /* Verbergt de scrollbalk in IE/Edge */
-  height: 360px;
-  background: #f4f1eb;
-  flex-shrink: 0;
-}
-
-.product-modal-gallery::-webkit-scrollbar { display: none; } /* Verbergt de scrollbalk in Chrome/Safari */
-
-.product-modal-gallery img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  flex: 0 0 100%;
-  scroll-snap-align: start;
-}
-
-.gallery-indicators {
-  display: flex;
-  justify-content: center;
-  gap: 6px;
-  margin-top: -24px;
-  position: relative;
-  z-index: 5;
-  padding-bottom: 12px;
-}
-
-.indicator-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.5);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-  transition: background-color 0.2s ease;
-}
-
-.indicator-dot.active { background: #ffffff; }
-
-.product-modal-content {
-  padding: 24px 28px 28px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  overflow-y: auto;
-}
-
-.product-modal-eyebrow {
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--muted);
-  margin-bottom: -4px;
-}
-
-.product-modal-title {
-  font-size: 24px;
-  font-weight: 700;
-  margin: 0;
-  letter-spacing: -0.02em;
-  line-height: 1.1;
-  color: var(--ink);
-}
-
-.product-modal-price {
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--ink);
-}
-
-.product-modal-desc {
-  font-size: 15px;
-  line-height: 1.55;
-  color: var(--color-text-secondary);
-  margin: 4px 0 16px 0;
 }
