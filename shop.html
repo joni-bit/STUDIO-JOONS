@@ -64,7 +64,16 @@
       <section id="state-catalog" class="project-grid-apple fade-in" aria-label="Available Products">
         
         <!-- Product 1: FREAKandel Embleem -->
-        <article class="apple-gradient-card" data-product-id="freakandel">
+        <!-- OPMERKING: Bij 'data-images' kun je straks de 3 bestandsnamen van je losse foto's neerzetten, gescheiden door een komma. -->
+        <article class="apple-gradient-card" 
+                 data-product-id="freakandel"
+                 data-title="FREAKandel embleem"
+                 data-eyebrow="Carnival '27 Embleem"
+                 data-price="6.95"
+                 data-desc="Een premium geborduurd FREAKandel embleem om je carnavalsoutfit helemaal af te maken. Voorzien van een strijklaag aan de achterkant voor makkelijke bevestiging op je jasje."
+                 data-images="Assets/Items/STUDIO JOONS_embleem_FREAKandel.jpg,Assets/Items/STUDIO JOONS_embleem_FREAKandel.jpg,Assets/Items/STUDIO JOONS_embleem_FREAKandel.jpg"
+                 onclick="openProductModal(this)">
+          
           <div class="card-media-backdrop">
             <img src="Assets/Items/STUDIO JOONS_embleem_FREAKandel.jpg" alt="FREAKandel Embleem - STUDIO Joons" loading="lazy" />
           </div>
@@ -81,13 +90,15 @@
             
             <div class="card-action-row">
               <span class="card-price-tag">&euro;6.95</span>
+              <!-- Door event.stopPropagation toe te voegen, opent de modal NIET als je alleen de tas-knop klikt -->
               <button 
                 class="apple-card-action-btn add-to-cart-btn" 
                 aria-label="Add FREAKandel Embleem to bag"
                 data-id="freakandel"
                 data-name="FREAKandel embleem"
                 data-price="6.95"
-                data-image="Assets/Items/STUDIO JOONS_embleem_FREAKandel.jpg">
+                data-image="Assets/Items/STUDIO JOONS_embleem_FREAKandel.jpg"
+                onclick="event.stopPropagation();">
                 <span>Add to Bag</span>
               </button>
             </div>
@@ -95,7 +106,15 @@
         </article>
 
         <!-- Product 2: BitterB00Bs Embleem -->
-        <article class="apple-gradient-card" data-product-id="bitterboobs">
+        <article class="apple-gradient-card" 
+                 data-product-id="bitterboobs"
+                 data-title="BitterB00Bs embleem"
+                 data-eyebrow="Carnival '27 Embleem"
+                 data-price="6.95"
+                 data-desc="Geef je Oeteldonk of Kruikenstad outfit een cheeky twist met het officiële BitterB00Bs embleem. Hoge dichtheid stiksel en makkelijk vast te strijken."
+                 data-images="Assets/Items/STUDIO JOONS_embleem_BitterB00Bs.jpg,Assets/Items/STUDIO JOONS_embleem_BitterB00Bs.jpg,Assets/Items/STUDIO JOONS_embleem_BitterB00Bs.jpg"
+                 onclick="openProductModal(this)">
+                 
           <div class="card-media-backdrop">
             <img src="Assets/Items/STUDIO JOONS_embleem_BitterB00Bs.jpg" alt="BitterB00Bs Embleem - STUDIO Joons" loading="lazy" />
           </div>
@@ -118,7 +137,8 @@
                 data-id="bitterboobs"
                 data-name="BitterB00Bs embleem"
                 data-price="6.95"
-                data-image="Assets/Items/STUDIO JOONS_embleem_BitterB00Bs.jpg">
+                data-image="Assets/Items/STUDIO JOONS_embleem_BitterB00Bs.jpg"
+                onclick="event.stopPropagation();">
                 <span>Add to Bag</span>
               </button>
             </div>
@@ -155,6 +175,38 @@
       </section>
 
     </main>
+
+    <!-- PRODUCT DETAIL MODAL (De nieuwe kaart overlay) -->
+    <div id="product-modal-backdrop" class="product-modal-backdrop is-hidden" onclick="closeProductModal()"></div>
+    <div id="product-modal" class="product-modal is-hidden" role="dialog" aria-modal="true">
+      <button class="modal-close-btn" aria-label="Close details" onclick="closeProductModal()">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+
+      <!-- Swipeable Gallery Container -->
+      <div class="product-modal-gallery" id="modal-gallery">
+        <!-- Afbeeldingen worden hier door Javascript ingeladen -->
+      </div>
+      
+      <!-- Stippen voor de galerij -->
+      <div class="gallery-indicators" id="modal-indicators"></div>
+
+      <!-- Tekst Content -->
+      <div class="product-modal-content">
+        <span class="product-modal-eyebrow" id="modal-eyebrow"></span>
+        <h2 class="product-modal-title" id="modal-title"></h2>
+        <span class="product-modal-price" id="modal-price"></span>
+        <p class="product-modal-desc" id="modal-desc"></p>
+        
+        <!-- De toevoeg knop in de modal. De Javascript 'klikt' automatisch op de onzichtbare originele knop in de pagina -->
+        <button class="apple-checkout-btn" id="modal-add-btn" onclick="addToCartFromModal(event)">
+          <span class="checkout-btn-text">Add to Bag</span>
+        </button>
+      </div>
+    </div>
 
     <!-- Slide-Out Shopping Bag Drawer -->
     <div id="cart-drawer-backdrop" class="cart-backdrop is-hidden" onclick="cartEngine.toggleDrawer(false)"></div>
@@ -222,9 +274,10 @@
   </div>
 
   <script src="css/js/cart.js"></script>
+  
+  <!-- Bestaande Site Functies -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      // Nav scroll and intersection observers
       const navWrapper = document.querySelector('.floating-nav-wrapper');
       if (navWrapper) {
         let lastScrollY = window.pageYOffset || document.documentElement.scrollTop;
@@ -266,6 +319,112 @@
         const el = document.getElementById(`state-${s}`);
         if (el) el.classList.toggle('is-hidden', s !== state);
       });
+    }
+  </script>
+
+  <!-- Animatie Logica voor de Navigatie -->
+  <script>
+  document.querySelectorAll('.floating-nav a').forEach(link => {
+    link.addEventListener('click', function(e) {
+      const target = this.getAttribute('href');
+      if (target && target !== '#' && !this.classList.contains('nav-cart-btn')) {
+        e.preventDefault(); 
+        document.body.classList.remove('shop-page');
+        const cartBtn = document.querySelector('.nav-cart-btn');
+        if (cartBtn) cartBtn.style.opacity = '0';
+        setTimeout(() => { window.location.href = target; }, 450);
+      }
+    });
+  });
+  </script>
+
+  <!-- NIEUW: Product Modal / Overlay Logica -->
+  <script>
+    function openProductModal(card) {
+      // 1. Data ophalen uit de aangeklikte kaart
+      const title = card.getAttribute('data-title');
+      const eyebrow = card.getAttribute('data-eyebrow');
+      const price = card.getAttribute('data-price');
+      const desc = card.getAttribute('data-desc');
+      const imagesRaw = card.getAttribute('data-images');
+      const productId = card.getAttribute('data-product-id');
+      
+      // 2. Teksten vullen in de modal
+      document.getElementById('modal-title').textContent = title;
+      document.getElementById('modal-eyebrow').textContent = eyebrow;
+      document.getElementById('modal-price').textContent = '€' + price;
+      document.getElementById('modal-desc').textContent = desc;
+      
+      // 3. Afbeeldingen en Swipe Galerij bouwen
+      const gallery = document.getElementById('modal-gallery');
+      const indicators = document.getElementById('modal-indicators');
+      gallery.innerHTML = '';
+      indicators.innerHTML = '';
+      
+      if (imagesRaw) {
+        const images = imagesRaw.split(',');
+        images.forEach((src, index) => {
+          // Maak image element
+          const img = document.createElement('img');
+          img.src = src.trim();
+          img.loading = 'lazy';
+          gallery.appendChild(img);
+          
+          // Maak een stipje voor onderaan
+          const dot = document.createElement('div');
+          dot.className = 'indicator-dot' + (index === 0 ? ' active' : '');
+          indicators.appendChild(dot);
+        });
+        
+        // Zorg dat het juiste stipje oplicht als je swipet
+        gallery.addEventListener('scroll', () => {
+          const scrollLeft = gallery.scrollLeft;
+          const width = gallery.offsetWidth;
+          const activeIndex = Math.round(scrollLeft / width);
+          
+          document.querySelectorAll('.indicator-dot').forEach((dot, idx) => {
+            dot.classList.toggle('active', idx === activeIndex);
+          });
+        });
+      }
+      
+      // 4. Update de "Add to Bag" knop in de modal
+      const addBtn = document.getElementById('modal-add-btn');
+      addBtn.setAttribute('data-id', productId);
+      
+      // 5. Open de Modal met een vloeiende animatie
+      document.getElementById('product-modal-backdrop').classList.remove('is-hidden');
+      setTimeout(() => {
+        document.getElementById('product-modal').classList.add('is-open');
+      }, 10);
+    }
+
+    function closeProductModal() {
+      // Sluit animatie
+      document.getElementById('product-modal').classList.remove('is-open');
+      setTimeout(() => {
+        document.getElementById('product-modal-backdrop').classList.add('is-hidden');
+      }, 300); // Wacht tot CSS transition klaar is
+    }
+
+    // Dit is de briljante hack: als iemand in de modal op "Add to Bag" drukt,
+    // klikt Javascript onzichtbaar op de ECHTE knop in je productgrid, 
+    // zodat jouw cartEngine het feilloos oppakt!
+    function addToCartFromModal(event) {
+      const btn = event.currentTarget;
+      const productId = btn.getAttribute('data-id');
+      
+      const originalBtn = document.querySelector(`.apple-gradient-card[data-product-id="${productId}"] .add-to-cart-btn`);
+      if (originalBtn) {
+        originalBtn.click(); // Triggert je cart.js feilloos!
+      }
+      
+      closeProductModal();
+      
+      // Zorgt ervoor dat het zijmenu van je winkelwagentje opent nadat je iets hebt toegevoegd
+      if (typeof cartEngine !== 'undefined') {
+        setTimeout(() => cartEngine.toggleDrawer(true), 300);
+      }
     }
   </script>
 </body>
