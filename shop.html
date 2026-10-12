@@ -338,7 +338,7 @@
   });
   </script>
 
-  <!-- NIEUW: Product Modal / Overlay Logica -->
+<!-- NIEUW: Product Modal / Overlay Logica -->
   <script>
     function openProductModal(card) {
       // 1. Data ophalen uit de aangeklikte kaart
@@ -364,19 +364,16 @@
       if (imagesRaw) {
         const images = imagesRaw.split(',');
         images.forEach((src, index) => {
-          // Maak image element
           const img = document.createElement('img');
           img.src = src.trim();
           img.loading = 'lazy';
           gallery.appendChild(img);
           
-          // Maak een stipje voor onderaan
           const dot = document.createElement('div');
           dot.className = 'indicator-dot' + (index === 0 ? ' active' : '');
           indicators.appendChild(dot);
         });
         
-        // Zorg dat het juiste stipje oplicht als je swipet
         gallery.addEventListener('scroll', () => {
           const scrollLeft = gallery.scrollLeft;
           const width = gallery.offsetWidth;
@@ -392,8 +389,11 @@
       const addBtn = document.getElementById('modal-add-btn');
       addBtn.setAttribute('data-id', productId);
       
-      // 5. Open de Modal met een vloeiende animatie
+      // 5. DE FIX: Haal de 'is-hidden' class van BEIDE elementen af!
       document.getElementById('product-modal-backdrop').classList.remove('is-hidden');
+      document.getElementById('product-modal').classList.remove('is-hidden');
+      
+      // Geef de browser 10 milliseconden om de display:none te verwerken, en start dan de animatie
       setTimeout(() => {
         document.getElementById('product-modal').classList.add('is-open');
       }, 10);
@@ -402,26 +402,25 @@
     function closeProductModal() {
       // Sluit animatie
       document.getElementById('product-modal').classList.remove('is-open');
+      
+      // Wacht tot de animatie klaar is (300ms) en zet dan de 'is-hidden' class weer terug
       setTimeout(() => {
         document.getElementById('product-modal-backdrop').classList.add('is-hidden');
-      }, 300); // Wacht tot CSS transition klaar is
+        document.getElementById('product-modal').classList.add('is-hidden'); // DE FIX: Zorgt dat hij hier ook weer onzichtbaar wordt gemaakt
+      }, 300);
     }
 
-    // Dit is de briljante hack: als iemand in de modal op "Add to Bag" drukt,
-    // klikt Javascript onzichtbaar op de ECHTE knop in je productgrid, 
-    // zodat jouw cartEngine het feilloos oppakt!
     function addToCartFromModal(event) {
       const btn = event.currentTarget;
       const productId = btn.getAttribute('data-id');
       
       const originalBtn = document.querySelector(`.apple-gradient-card[data-product-id="${productId}"] .add-to-cart-btn`);
       if (originalBtn) {
-        originalBtn.click(); // Triggert je cart.js feilloos!
+        originalBtn.click(); 
       }
       
       closeProductModal();
       
-      // Zorgt ervoor dat het zijmenu van je winkelwagentje opent nadat je iets hebt toegevoegd
       if (typeof cartEngine !== 'undefined') {
         setTimeout(() => cartEngine.toggleDrawer(true), 300);
       }
