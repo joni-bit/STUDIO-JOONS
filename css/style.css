@@ -394,10 +394,10 @@ body.shop-page .floating-nav {
 
 /* Active page state (when on shop.html) */
 .floating-nav a.nav-btn[aria-current="page"] {
-  border-color: var(--accent);
+  border-color: var(--accent-orange);
   box-shadow: 
     0 0 0 1.5px #ffffff,
-    0 0 26px 6px rgba(25, 0, 255, 0.75);
+    0 0 26px 6px rgba(255, 91, 35, 0.75);
 }
 
 /* Dark mode glow adjustment */
@@ -407,7 +407,7 @@ body.theme-dark .floating-nav a.nav-btn {
   border-color: rgba(25, 0, 255, 0.3);
   box-shadow: 
     0 4px 14px rgba(255, 255, 255, 0.14),
-    0 0 20px 3px rgba(25, 0, 255, 0.55);
+    0 0 20px 3px rgba(255, 91, 35, 0.55);
 }
 
 body.theme-dark .floating-nav a.nav-btn:hover {
@@ -2015,7 +2015,7 @@ body.theme-dark .segmented-control button.active {
 }
 
 .cart-count-badge {
-  background: var(--accent);
+  background: var(--accent-orange);
   color: #ffffff;
   font-size: 11px;
   font-weight: 700;
@@ -2254,7 +2254,7 @@ body.theme-dark .segmented-control button.active {
 .apple-checkout-btn {
   width: 100%;
   min-height: 50px;
-  background: var(--accent);
+  background: var(--accent-orange);
   color: #ffffff;
   border: none;
   border-radius: 999px;
