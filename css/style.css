@@ -497,7 +497,7 @@ body.theme-dark .floating-nav a.nav-btn:hover {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  color: var(--accent);
+  color: #FF5B23;
   margin: 0 0 14px 0;
   display: inline-block;
 }
