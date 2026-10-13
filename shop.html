@@ -326,4 +326,133 @@
             observer.unobserve(entry.target);
           }
         });
-      }, { threshold: 0.08, rootMargin: "0px 0px -40px 
+      }, { threshold: 0.08, rootMargin: "0px 0px -40px 0px" });
+      fadeElements.forEach(el => observer.observe(el));
+    });
+
+    function setCatalogState(state) {
+      ['catalog', 'loading', 'empty'].forEach(s => {
+        const el = document.getElementById(`state-${s}`);
+        if (el) el.classList.toggle('is-hidden', s !== state);
+      });
+    }
+  </script>
+
+  <!-- Animatie Logica voor de Navigatie -->
+  <script>
+  document.querySelectorAll('.floating-nav a').forEach(link => {
+    link.addEventListener('click', function(e) {
+      const target = this.getAttribute('href');
+      if (target && target !== '#' && !this.classList.contains('nav-cart-btn')) {
+        e.preventDefault(); 
+        document.body.classList.remove('shop-page');
+        const cartBtn = document.querySelector('.nav-cart-btn');
+        if (cartBtn) cartBtn.style.opacity = '0';
+        setTimeout(() => { window.location.href = target; }, 450);
+      }
+    });
+  });
+  </script>
+
+  <!-- NIEUW: Product Modal / Overlay Logica -->
+  <script>
+    function openProductModal(card) {
+      // 1. Data ophalen uit de aangeklikte kaart
+      const title = card.getAttribute('data-title');
+      const eyebrow = card.getAttribute('data-eyebrow');
+      const price = card.getAttribute('data-price');
+      const desc = card.getAttribute('data-desc');
+      const imagesRaw = card.getAttribute('data-images');
+      const productId = card.getAttribute('data-product-id');
+      
+      // 2. Teksten vullen in de modal
+      document.getElementById('modal-title').textContent = title;
+      document.getElementById('modal-eyebrow').textContent = eyebrow;
+      document.getElementById('modal-price').textContent = '€' + price;
+      document.getElementById('modal-desc').textContent = desc;
+      
+      // 3. Afbeeldingen en Swipe Galerij bouwen
+      const gallery = document.getElementById('modal-gallery');
+      const indicators = document.getElementById('modal-indicators');
+      gallery.innerHTML = '';
+      indicators.innerHTML = '';
+      
+      if (imagesRaw) {
+        const images = imagesRaw.split(',');
+        images.forEach((src, index) => {
+          const img = document.createElement('img');
+          img.src = src.trim();
+          img.loading = 'lazy';
+          gallery.appendChild(img);
+          
+          const dot = document.createElement('div');
+          dot.className = 'indicator-dot' + (index === 0 ? ' active' : '');
+          indicators.appendChild(dot);
+        });
+        
+        gallery.addEventListener('scroll', () => {
+          const scrollLeft = gallery.scrollLeft;
+          const width = gallery.offsetWidth;
+          const activeIndex = Math.round(scrollLeft / width);
+          
+          document.querySelectorAll('.indicator-dot').forEach((dot, idx) => {
+            dot.classList.toggle('active', idx === activeIndex);
+          });
+        });
+      }
+      
+      // 4. Update de "Add to Bag" knop in de modal
+      const addBtn = document.getElementById('modal-add-btn');
+      addBtn.setAttribute('data-id', productId);
+      
+      // 5. DE FIX: Haal de 'is-hidden' class van BEIDE elementen af!
+      document.getElementById('product-modal-backdrop').classList.remove('is-hidden');
+      document.getElementById('product-modal').classList.remove('is-hidden');
+      
+      // Geef de browser 10 milliseconden om de display:none te verwerken, en start dan de animatie
+      setTimeout(() => {
+        document.getElementById('product-modal').classList.add('is-open');
+      }, 10);
+    }
+
+    function closeProductModal() {
+      // Sluit animatie
+      document.getElementById('product-modal').classList.remove('is-open');
+      
+      // Wacht tot de animatie klaar is (300ms) en zet dan de 'is-hidden' class weer terug
+      setTimeout(() => {
+        document.getElementById('product-modal-backdrop').classList.add('is-hidden');
+        document.getElementById('product-modal').classList.add('is-hidden'); 
+      }, 300);
+    }
+    
+    // Functie om de pijltjes te laten werken
+    function scrollModalGallery(direction) {
+      const gallery = document.getElementById('modal-gallery');
+      const imageWidth = gallery.offsetWidth; 
+      
+      // Scroll naar links (-1) of rechts (1) met een soepele animatie
+      gallery.scrollBy({
+        left: direction * imageWidth,
+        behavior: 'smooth'
+      });
+    }
+
+    function addToCartFromModal(event) {
+      const btn = event.currentTarget;
+      const productId = btn.getAttribute('data-id');
+      
+      const originalBtn = document.querySelector(`.apple-gradient-card[data-product-id="${productId}"] .add-to-cart-btn`);
+      if (originalBtn) {
+        originalBtn.click(); 
+      }
+      
+      closeProductModal();
+      
+      if (typeof cartEngine !== 'undefined') {
+        setTimeout(() => cartEngine.toggleDrawer(true), 300);
+      }
+    }
+  </script>
+</body>
+</html>
