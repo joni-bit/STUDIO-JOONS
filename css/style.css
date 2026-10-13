@@ -15,6 +15,7 @@
   --accent: #1900ff;
   --accent-hover: #1200b8;
   --accent-orange: #ff5b23;
+   --accent-hover-orange: #d14a1d;
   --accent-cyan: #00d4ff;
   --border: rgba(18, 18, 18, 0.12);
   --shadow: 0 20px 45px rgba(0, 0, 0, 0.08);
@@ -2265,11 +2266,11 @@ body.theme-dark .segmented-control button.active {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  box-shadow: 0 8px 24px rgba(25, 0, 255, 0.3);
+  box-shadow: 0 8px 24px rgba(255, 91, 35, 0.3);
   transition: transform 0.25s var(--spring-smooth), background-color 0.2s ease;
 }
 .apple-checkout-btn:hover:not(:disabled) {
-  background: var(--accent-hover);
+  background: var(--accent-hover-orange);
   transform: scale(1.02);
 }
 .apple-checkout-btn:disabled {
