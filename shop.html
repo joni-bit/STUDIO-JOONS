@@ -7,8 +7,9 @@
   <meta name="description" content="Shop limited-edition embroidered carnival emblems, pop-art patches, and collectible design prints from Studio Joons." />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="icon" type="image/png" sizes="32x32" href="Assets/Images/favicon_shop.png">
-
-<script src="https://js.stripe.com/v3/"></script>
+  
+  <!-- Stripe toevoegen -->
+  <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body class="shop-page">
   <div class="page-shell">
@@ -65,7 +66,6 @@
       <section id="state-catalog" class="project-grid-apple fade-in" aria-label="Available Products">
         
         <!-- Product 1: FREAKandel Embleem -->
-        <!-- DE FIX: event wordt nu meegegeven aan openProductModal -->
         <article class="apple-gradient-card" 
                  data-product-id="freakandel"
                  data-title="FREAKandel embleem"
@@ -91,7 +91,6 @@
             
             <div class="card-action-row">
               <span class="card-price-tag">&euro;6.95</span>
-              <!-- DE FIX: stopPropagation is weg, dus cart.js hoort de klik weer! -->
               <button 
                 class="apple-card-action-btn add-to-cart-btn" 
                 aria-label="Add FREAKandel Embleem to bag"
@@ -187,19 +186,16 @@
 
       <!-- Swipeable Gallery Container met Pijltjes Wrapper -->
       <div class="product-modal-gallery-wrapper">
-        <!-- Pijltje Links -->
         <button class="gallery-arrow prev-arrow" aria-label="Vorige afbeelding" onclick="scrollModalGallery(-1)">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="15 18 9 12 15 6"></polyline>
           </svg>
         </button>
         
-        <!-- De Galerij -->
         <div class="product-modal-gallery" id="modal-gallery">
           <!-- Afbeeldingen worden hier door Javascript ingeladen -->
         </div>
         
-        <!-- Pijltje Rechts -->
         <button class="gallery-arrow next-arrow" aria-label="Volgende afbeelding" onclick="scrollModalGallery(1)">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="9 18 15 12 9 6"></polyline>
@@ -207,10 +203,8 @@
         </button>
       </div>
       
-      <!-- Stippen voor de galerij -->
       <div class="gallery-indicators" id="modal-indicators"></div>
 
-      <!-- Tekst Content -->
       <div class="product-modal-content">
         <span class="product-modal-eyebrow" id="modal-eyebrow"></span>
         <h2 class="product-modal-title" id="modal-title"></h2>
@@ -245,7 +239,8 @@
       </div>
 
       <div class="cart-drawer-footer">
-        <form id="checkout-form" onsubmit="cartEngine.handleCheckout(event)">
+        <!-- Let op: onsubmit aangepast naar customStripeCheckout -->
+        <form id="checkout-form" onsubmit="customStripeCheckout(event)">
           <label for="customer-email" class="checkout-label">Email adress</label>
           <input 
             type="email" 
@@ -259,10 +254,10 @@
             <span class="subtotal-label">Subtotaal</span>
             <span class="subtotal-val" id="cart-subtotal-amount">&euro;0.00</span>
           </div>
-          <p class="shipping-note"> Standaard NL/EU verzendkosten worden berekend tijdens checkout via Mollie.</p>
+          <p class="shipping-note"> Standaard NL/EU verzendkosten worden berekend tijdens checkout via Mollie/Stripe.</p>
 
           <button type="submit" id="cart-checkout-btn" class="apple-checkout-btn">
-            <span class="checkout-btn-text">Afrekenen met Mollie</span>
+            <span class="checkout-btn-text">Afrekenen</span>
             <span class="checkout-spinner is-hidden" aria-hidden="true"></span>
           </button>
         </form>
@@ -291,7 +286,6 @@
 
   <script src="css/js/cart.js"></script>
   
-  <!-- Bestaande Site Functies -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const navWrapper = document.querySelector('.floating-nav-wrapper');
@@ -336,34 +330,25 @@
         if (el) el.classList.toggle('is-hidden', s !== state);
       });
     }
-  </script>
 
-  <!-- Animatie Logica voor de Navigatie -->
-  <script>
-  document.querySelectorAll('.floating-nav a').forEach(link => {
-    link.addEventListener('click', function(e) {
-      const target = this.getAttribute('href');
-      if (target && target !== '#' && !this.classList.contains('nav-cart-btn')) {
-        e.preventDefault(); 
-        document.body.classList.remove('shop-page');
-        const cartBtn = document.querySelector('.nav-cart-btn');
-        if (cartBtn) cartBtn.style.opacity = '0';
-        setTimeout(() => { window.location.href = target; }, 450);
-      }
+    document.querySelectorAll('.floating-nav a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        const target = this.getAttribute('href');
+        if (target && target !== '#' && !this.classList.contains('nav-cart-btn')) {
+          e.preventDefault(); 
+          document.body.classList.remove('shop-page');
+          const cartBtn = document.querySelector('.nav-cart-btn');
+          if (cartBtn) cartBtn.style.opacity = '0';
+          setTimeout(() => { window.location.href = target; }, 450);
+        }
+      });
     });
-  });
-  </script>
 
-  <!-- NIEUW: Product Modal / Overlay Logica -->
-  <script>
     function openProductModal(event, card) {
-      // DE FIX: Als we op de winkelwagenknop klikken, stoppen we deze functie meteen.
-      // Hierdoor laat cart.js het product inladen ZONDER de pop-up te openen!
       if (event.target.closest('.add-to-cart-btn')) {
         return;
       }
       
-      // 1. Data ophalen uit de aangeklikte kaart
       const title = card.getAttribute('data-title');
       const eyebrow = card.getAttribute('data-eyebrow');
       const price = card.getAttribute('data-price');
@@ -371,13 +356,11 @@
       const imagesRaw = card.getAttribute('data-images');
       const productId = card.getAttribute('data-product-id');
       
-      // 2. Teksten vullen in de modal
       document.getElementById('modal-title').textContent = title;
       document.getElementById('modal-eyebrow').textContent = eyebrow;
       document.getElementById('modal-price').textContent = '€' + price;
       document.getElementById('modal-desc').textContent = desc;
       
-      // 3. Afbeeldingen en Swipe Galerij bouwen
       const gallery = document.getElementById('modal-gallery');
       const indicators = document.getElementById('modal-indicators');
       gallery.innerHTML = '';
@@ -407,7 +390,6 @@
         });
       }
       
-      // 4. Update de "Add to Bag" knop in de modal
       const addBtn = document.getElementById('modal-add-btn');
       addBtn.setAttribute('data-id', productId);
       
@@ -420,21 +402,16 @@
     }
 
     function closeProductModal() {
-      // Sluit animatie
       document.getElementById('product-modal').classList.remove('is-open');
-      
       setTimeout(() => {
         document.getElementById('product-modal-backdrop').classList.add('is-hidden');
         document.getElementById('product-modal').classList.add('is-hidden'); 
       }, 300);
     }
-    
-    // Functie om de pijltjes te laten werken
+
     function scrollModalGallery(direction) {
       const gallery = document.getElementById('modal-gallery');
       const imageWidth = gallery.offsetWidth; 
-      
-      // Scroll naar links (-1) of rechts (1) met een soepele animatie
       gallery.scrollBy({
         left: direction * imageWidth,
         behavior: 'smooth'
@@ -444,65 +421,83 @@
     function addToCartFromModal(event) {
       const btn = event.currentTarget;
       const productId = btn.getAttribute('data-id');
-      
-      // Doordat 'stopPropagation' weg is, wordt de klik nu feilloos opgevangen door cart.js
       const originalBtn = document.querySelector(`.apple-gradient-card[data-product-id="${productId}"] .add-to-cart-btn`);
       if (originalBtn) {
         originalBtn.click(); 
       }
-      
       closeProductModal();
-      
       if (typeof cartEngine !== 'undefined') {
         setTimeout(() => cartEngine.toggleDrawer(true), 300);
       }
     }
-<script>
-    // Succes-afhandeling na betaling
-    if (window.location.search.includes('success=true')) {
-      localStorage.clear(); 
-      alert("Betaling succesvol! 🎉 Bedankt voor je bestelling.");
-      window.history.replaceState({}, document.title, window.location.pathname);
+
+    // --- STRIPE CHECKOUT FUNCTIE ---
+    async function customStripeCheckout(event) {
+      event.preventDefault();
+      
+      const btn = document.getElementById('cart-checkout-btn');
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '<span class="checkout-btn-text">Verbinden met kassa...</span>';
+      btn.disabled = true;
+
+      // Jouw Stripe sleutel
+      const stripe = Stripe('pk_test_VUL_HIER_JOUW_SLEUTEL_IN');
+
+      const stripePriceMap = {
+        'freakandel': 'price_1VUL_HIER_DE_ID_VAN_FREAKANDEL_IN', 
+        'bitterboobs': 'price_1VUL_HIER_DE_ID_VAN_BITTERBOOBS_IN' 
+      };
+
+      const lineItems = [];
+      const cartItemElements = document.querySelectorAll('.cart-line-item');
+      
+      cartItemElements.forEach(el => {
+        const removeBtn = el.querySelector('.cart-item-remove-btn');
+        const qtySpan = el.querySelector('.quantity-stepper span');
+        
+        if (removeBtn && qtySpan) {
+          const id = removeBtn.getAttribute('data-id');
+          const quantity = parseInt(qtySpan.textContent);
+          
+          if (stripePriceMap[id]) {
+            lineItems.push({
+              price: stripePriceMap[id],
+              quantity: quantity
+            });
+          }
+        }
+      });
+
+      if (lineItems.length === 0) {
+        alert("Winkelwagen is leeg of producten kunnen niet worden gevonden.");
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+        return;
+      }
+
+      const cleanUrl = window.location.href.split('?')[0];
+      const { error } = await stripe.redirectToCheckout({
+        lineItems: lineItems,
+        mode: 'payment',
+        successUrl: cleanUrl + '?success=true',
+        cancelUrl: cleanUrl,
+        shippingAddressCollection: {
+          allowedCountries: ['NL', 'BE']
+        }
+      });
+
+      if (error) {
+        alert("Er is iets misgegaan: " + error.message);
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+      }
     }
 
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        if (typeof cartEngine !== 'undefined') {
-          cartEngine.handleCheckout = async function(event) {
-            event.preventDefault();
-            
-            const btn = document.getElementById('cart-checkout-btn');
-            const originalText = btn.innerHTML;
-            btn.innerHTML = '<span class="checkout-btn-text">Verbinden met kassa...</span>';
-            btn.disabled = true;
-
-            // Tijdens lokaal testen is dit http://localhost:4242/api/create-checkout-session
-            // In productie vervang je dit door de live URL van je server (bijv. Render)
-            const backendUrl = "http://localhost:4242/api/create-checkout-session";
-
-            try {
-              const response = await fetch(backendUrl, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ /* Hier kun je dynamisch je winkelwagen lineItems meesturen */ })
-              });
-
-              const data = await response.json();
-              if (data.url) {
-                // Stuur de bezoeker door naar de veilige, door Stripe gehoste kassa
-                window.location.href = data.url;
-              } else {
-                throw new Error(data.error || "Onbekende fout");
-              }
-            } catch (err) {
-              alert("Er is iets misgegaan: " + err.message);
-              btn.innerHTML = originalText;
-              btn.disabled = false;
-            }
-          };
-        }
-      }, 500);
-    });
+    if (window.location.search.includes('success=true')) {
+      localStorage.clear(); 
+      alert("Betaling succesvol! 🎉 Bedankt voor je bestelling. Je ontvangt zo een bevestigingsmail met de details.");
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
   </script>
 </body>
 </html>
