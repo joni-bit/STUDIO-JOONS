@@ -240,7 +240,7 @@
 
       <div class="cart-drawer-footer">
         <!-- Let op: onsubmit aangepast naar customStripeCheckout -->
-        <form id="checkout-form" onsubmit="customStripeCheckout(event)">
+        <form id="checkout-form" >
           <label for="customer-email" class="checkout-label">Email adress</label>
           <input 
             type="email" 
@@ -256,10 +256,10 @@
           </div>
           <p class="shipping-note"> Standaard NL/EU verzendkosten worden berekend tijdens checkout via Mollie/Stripe.</p>
 
-          <button type="submit" id="cart-checkout-btn" class="apple-checkout-btn">
+          <!-- De knop is nu een directe link naar je Stripe Kassa -->
+          <a href="JOUW_STRIPE_LINK_HIER" id="cart-checkout-btn" class="apple-checkout-btn" style="text-decoration: none;">
             <span class="checkout-btn-text">Afrekenen</span>
-            <span class="checkout-spinner is-hidden" aria-hidden="true"></span>
-          </button>
+          </a>
         </form>
       </div>
     </aside>
@@ -431,14 +431,7 @@
       }
     }
 
-    // --- STRIPE CHECKOUT FUNCTIE ---
-    async function customStripeCheckout(event) {
-      event.preventDefault();
-      
-      const btn = document.getElementById('cart-checkout-btn');
-      const originalText = btn.innerHTML;
-      btn.innerHTML = '<span class="checkout-btn-text">Verbinden met kassa...</span>';
-      btn.disabled = true;
+   
 
       // Jouw Stripe sleutel
       const stripe = Stripe('pk_test_VUL_HIER_JOUW_SLEUTEL_IN');
