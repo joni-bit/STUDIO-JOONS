@@ -1,0 +1,86 @@
+<!-- STRIPE CHECKOUT INTEGRATIE -->
+  <script>
+    // 1. Zorg dat we weten wanneer iemand succesvol betaald heeft en terugkeert
+    if (window.location.search.includes('success=true')) {
+      // Leeg het winkelwagentje in het geheugen
+      localStorage.clear(); 
+      alert("Betaling succesvol! 🎉 Bedankt voor je bestelling. Je ontvangt zo een bevestigingsmail met de details.");
+      // Haal de '?success=true' uit de URL voor een schone adresbalk
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+
+    // 2. Koppel de afrekenknop zodra de pagina en cart.js geladen zijn
+    window.addEventListener('load', () => {
+      // We wachten heel even (500ms) tot cart.js zeker weten klaar is met inladen
+      setTimeout(() => {
+        if (typeof cartEngine !== 'undefined') {
+          
+          // We overschrijven de standaard 'handleCheckout' met onze Stripe logica
+          cartEngine.handleCheckout = async function(event) {
+            event.preventDefault(); // Stop standaard formulier gedrag
+            
+            const btn = document.getElementById('cart-checkout-btn');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<span class="checkout-btn-text">Verbinden met beveiligde kassa...</span>';
+            btn.disabled = true;
+
+            // Vul hier jouw Stripe sleutel in (beginnend met pk_test_ of pk_live_)
+            const stripe = Stripe('pk_live_51UOMMMJNmwSZDWmLJdSaDM0Emyb1N5w4U1ykpswJQEgorH6MLwhcqF0Lgvbv1CfjYAHqrPqMd11dMAnfAkHiHeqx00arRzRWyJ');
+
+            // Koppel je product-ID's uit de HTML aan de 'Price ID' uit Stripe
+            const stripePriceMap = {
+              'freakandel': 'prod_VR3HBKnAagfkgN', 
+              'bitterboobs': 'prod_VR3JRMmpXq54ZB' 
+            };
+
+            // Lees de winkelwagen visueel uit om te zien wat de klant wil kopen
+            const lineItems = [];
+            const cartItemElements = document.querySelectorAll('.cart-line-item');
+            
+            cartItemElements.forEach(el => {
+              const removeBtn = el.querySelector('.cart-item-remove-btn');
+              const qtySpan = el.querySelector('.quantity-stepper span');
+              
+              if (removeBtn && qtySpan) {
+                const id = removeBtn.getAttribute('data-id');
+                const quantity = parseInt(qtySpan.textContent);
+                
+                // Als het product bekend is bij Stripe, voeg het toe aan de afrekenlijst
+                if (stripePriceMap[id]) {
+                  lineItems.push({
+                    price: stripePriceMap[id],
+                    quantity: quantity
+                  });
+                }
+              }
+            });
+
+            if (lineItems.length === 0) {
+              alert("Winkelwagen is leeg of producten kunnen niet worden gevonden.");
+              btn.innerHTML = originalText;
+              btn.disabled = false;
+              return;
+            }
+
+            // Stuur door naar Stripe!
+            const cleanUrl = window.location.href.split('?')[0];
+            const { error } = await stripe.redirectToCheckout({
+              lineItems: lineItems,
+              mode: 'payment',
+              successUrl: cleanUrl + '?success=true', // Terug naar shop met succes-melding
+              cancelUrl: cleanUrl, // Terug naar shop als ze annuleren
+              shippingAddressCollection: {
+                allowedCountries: ['NL', 'BE'] // Vraagt VERPLICHT om een verzendadres!
+              }
+            });
+
+            if (error) {
+              alert("Er is iets misgegaan: " + error.message);
+              btn.innerHTML = originalText;
+              btn.disabled = false;
+            }
+          };
+        }
+      }, 500);
+    });
+  </script>
