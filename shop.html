@@ -18,7 +18,6 @@
           <div class="profile-backdrop"></div>
           <img src="Assets/Images/IMG4456.jpg" alt="Portrait of Joni Godwin" class="profile-img" />
         </a>
-       <!-- (even verbergen) <a href="index" class="brand-name">JONI GODWIN</a> -->
       </div>
 
       <!-- Symmetrical Floating Nav -->
@@ -64,6 +63,7 @@
       <section id="state-catalog" class="project-grid-apple fade-in" aria-label="Available Products">
         
         <!-- Product 1: FREAKandel Embleem -->
+        <!-- DE FIX: event wordt nu meegegeven aan openProductModal -->
         <article class="apple-gradient-card" 
                  data-product-id="freakandel"
                  data-title="FREAKandel embleem"
@@ -71,7 +71,7 @@
                  data-price="6.95"
                  data-desc="Een premium geborduurd FREAKandel embleem om je carnavalsoutfit helemaal af te maken. Voorzien van een strijklaag aan de achterkant voor makkelijke bevestiging op je jasje of kiel. Ontworpen in Brabant!"
                  data-images="Assets/Items/STUDIO JOONS_embleem_FREAKandel.jpg,Assets/Items/STUDIO JOONS_embleem_FREAKandel.jpg,Assets/Items/STUDIO JOONS_embleem_FREAKandel.jpg"
-                 onclick="openProductModal(this)">
+                 onclick="openProductModal(event, this)">
           
           <div class="card-media-backdrop">
             <img src="Assets/Items/STUDIO JOONS_embleem_FREAKandel.jpg" alt="FREAKandel Embleem - STUDIO Joons" loading="lazy" />
@@ -89,15 +89,14 @@
             
             <div class="card-action-row">
               <span class="card-price-tag">&euro;6.95</span>
-              <!-- Door event.stopPropagation toe te voegen, opent de modal NIET als je alleen de tas-knop klikt -->
+              <!-- DE FIX: stopPropagation is weg, dus cart.js hoort de klik weer! -->
               <button 
                 class="apple-card-action-btn add-to-cart-btn" 
                 aria-label="Add FREAKandel Embleem to bag"
                 data-id="freakandel"
                 data-name="FREAKandel embleem"
                 data-price="6.95"
-                data-image="Assets/Items/STUDIO JOONS_embleem_FREAKandel.jpg"
-                onclick="event.stopPropagation();">
+                data-image="Assets/Items/STUDIO JOONS_embleem_FREAKandel.jpg">
                 <span>Add to bag</span>
               </button>
             </div>
@@ -112,7 +111,7 @@
                  data-price="6.95"
                  data-desc="Geef je carnavals outfit een cheeky twist met het BitterB00Bs embleem. Hoge dichtheid stiksel en makkelijk vast te strijken."
                  data-images="Assets/Items/STUDIO JOONS_embleem_BitterB00Bs.jpg,Assets/Items/STUDIO JOONS_embleem_BitterB00Bs.jpg,Assets/Items/STUDIO JOONS_embleem_BitterB00Bs.jpg"
-                 onclick="openProductModal(this)">
+                 onclick="openProductModal(event, this)">
                  
           <div class="card-media-backdrop">
             <img src="Assets/Items/STUDIO JOONS_embleem_BitterB00Bs.jpg" alt="BitterB00Bs Embleem - STUDIO Joons" loading="lazy" />
@@ -136,8 +135,7 @@
                 data-id="bitterboobs"
                 data-name="BitterB00Bs embleem"
                 data-price="6.95"
-                data-image="Assets/Items/STUDIO JOONS_embleem_BitterB00Bs.jpg"
-                onclick="event.stopPropagation();">
+                data-image="Assets/Items/STUDIO JOONS_embleem_BitterB00Bs.jpg">
                 <span> Add to bag</span>
               </button>
             </div>
@@ -185,7 +183,7 @@
         </svg>
       </button>
 
-    <!-- Swipeable Gallery Container met Pijltjes Wrapper -->
+      <!-- Swipeable Gallery Container met Pijltjes Wrapper -->
       <div class="product-modal-gallery-wrapper">
         <!-- Pijltje Links -->
         <button class="gallery-arrow prev-arrow" aria-label="Vorige afbeelding" onclick="scrollModalGallery(-1)">
@@ -217,7 +215,7 @@
         <span class="product-modal-price" id="modal-price"></span>
         <p class="product-modal-desc" id="modal-desc"></p>
         
-        <!-- De toevoeg knop in de modal. De Javascript 'klikt' automatisch op de onzichtbare originele knop in de pagina -->
+        <!-- De toevoeg knop in de modal. -->
         <button class="apple-checkout-btn" id="modal-add-btn" onclick="addToCartFromModal(event)">
           <span class="checkout-btn-text"> Toevoegen aan winkelwagen</span>
         </button>
@@ -356,7 +354,13 @@
 
   <!-- NIEUW: Product Modal / Overlay Logica -->
   <script>
-    function openProductModal(card) {
+    function openProductModal(event, card) {
+      // DE FIX: Als we op de winkelwagenknop klikken, stoppen we deze functie meteen.
+      // Hierdoor laat cart.js het product inladen ZONDER de pop-up te openen!
+      if (event.target.closest('.add-to-cart-btn')) {
+        return;
+      }
+      
       // 1. Data ophalen uit de aangeklikte kaart
       const title = card.getAttribute('data-title');
       const eyebrow = card.getAttribute('data-eyebrow');
@@ -405,11 +409,9 @@
       const addBtn = document.getElementById('modal-add-btn');
       addBtn.setAttribute('data-id', productId);
       
-      // 5. DE FIX: Haal de 'is-hidden' class van BEIDE elementen af!
       document.getElementById('product-modal-backdrop').classList.remove('is-hidden');
       document.getElementById('product-modal').classList.remove('is-hidden');
       
-      // Geef de browser 10 milliseconden om de display:none te verwerken, en start dan de animatie
       setTimeout(() => {
         document.getElementById('product-modal').classList.add('is-open');
       }, 10);
@@ -419,7 +421,6 @@
       // Sluit animatie
       document.getElementById('product-modal').classList.remove('is-open');
       
-      // Wacht tot de animatie klaar is (300ms) en zet dan de 'is-hidden' class weer terug
       setTimeout(() => {
         document.getElementById('product-modal-backdrop').classList.add('is-hidden');
         document.getElementById('product-modal').classList.add('is-hidden'); 
@@ -442,6 +443,7 @@
       const btn = event.currentTarget;
       const productId = btn.getAttribute('data-id');
       
+      // Doordat 'stopPropagation' weg is, wordt de klik nu feilloos opgevangen door cart.js
       const originalBtn = document.querySelector(`.apple-gradient-card[data-product-id="${productId}"] .add-to-cart-btn`);
       if (originalBtn) {
         originalBtn.click(); 
