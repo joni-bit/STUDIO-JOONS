@@ -426,6 +426,17 @@
         document.getElementById('product-modal').classList.add('is-hidden'); // DE FIX: Zorgt dat hij hier ook weer onzichtbaar wordt gemaakt
       }, 300);
     }
+    // Functie om de pijltjes te laten werken
+    function scrollModalGallery(direction) {
+      const gallery = document.getElementById('modal-gallery');
+      const imageWidth = gallery.offsetWidth; // Berekent de breedte van precies 1 afbeelding
+      
+      // Scroll naar links (-1) of rechts (1) met een soepele animatie
+      gallery.scrollBy({
+        left: direction * imageWidth,
+        behavior: 'smooth'
+      });
+    }
 
     function addToCartFromModal(event) {
       const btn = event.currentTarget;
@@ -443,5 +454,6 @@
       }
     }
   </script>
+  
 </body>
 </html>
