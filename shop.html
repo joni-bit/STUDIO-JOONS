@@ -234,7 +234,7 @@
             <span class="subtotal-label">Subtotaal</span>
             <span class="subtotal-val" id="cart-subtotal-amount">&euro;0.00</span>
           </div>
-          <p class="shipping-note"> Standaard NL/EU verzendkosten worden berekend tijdens checkout via Mollie/Stripe.</p>
+          <p class="shipping-note"> Standaard NL/EU verzendkosten worden berekend tijdens checkout via Stripe.</p>
 
           <button type="submit" id="cart-checkout-btn" class="apple-checkout-btn">
             <span class="checkout-btn-text">Afrekenen</span>
@@ -422,8 +422,8 @@
       // Extract current items from the cart UI (fallback if cartEngine is not fully mapped)
       const lineItems = [];
       const stripePriceMap = {
-        'freakandel': 'price_1VUL_HIER_DE_ID_VAN_FREAKANDEL_IN', 
-        'bitterboobs': 'price_1VUL_HIER_DE_ID_VAN_BITTERBOOBS_IN' 
+        'freakandel': 'prod_VR3HBKnAagfkgN', 
+        'bitterboobs': 'prod_VR3JRMmpXq54ZB' 
       };
 
       const cartItemElements = document.querySelectorAll('.cart-line-item');
