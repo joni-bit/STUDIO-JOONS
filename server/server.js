@@ -5,13 +5,16 @@ const cors = require("cors");
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 const app = express();
-app.use(cors());
+app.use(cors({ origin: true }));
 app.use(express.json());
 
-// DIT IS DE "MAP"! Een digitaal lijstje dat jouw winkelwagen linkt aan Stripe.
+// DIT IS DE "MAP"! Nu super-resistent gemaakt tegen typefouten, hoofdletters en spaties
 const stripePriceMap = {
-  'freakandel': 'price_1UQBCyJNmwSZDWmLfdaLcrrW',  // Begint met price_...
-  'bitterboobs': 'price_1UQBBJJNmwSZDWmLCBnigRHd' // Begint met price_...
+  'freakandel': 'price_1UQBCyJNmwSZDWmLfdaLcrrW',
+  'freakandelembleem': 'price_1UQBCyJNmwSZDWmLfdaLcrrW',
+  'bitterboobs': 'price_1UQBBJJNmwSZDWmLCBnigRHd',
+  'bitterb00bs': 'price_1UQBBJJNmwSZDWmLCBnigRHd',
+  'bitterb00bsembleem': 'price_1UQBBJJNmwSZDWmLCBnigRHd'
 };
 
 app.post("/api/create-checkout-session", async (req, res) => {
@@ -22,15 +25,24 @@ app.post("/api/create-checkout-session", async (req, res) => {
       throw new Error("Winkelwagen is leeg");
     }
 
-    // Zet de website-items om naar officiële Stripe items
-    const lineItems = cartItems.map(item => {
-      return {
-        price: stripePriceMap[item.id],
-        quantity: item.quantity
-      };
-    }).filter(item => item.price); // Negeer items die niet in het lijstje staan
+    const lineItems = [];
+
+    // Filter de inkomende namen zodat we altijd een perfecte match vinden
+    cartItems.forEach(item => {
+      // Haal spaties en leestekens weg en maak er kleine letters van
+      const safeId = String(item.id).toLowerCase().replace(/[^a-z0-9]/g, '');
+      const stripePriceId = stripePriceMap[safeId];
+      
+      if (stripePriceId) {
+        lineItems.push({
+          price: stripePriceId,
+          quantity: item.quantity
+        });
+      }
+    });
 
     if (lineItems.length === 0) {
+      console.error("Onbekende IDs ontvangen van website:", cartItems);
       throw new Error("Geen geldige producten gevonden in winkelwagen.");
     }
 
