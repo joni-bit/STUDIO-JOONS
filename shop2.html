@@ -7,7 +7,6 @@
   <meta name="description" content="Shop limited-edition embroidered carnival emblems, pop-art patches, and collectible design prints from Studio Joons." />
   <link rel="stylesheet" href="css/style.css" />
   <link rel="icon" type="image/png" sizes="32x32" href="Assets/Images/favicon_shop.png">
-  <!-- STRIPE SCRIPT -->
   <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body class="shop-page">
@@ -221,7 +220,7 @@
       </div>
 
       <div class="cart-drawer-footer">
-        <form id="checkout-form" onsubmit="if(typeof cartEngine !== 'undefined' && cartEngine.handleCheckout) cartEngine.handleCheckout(event)">
+        <form id="checkout-form" onsubmit="handleStripeCheckout(event)">
           <label for="customer-email" class="checkout-label">Email adress</label>
           <input 
             type="email" 
@@ -235,7 +234,7 @@
             <span class="subtotal-label">Subtotaal</span>
             <span class="subtotal-val" id="cart-subtotal-amount">&euro;0.00</span>
           </div>
-          <p class="shipping-note"> Standaard NL/EU verzendkosten worden berekend tijdens checkout via Stripe.</p>
+          <p class="shipping-note"> Standaard NL/EU verzendkosten worden berekend tijdens checkout via Mollie/Stripe.</p>
 
           <button type="submit" id="cart-checkout-btn" class="apple-checkout-btn">
             <span class="checkout-btn-text">Afrekenen</span>
@@ -264,19 +263,10 @@
     </footer>
   </div>
 
-  <script src="js/cart.js"></script>
+  <script src="css/js/cart.js"></script>
   
-  <!-- UI SCRIPT -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      // 1. Success Message Afhandeling (Stripe Return)
-      if (window.location.search.includes('success=true')) {
-        localStorage.clear(); 
-        alert("Betaling succesvol! 🎉 Bedankt voor je bestelling. Je ontvangt zo een bevestigingsmail met de details.");
-        window.history.replaceState({}, document.title, window.location.pathname);
-      }
-
-      // 2. Navigatie en Scroll logica
       const navWrapper = document.querySelector('.floating-nav-wrapper');
       if (navWrapper) {
         let lastScrollY = window.pageYOffset || document.documentElement.scrollTop;
@@ -301,7 +291,6 @@
         }, { passive: true });
       }
 
-      // 3. Fade In Elementen
       const fadeElements = document.querySelectorAll('.fade-in');
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -334,9 +323,10 @@
       });
     });
 
-    // 4. Modal Logica
     function openProductModal(event, card) {
-      if (event.target.closest('.add-to-cart-btn')) return;
+      if (event.target.closest('.add-to-cart-btn')) {
+        return;
+      }
       
       const title = card.getAttribute('data-title');
       const eyebrow = card.getAttribute('data-eyebrow');
@@ -411,82 +401,79 @@
       const btn = event.currentTarget;
       const productId = btn.getAttribute('data-id');
       const originalBtn = document.querySelector(`.apple-gradient-card[data-product-id="${productId}"] .add-to-cart-btn`);
-      if (originalBtn) originalBtn.click(); 
+      if (originalBtn) {
+        originalBtn.click(); 
+      }
       closeProductModal();
       if (typeof cartEngine !== 'undefined') {
         setTimeout(() => cartEngine.toggleDrawer(true), 300);
       }
     }
-  </script>
 
-  <!-- STRIPE CHECKOUT INTEGRATIE -->
-  <script>
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        if (typeof cartEngine !== 'undefined') {
-          
-          cartEngine.handleCheckout = async function(event) {
-            if(event) event.preventDefault(); 
-            
-            const btn = document.getElementById('cart-checkout-btn');
-            const originalText = btn.innerHTML;
-            btn.innerHTML = '<span class="checkout-btn-text">Verbinden met beveiligde kassa...</span>';
-            btn.disabled = true;
+    // Stripe checkout interceptor
+    async function handleStripeCheckout(event) {
+      event.preventDefault();
+      
+      const btn = document.getElementById('cart-checkout-btn');
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '<span class="checkout-btn-text">Verbinden met kassa...</span>';
+      btn.disabled = true;
 
-            const stripe = Stripe('pk_live_51UOMMMJNmwSZDWmLJdSaDM0Emyb1N5w4U1ykpswJQEgorH6MLwhcqF0Lgvbv1CfjYAHqrPqMd11dMAnfAkHiHeqx00arRzRWyJ');
+      // Extract current items from the cart UI (fallback if cartEngine is not fully mapped)
+      const lineItems = [];
+      const stripePriceMap = {
+        'freakandel': 'price_1VUL_HIER_DE_ID_VAN_FREAKANDEL_IN', 
+        'bitterboobs': 'price_1VUL_HIER_DE_ID_VAN_BITTERBOOBS_IN' 
+      };
 
-            const stripePriceMap = {
-              'freakandel': 'prod_VR3HBKnAagfkgN', 
-              'bitterboobs': 'prod_VR3JRMmpXq54ZB' 
-            };
-
-            const lineItems = [];
-            const cartItemElements = document.querySelectorAll('.cart-line-item');
-            
-            cartItemElements.forEach(el => {
-              const removeBtn = el.querySelector('.cart-item-remove-btn');
-              const qtySpan = el.querySelector('.quantity-stepper span');
-              
-              if (removeBtn && qtySpan) {
-                const id = removeBtn.getAttribute('data-id');
-                const quantity = parseInt(qtySpan.textContent);
-                
-                if (stripePriceMap[id]) {
-                  lineItems.push({
-                    price: stripePriceMap[id],
-                    quantity: quantity
-                  });
-                }
-              }
-            });
-
-            if (lineItems.length === 0) {
-              alert("Winkelwagen is leeg of producten kunnen niet worden gevonden.");
-              btn.innerHTML = originalText;
-              btn.disabled = false;
-              return;
-            }
-
-            const cleanUrl = window.location.href.split('?')[0];
-            const { error } = await stripe.redirectToCheckout({
-              lineItems: lineItems,
-              mode: 'payment',
-              successUrl: cleanUrl + '?success=true',
-              cancelUrl: cleanUrl,
-              shippingAddressCollection: {
-                allowedCountries: ['NL', 'BE']
-              }
-            });
-
-            if (error) {
-              alert("Er is iets misgegaan: " + error.message);
-              btn.innerHTML = originalText;
-              btn.disabled = false;
-            }
-          };
+      const cartItemElements = document.querySelectorAll('.cart-line-item');
+      cartItemElements.forEach(el => {
+        const removeBtn = el.querySelector('.cart-item-remove-btn');
+        const qtySpan = el.querySelector('.quantity-stepper span');
+        if (removeBtn && qtySpan) {
+          const id = removeBtn.getAttribute('data-id');
+          const quantity = parseInt(qtySpan.textContent);
+          if (stripePriceMap[id]) {
+            lineItems.push({ price: stripePriceMap[id], quantity: quantity });
+          }
         }
-      }, 500);
-    });
+      });
+
+      if (lineItems.length === 0) {
+        alert("Winkelwagen is leeg of producten kunnen niet worden gevonden.");
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+        return;
+      }
+
+      // Point this to your new external Node.js backend
+      const backendUrl = "http://localhost:4242/api/create-checkout-session"; 
+
+      try {
+        const response = await fetch(backendUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ line_items: lineItems })
+        });
+
+        const data = await response.json();
+        if (data.url) {
+          window.location.href = data.url;
+        } else {
+          throw new Error("Ongeldige response van de server.");
+        }
+      } catch (err) {
+        alert("Serverfout. Zorg dat je de backend hebt gestart. Fout: " + err.message);
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+      }
+    }
+
+    if (window.location.search.includes('success=true')) {
+      localStorage.clear(); 
+      alert("Betaling succesvol! 🎉 Bedankt voor je bestelling. Je ontvangt zo een bevestigingsmail met de details.");
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
   </script>
 </body>
 </html>
