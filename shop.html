@@ -410,8 +410,8 @@
       }
     }
 
-    // Stripe checkout interceptor
-    async function handleStripeCheckout(event) {
+   // --- STRIPE CHECKOUT FUNCTIE (Verbonden met Render Server) ---
+    async function customStripeCheckout(event) {
       event.preventDefault();
       
       const btn = document.getElementById('cart-checkout-btn');
@@ -419,60 +419,54 @@
       btn.innerHTML = '<span class="checkout-btn-text">Verbinden met kassa...</span>';
       btn.disabled = true;
 
-      // Extract current items from the cart UI (fallback if cartEngine is not fully mapped)
-      const lineItems = [];
-      const stripePriceMap = {
-        'freakandel': 'prod_VR3HBKnAagfkgN', 
-        'bitterboobs': 'prod_VR3JRMmpXq54ZB' 
-      };
-
+      // Lees de visuele winkelwagen uit (wat wil de klant kopen?)
+      const itemsToBuy = [];
       const cartItemElements = document.querySelectorAll('.cart-line-item');
+      
       cartItemElements.forEach(el => {
         const removeBtn = el.querySelector('.cart-item-remove-btn');
         const qtySpan = el.querySelector('.quantity-stepper span');
+        
         if (removeBtn && qtySpan) {
-          const id = removeBtn.getAttribute('data-id');
-          const quantity = parseInt(qtySpan.textContent);
-          if (stripePriceMap[id]) {
-            lineItems.push({ price: stripePriceMap[id], quantity: quantity });
-          }
+          itemsToBuy.push({
+            id: removeBtn.getAttribute('data-id'),
+            quantity: parseInt(qtySpan.textContent)
+          });
         }
       });
 
-      if (lineItems.length === 0) {
-        alert("Winkelwagen is leeg of producten kunnen niet worden gevonden.");
+      if (itemsToBuy.length === 0) {
+        alert("Winkelwagen is leeg.");
         btn.innerHTML = originalText;
         btn.disabled = false;
         return;
       }
 
-      // Point this to your new external Node.js backend
+      // VUL HIER JOUW RENDER URL IN! (Haal de link uit je Render dashboard)
+      // Bijvoorbeeld: "https://studio-joons.onrender.com/api/create-checkout-session"
       const backendUrl = "https://studiojoons-backend.onrender.com/api/create-checkout-session";
 
       try {
+        // Stuur de bestelling naar jouw Render server
         const response = await fetch(backendUrl, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ line_items: lineItems })
+          body: JSON.stringify({ items: itemsToBuy })
         });
 
         const data = await response.json();
+        
+        // De server geeft de veilige Stripe link terug, stuur de klant daarheen!
         if (data.url) {
-          window.location.href = data.url;
+          window.location.href = data.url; 
         } else {
-          throw new Error("Ongeldige response van de server.");
+          throw new Error(data.error || "Onbekende fout bij laden van kassa.");
         }
       } catch (err) {
-        alert("Serverfout. Zorg dat je de backend hebt gestart. Fout: " + err.message);
+        alert("Er is iets misgegaan: " + err.message);
         btn.innerHTML = originalText;
         btn.disabled = false;
       }
-    }
-
-    if (window.location.search.includes('success=true')) {
-      localStorage.clear(); 
-      alert("Betaling succesvol! 🎉 Bedankt voor je bestelling. Je ontvangt zo een bevestigingsmail met de details.");
-      window.history.replaceState({}, document.title, window.location.pathname);
     }
   </script>
 </body>
