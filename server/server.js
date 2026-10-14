@@ -13,10 +13,10 @@ const getPriceId = (productName) => {
   const name = String(productName).toLowerCase();
   
   if (name.includes('freakandel')) {
-    return 'price_1UQBCyJNmwSZDWmLfdaLcrrW'; 
+    return 'price_1UQBBJJNmwSZDWmLCBnigRHd'; 
   }
   if (name.includes('bitterboobs') || name.includes('bitterb00bs')) {
-    return 'price_1UQBBJJNmwSZDWmLCBnigRHd';
+    return 'price_1UQBCyJNmwSZDWmLfdaLcrrW';
   }
   return null;
 };
