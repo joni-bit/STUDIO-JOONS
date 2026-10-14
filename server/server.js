@@ -2,52 +2,56 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-// DE FIX: Importeer Stripe op de juiste, moderne manier
 const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 const app = express();
-
-// Sta verzoeken toe vanaf jouw GitHub Pages domein
 app.use(cors());
 app.use(express.json());
 
+// DIT IS DE "MAP"! Een digitaal lijstje dat jouw winkelwagen linkt aan Stripe.
+const stripePriceMap = {
+  'freakandel': 'prod_VR3HBKnAagfkgN',  // Begint met price_...
+  'bitterboobs': 'prod_VR3JRMmpXq54ZB' // Begint met price_...
+};
+
 app.post("/api/create-checkout-session", async (req, res) => {
-  const mode = "payment";
-
-  // Checkout sessie configuratie volgens Stripe's vereisten
-  const sessionParams = {
-    ui_mode: "hosted_page",
-    billing_address_collection: "auto",
-    phone_number_collection: {
-      enabled: false
-    },
-    automatic_tax: {
-      enabled: false
-    },
-    allow_promotion_codes: false,
-    submit_type: "auto",
-    shipping_address_collection: {
-      allowed_countries: ["NL"]
-    },
-    name_collection: {
-      individual: {
-        enabled: true
-      }
-    },
-    integration_identifier: "hosted_web_0001",
-    origin_context: "web",
-    mode: mode,
-    success_url: `${process.env.DOMAIN}/shop.html?success=true&session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${process.env.DOMAIN}/shop.html`,
-    // Zorg dat de line_items overeenkomen met jouw producten in Stripe
-    line_items: [{ price: "price_...", quantity: 1 }], 
-  };
-
   try {
+    const cartItems = req.body.items; // De items die van de website komen
+
+    if (!cartItems || cartItems.length === 0) {
+      throw new Error("Winkelwagen is leeg");
+    }
+
+    // Zet de website-items om naar officiële Stripe items
+    const lineItems = cartItems.map(item => {
+      return {
+        price: stripePriceMap[item.id],
+        quantity: item.quantity
+      };
+    }).filter(item => item.price); // Negeer items die niet in het lijstje staan
+
+    if (lineItems.length === 0) {
+      throw new Error("Geen geldige producten gevonden in winkelwagen.");
+    }
+
+    // Maak de kassa aan met iDEAL, Adresvelden, etc.
+    const sessionParams = {
+      ui_mode: "hosted_page",
+      billing_address_collection: "auto",
+      shipping_address_collection: { allowed_countries: ["NL", "BE"] },
+      mode: "payment",
+      success_url: `${process.env.DOMAIN}/shop.html?success=true`,
+      cancel_url: `${process.env.DOMAIN}/shop.html`,
+      line_items: lineItems,
+    };
+
     const session = await stripe.checkout.sessions.create(sessionParams);
+    
+    // Stuur de kassa-link veilig terug naar de website
     res.json({ url: session.url });
+    
   } catch (error) {
-    console.error("Fout bij aanmaken sessie:", error);
+    console.error("Fout:", error);
     res.status(500).json({ error: error.message });
   }
 });
