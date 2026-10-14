@@ -2,10 +2,9 @@
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const { Stripe } = require("stripe");
+// DE FIX: Importeer Stripe op de juiste, moderne manier
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
-// Start Stripe (API versie leeg gelaten, gebruikt de account-standaard)
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 const app = express();
 
 // Sta verzoeken toe vanaf jouw GitHub Pages domein
@@ -40,13 +39,15 @@ app.post("/api/create-checkout-session", async (req, res) => {
     mode: mode,
     success_url: `${process.env.DOMAIN}/shop.html?success=true&session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${process.env.DOMAIN}/shop.html`,
-    line_items: [{ price: "price_...", quantity: 1 }], // Wordt dynamisch in productie
+    // Zorg dat de line_items overeenkomen met jouw producten in Stripe
+    line_items: [{ price: "price_...", quantity: 1 }], 
   };
 
   try {
     const session = await stripe.checkout.sessions.create(sessionParams);
     res.json({ url: session.url });
   } catch (error) {
+    console.error("Fout bij aanmaken sessie:", error);
     res.status(500).json({ error: error.message });
   }
 });
