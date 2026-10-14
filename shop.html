@@ -219,6 +219,15 @@
         <!-- Rendered dynamically by cart.js -->
       </div>
           <div class="cart-drawer-footer">
+              <form id="checkout-form" onsubmit="handleStripeCheckout(event)">
+          <label for="customer-email" class="checkout-label">Email adress</label>
+          <input 
+            type="email" 
+            id="customer-email" 
+            class="checkout-email-input" 
+            placeholder="jouw@email.com" 
+            required 
+          />
       
 
 
