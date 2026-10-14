@@ -404,14 +404,13 @@
         setTimeout(() => cartEngine.toggleDrawer(true), 300);
       }
     }
-
-    // --- STRIPE CHECKOUT FUNCTIE (Verbonden met Render Server) ---
+// --- STRIPE CHECKOUT FUNCTIE (Verbonden met Render Server) ---
     async function customStripeCheckout(event) {
       event.preventDefault();
       
       const btn = document.getElementById('cart-checkout-btn');
       const originalText = btn.innerHTML;
-      btn.innerHTML = '<span class="checkout-btn-text">Verbinden met kassa...</span>';
+      btn.innerHTML = '<span class="checkout-btn-text">Verbinden met kassa... (Even geduld)</span>';
       btn.disabled = true;
 
       // Lees de visuele winkelwagen uit (wat wil de klant kopen?)
@@ -437,7 +436,8 @@
         return;
       }
 
-      const backendUrl = "https://studio-joons.onrender.com";
+      // De exacte Render-URL inclusief de api-route
+      const backendUrl = "https://studio-joons.onrender.com/api/create-checkout-session";
 
       try {
         // Stuur de bestelling naar jouw Render server
@@ -447,26 +447,29 @@
           body: JSON.stringify({ items: itemsToBuy })
         });
 
+        // Foutafhandeling als de server weigert of te traag is
+        if (!response.ok) {
+           const errData = await response.json().catch(() => ({}));
+           throw new Error(errData.error || `Netwerkfout: ${response.status}`);
+        }
+
         const data = await response.json();
         
         // De server geeft de veilige Stripe link terug, stuur de klant daarheen!
         if (data.url) {
           window.location.href = data.url; 
         } else {
-          throw new Error(data.error || "Onbekende fout bij laden van kassa.");
+          throw new Error("Onbekende fout bij laden van kassa.");
         }
       } catch (err) {
-        alert("Er is iets misgegaan: " + err.message);
+        // We proberen de gebruiker te informeren dat de gratis server soms ontwaakt
+        alert("Oeps! De kassa wordt op dit moment wakker gemaakt. Klik nogmaals op Afrekenen.");
+        console.error("Kassa Error:", err);
         btn.innerHTML = originalText;
         btn.disabled = false;
       }
     }
 
-    if (window.location.search.includes('success=true')) {
-      localStorage.clear(); 
-      alert("Betaling succesvol! 🎉 Bedankt voor je bestelling. Je ontvangt zo een bevestigingsmail met de details.");
-      window.history.replaceState({}, document.title, window.location.pathname);
-    }
   </script>
 </body>
 </html>
