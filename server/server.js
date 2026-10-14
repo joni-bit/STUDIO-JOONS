@@ -8,18 +8,24 @@ const app = express();
 app.use(cors({ origin: true }));
 app.use(express.json());
 
-// DIT IS DE "MAP"! Nu super-resistent gemaakt tegen typefouten, hoofdletters en spaties
-const stripePriceMap = {
-  'freakandel': 'price_1UQBCyJNmwSZDWmLfdaLcrrW',
-  'freakandelembleem': 'price_1UQBCyJNmwSZDWmLfdaLcrrW',
-  'bitterboobs': 'price_1UQBBJJNmwSZDWmLCBnigRHd',
-  'bitterb00bs': 'price_1UQBBJJNmwSZDWmLCBnigRHd',
-  'bitterb00bsembleem': 'price_1UQBBJJNmwSZDWmLCBnigRHd'
+// De Stripe prijzen direct koppelen aan de woorden
+const getPriceId = (productName) => {
+  const name = String(productName).toLowerCase();
+  
+  if (name.includes('freakandel')) {
+    return 'price_1UQBCyJNmwSZDWmLfdaLcrrW'; 
+  }
+  if (name.includes('bitterboobs') || name.includes('bitterb00bs')) {
+    return 'price_1UQBBJJNmwSZDWmLCBnigRHd';
+  }
+  return null;
 };
 
 app.post("/api/create-checkout-session", async (req, res) => {
   try {
-    const cartItems = req.body.items; // De items die van de website komen
+    console.log("Inkomende bestelling:", req.body); // Laat ons de order zien in de logs!
+
+    const cartItems = req.body.items;
 
     if (!cartItems || cartItems.length === 0) {
       throw new Error("Winkelwagen is leeg");
@@ -27,26 +33,23 @@ app.post("/api/create-checkout-session", async (req, res) => {
 
     const lineItems = [];
 
-    // Filter de inkomende namen zodat we altijd een perfecte match vinden
+    // Koppel de producten
     cartItems.forEach(item => {
-      // Haal spaties en leestekens weg en maak er kleine letters van
-      const safeId = String(item.id).toLowerCase().replace(/[^a-z0-9]/g, '');
-      const stripePriceId = stripePriceMap[safeId];
+      const stripePriceId = getPriceId(item.id);
       
       if (stripePriceId) {
         lineItems.push({
           price: stripePriceId,
-          quantity: item.quantity
+          quantity: parseInt(item.quantity) || 1
         });
       }
     });
 
     if (lineItems.length === 0) {
-      console.error("Onbekende IDs ontvangen van website:", cartItems);
-      throw new Error("Geen geldige producten gevonden in winkelwagen.");
+      throw new Error(`Geen geldige producten gevonden. Ontvangen ID's: ${cartItems.map(i => i.id).join(', ')}`);
     }
 
-    // Maak de kassa aan met iDEAL, Adresvelden, etc.
+    // Kassa opstarten
     const sessionParams = {
       ui_mode: "hosted_page",
       billing_address_collection: "auto",
@@ -58,8 +61,6 @@ app.post("/api/create-checkout-session", async (req, res) => {
     };
 
     const session = await stripe.checkout.sessions.create(sessionParams);
-    
-    // Stuur de kassa-link veilig terug naar de website
     res.json({ url: session.url });
     
   } catch (error) {
