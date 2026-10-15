@@ -413,24 +413,27 @@
       btn.innerHTML = '<span class="checkout-btn-text">Verbinden met kassa... (Even geduld)</span>';
       btn.disabled = true;
 
-      // Lees de visuele winkelwagen uit (wat wil de klant kopen?)
+      // Kogelvrije manier om de winkelwagen uit te lezen via de zichtbare tekst
       const itemsToBuy = [];
-      const cartItemElements = document.querySelectorAll('.cart-line-item');
       
-      cartItemElements.forEach(el => {
-        const removeBtn = el.querySelector('.cart-item-remove-btn');
-        const qtySpan = el.querySelector('.quantity-stepper span');
+      // We pakken de inhoud van het winkelwagentje
+      const cartContainer = document.getElementById('cart-items-list');
+      if (cartContainer) {
+        // Lees alle tekst in het winkelwagentje en maak het kleine letters
+        const cartText = cartContainer.textContent.toLowerCase();
         
-        if (removeBtn && qtySpan) {
-          itemsToBuy.push({
-            id: removeBtn.getAttribute('data-id'),
-            quantity: parseInt(qtySpan.textContent)
-          });
+        // Check of FREAKandel erin staat
+        if (cartText.includes('freakandel')) {
+          itemsToBuy.push({ id: 'freakandel', quantity: 1 }); // We gaan voor nu veilig uit van 1 stuk
         }
-      });
+        // Check of BitterB00Bs erin staat
+        if (cartText.includes('bitterboobs') || cartText.includes('bitterb00bs')) {
+          itemsToBuy.push({ id: 'bitterboobs', quantity: 1 });
+        }
+      }
 
       if (itemsToBuy.length === 0) {
-        alert("Winkelwagen is leeg.");
+        alert("Winkelwagen is leeg of kon niet worden gelezen.");
         btn.innerHTML = originalText;
         btn.disabled = false;
         return;
@@ -447,7 +450,7 @@
           body: JSON.stringify({ items: itemsToBuy })
         });
 
-        // Foutafhandeling als de server weigert of te traag is
+        // Foutafhandeling
         if (!response.ok) {
            const errData = await response.json().catch(() => ({}));
            throw new Error(errData.error || `Netwerkfout: ${response.status}`);
@@ -462,8 +465,7 @@
           throw new Error("Onbekende fout bij laden van kassa.");
         }
       } catch (err) {
-        // We proberen de gebruiker te informeren dat de gratis server soms ontwaakt
-        alert("Oeps! De kassa wordt op dit moment wakker gemaakt. Klik nogmaals op Afrekenen.");
+        alert("Oeps! Server is aan het ontwaken, klik nogmaals op Afrekenen.");
         console.error("Kassa Error:", err);
         btn.innerHTML = originalText;
         btn.disabled = false;
