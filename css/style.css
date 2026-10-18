@@ -375,6 +375,7 @@ body.shop-page .floating-nav {
   border-radius: 999px;
   position: relative;
   margin-left: auto; /* FIX: Duwt de knop strak naar rechts */
+ white-space: nowrap;
 }
 
 .floating-nav a.nav-btn:hover {
