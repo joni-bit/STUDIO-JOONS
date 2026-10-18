@@ -76,5 +76,10 @@ const sessionParams = {
     res.status(500).json({ error: error.message });
   }
 });
-
+// --- WAKE UP ENDPOINT ---
+// Deze route doet niets anders dan de server wakker schudden
+app.get("/api/wakeup", (req, res) => {
+  console.log("Wake-up call ontvangen!");
+  res.json({ status: "awake" });
+});
 app.listen(4242, () => console.log("Server running on port 4242"));
