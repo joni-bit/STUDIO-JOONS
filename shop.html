@@ -260,7 +260,7 @@
 
   <script src="css/js/cart.js"></script>
   
-  <script>
+<script>
     document.addEventListener("DOMContentLoaded", () => {
       const navWrapper = document.querySelector('.floating-nav-wrapper');
       if (navWrapper) {
@@ -392,7 +392,7 @@
       });
     }
 
-  function addToCartFromModal(event) {
+    function addToCartFromModal(event) {
       const btn = event.currentTarget;
       const productId = btn.getAttribute('data-id');
       const originalBtn = document.querySelector(`.apple-gradient-card[data-product-id="${productId}"] .add-to-cart-btn`);
@@ -408,15 +408,15 @@
         setTimeout(() => cartEngine.toggleDrawer(true), 300);
       }
     }
-    }
+    
     // --- SERVER WAKKER MAKEN ---
     function wakeUpServer() {
-      // Stuur een onzichtbaar verzoek naar de server om hem uit slaapstand te halen
       fetch("https://studio-joons.onrender.com/api/wakeup")
         .then(response => console.log("Server is wakker geklopt!"))
         .catch(err => console.log("Wakker maken gestart..."));
     }
-// --- STRIPE CHECKOUT FUNCTIE (Verbonden met Render Server) ---
+
+    // --- STRIPE CHECKOUT FUNCTIE (Verbonden met Render Server) ---
     async function customStripeCheckout(event) {
       event.preventDefault();
       
@@ -425,20 +425,15 @@
       btn.innerHTML = '<span class="checkout-btn-text">Verbinden met kassa... (Even geduld)</span>';
       btn.disabled = true;
 
-      // Kogelvrije manier om de winkelwagen uit te lezen via de zichtbare tekst
       const itemsToBuy = [];
-      
-      // We pakken de inhoud van het winkelwagentje
       const cartContainer = document.getElementById('cart-items-list');
+      
       if (cartContainer) {
-        // Lees alle tekst in het winkelwagentje en maak het kleine letters
         const cartText = cartContainer.textContent.toLowerCase();
         
-        // Check of FREAKandel erin staat
         if (cartText.includes('freakandel')) {
-          itemsToBuy.push({ id: 'freakandel', quantity: 1 }); // We gaan voor nu veilig uit van 1 stuk
+          itemsToBuy.push({ id: 'freakandel', quantity: 1 });
         }
-        // Check of BitterB00Bs erin staat
         if (cartText.includes('bitterboobs') || cartText.includes('bitterb00bs')) {
           itemsToBuy.push({ id: 'bitterboobs', quantity: 1 });
         }
@@ -451,18 +446,15 @@
         return;
       }
 
-      // De exacte Render-URL inclusief de api-route
       const backendUrl = "https://studio-joons.onrender.com/api/create-checkout-session";
 
       try {
-        // Stuur de bestelling naar jouw Render server
         const response = await fetch(backendUrl, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ items: itemsToBuy })
         });
 
-        // Foutafhandeling
         if (!response.ok) {
            const errData = await response.json().catch(() => ({}));
            throw new Error(errData.error || `Netwerkfout: ${response.status}`);
@@ -470,7 +462,6 @@
 
         const data = await response.json();
         
-        // De server geeft de veilige Stripe link terug, stuur de klant daarheen!
         if (data.url) {
           window.location.href = data.url; 
         } else {
@@ -483,11 +474,11 @@
         btn.disabled = false;
       }
     }
+
     // --- SUCCES MELDING NA BETALING ---
     window.addEventListener('DOMContentLoaded', () => {
       const urlParams = new URLSearchParams(window.location.search);
       if (urlParams.get('success') === 'true') {
-        // We maken een mooi, strak popup-schermpje aan in de stijl van je site
         const successBanner = document.createElement('div');
         successBanner.style.cssText = `
           position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
@@ -499,7 +490,7 @@
           <div style="background: white; padding: 40px; border-radius: 20px; text-align: center; max-width: 400px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
             <h2 style="font-size: 24px; margin-bottom: 10px; color: #333;">🎉 Betaling Gelukt!</h2>
             <p style="font-size: 16px; color: #666; line-height: 1.5; margin-bottom: 24px;">
-              Bedankt voor je bestelling! Je onvangt binnekort een bevestiging email. Jouw carnavals-emblemen worden met liefde ingepakt en komen zo snel mogelijk jouw kant op. Alaaf!
+              Bedankt voor je bestelling! Je ontvangt binnenkort een bevestigingsmail. Jouw carnavals-emblemen worden met liefde ingepakt en komen zo snel mogelijk jouw kant op. Alaaf!
             </p>
             <button onclick="this.parentElement.parentElement.remove()" style="background: #ff6b35; color: white; border: none; padding: 12px 24px; border-radius: 30px; font-weight: bold; cursor: pointer;">
               Sluiten & Verder Shoppen
@@ -508,11 +499,11 @@
         `;
         document.body.appendChild(successBanner);
 
-        // Verwijder '?success=true' uit de adresbalk zodat hij niet blijft terugkomen bij een refresh
         window.history.replaceState(null, '', window.location.pathname);
       }
     });
-
   </script>
+
+
 </body>
 </html>
