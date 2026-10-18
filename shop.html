@@ -26,7 +26,7 @@
           <a href="overview">Projects</a>
           <a href="me">Me</a>
           <a href="shop" class="nav-btn" aria-current="page">STUDIO JOONS</a>
-          <button id="cart-nav-btn" class="nav-cart-btn" aria-label="Open shopping bag" onclick="cartEngine.toggleDrawer(true)">
+      <button id="cart-nav-btn" class="nav-cart-btn" aria-label="Open shopping bag" onclick="wakeUpServer(); cartEngine.toggleDrawer(true)">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-2z"></path>
               <line x1="3" y1="6" x2="21" y2="6"></line>
@@ -81,7 +81,7 @@
             
             <div class="card-action-row">
               <span class="card-price-tag">&euro;6.95</span>
-              <button 
+              < 
                 class="apple-card-action-btn add-to-cart-btn" 
                 aria-label="Add FREAKandel Embleem to bag"
                 data-id="freakandel"
@@ -89,7 +89,7 @@
                 data-price="6.95"
                 data-image="Assets/Items/STUDIO JOONS_embleem_FREAKandel.jpg">
                 <span>Add to bag</span>
-              </button>
+              </>
             </div>
           </div>
         </article>
@@ -119,7 +119,7 @@
             
             <div class="card-action-row">
               <span class="card-price-tag">&euro;6.95</span>
-              <button 
+              < 
                 class="apple-card-action-btn add-to-cart-btn" 
                 aria-label="Add BitterB00Bs Embleem to bag"
                 data-id="bitterboobs"
@@ -127,7 +127,7 @@
                 data-price="6.95"
                 data-image="Assets/Items/STUDIO JOONS_embleem_BitterB00Bs.jpg">
                 <span> Add to bag</span>
-              </button>
+              </>
             </div>
           </div>
         </article>
@@ -156,34 +156,34 @@
         <p class="state-subtitle">
           De huidige collectie van patches is helaas op. Volg ons op social @studiojoons om up to date te blijven op de volgende drop.
         </p>
-        <button class="apple-reset-btn" onclick="setCatalogState('catalog')">Return to Archive</button>
+        < class="apple-reset-btn" onclick="setCatalogState('catalog')">Return to Archive</>
       </section>
 
     </main>
 
     <div id="product-modal-backdrop" class="product-modal-backdrop is-hidden" onclick="closeProductModal()"></div>
     <div id="product-modal" class="product-modal is-hidden" role="dialog" aria-modal="true">
-      <button class="modal-close-btn" aria-label="Close details" onclick="closeProductModal()">
+      < class="modal-close-btn" aria-label="Close details" onclick="closeProductModal()">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="18" y1="6" x2="6" y2="18"></line>
           <line x1="6" y1="6" x2="18" y2="18"></line>
         </svg>
-      </button>
+      </>
 
       <div class="product-modal-gallery-wrapper">
-        <button class="gallery-arrow prev-arrow" aria-label="Vorige afbeelding" onclick="scrollModalGallery(-1)">
+        < class="gallery-arrow prev-arrow" aria-label="Vorige afbeelding" onclick="scrollModalGallery(-1)">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="15 18 9 12 15 6"></polyline>
           </svg>
-        </button>
+        </>
         
         <div class="product-modal-gallery" id="modal-gallery"></div>
         
-        <button class="gallery-arrow next-arrow" aria-label="Volgende afbeelding" onclick="scrollModalGallery(1)">
+        < class="gallery-arrow next-arrow" aria-label="Volgende afbeelding" onclick="scrollModalGallery(1)">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <polyline points="9 18 15 12 9 6"></polyline>
           </svg>
-        </button>
+        </>
       </div>
       
       <div class="gallery-indicators" id="modal-indicators"></div>
@@ -194,7 +194,7 @@
         <span class="product-modal-price" id="modal-price"></span>
         <p class="product-modal-desc" id="modal-desc"></p>
         
-        <button class="apple-checkout-btn" id="modal-add-btn" onclick="addToCartFromModal(event)">
+        < class="apple-checkout-btn" id="modal-add-btn" onclick="addToCartFromModal(event)">
           <span class="checkout-btn-text"> Toevoegen aan winkelwagen</span>
         </button>
       </div>
