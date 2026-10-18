@@ -404,6 +404,13 @@
         setTimeout(() => cartEngine.toggleDrawer(true), 300);
       }
     }
+    // --- SERVER WAKKER MAKEN ---
+    function wakeUpServer() {
+      // Stuur een onzichtbaar verzoek naar de server om hem uit slaapstand te halen
+      fetch("https://studio-joons.onrender.com/api/wakeup")
+        .then(response => console.log("Server is wakker geklopt!"))
+        .catch(err => console.log("Wakker maken gestart..."));
+    }
 // --- STRIPE CHECKOUT FUNCTIE (Verbonden met Render Server) ---
     async function customStripeCheckout(event) {
       event.preventDefault();
