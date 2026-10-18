@@ -38,7 +38,7 @@
       </div>
     </header>
 
-    <main class="projects-container" style="max-width: 1240px; margin: 0 auto; padding: 40px 0 120px;">
+    <main class="projects-container" style="max-width: 1240px; margin: 0 auto; ping: 40px 0 120px;">
       
       <header class="shop-header fade-in">
         <p class="shop-eyebrow">STUDIO JOONS STORE</p>
@@ -392,17 +392,22 @@
       });
     }
 
-    function addToCartFromModal(event) {
+  function addToCartFromModal(event) {
       const btn = event.currentTarget;
       const productId = btn.getAttribute('data-id');
       const originalBtn = document.querySelector(`.apple-gradient-card[data-product-id="${productId}"] .add-to-cart-btn`);
       if (originalBtn) {
         originalBtn.click(); 
       }
+      
+      // MAAK DE SERVER HIER ALVAST WAKKER:
+      wakeUpServer();
+
       closeProductModal();
       if (typeof cartEngine !== 'undefined') {
         setTimeout(() => cartEngine.toggleDrawer(true), 300);
       }
+    }
     }
     // --- SERVER WAKKER MAKEN ---
     function wakeUpServer() {
