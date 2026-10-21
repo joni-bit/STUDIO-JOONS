@@ -435,6 +435,60 @@ const projectsData = {
       }
     ]
     
+  },
+  "stop520": {
+    title: "(S)top520",
+    role: "Visual Identity & Campaign Design",
+    client: "Radio Veronica & War Child",
+    year: "2024",
+    heroImage: "Assets/Projecten/Stop520/Stop520_1200_800.webp",
+    intro: "Create a presentation and unified <span class='accent-text'>visual identity</span> for the <span class='accent-text'>(S)top520</span> campaign as a collaboration between Radio Veronica and War Child.",
+    content: [
+      {
+        type: "two-column",
+        left: [
+          { type: "text", content: "Create a presentation and unified visual identity for the (S)top 520 campaign as a collaboration between Radio Veronica and War Child. In commemoration of 5 years of war in Syria and aid requested, the campaign engages for the 520 km from Amsterdam currently growing up in cruel stress zone." }
+        ],
+        right: [
+          { type: "image", src: "Assets/Projecten/Stop520/Stop520_banner.jpg" }
+        ]
+      },
+      {
+        type: "two-column",
+        left: [
+          { type: "image", src: "Assets/Projecten/Stop520/Stop520_child.jpg" },
+          { type: "text", content: "Then monitor and guide action how important we mean for the children what they have for their future." }
+        ],
+        right: [
+          { type: "image", src: "Assets/Projecten/Stop520/Stop520_logo.jpg" }
+        ]
+      },
+      {
+        type: "full-width",
+        items: [
+          { type: "text", content: "<strong>Pop-up store</strong>" },
+          { type: "image", src: "Assets/Projecten/Stop520/Stop520_popup1.jpg" },
+          { type: "image", src: "Assets/Projecten/Stop520/Stop520_popup2.jpg" }
+        ]
+      },
+      {
+        type: "two-column",
+        left: [
+          { type: "image", src: "Assets/Projecten/Stop520/Stop520_sketch1.jpg" }
+        ],
+        right: [
+          { type: "image", src: "Assets/Projecten/Stop520/Stop520_sketch2.jpg" }
+        ]
+      },
+      {
+        type: "full-width",
+        items: [
+          { type: "text", content: "<strong>Car branding</strong>" },
+          { type: "image", src: "Assets/Projecten/Stop520/Stop520_car1.jpg" },
+          { type: "image", src: "Assets/Projecten/Stop520/Stop520_car2.jpg" }
+        ]
+      }
+    ]
   }
 }
 
