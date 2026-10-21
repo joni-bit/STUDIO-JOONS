@@ -1,4 +1,77 @@
 const projectsData = {
+  "stop520": {
+    title: "(S)top520",
+    role: "Visual Identity & Campaign Design",
+    client: "Radio Veronica & War Child",
+    year: "2024",
+    heroImage: "Assets/Projecten/Stop520/Stop520_1200_800.webp", // Pas aan naar jouw pad
+    intro: "Create a presentation and unified <span class='accent-text'>visual identity</span> for the <span class='accent-text'>(S)top520</span> campaign as a collaboration between Radio Veronica and War Child.",
+    content: [
+      {
+        type: "two-column",
+        left: [
+          { type: "text", content: "Create a provocative and unified visual identity for the <span class='accent-text'>(S)top 520</span> campaign, a collaboration between Radio Veronica and War Child. The core mission is to transform a music chart into a powerful awareness campaign for the <span class='accent-text'>520 million children</span> currently growing up in conflict zones. This music chart symbolizes the hope that we have for the children and that they have for themselves." }
+        ],
+        right: [
+          { type: "image", src: "Assets/Projecten/Stop520/Stop520_banner.jpg" }
+        ]
+      },
+      {
+        type: "two-column",
+        left: [
+          { type: "image", src: "Assets/Projecten/Stop520/Stop520_child.jpg" },
+          { type: "text", content: "The core of the identity is the <span class='accent-text'>(S)top 520</span> logo. Conceptually, it functions as a classic 'Top 520' chart logo, but with a strategic twist: by adding the 'S', the name transforms from a music ranking into a powerful call to action: <strong>Stop</strong>." }
+        ],
+        right: [
+          { type: "image", src: "Assets/Projecten/Stop520/Stop520_logo.jpg" }
+        ]
+      },
+      {
+        type: "full-width",
+        items: [
+          { type: "text", content: "<strong>Pop-up store at Utrecht Centraal</strong>" },
+          { type: "image", src: "Assets/Projecten/Stop520/Stop520_popup1.jpg" },
+          { type: "image", src: "Assets/Projecten/Stop520/Stop520_popup2.jpg" }
+        ]
+      },
+      {
+        type: "two-column",
+        left: [
+          { type: "image", src: "Assets/Projecten/Stop520/Stop520_sketch1.jpg" }
+        ],
+        right: [
+          { type: "image", src: "Assets/Projecten/Stop520/Stop520_sketch2.jpg" }
+        ]
+      },
+      {
+        type: "full-width",
+        items: [
+          { type: "text", content: "<strong>Car branding</strong>" },
+          { type: "image", src: "Assets/Projecten/Stop520/Stop520_car1.jpg" },
+          { type: "image", src: "Assets/Projecten/Stop520/Stop520_car2.jpg" }
+        ]
+      },
+      // --- De 3 extra full-sized image blokken onderaan ---
+      {
+        type: "full-width",
+        items: [
+          { type: "image", src: "Assets/Projecten/Stop520/Stop520_full1.jpg" }
+        ]
+      },
+      {
+        type: "full-width",
+        items: [
+          { type: "image", src: "Assets/Projecten/Stop520/Stop520_full2.jpg" }
+        ]
+      },
+      {
+        type: "full-width",
+        items: [
+          { type: "image", src: "Assets/Projecten/Stop520/Stop520_full3.jpg" }
+        ]
+      }
+    ]
+  },
   "domibo": {
     title: "DoMiBo",
     heroImage: "Assets/Projecten/DoMiBo/DoMiBo_1200x800.webp", // Vervang met jouw grote header foto
