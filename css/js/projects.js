@@ -47,7 +47,7 @@ const projectsData = {
         type: "full-width",
         items: [
           { type: "text", content: "<strong>Car branding</strong>" },
-          { type: "image", src: "Assets/Projecten/Stop520/Stop520_car1.jpg" },
+          { type: "image", src: "Assets/Projecten/DoMiBo/poster/Domibo_2.png" },
           { type: "image", src: "Assets/Projecten/Stop520/Stop520_car2.jpg" }
         ]
       },
