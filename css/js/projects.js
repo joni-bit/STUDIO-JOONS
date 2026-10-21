@@ -55,19 +55,19 @@ const projectsData = {
       {
         type: "full-width",
         items: [
-          { type: "image", src: "Assets/Projecten/Stop520/Stop520_full1.jpg" }
+          { type: "image", src: "Assets/Projecten/DoMiBo/poster/Domibo_2.png" }
         ]
       },
       {
         type: "full-width",
         items: [
-          { type: "image", src: "Assets/Projecten/Stop520/Stop520_full2.jpg" }
+          { type: "image", src: "Assets/Projecten/DoMiBo/poster/Domibo_2.png" }
         ]
       },
       {
         type: "full-width",
         items: [
-          { type: "image", src: "Assets/Projecten/Stop520/Stop520_full3.jpg" }
+          { type: "image", src: "Assets/Projecten/DoMiBo/poster/Domibo_2.png" }
         ]
       }
     ]
