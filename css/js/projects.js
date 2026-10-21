@@ -61,13 +61,13 @@ const projectsData = {
       {
         type: "full-width",
         items: [
-          { type: "image", src: "Assets/Projecten/DoMiBo/poster/Domibo_2.png" }
+          { type: "image", src: "Assets/Projecten/DoMiBo/Moodboard.png" }
         ]
       },
       {
         type: "full-width",
         items: [
-          { type: "image", src: "Assets/Projecten/DoMiBo/poster/Domibo_2.png" }
+          { type: "image", src: "Assets/Projecten/DoMiBo/Moodboard.png" }
         ]
       }
     ]
