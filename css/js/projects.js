@@ -4,7 +4,7 @@ const projectsData = {
     role: "Visual Identity & Campaign Design",
     client: "Radio Veronica & War Child",
     year: "2024",
-    heroImage: "Assets/Projecten/Stop520/Stop520_1200_800.webp", // Pas aan naar jouw pad
+    heroImage: "Assets/Projecten/Stop520/Stop520_1200_800.jpg", // Pas aan naar jouw pad
     intro: "Create a presentation and unified <span class='accent-text'>visual identity</span> for the <span class='accent-text'>(S)top520</span> campaign as a collaboration between Radio Veronica and War Child.",
     content: [
       {
