@@ -73,19 +73,11 @@ const projectsData = {
     ]
   },
     "stop521": {
-    title: "stop520",
-    heroImage: "Assets/Projecten/Stop520/Stop520_1200_800.jpg", // Vervang met jouw grote header foto
+    title: "(S)Top520",
+    heroImage: "Assets/Projecten/Stop520/Stop520_1200_800.jpg", 
     intro: "<span class='accent-text'>Visual identity</span> for a returning \"after work drinks\" <span class='accent-text'>event</span>.<br>Thursday is the new friday!",
     content: [
-      {
-        type: "full-width",
-        items: [
-          {
-          // HIDDEN  type: "lottie",
-             src: "https://lottie.host/b7f80910-a2e9-4012-af41-557f0eb4d76f/P76pFw4sjR.json"
-          }
-        ]
-      },
+      
       {
         type: "two-column",
         left: [
