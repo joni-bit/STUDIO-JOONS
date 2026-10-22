@@ -13,17 +13,17 @@ const projectsData = {
           { type: "text", content: "Create a provocative and unified visual identity for the <span class='accent-text'>(S)top 520</span> campaign, a collaboration between Radio Veronica and War Child. The core mission is to transform a music chart into a powerful awareness campaign for the <span class='accent-text'>520 million children</span> currently growing up in conflict zones. This music chart symbolizes the hope that we have for the children and that they have for themselves." }
         ],
         right: [
-          { type: "image", src: "Assets/Projecten/Stop520/Stop520_banner.jpg" }
+          { type: "image", src: "Assets/Projecten/Stop520/Stop520_1200_800.jpg" }
         ]
       },
       {
         type: "two-column",
         left: [
-          { type: "image", src: "Assets/Projecten/Stop520/Stop520_child.jpg" },
+          { type: "image", src: "Assets/Projecten/Stop520/Stop520_1200_800.jpg" },
           { type: "text", content: "The core of the identity is the <span class='accent-text'>(S)top 520</span> logo. Conceptually, it functions as a classic 'Top 520' chart logo, but with a strategic twist: by adding the 'S', the name transforms from a music ranking into a powerful call to action: <strong>Stop</strong>." }
         ],
         right: [
-          { type: "image", src: "Assets/Projecten/Stop520/Stop520_logo.jpg" }
+          { type: "image", src: "Assets/Projecten/Stop520/Stop520_1200_800.jpg" }
         ]
       },
       {
