@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Joni Godwin — Project</title>
-     <link rel="icon" type="image/png" sizes="32x32" href="Assets/Images/favicon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="Assets/Images/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet" />
@@ -12,7 +12,7 @@
     <!-- Lottie speler script -->
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
   </head>
- <!-- Google tag (gtag.js) -->
+<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y4P49FSR28"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -75,7 +75,6 @@
         if (project) {
           document.title = `Joni Godwin — ${project.title}`;
 
-          // Een handig hulp-functie om de items in de kolommen te genereren
           const renderItems = (items) => {
             if (!items) return '';
             return items.map(item => {
@@ -90,7 +89,6 @@
               if (item.type === 'video') {
                 return `
                   <div class="project-video fade-in">
-                    <!-- autoplay, loop en muted zorgen ervoor dat de video direct zonder geluid begint te spelen (zoals een GIF) -->
                     <video src="${item.src}" class="project-image" autoplay loop muted playsinline style="width: 100%; border-radius: 12px;"></video>
                   </div>
                 `;
@@ -119,11 +117,8 @@
                     </lottie-player>
                   </div>
                 `;
-
-              
               }
               if (item.type === 'carousel') {
-                // Maak alle slides aan voor de slider
                 let slides = item.images.map(img => `<img class="carousel-slide" src="${img}" alt="Carousel slide" />`).join('');
                 return `
                   <div class="project-carousel-wrapper fade-in">
@@ -140,9 +135,8 @@
                 return `
                   <div class="project-marquee-wrapper fade-in">
                     <div class="project-marquee-track">
-                      <!-- We plaatsen de beelden 2 keer naast elkaar voor een naadloze, oneindige loop -->
-                      <div class="marquee-content">${imagesHTML}</div>
-                      <div class="marquee-content">${imagesHTML}</div>
+                      <div class="content">${imagesHTML}</div>
+                      <div class="content">${imagesHTML}</div>
                     </div>
                   </div>
                 `;
@@ -151,7 +145,6 @@
             }).join('');
           };
 
-          // 1. De Header, Hero Image en Introductie
           let html = `
             <div class="project-header fade-in">
               <h1 class="project-title accent-text">${project.title}</h1>
@@ -168,9 +161,7 @@
             <div class="project-blocks">
           `;
 
-      
-          // 2. Loop door de asymmetrische blokken heen
-     project.content.forEach((block) => {
+          project.content.forEach((block) => {
             if (block.type === 'two-column') {
               html += `
                 <div class="project-row two-col fade-in">
@@ -188,7 +179,7 @@
               html += `
                 <div class="project-row two-col-1-2 fade-in">
                   <div class="col-left">${renderItems(block.left)}</div>
-                  <div class="col-right">${renderItems(block.right)}</div>
+                  <div class="col-right">${renderItems(block.right)}</div> <!-- DIT WAS FOUT -->
                 </div>
               `;
             } else if (block.type === 'three-column') {
@@ -202,10 +193,9 @@
             }
           });
 
-          html += `</div>`; // Sluit project-blocks
+          html += `</div>`;
           container.innerHTML = html;
 
-          // 3. Activeer de Carousel knoppen nadat de HTML op de pagina is gezet
           const carousels = document.querySelectorAll('.project-carousel-wrapper');
           carousels.forEach(wrapper => {
             const track = wrapper.querySelector('.project-carousel');
@@ -213,11 +203,9 @@
             const next = wrapper.querySelector('.next-btn');
             
             prev.addEventListener('click', () => {
-              // Schuif de breedte van 1 foto naar links
               track.scrollBy({ left: -track.clientWidth, behavior: 'smooth' });
             });
             next.addEventListener('click', () => {
-              // Schuif de breedte van 1 foto naar rechts
               track.scrollBy({ left: track.clientWidth, behavior: 'smooth' });
             });
           });
@@ -226,7 +214,6 @@
           container.innerHTML = `<h1>Project not found</h1><p>Sorry, this project doesn't exist.</p>`;
         }
 
-        // Fade-in waarnemer
         const fadeElements = document.querySelectorAll('.fade-in');
         const observer = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
