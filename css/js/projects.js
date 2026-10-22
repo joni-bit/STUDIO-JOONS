@@ -8,7 +8,6 @@ const projectsData = {
         type: "full-width",
         items: [
           {
-          // HIDDEN  type: "lottie",
              src: "https://lottie.host/b7f80910-a2e9-4012-af41-557f0eb4d76f/P76pFw4sjR.json"
           }
         ]
@@ -73,7 +72,7 @@ const projectsData = {
               "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines12.png",
               "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines13.png",
               "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines14.png",
-              "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines15.png",
+              "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines15.png"
             ] 
           }
         ]
@@ -329,7 +328,7 @@ const projectsData = {
           { type: "image", src: "Assets/Projecten/Rythm & Roots/Tems.jpg" }
         ],
         right: [
-          { type: "text", content: "&nbsp;" },
+          { type: "text", content: " " },
           { type: "image", src: "Assets/Projecten/Rythm & Roots/Burna.jpg" }
         ]
       },
@@ -401,100 +400,4 @@ const projectsData = {
         ]
       },
       {
-        type: "full-width",
-        items: [
-          { type: "text", content: "<strong>Style Guide</strong>" },
-          { 
-            type: "carousel", 
-            images: [
-              "Assets/Projecten/LNX/style guide/GodwinJoni_VisualStyleGuideSTcreate_2022_Page_01.png",
-              "Assets/Projecten/LNX/style guide/GodwinJoni_VisualStyleGuideSTcreate_2022_Page_02.png",
-              "Assets/Projecten/LNX/style guide/GodwinJoni_VisualStyleGuideSTcreate_2022_Page_03.png",
-              "Assets/Projecten/LNX/style guide/GodwinJoni_VisualStyleGuideSTcreate_2022_Page_04.png",
-              "Assets/Projecten/LNX/style guide/GodwinJoni_VisualStyleGuideSTcreate_2022_Page_05.png",
-              "Assets/Projecten/LNX/style guide/GodwinJoni_VisualStyleGuideSTcreate_2022_Page_06.png",
-              "Assets/Projecten/LNX/style guide/GodwinJoni_VisualStyleGuideSTcreate_2022_Page_07.png",
-              "Assets/Projecten/LNX/style guide/GodwinJoni_VisualStyleGuideSTcreate_2022_Page_08.png",
-              "Assets/Projecten/LNX/style guide/GodwinJoni_VisualStyleGuideSTcreate_2022_Page_09.png",
-              "Assets/Projecten/LNX/style guide/GodwinJoni_VisualStyleGuideSTcreate_2022_Page_10.png",
-              "Assets/Projecten/LNX/style guide/GodwinJoni_VisualStyleGuideSTcreate_2022_Page_11.png",
-              "Assets/Projecten/LNX/style guide/GodwinJoni_VisualStyleGuideSTcreate_2022_Page_12.png"
-            ] 
-          }
-        ]
-      }
-    ]
-  },
-  "stop520": {
-    title: "Radio Veronica x WAR CHILD (S)TOP 520",
-    role: "Visual Identity & Campaign Design",
-    client: "Radio Veronica & War Child",
-    year: "2024",
-    heroImage: "Assets/Projecten/Stop520/Stop520_1200_800.webp",
-    intro: "Create a presentation and unified <span class='accent-text'>visual identity</span> for the <span class='accent-text'>(S)top520</span> campaign as a collaboration between Radio Veronica and War Child.",
-    content: [
-      {
-        type: "two-column",
-        left: [
-          { type: "text", content: "Create a presentation and unified visual identity for the (S)top 520 campaign as a collaboration between Radio Veronica and War Child. In commemoration of 5 years of war in Syria and aid requested, the campaign engages for the 520 km from Amsterdam currently growing up in cruel stress zone." }
-        ],
-        right: [
-          { type: "image", src: "Assets/Projecten/Stop520/Stop520_banner.jpg" }
-        ]
-      },
-      {
-        type: "two-column",
-        left: [
-          { type: "image", src: "Assets/Projecten/Stop520/Stop520_child.jpg" },
-          { type: "text", content: "Then monitor and guide action how important we mean for the children what they have for their future." }
-        ],
-        right: [
-          { type: "image", src: "Assets/Projecten/Stop520/Stop520_logo.jpg" }
-        ]
-      },
-      {
-        type: "full-width",
-        items: [
-          { type: "text", content: "<strong>Pop-up store</strong>" },
-          { type: "image", src: "Assets/Projecten/Stop520/Stop520_popup1.jpg" },
-          { type: "image", src: "Assets/Projecten/Stop520/Stop520_popup2.jpg" }
-        ]
-      },
-      {
-        type: "two-column",
-        left: [
-          { type: "image", src: "Assets/Projecten/Stop520/Stop520_sketch1.jpg" }
-        ],
-        right: [
-          { type: "image", src: "Assets/Projecten/Stop520/Stop520_sketch2.jpg" }
-        ]
-      },
-      {
-        type: "full-width",
-        items: [
-          { type: "text", content: "<strong>Car branding</strong>" },
-          { type: "image", src: "Assets/Projecten/Stop520/Stop520_car1.jpg" },
-          { type: "image", src: "Assets/Projecten/Stop520/Stop520_car2.jpg" }
-        ]
-      },
-      {
-        type: "full-width",
-        items: [
-          { type: "image", src: "Assets/Projecten/Stop520/Stop520_full1.jpg" }
-        ]
-      },
-      {
-        type: "full-width",
-        items: [
-          { type: "image", src: "Assets/Projecten/Stop520/Stop520_full2.jpg" }
-        ]
-      },
-      {
-        type: "full-width",
-        items: [
-          { type: "image", src: "Assets/Projecten/Stop520/Stop520_full3.jpg" }
-        ]
-      }
-    ]
-  }
-};
+        type: "full-width
