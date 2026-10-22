@@ -47,27 +47,27 @@ const projectsData = {
         type: "full-width",
         items: [
           { type: "text", content: "<strong>Car branding</strong>" },
-          { type: "image", src: "Assets/Projecten/DoMiBo/poster/Domibo_2.png" },
-          { type: "image", src: "Assets/Projecten/Stop520/Stop520_car2.jpg" }
+          { type: "image", src: "Assets/Projecten/DQDB/DQDB_1200_800.webp" },
+          { type: "image", src: "Assets/Projecten/DQDB/DQDB_1200_800.webp" }
         ]
       },
       // --- De 3 extra full-sized image blokken onderaan ---
       {
         type: "full-width",
         items: [
-          { type: "image", src: "Assets/Projecten/DoMiBo/poster/Domibo_2.png" }
+          { type: "image", src: "Assets/Projecten/DQDB/DQDB_1200_800.webp" }
         ]
       },
       {
         type: "full-width",
         items: [
-          { type: "image", src: "Assets/Projecten/DoMiBo/Moodboard.png" }
+          { type: "image", src: "Assets/Projecten/DQDB/DQDB_1200_800.webp" }
         ]
       },
       {
         type: "full-width",
         items: [
-          { type: "image", src: "Assets/Projecten/DoMiBo/Moodboard.png" }
+          { type: "image", src: "Assets/Projecten/DQDB/DQDB_1200_800.webp" }
         ]
       }
     ]
