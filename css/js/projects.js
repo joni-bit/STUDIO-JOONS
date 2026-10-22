@@ -72,6 +72,88 @@ const projectsData = {
       }
     ]
   },
+    "stop521": {
+    title: "DoMiBo",
+    heroImage: "Assets/Projecten/DoMiBo/DoMiBo_1200x800.webp", // Vervang met jouw grote header foto
+    intro: "<span class='accent-text'>Visual identity</span> for a returning \"after work drinks\" <span class='accent-text'>event</span>.<br>Thursday is the new friday!",
+    content: [
+      {
+        type: "full-width",
+        items: [
+          {
+          // HIDDEN  type: "lottie",
+             src: "https://lottie.host/b7f80910-a2e9-4012-af41-557f0eb4d76f/P76pFw4sjR.json"
+          }
+        ]
+      },
+      {
+        type: "two-column",
+        left: [
+          { type: "text", content: "For the <span class='accent-text'>DoMiBo</span> branding, the concept revolved around a unique and unexpected muse: Tate the Potato. Inspired by Riot Restobar's playful origin story, Tate isn't just any potato; she's bold, feminine, and unapologetically herself." },
+          { type: "text", content: "In creating Tate, I wanted to design a character that embodied both charm and confidence. Tate (she/her) brings a quirky twist to DoMiBo's brand, personifying the potato as a powerful, sultry icon." },
+          { type: "text", content: "She's a potato who knows her worth and doesn't care about anyone's opinions. As a staple ingredient in beloved dishes, Tate is iconic and timeless. She's that girl: the one who's always been there, versatile, and adored." }
+        ],
+        right: [
+          { type: "image", src: "Assets/Projecten/DoMiBo/poster/Domibo_1.png" }, // De paarse poster
+          { type: "text", content: "To bring Tate to life, I drew <span class='accent-text'>inspiration</span> from vintage pin-up and martini girls, giving her a sassy, retro feel with a modern edge. Her style is sexy, funny, and provocatively confident, designed to capture attention and evoke a reaction from the audience." }
+        ]
+      },
+      {
+        type: "two-column",
+        left: [
+          { type: "image", src: "Assets/Projecten/DoMiBo/Moodboard.png" }, // Moodboard/kleine afbeelding
+          { type: "text", content: "This playful yet edgy visual direction not only grabs attention but also builds a memorable connection with an audience that values self-expression and individuality. Tate's confident and provocative personality reflects the mindset of the target audience: who appreciate humor, are drawn to originality, and aren't afraid to make statements." },
+          { type: "text", content: "The visual changes with every event: with Tate still in the spotlight accompanied by Riot's signature drink an (K)Oporzotje. On the glasses I've featured the event sponsors Jägermeister and Gulpener." }
+        ],
+        right: [
+          { type: "image", src: "Assets/Projecten/DoMiBo/poster/Domibo_2.png" } // De tweede poster
+        ]
+      },
+      {
+        type: "full-width",
+        items: [
+          { type: "text", content: "Promotion for the monthly event goes from printed to social media like <span class='accent-text'>instagram posts</span> and <span class='accent-text'>stories</span>." },
+          { type: "image", src: "Assets/Projecten/DoMiBo/Mockup-insta_BG.png" } // De brede mockup met telefoons
+        ]
+      },
+      {
+        type: "two-column",
+        left: [
+          { type: "image", src: "Assets/Projecten/DoMiBo/Flyer_DoMiBo.jpg" } // Flyer op grijze achtergrond
+        ],
+        right: [
+          { type: "text", content: "Accompanied with the social and in house advertising, we also send out <span class='accent-text'>personal invites</span> to neighbouring offices to spread the word about the event." }
+        ]
+      },
+     {
+        type: "full-width",
+        items: [
+          { type: "text", content: "Style Guide" },
+          { 
+            type: "carousel", 
+            images: [
+              "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines.png", // Foto 1
+              "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines2.png", // Foto 2 (vervang met je eigen paden)
+              "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines3.png",     // Foto 3
+              "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines4.png", 
+              "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines5.png", 
+              "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines6.png", 
+              "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines7.png", 
+              "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines8.png",
+              "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines9.png", 
+              "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines10.png",
+              "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines11.png", 
+              "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines12.png",
+              "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines13.png",
+              "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines14.png",
+              "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines15.png",
+            ] 
+          }
+        ]
+      }
+    ]
+  },
+  
   "domibo": {
     title: "DoMiBo",
     heroImage: "Assets/Projecten/DoMiBo/DoMiBo_1200x800.webp", // Vervang met jouw grote header foto
