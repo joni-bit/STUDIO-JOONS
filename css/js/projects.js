@@ -73,8 +73,8 @@ const projectsData = {
     ]
   },
     "stop521": {
-    title: "stop521",
-    heroImage: "Assets/Projecten/DoMiBo/DoMiBo_1200x800.webp", // Vervang met jouw grote header foto
+    title: "stop520",
+    heroImage: "Assets/Projecten/Stop520/Stop520_1200_800.jpg", // Vervang met jouw grote header foto
     intro: "<span class='accent-text'>Visual identity</span> for a returning \"after work drinks\" <span class='accent-text'>event</span>.<br>Thursday is the new friday!",
     content: [
       {
