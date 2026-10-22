@@ -90,8 +90,21 @@ const projectsData = {
           { type: "text", content: "To bring Tate to life, I drew <span class='accent-text'>inspiration</span> from vintage pin-up and martini girls, giving her a sassy, retro feel with a modern edge. Her style is sexy, funny, and provocatively confident, designed to capture attention and evoke a reaction from the audience." }
         ]
       },
-      {type: "full-width",
+      {
+        type: "two-column",
+        left: [
+          { type: "image", src: "Assets/Projecten/DoMiBo/Moodboard.png" }, // Moodboard/kleine afbeelding
+          { type: "text", content: "This playful yet edgy visual direction not only grabs attention but also builds a memorable connection with an audience that values self-expression and individuality. Tate's confident and provocative personality reflects the mindset of the target audience: who appreciate humor, are drawn to originality, and aren't afraid to make statements." },
+          { type: "text", content: "The visual changes with every event: with Tate still in the spotlight accompanied by Riot's signature drink an (K)Oporzotje. On the glasses I've featured the event sponsors Jägermeister and Gulpener." }
+        ],
+        right: [
+          { type: "image", src: "Assets/Projecten/DoMiBo/poster/Domibo_2.png" } // De tweede poster
+        ]
+      },
+      {
+        type: "full-width",
         items: [
+          { type: "text", content: "Promotion for the monthly event goes from printed to social media like <span class='accent-text'>instagram posts</span> and <span class='accent-text'>stories</span>." },
           { type: "image", src: "Assets/Projecten/DoMiBo/Mockup-insta_BG.png" } // De brede mockup met telefoons
         ]
       },
@@ -625,4 +638,3 @@ const projectsData = {
     ]
   }
 }
-
