@@ -170,7 +170,7 @@
 
       
           // 2. Loop door de asymmetrische blokken heen
-          project.content.forEach((block) => {
+     project.content.forEach((block) => {
             if (block.type === 'two-column') {
               html += `
                 <div class="project-row two-col fade-in">
@@ -178,21 +178,19 @@
                   <div class="col-right">${renderItems(block.right)}</div>
                 </div>
               `;
-          
             } else if (block.type === 'full-width') {
               html += `
                 <div class="project-row full-width fade-in">
                   ${renderItems(block.items)}
                 </div>
               `;
-              } else if (block.type === 'two-column-1-2') {
+            } else if (block.type === 'two-column-1-2') {
               html += `
                 <div class="project-row two-col-1-2 fade-in">
                   <div class="col-left">${renderItems(block.left)}</div>
                   <div class="col-right">${renderItems(block.right)}</div>
                 </div>
               `;
-            // --- HIER IS HET NIEUWE 3-KOLOMS BLOK! ---
             } else if (block.type === 'three-column') {
               html += `
                 <div class="project-row three-col fade-in">
@@ -201,7 +199,7 @@
                   <div class="col-right">${renderItems(block.right)}</div>
                 </div>
               `;
-            } 
+            }
           });
 
           html += `</div>`; // Sluit project-blocks
