@@ -73,11 +73,11 @@ const projectsData = {
     ]
   },
     "stop521": {
-    title: "(S)Top520",
+    title: "Radio Veronica x WAR CHILD (S)TOP 520",
     heroImage: "Assets/Projecten/Stop520/Stop520_1200_800.jpg", 
     intro: "<span class='accent-text'>Visual identity</span> for a returning \"after work drinks\" <span class='accent-text'>event</span>.<br>Thursday is the new friday!",
     content: [
-      
+      {type: "btn",content: "The (S)Top520" href: "https://www.radioveronica.nl/artikelen/dit-is-de-s-top-520"},
       {
         type: "two-column",
         left: [
