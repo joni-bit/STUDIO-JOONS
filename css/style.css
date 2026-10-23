@@ -1216,7 +1216,22 @@ body.theme-dark .floating-nav a.nav-btn:hover {
 .full-width {
   width: 100%;
 }
+.project-row.edge-to-edge {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
 
+.project-row.edge-to-edge img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
 .project-text {
   font-size: 0.95rem;
   line-height: 1.6;
