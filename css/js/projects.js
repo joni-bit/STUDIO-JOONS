@@ -430,12 +430,12 @@ const projectsData = {
     client: "Radio Veronica & War Child",
     year: "2024",
     heroImage: "Assets/Projecten/Stop520/Stop520_1200_800.webp",
-    intro: "Create a presentation and unified <span class='accent-text'>visual identity</span> for the <span class='accent-text'>(S)top520</span> campaign as a collaboration between Radio Veronica and War Child.",
+    intro: "I created the unified <span class='accent-text'>visual identity</span> for <span class='accent-text'>(S)top 520</span>, a powerful campaign by Radio Veronica and War Child. This collaborative initiative is dedicated to raising awareness for the 520 million children growing up in conflict zones, transforming a traditional music chart into a call to action.",
     content: [
       {
         type: "two-column",
         left: [
-          { type: "text", content: "Create a presentation and unified visual identity for the (S)top 520 campaign as a collaboration between Radio Veronica and War Child. In commemoration of 5 years of war in Syria and aid requested, the campaign engages for the 520 km from Amsterdam currently growing up in cruel stress zone." }
+          { type: "text", content: "I created the unified <span class='accent-text'>visual identity</span> for <span class='accent-text'>(S)top 520</span>, a powerful campaign by Radio Veronica and War Child. This collaborative initiative is dedicated to raising awareness for the 520 million children growing up in conflict zones, transforming a traditional music chart into a call to action." }
         ],
         right: [
           { type: "image", src: "Assets/Projecten/Stop520/Stop520_banner.jpg" }
