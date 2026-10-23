@@ -477,7 +477,7 @@ const projectsData = {
         ]
       },
       {
-        type: "full-width",
+        type: "edge-to-edge",
         items: [
           { type: "image", src: "Assets/Projecten/Stop520/(S)Top 520 - Kleurplaat print_v1.jpg" }
         ]
