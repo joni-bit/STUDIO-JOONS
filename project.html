@@ -179,7 +179,7 @@
               html += `
                 <div class="project-row two-col-1-2 fade-in">
                   <div class="col-left">${renderItems(block.left)}</div>
-                  <div class="col-right">${renderItems(block.right)}</div> <!-- DIT WAS FOUT -->
+                  <div class="col-right">${renderItems(block.right)}</div>
                 </div>
               `;
             } else if (block.type === 'three-column') {
@@ -190,13 +190,13 @@
                   <div class="col-right">${renderItems(block.right)}</div>
                 </div>
               `;
-             } else if (block.type === 'edge-to-edge') {
+            } else if (block.type === 'edge-to-edge') {
               html += `
                 <div class="project-row edge-to-edge fade-in">
                   ${renderItems(block.items)}
                 </div>
               `;
-            } else if (block.type === 'two-column-1-2') {
+            }
           });
 
           html += `</div>`;
