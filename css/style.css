@@ -1223,15 +1223,16 @@ body.theme-dark .floating-nav a.nav-btn:hover {
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
-  margin-top: 40px;
-  margin-bottom: 40px;
 }
 
-.project-row.edge-to-edge img {
+.project-row.edge-to-edge img,
+.project-row.edge-to-edge video {
   width: 100%;
   height: auto;
   display: block;
+  border-radius: 0;
 }
+
 .project-text {
   font-size: 0.95rem;
   line-height: 1.6;
