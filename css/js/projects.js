@@ -472,14 +472,14 @@ const projectsData = {
         type: "full-width",
         items: [
           { type: "text", content: "<strong>Car branding</strong>" },
-          { type: "image", src: "Assets/Projecten/Stop520/Stop520_car1.jpg" },
-          { type: "image", src: "Assets/Projecten/Stop520/Stop520_car2.jpg" }
+          { type: "image", src: "Assets/Projecten/Stop520/(S)Top 520 - Kleurplaat print_v1.jpg" },
+          { type: "image", src: "Assets/Projecten/Stop520/(S)Top 520 - Kleurplaat print_v1.jpg" }
         ]
       },
       {
         type: "full-width",
         items: [
-          { type: "image", src: "Assets/Projecten/Stop520/Stop520_full1.jpg" }
+          { type: "image", src: "Assets/Projecten/Stop520/(S)Top 520 - Kleurplaat print_v1.jpg" }
         ]
       },
       {
