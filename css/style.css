@@ -1216,13 +1216,18 @@ body.theme-dark .floating-nav a.nav-btn:hover {
 .full-width {
   width: 100%;
 }
+/* --- Edge to Edge met padding en ronde hoeken --- */
 .project-row.edge-to-edge {
-  width: 100vw;
+  /* We maken hem iets smaller dan het scherm (bijv. 20px marge aan beide kanten) */
+  width: calc(100vw - 40px); 
   position: relative;
   left: 50%;
   right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
+  /* Verschuif terug naar links, min die 20px marge */
+  margin-left: calc(-50vw + 20px); 
+  margin-right: calc(-50vw + 20px);
+  margin-top: 80px; 
+  margin-bottom: 80px;
 }
 
 .project-row.edge-to-edge img,
@@ -1230,7 +1235,8 @@ body.theme-dark .floating-nav a.nav-btn:hover {
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 0;
+  /* Voeg hier de ronde hoeken uit je screenshot toe */
+  border-radius: 16px; 
 }
 
 .project-text {
