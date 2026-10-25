@@ -50,26 +50,28 @@ app.post("/api/create-checkout-session", async (req, res) => {
     }
 
     // Kassa opstarten
-const sessionParams = {
-  ui_mode: "hosted_page",
-  billing_address_collection: "auto",
-  shipping_address_collection: { allowed_countries: ["NL", "BE"] },
-  
-  // HIER VOEG JE DE VERZENDKOSTEN TOE:
-  shipping_options: [
-    {
-      shipping_rate: 'shr_1URCVLJNmwSZDWmLXoDqMeDQ', 
-    }
-  ],
+    const sessionParams = {
+      ui_mode: "hosted_page",
+      billing_address_collection: "auto",
+      shipping_address_collection: { allowed_countries: ["NL", "BE"] },
+      allow_promotion_codes: true, // <-- DEZE REGEL TOEVOEGEN
+      
+      // HIER VOEG JE DE VERZENDKOSTEN TOE:
+      shipping_options: [
+        {
+          shipping_rate: 'shr_1URCVLJNmwSZDWmLXoDqMeDQ', 
+        }
+      ],
 
-  mode: "payment",
-  success_url: `${process.env.DOMAIN}/shop.html?success=true`,
-  cancel_url: `${process.env.DOMAIN}/shop.html`,
-  line_items: lineItems,
-};
+      mode: "payment",
+      success_url: `${process.env.DOMAIN}/shop.html?success=true`,
+      cancel_url: `${process.env.DOMAIN}/shop.html`,
+      line_items: lineItems,
+    };
 
     const session = await stripe.checkout.sessions.create(sessionParams);
     res.json({ url: session.url });
+
     
   } catch (error) {
     console.error("Fout:", error);
