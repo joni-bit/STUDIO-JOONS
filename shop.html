@@ -439,52 +439,90 @@ async function customStripeCheckout(event) {
 
   let itemsToBuy = [];
 
-  // 1. Probeer de items direct uit cartEngine of localStorage te halen
-  if (typeof cartEngine !== 'undefined' && cartEngine.items && cartEngine.items.length > 0) {
-    itemsToBuy = cartEngine.items.map(item => ({
-      id: item.id,
-      quantity: Number(item.quantity) || 1
-    }));
-  } else {
-    const localCart = JSON.parse(localStorage.getItem('cart') || localStorage.getItem('cartItems') || '[]');
-    if (localCart.length > 0) {
-      itemsToBuy = localCart.map(item => ({
-        id: item.id,
-        quantity: Number(item.quantity) || 1
-      }));
+  // Helper om een item netjes om te zetten naar { id, quantity }
+  function formatItem(raw) {
+    if (!raw) return null;
+    // Bepaal het ID
+    let id = raw.id || raw.productId || raw.product_id;
+    if (!id && raw.name) {
+      const n = raw.name.toLowerCase();
+      if (n.includes('freak')) id = 'freakandel';
+      else if (n.includes('bitter')) id = 'bitterboobs';
     }
+    // Bepaal het aantal (vangt quantity, qty, count en amount op)
+    const qty = Number(raw.quantity || raw.qty || raw.count || raw.amount || 1);
+    return id ? { id, quantity: isNaN(qty) || qty < 1 ? 1 : qty } : null;
   }
 
-  // 2. Fallback: als localStorage leeg is, lees de aantallen uit de DOM van het winkelmandje
-  if (itemsToBuy.length === 0) {
-    const cartContainer = document.getElementById('cart-items-list');
-    if (cartContainer) {
-      // Zoek alle rijen in het mandje
-      const itemRows = cartContainer.querySelectorAll('.cart-item, [data-id], .cart-drawer-item');
-      
-      if (itemRows.length > 0) {
-        itemRows.forEach(row => {
-          const text = row.textContent.toLowerCase();
-          const id = text.includes('freakandel') ? 'freakandel' : (text.includes('bitter') ? 'bitterboobs' : null);
-          if (!id) return;
-
-          // Zoek naar een input veld, teller of span met het aantal
-          const qtyEl = row.querySelector('input[type="number"], .item-quantity, .qty, .cart-quantity');
-          let qty = 1;
-          if (qtyEl) {
-            qty = parseInt(qtyEl.value || qtyEl.textContent, 10) || 1;
-          }
-
-          itemsToBuy.push({ id, quantity: qty });
-        });
-      } else {
-        // Noodgreep als er geen aparte rijen herkent worden:
-        const cartText = cartContainer.textContent.toLowerCase();
-        if (cartText.includes('freakandel')) itemsToBuy.push({ id: 'freakandel', quantity: 1 });
-        if (cartText.includes('bitterboobs') || cartText.includes('bitterb00bs')) itemsToBuy.push({ id: 'bitterboobs', quantity: 1 });
+  // 1. Probeer data rechtstreeks uit cartEngine te halen
+  if (typeof cartEngine !== 'undefined') {
+    const candidateArrays = [
+      cartEngine.items,
+      cartEngine.cart,
+      cartEngine.products,
+      cartEngine.lines,
+      cartEngine.state && cartEngine.state.items,
+      typeof cartEngine.getCart === 'function' ? cartEngine.getCart() : null,
+      typeof cartEngine.getItems === 'function' ? cartEngine.getItems() : null
+    ];
+    for (const arr of candidateArrays) {
+      if (Array.isArray(arr) && arr.length > 0) {
+        itemsToBuy = arr.map(formatItem).filter(Boolean);
+        break;
       }
     }
   }
+
+  // 2. Probeer data uit localStorage te halen als cartEngine niets gaf
+  if (itemsToBuy.length === 0) {
+    for (let i = 0; i < localStorage.length; i++) {
+      try {
+        const key = localStorage.key(i);
+        const data = JSON.parse(localStorage.getItem(key));
+        if (Array.isArray(data) && data.length > 0 && (data[0].id || data[0].name || data[0].price || data[0].qty || data[0].quantity)) {
+          itemsToBuy = data.map(formatItem).filter(Boolean);
+          break;
+        }
+      } catch (e) {}
+    }
+  }
+
+  // 3. Fallback: Lees de rijen dynamisch uit de HTML (#cart-items-list)
+  if (itemsToBuy.length === 0) {
+    const cartContainer = document.getElementById('cart-items-list');
+    if (cartContainer) {
+      const rows = cartContainer.children;
+      for (const row of rows) {
+        const text = row.textContent.toLowerCase();
+        let id = null;
+        if (text.includes('freakandel')) id = 'freakandel';
+        else if (text.includes('bitter')) id = 'bitterboobs';
+        if (!id) continue;
+
+        let qty = 1;
+        // Check input veld (bij bijv. stepper)
+        const input = row.querySelector('input');
+        if (input && input.value) {
+          qty = parseInt(input.value, 10);
+        } else {
+          // Zoek teller elementen
+          const qtyEl = row.querySelector('[class*="qty"], [class*="quantity"], [class*="count"], .item-count');
+          if (qtyEl) {
+            qty = parseInt(qtyEl.textContent, 10);
+          } else {
+            // Zoek een los getal in de rij (filter prijzen zoals 6.95 / € weg)
+            const clean = row.innerText.replace(/€?\s*\d+([.,]\d{2})/g, '');
+            const match = clean.match(/\b([1-9]\d?)\b/);
+            if (match) qty = parseInt(match[1], 10);
+          }
+        }
+        itemsToBuy.push({ id, quantity: isNaN(qty) || qty < 1 ? 1 : qty });
+      }
+    }
+  }
+
+  // Debug log: zie exact wat er naar de server gaat
+  console.log("Afrekenen gestart met items:", itemsToBuy);
 
   if (itemsToBuy.length === 0) {
     alert("Winkelwagen is leeg of kon niet worden gelezen.");
@@ -508,7 +546,6 @@ async function customStripeCheckout(event) {
     }
 
     const data = await response.json();
-    
     if (data.url) {
       window.location.href = data.url; 
     } else {
@@ -520,6 +557,8 @@ async function customStripeCheckout(event) {
     btn.innerHTML = originalText;
     btn.disabled = false;
   }
+}
+
 }
 
     }
