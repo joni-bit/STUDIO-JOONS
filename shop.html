@@ -82,7 +82,7 @@
           <div class="card-gradient-scrim"></div>
           <div class="card-gradient-tint tint-orange"></div>
           
-        <div class="card-badge-container">
+          <div class="card-badge-container">
             <span class="product-badge badge-orange">Carnaval '27 Drop</span>
           </div>
 
@@ -231,11 +231,7 @@
       </div>
       
       <div class="cart-drawer-footer">
-    
         <form id="checkout-form" onsubmit="customStripeCheckout(event)">
-          
-       
-
           <div class="cart-subtotal-row">
             <span class="subtotal-label">Subtotaal</span>
             <span class="subtotal-val" id="cart-subtotal-amount">&euro;0.00</span>
@@ -273,7 +269,6 @@
   <script src="css/js/cart.js"></script>
   
   <script>
-    
     document.addEventListener("DOMContentLoaded", () => {
       const navWrapper = document.querySelector('.floating-nav-wrapper');
       if (navWrapper) {
@@ -405,7 +400,7 @@
       });
     }
 
-   function addToCartFromModal(event) {
+    function addToCartFromModal(event) {
       const btn = event.currentTarget;
       const productId = btn.getAttribute('data-id');
       const originalBtn = document.querySelector(`.apple-gradient-card[data-product-id="${productId}"] .add-to-cart-btn`);
@@ -413,7 +408,6 @@
         originalBtn.click(); 
       }
       
-      // MAAK DE SERVER HIER ALVAST WAKKER:
       wakeUpServer();
 
       closeProductModal();
@@ -421,151 +415,111 @@
         setTimeout(() => cartEngine.toggleDrawer(true), 300);
       }
     }
+
     // --- SERVER WAKKER MAKEN ---
     function wakeUpServer() {
-      // Stuur een onzichtbaar verzoek naar de server om hem uit slaapstand te halen
       fetch("https://studio-joons.onrender.com/api/wakeup")
-        .then(response => console.log("Server is wakker geklopt!"))
-        .catch(err => console.log("Wakker maken gestart..."));
+        .then(() => console.log("Server is wakker geklopt!"))
+        .catch(() => console.log("Wakker maken gestart..."));
     }
-// --- STRIPE CHECKOUT FUNCTIE (Verbonden met Render Server) ---
-async function customStripeCheckout(event) {
-  event.preventDefault();
-  
-  const btn = document.getElementById('cart-checkout-btn');
-  const originalText = btn.innerHTML;
-  btn.innerHTML = '<span class="checkout-btn-text">Verbinden met kassa... (Even geduld)</span>';
-  btn.disabled = true;
 
-  let itemsToBuy = [];
+    // --- STRIPE CHECKOUT FUNCTIE (Verbonden met Render Server) ---
+    async function customStripeCheckout(event) {
+      event.preventDefault();
+      
+      const btn = document.getElementById('cart-checkout-btn');
+      const originalText = btn.innerHTML;
+      btn.innerHTML = '<span class="checkout-btn-text">Verbinden met kassa... (Even geduld)</span>';
+      btn.disabled = true;
 
-  // Helper om een item netjes om te zetten naar { id, quantity }
-  function formatItem(raw) {
-    if (!raw) return null;
-    // Bepaal het ID
-    let id = raw.id || raw.productId || raw.product_id;
-    if (!id && raw.name) {
-      const n = raw.name.toLowerCase();
-      if (n.includes('freak')) id = 'freakandel';
-      else if (n.includes('bitter')) id = 'bitterboobs';
-    }
-    // Bepaal het aantal (vangt quantity, qty, count en amount op)
-    const qty = Number(raw.quantity || raw.qty || raw.count || raw.amount || 1);
-    return id ? { id, quantity: isNaN(qty) || qty < 1 ? 1 : qty } : null;
-  }
+      let itemsToBuy = [];
 
-  // 1. Probeer data rechtstreeks uit cartEngine te halen
-  if (typeof cartEngine !== 'undefined') {
-    const candidateArrays = [
-      cartEngine.items,
-      cartEngine.cart,
-      cartEngine.products,
-      cartEngine.lines,
-      cartEngine.state && cartEngine.state.items,
-      typeof cartEngine.getCart === 'function' ? cartEngine.getCart() : null,
-      typeof cartEngine.getItems === 'function' ? cartEngine.getItems() : null
-    ];
-    for (const arr of candidateArrays) {
-      if (Array.isArray(arr) && arr.length > 0) {
-        itemsToBuy = arr.map(formatItem).filter(Boolean);
-        break;
+      // 1. Direct uit cartEngine.cart uitlezen
+      if (typeof cartEngine !== 'undefined' && Array.isArray(cartEngine.cart) && cartEngine.cart.length > 0) {
+        itemsToBuy = cartEngine.cart.map(item => ({
+          id: item.id || (item.name && item.name.toLowerCase().includes('freak') ? 'freakandel' : 'bitterboobs'),
+          quantity: Number(item.quantity) || 1
+        }));
       }
-    }
-  }
 
-  // 2. Probeer data uit localStorage te halen als cartEngine niets gaf
-  if (itemsToBuy.length === 0) {
-    for (let i = 0; i < localStorage.length; i++) {
-      try {
-        const key = localStorage.key(i);
-        const data = JSON.parse(localStorage.getItem(key));
-        if (Array.isArray(data) && data.length > 0 && (data[0].id || data[0].name || data[0].price || data[0].qty || data[0].quantity)) {
-          itemsToBuy = data.map(formatItem).filter(Boolean);
-          break;
-        }
-      } catch (e) {}
-    }
-  }
-
-  // 3. Fallback: Lees de rijen dynamisch uit de HTML (#cart-items-list)
-  if (itemsToBuy.length === 0) {
-    const cartContainer = document.getElementById('cart-items-list');
-    if (cartContainer) {
-      const rows = cartContainer.children;
-      for (const row of rows) {
-        const text = row.textContent.toLowerCase();
-        let id = null;
-        if (text.includes('freakandel')) id = 'freakandel';
-        else if (text.includes('bitter')) id = 'bitterboobs';
-        if (!id) continue;
-
-        let qty = 1;
-        // Check input veld (bij bijv. stepper)
-        const input = row.querySelector('input');
-        if (input && input.value) {
-          qty = parseInt(input.value, 10);
-        } else {
-          // Zoek teller elementen
-          const qtyEl = row.querySelector('[class*="qty"], [class*="quantity"], [class*="count"], .item-count');
-          if (qtyEl) {
-            qty = parseInt(qtyEl.textContent, 10);
-          } else {
-            // Zoek een los getal in de rij (filter prijzen zoals 6.95 / € weg)
-            const clean = row.innerText.replace(/€?\s*\d+([.,]\d{2})/g, '');
-            const match = clean.match(/\b([1-9]\d?)\b/);
-            if (match) qty = parseInt(match[1], 10);
+      // 2. Direct uit localStorage ('studio_joons_cart') uitlezen als cartEngine niet klaarstaat
+      if (itemsToBuy.length === 0) {
+        try {
+          const stored = JSON.parse(localStorage.getItem('studio_joons_cart') || '[]');
+          if (Array.isArray(stored) && stored.length > 0) {
+            itemsToBuy = stored.map(item => ({
+              id: item.id || (item.name && item.name.toLowerCase().includes('freak') ? 'freakandel' : 'bitterboobs'),
+              quantity: Number(item.quantity) || 1
+            }));
           }
+        } catch (e) {
+          console.error("Fout bij uitlezen localStorage:", e);
         }
-        itemsToBuy.push({ id, quantity: isNaN(qty) || qty < 1 ? 1 : qty });
+      }
+
+      // 3. Fallback: Controleer overige mogelijke localStorage keys
+      if (itemsToBuy.length === 0) {
+        for (let i = 0; i < localStorage.length; i++) {
+          try {
+            const key = localStorage.key(i);
+            const data = JSON.parse(localStorage.getItem(key));
+            if (Array.isArray(data) && data.length > 0) {
+              const formatted = data.map(item => {
+                const id = item.id || (item.name && item.name.toLowerCase().includes('freak') ? 'freakandel' : (item.name && item.name.toLowerCase().includes('bitter') ? 'bitterboobs' : null));
+                const quantity = Number(item.quantity || item.qty || item.count || 1);
+                return id ? { id, quantity: isNaN(quantity) || quantity < 1 ? 1 : quantity } : null;
+              }).filter(Boolean);
+
+              if (formatted.length > 0) {
+                itemsToBuy = formatted;
+                break;
+              }
+            }
+          } catch (e) {}
+        }
+      }
+
+      console.log("Afrekenen gestart met items:", itemsToBuy);
+
+      if (itemsToBuy.length === 0) {
+        alert("Winkelwagen is leeg of kon niet worden gelezen.");
+        btn.innerHTML = originalText;
+        btn.disabled = false;
+        return;
+      }
+
+      const backendUrl = "https://studio-joons.onrender.com/api/create-checkout-session";
+
+      try {
+        const response = await fetch(backendUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ items: itemsToBuy })
+        });
+
+        if (!response.ok) {
+           const errData = await response.json().catch(() => ({}));
+           throw new Error(errData.error || `Netwerkfout: ${response.status}`);
+        }
+
+        const data = await response.json();
+        if (data.url) {
+          window.location.href = data.url; 
+        } else {
+          throw new Error("Onbekende fout bij laden van kassa.");
+        }
+      } catch (err) {
+        alert("Oeps! Server is aan het ontwaken of er ging iets mis. Probeer het nog eens.");
+        console.error("Kassa Error:", err);
+        btn.innerHTML = originalText;
+        btn.disabled = false;
       }
     }
-  }
 
-  // Debug log: zie exact wat er naar de server gaat
-  console.log("Afrekenen gestart met items:", itemsToBuy);
-
-  if (itemsToBuy.length === 0) {
-    alert("Winkelwagen is leeg of kon niet worden gelezen.");
-    btn.innerHTML = originalText;
-    btn.disabled = false;
-    return;
-  }
-
-  const backendUrl = "https://studio-joons.onrender.com/api/create-checkout-session";
-
-  try {
-    const response = await fetch(backendUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ items: itemsToBuy })
-    });
-
-    if (!response.ok) {
-       const errData = await response.json().catch(() => ({}));
-       throw new Error(errData.error || `Netwerkfout: ${response.status}`);
-    }
-
-    const data = await response.json();
-    if (data.url) {
-      window.location.href = data.url; 
-    } else {
-      throw new Error("Onbekende fout bij laden van kassa.");
-    }
-  } catch (err) {
-    alert("Oeps! Server is aan het ontwaken of er ging iets mis. Probeer het nog eens.");
-    console.error("Kassa Error:", err);
-    btn.innerHTML = originalText;
-    btn.disabled = false;
-  }
-}
-
-
-    }
     // --- SUCCES MELDING NA BETALING ---
     window.addEventListener('DOMContentLoaded', () => {
       const urlParams = new URLSearchParams(window.location.search);
       if (urlParams.get('success') === 'true') {
-        // We maken een mooi, strak popup-schermpje aan in de stijl van je site
         const successBanner = document.createElement('div');
         successBanner.style.cssText = `
           position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
@@ -577,7 +531,7 @@ async function customStripeCheckout(event) {
           <div style="background: white; padding: 40px; border-radius: 20px; text-align: center; max-width: 400px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
             <h2 style="font-size: 24px; margin-bottom: 10px; color: #333;">🎉 Betaling Gelukt!</h2>
             <p style="font-size: 16px; color: #666; line-height: 1.5; margin-bottom: 24px;">
-              Bedankt voor je bestelling! Je onvangt binnekort een bevestiging email. Jouw carnavals-emblemen worden met liefde ingepakt en komen zo snel mogelijk jouw kant op. Alaaf!
+              Bedankt voor je bestelling! Je ontvangt binnenkort een bevestigingsmail. Jouw carnavals-emblemen worden met liefde ingepakt en komen zo snel mogelijk jouw kant op. Alaaf!
             </p>
             <button onclick="this.parentElement.parentElement.remove()" style="background: #ff6b35; color: white; border: none; padding: 12px 24px; border-radius: 30px; font-weight: bold; cursor: pointer;">
               Sluiten & Verder Shoppen
@@ -586,11 +540,9 @@ async function customStripeCheckout(event) {
         `;
         document.body.appendChild(successBanner);
 
-        // Verwijder '?success=true' uit de adresbalk zodat hij niet blijft terugkomen bij een refresh
         window.history.replaceState(null, '', window.location.pathname);
       }
     });
-
   </script>
 </body>
 </html>
