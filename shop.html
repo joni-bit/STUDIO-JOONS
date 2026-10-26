@@ -429,71 +429,99 @@
         .catch(err => console.log("Wakker maken gestart..."));
     }
 // --- STRIPE CHECKOUT FUNCTIE (Verbonden met Render Server) ---
-    async function customStripeCheckout(event) {
-      event.preventDefault();
+async function customStripeCheckout(event) {
+  event.preventDefault();
+  
+  const btn = document.getElementById('cart-checkout-btn');
+  const originalText = btn.innerHTML;
+  btn.innerHTML = '<span class="checkout-btn-text">Verbinden met kassa... (Even geduld)</span>';
+  btn.disabled = true;
+
+  let itemsToBuy = [];
+
+  // 1. Probeer de items direct uit cartEngine of localStorage te halen
+  if (typeof cartEngine !== 'undefined' && cartEngine.items && cartEngine.items.length > 0) {
+    itemsToBuy = cartEngine.items.map(item => ({
+      id: item.id,
+      quantity: Number(item.quantity) || 1
+    }));
+  } else {
+    const localCart = JSON.parse(localStorage.getItem('cart') || localStorage.getItem('cartItems') || '[]');
+    if (localCart.length > 0) {
+      itemsToBuy = localCart.map(item => ({
+        id: item.id,
+        quantity: Number(item.quantity) || 1
+      }));
+    }
+  }
+
+  // 2. Fallback: als localStorage leeg is, lees de aantallen uit de DOM van het winkelmandje
+  if (itemsToBuy.length === 0) {
+    const cartContainer = document.getElementById('cart-items-list');
+    if (cartContainer) {
+      // Zoek alle rijen in het mandje
+      const itemRows = cartContainer.querySelectorAll('.cart-item, [data-id], .cart-drawer-item');
       
-      const btn = document.getElementById('cart-checkout-btn');
-      const originalText = btn.innerHTML;
-      btn.innerHTML = '<span class="checkout-btn-text">Verbinden met kassa... (Even geduld)</span>';
-      btn.disabled = true;
+      if (itemRows.length > 0) {
+        itemRows.forEach(row => {
+          const text = row.textContent.toLowerCase();
+          const id = text.includes('freakandel') ? 'freakandel' : (text.includes('bitter') ? 'bitterboobs' : null);
+          if (!id) return;
 
-      // Kogelvrije manier om de winkelwagen uit te lezen via de zichtbare tekst
-      const itemsToBuy = [];
-      
-      // We pakken de inhoud van het winkelwagentje
-      const cartContainer = document.getElementById('cart-items-list');
-      if (cartContainer) {
-        // Lees alle tekst in het winkelwagentje en maak het kleine letters
-        const cartText = cartContainer.textContent.toLowerCase();
-        
-        // Check of FREAKandel erin staat
-        if (cartText.includes('freakandel')) {
-          itemsToBuy.push({ id: 'freakandel', quantity: 1 }); // We gaan voor nu veilig uit van 1 stuk
-        }
-        // Check of BitterB00Bs erin staat
-        if (cartText.includes('bitterboobs') || cartText.includes('bitterb00bs')) {
-          itemsToBuy.push({ id: 'bitterboobs', quantity: 1 });
-        }
-      }
+          // Zoek naar een input veld, teller of span met het aantal
+          const qtyEl = row.querySelector('input[type="number"], .item-quantity, .qty, .cart-quantity');
+          let qty = 1;
+          if (qtyEl) {
+            qty = parseInt(qtyEl.value || qtyEl.textContent, 10) || 1;
+          }
 
-      if (itemsToBuy.length === 0) {
-        alert("Winkelwagen is leeg of kon niet worden gelezen.");
-        btn.innerHTML = originalText;
-        btn.disabled = false;
-        return;
-      }
-
-      // De exacte Render-URL inclusief de api-route
-      const backendUrl = "https://studio-joons.onrender.com/api/create-checkout-session";
-
-      try {
-        // Stuur de bestelling naar jouw Render server
-        const response = await fetch(backendUrl, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ items: itemsToBuy })
+          itemsToBuy.push({ id, quantity: qty });
         });
-
-        // Foutafhandeling
-        if (!response.ok) {
-           const errData = await response.json().catch(() => ({}));
-           throw new Error(errData.error || `Netwerkfout: ${response.status}`);
-        }
-
-        const data = await response.json();
-        
-        // De server geeft de veilige Stripe link terug, stuur de klant daarheen!
-        if (data.url) {
-          window.location.href = data.url; 
-        } else {
-          throw new Error("Onbekende fout bij laden van kassa.");
-        }
-      } catch (err) {
-        alert("Oeps! Server is aan het ontwaken, klik nogmaals op Afrekenen.");
-        console.error("Kassa Error:", err);
-        btn.innerHTML = originalText;
-        btn.disabled = false;
+      } else {
+        // Noodgreep als er geen aparte rijen herkent worden:
+        const cartText = cartContainer.textContent.toLowerCase();
+        if (cartText.includes('freakandel')) itemsToBuy.push({ id: 'freakandel', quantity: 1 });
+        if (cartText.includes('bitterboobs') || cartText.includes('bitterb00bs')) itemsToBuy.push({ id: 'bitterboobs', quantity: 1 });
       }
+    }
+  }
+
+  if (itemsToBuy.length === 0) {
+    alert("Winkelwagen is leeg of kon niet worden gelezen.");
+    btn.innerHTML = originalText;
+    btn.disabled = false;
+    return;
+  }
+
+  const backendUrl = "https://studio-joons.onrender.com/api/create-checkout-session";
+
+  try {
+    const response = await fetch(backendUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ items: itemsToBuy })
+    });
+
+    if (!response.ok) {
+       const errData = await response.json().catch(() => ({}));
+       throw new Error(errData.error || `Netwerkfout: ${response.status}`);
+    }
+
+    const data = await response.json();
+    
+    if (data.url) {
+      window.location.href = data.url; 
+    } else {
+      throw new Error("Onbekende fout bij laden van kassa.");
+    }
+  } catch (err) {
+    alert("Oeps! Server is aan het ontwaken of er ging iets mis. Probeer het nog eens.");
+    console.error("Kassa Error:", err);
+    btn.innerHTML = originalText;
+    btn.disabled = false;
+  }
+}
+
     }
     // --- SUCCES MELDING NA BETALING ---
     window.addEventListener('DOMContentLoaded', () => {
