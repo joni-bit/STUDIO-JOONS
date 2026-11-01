@@ -8,6 +8,10 @@ const app = express();
 app.use(cors({ origin: true }));
 app.use(express.json());
 
+app.get('/', (req, res) => {
+  res.send('De server van STUDIO Joons is wakker!');
+});
+
 // De Stripe prijzen direct koppelen aan de woorden
 const getPriceId = (productName) => {
   const name = String(productName).toLowerCase();
