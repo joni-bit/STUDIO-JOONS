@@ -51,7 +51,7 @@
       <!-- Apple Segmented Control for State Simulation & Filtering -->
       <nav class="filter-bar-wrapper fade-in" aria-label="Project filter tabs">
         <div class="segmented-control" role="tablist">
-          <button class="segment-tab active" role="tab" aria-selected="true" data-filter="all" onclick="filterProjects('all', this)">All Works (5)</button>
+          <button class="segment-tab active" role="tab" aria-selected="true" data-filter="all" onclick="filterProjects('all', this)">All Works</button>
           <button class="segment-tab" role="tab" aria-selected="false" data-filter="identity" onclick="filterProjects('identity', this)">Visual Identity</button>
           <button class="segment-tab" role="tab" aria-selected="false" data-filter="product" onclick="filterProjects('product', this)">UX / UI</button>
           <button class="segment-tab" role="tab" aria-selected="false" data-filter="campaign" onclick="filterProjects('campaign', this)">Campaigns</button>
@@ -64,130 +64,7 @@
       <!-- State 1: Active Interactive Project Grid (Dissolving Overlays on Hover) -->
       <section id="projects-active-grid" class="project-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 32px;" aria-label="Selected Projects">
         
-        <!-- DoMiBo: Blue Dissolving Tint -->
-        <a href="project.html?id=domibo" class="apple-gradient-card project-card-item fade-in" data-category="identity" aria-label="View DoMiBo project">
-          <div class="card-media-backdrop">
-            <img src="Assets/Projecten/DoMiBo/DoMiBo_1200x800.webp" alt="DoMiBo brand visual identity preview" loading="lazy" />
-          </div>
-          <div class="card-gradient-scrim"></div>
-          <div class="card-gradient-tint tint-blue"></div>
-
-          <div class="card-floating-content">
-            <div class="card-header-row">
-              <div>
-                <p class="card-eyebrow">Visual Identity</p>
-                <h2 class="card-title">DoMiBo</h2>
-              </div>
-              <div class="card-corner-arrow" aria-hidden="true">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="7" y1="17" x2="17" y2="7"></line>
-                  <polyline points="7 7 17 7 17 17"></polyline>
-                </svg>
-              </div>
-            </div>
-            <p class="card-description">Bold pin-up character branding and activation assets for recurring after-work gatherings.</p>
-          </div>
-        </a>
-
-        <!-- Andgage: Cyan Dissolving Tint -->
-        <a href="project.html?id=andgage" class="apple-gradient-card project-card-item fade-in" data-category="product" style="transition-delay: 0.15s;" aria-label="View Andgage project">
-          <div class="card-media-backdrop">
-            <img src="Assets/Projecten/Andgage/Andgage_1200_800.webp" alt="Andgage presentation platform interface design" loading="lazy" />
-          </div>
-          <div class="card-gradient-scrim"></div>
-          <div class="card-gradient-tint tint-cyan"></div>
-
-          <div class="card-floating-content">
-            <div class="card-header-row">
-              <div>
-                <p class="card-eyebrow">UX / UI Design</p>
-                <h2 class="card-title">Andgage</h2>
-              </div>
-              <div class="card-corner-arrow" aria-hidden="true">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="7" y1="17" x2="17" y2="7"></line>
-                  <polyline points="7 7 17 7 17 17"></polyline>
-                </svg>
-              </div>
-            </div>
-            <p class="card-description">Streamlining interactive event presentation flows through structured user testing and design systems.</p>
-          </div>
-        </a>
-
-        <!-- Drag Queen Disco Bingo: Orange Dissolving Tint -->
-        <a href="project.html?id=dqdb" class="apple-gradient-card project-card-item fade-in" data-category="identity" style="transition-delay: 0.3s;" aria-label="View Drag Queen Disco Bingo project">
-          <div class="card-media-backdrop">
-            <img src="Assets/Projecten/DQDB/DQDB_1200_800.webp" alt="Drag Queen Disco Bingo event branding preview" loading="lazy" />
-          </div>
-          <div class="card-gradient-scrim"></div>
-          <div class="card-gradient-tint tint-orange"></div>
-
-          <div class="card-floating-content">
-            <div class="card-header-row">
-              <div>
-                <p class="card-eyebrow">Visual Identity</p>
-                <h2 class="card-title">Drag Queen Disco Bingo</h2>
-              </div>
-              <div class="card-corner-arrow" aria-hidden="true">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="7" y1="17" x2="17" y2="7"></line>
-                  <polyline points="7 7 17 7 17 17"></polyline>
-                </svg>
-              </div>
-            </div>
-            <p class="card-description">High-contrast, disco-infused identity designed for dynamic rotating performer line-ups.</p>
-          </div>
-        </a>
-
-        <!-- Rhythm & Roots: Blue Dissolving Tint -->
-        <a href="project.html?id=rhythm-and-roots" class="apple-gradient-card project-card-item fade-in" data-category="product" style="transition-delay: 0.45s;" aria-label="View Rhythm & Roots project">
-          <div class="card-media-backdrop">
-            <img src="Assets/Projecten/Rythm & Roots/RR_1200_800.webp" alt="Rhythm and Roots interactive digital music interface preview" loading="lazy" />
-          </div>
-          <div class="card-gradient-scrim"></div>
-          <div class="card-gradient-tint tint-blue"></div>
-
-          <div class="card-floating-content">
-            <div class="card-header-row">
-              <div>
-                <p class="card-eyebrow">Visual Interface Design</p>
-                <h2 class="card-title">Rhythm &amp; Roots</h2>
-              </div>
-              <div class="card-corner-arrow" aria-hidden="true">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="7" y1="17" x2="17" y2="7"></line>
-                  <polyline points="7 7 17 7 17 17"></polyline>
-                </svg>
-              </div>
-            </div>
-            <p class="card-description">An immersive desktop editorial celebrating Afrobeats culture and visual storytelling.</p>
-          </div>
-        </a>
-
-        <!-- Lil Nas X Campaign: Orange Dissolving Tint -->
-        <a href="project.html?id=lnx" class="apple-gradient-card project-card-item fade-in" data-category="campaign" style="transition-delay: 0.6s;" aria-label="View Lil Nas X Campaign project">
-          <div class="card-media-backdrop">
-            <img src="Assets/Projecten/LNX/LNX_1200_800.webp" alt="Lil Nas X Dutch tour campaign preview" loading="lazy" />
-          </div>
-          <div class="card-gradient-scrim"></div>
-          <div class="card-gradient-tint tint-orange"></div>
-
-          <div class="card-floating-content">
-            <div class="card-header-row">
-              <div>
-                <p class="card-eyebrow">Campaign Concept</p>
-                <h2 class="card-title">Lil Nas X Campaign</h2>
-              </div>
-              <div class="card-corner-arrow" aria-hidden="true">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="7" y1="17" x2="17" y2="7"></line>
-                  <polyline points="7 7 17 7 17 17"></polyline>
-                </svg>
-              </div>
-            </div>
-            <p class="card-description">Meme-inspired cross-media rollout combining billboard stunts, AR lenses, and viral tweets.</p>
-          </div>
-        </a>
+        <!-- Cards are built automatically from css/js/projects.js (only projects with status: "live") -->
 
       </section>
 
@@ -268,6 +145,49 @@
       </div>
     </footer>
   </div>
+
+  <script src="css/js/projects.js"></script>
+  <script>
+    // Build project cards from projects.js. Only "live" projects are shown.
+    (function buildProjectGrid() {
+      const grid = document.getElementById('projects-active-grid');
+      const arrow = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>';
+      const live = Object.entries(projectsData).filter(([, p]) => p.status === 'live' && p.card);
+
+      grid.insertAdjacentHTML('beforeend', live.map(([id, p], i) => {
+        const c = p.card;
+        const title = c.title || p.title;
+        return `
+        <a href="project.html?id=${encodeURIComponent(id)}" class="apple-gradient-card project-card-item fade-in" data-category="${p.category}"${i ? ` style="transition-delay: ${Math.min(i, 4) * 0.15}s;"` : ''} aria-label="View ${title} project">
+          <div class="card-media-backdrop">
+            <img src="${c.image || p.heroImage}" alt="${title} preview" loading="lazy" />
+          </div>
+          <div class="card-gradient-scrim"></div>
+          <div class="card-gradient-tint tint-${c.tint || 'blue'}"></div>
+          <div class="card-floating-content">
+            <div class="card-header-row">
+              <div>
+                <p class="card-eyebrow">${c.eyebrow || ''}</p>
+                <h2 class="card-title">${title}</h2>
+              </div>
+              <div class="card-corner-arrow" aria-hidden="true">${arrow}</div>
+            </div>
+            <p class="card-description">${c.description || ''}</p>
+          </div>
+        </a>`;
+      }).join(''));
+
+      // Update the "All Works" count and hide filter tabs that have no live projects
+      document.querySelectorAll('.segment-tab[data-filter]').forEach(tab => {
+        const f = tab.dataset.filter;
+        if (f === 'all') {
+          tab.textContent = `All Works (${live.length})`;
+        } else if (!live.some(([, p]) => p.category === f)) {
+          tab.classList.add('is-hidden');
+        }
+      });
+    })();
+  </script>
 
   <!-- Interactive State Engine & Navigation Visibility Engine -->
   <script>

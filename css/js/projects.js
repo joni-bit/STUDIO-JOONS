@@ -1,6 +1,25 @@
+/*
+  PROJECTS — the one place to manage your portfolio.
+
+  status:   "live"  = shown on the Projects page
+            "draft" = hidden. Preview privately with:
+                      project.html?id=PROJECT-ID&preview=1
+  category: "identity" | "product" | "campaign"  (filter tabs)
+  card:     what the card on the Projects page shows
+            (tint: "blue" | "cyan" | "orange")
+  The order of projects here is the order on the Projects page.
+*/
 const projectsData = {
   "domibo": {
     title: "DoMiBo",
+    status: "live",
+    category: "identity",
+    card: {
+      eyebrow: "Visual Identity",
+      image: "Assets/Projecten/DoMiBo/DoMiBo_1200x800.webp",
+      description: "Bold pin-up character branding and activation assets for recurring after-work gatherings.",
+      tint: "blue"
+    },
     heroImage: "Assets/Projecten/DoMiBo/DoMiBo_1200x800.webp",
     intro: "<span class='accent-text'>Visual identity</span> for a returning \"after work drinks\" <span class='accent-text'>event</span>.<br>Thursday is the new friday!",
     content: [
@@ -81,6 +100,14 @@ const projectsData = {
   },
   "andgage": {
     title: "Andgage",
+    status: "live",
+    category: "product",
+    card: {
+      eyebrow: "UX / UI Design",
+      image: "Assets/Projecten/Andgage/Andgage_1200_800.webp",
+      description: "Streamlining interactive event presentation flows through structured user testing and design systems.",
+      tint: "cyan"
+    },
     role: "UX/UI Design",
     client: "LiveWall",
     year: "2024",
@@ -182,6 +209,14 @@ const projectsData = {
   },
   "dqdb": {
     title: "Drag Queen Disco Bingo",
+    status: "live",
+    category: "identity",
+    card: {
+      eyebrow: "Visual Identity",
+      image: "Assets/Projecten/DQDB/DQDB_1200_800.webp",
+      description: "High-contrast, disco-infused identity designed for dynamic rotating performer line-ups.",
+      tint: "orange"
+    },
     role: "Visual Identity", 
     client: "Conscious Hotels", 
     year: "2024",
@@ -264,6 +299,15 @@ const projectsData = {
   },
   "rhythm-and-roots": {
     title: "Rhythm and Roots",
+    status: "draft",
+    category: "product",
+    card: {
+      title: "Rhythm &amp; Roots",
+      eyebrow: "Visual Interface Design",
+      image: "Assets/Projecten/Rythm & Roots/RR_1200_800.webp",
+      description: "An immersive desktop editorial celebrating Afrobeats culture and visual storytelling.",
+      tint: "blue"
+    },
     role: "Visual Interface Design", 
     client: "HvA Minor", 
     year: "2024",
@@ -353,6 +397,14 @@ const projectsData = {
   },
   "lnx": {
     title: "Lil Nas X Campaign",
+    status: "draft",
+    category: "campaign",
+    card: {
+      eyebrow: "Campaign Concept",
+      image: "Assets/Projecten/LNX/LNX_1200_800.webp",
+      description: "Meme-inspired cross-media rollout combining billboard stunts, AR lenses, and viral tweets.",
+      tint: "orange"
+    },
     role: "Campaign Concept & Design", 
     client: "Mojo Concerts", 
     year: "2024",
@@ -426,6 +478,14 @@ const projectsData = {
   },
   "stop520": {
     title: "Radio Veronica x WAR CHILD (S)TOP 520",
+    status: "draft",
+    category: "identity",
+    card: {
+      eyebrow: "Visual Identity & Campaign",
+      image: "Assets/Projecten/Stop520/Stop520_1200_800.webp",
+      description: "Visual identity for a Radio Veronica and War Child campaign for children growing up in conflict zones.",
+      tint: "orange"
+    },
     role: "Visual Identity & Campaign Design",
     client: "Radio Veronica & War Child",
     year: "2024",
