@@ -98,7 +98,7 @@
                   : `<p class="project-text">${item.content}</p>`;
               }
               if (item.type === 'image') {
-                return `<img class="project-image" src="${item.src}" alt="Project visual" />`;
+                return `<img class="project-image" src="${item.src}" alt="Project visual" loading="lazy" decoding="async" />`;
               }
               if (item.type === 'video') {
                 return `
@@ -133,7 +133,7 @@
                 `;
               }
               if (item.type === 'carousel') {
-                let slides = item.images.map(img => `<img class="carousel-slide" src="${img}" alt="Carousel slide" />`).join('');
+                let slides = item.images.map(img => `<img class="carousel-slide" src="${img}" alt="Carousel slide" loading="lazy" decoding="async" />`).join('');
                 return `
                   <div class="project-carousel-wrapper fade-in">
                     <button class="carousel-btn prev-btn" aria-label="Previous image">←</button>
