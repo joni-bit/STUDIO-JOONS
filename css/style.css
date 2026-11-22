@@ -2662,3 +2662,6 @@ body.theme-dark .segmented-control button.active {
   .archive-row { grid-template-columns: 1fr 48px; }
   .archive-row-type { display: none; }
 }
+
+/* About page: freelance line under "Let's chat!" (moved from homepage) */
+.contact-intro { margin: -8px 0 28px; max-width: 520px; color: var(--color-text-secondary); font-size: 17px; line-height: 1.5; }
