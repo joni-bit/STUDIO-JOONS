@@ -328,7 +328,12 @@ body.theme-dark .split-empty-icon {
 
 /* FIX: Uitschuiven van de navigatiebalk op de shop pagina */
 body.shop-page .floating-nav {
-  width: 430px;
+  width: fit-content; /* grows to fit Home · Work · About · Shop + the basket, so nothing sticks out */
+}
+
+/* Shop page: the basket (not the Shop button) takes the free space, so it sits flush right */
+body.shop-page .floating-nav a.nav-btn {
+  margin-left: 0;
 }
 
 @keyframes dynamicPop {
@@ -2486,13 +2491,7 @@ body.theme-dark .segmented-control button.active {
     display: none !important;
   }
   
-  /* Houdt de knop ook op mobiel netjes op z'n plek */
-  body.shop-page .floating-nav {
-    padding-right: 74px !important; 
-  }
-  .nav-cart-btn {
-    right: 4px;
-  }
+  /* Shop page on mobile: basket sits flush right inside the menu (same 4px edge as elsewhere) */
 }
 }
 
