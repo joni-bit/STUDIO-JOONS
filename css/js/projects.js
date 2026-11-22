@@ -1,13 +1,14 @@
 /*
   PROJECTS — the one place to manage your portfolio.
 
-  status:   "live"  = shown on the Projects page
-            "draft" = hidden. Preview privately with:
+  status:   "live"    = big card on the Work page (Selected Work)
+            "archive" = small line in the Archive list at the bottom of the Work page
+            "draft"   = hidden. Preview privately with:
                       project.html?id=PROJECT-ID&preview=1
   category: "identity" | "product" | "campaign"  (filter tabs)
   card:     what the card on the Projects page shows
             (tint: "blue" | "cyan" | "orange")
-  The order of projects here is the order on the Projects page.
+  The order of projects here is the order on the Work page.
 */
 const projectsData = {
   "domibo": {

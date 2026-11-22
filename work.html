@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en" class="antialiased scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+   <link rel="icon" type="image/png" sizes="32x32" href="Assets/Images/favicon.png">
+  <title>Joni Godwin — Selected Works</title>
+  <meta name="description" content="Selected graphic design, digital interfaces, branding systems, and visual activations by Joni Godwin." />
+  <link rel="stylesheet" href="css/style.css" />
+ 
+</head>
+<body class="projects-page">
+  <div class="page-shell">
+    
+    <!-- Topbar: Brand Identity & Centered Apple Glass Navigation -->
+    <header class="topbar">
+      <div class="header-brand-wrapper fade-in">
+        <a href="about" class="profile-hover-btn" aria-label="About Joni Godwin">
+          <div class="profile-backdrop"></div>
+          <img src="Assets/Images/IMG4456.webp" alt="Joni Godwin" class="profile-img" />
+        </a>
+        <a href="index" class="brand-name">JONI GODWIN</a>
+      </div>
+
+      <div class="floating-nav-wrapper">
+        <nav class="floating-nav" aria-label="Primary navigation">
+          <a href="index">Home</a>
+          <a href="work" aria-current="page">Work</a>
+          <a href="about">About</a>
+          <a href="shop" class="nav-btn">Shop</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="projects-container" style="max-width: 1240px; margin: 0 auto; padding: 40px 24px 120px;">
+      
+      <!-- Editorial Header -->
+      <header class="fade-in">
+        <p class="section-eyebrow" style="font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--color-accent-blue); margin-bottom: 12px;">
+          Portfolio
+        </p>
+        <h1 class="section-large-title" style="font-size: clamp(2.4rem, 5.2vw, 3.8rem); line-height: 1.05; font-weight: 700; letter-spacing: -0.035em; margin: 0 0 16px;">
+          Selected Work
+        </h1>
+        <p class="section-body-lead" style="font-size: 17px; line-height: 1.52; color: var(--color-text-secondary); max-width: 620px; margin: 0;">
+          A showcase of visual branding, digital interface architecture, and campaign narratives crafted across independent and broadcast media.
+        </p>
+      </header>
+
+      <!-- Apple Segmented Control for State Simulation & Filtering -->
+      <nav class="filter-bar-wrapper fade-in" aria-label="Project filter tabs">
+        <div class="segmented-control" role="tablist">
+          <button class="segment-tab active" role="tab" aria-selected="true" data-filter="all" onclick="filterProjects('all', this)">All Works</button>
+          <button class="segment-tab" role="tab" aria-selected="false" data-filter="identity" onclick="filterProjects('identity', this)">Visual Identity</button>
+          <button class="segment-tab" role="tab" aria-selected="false" data-filter="product" onclick="filterProjects('product', this)">UX / UI</button>
+          <button class="segment-tab" role="tab" aria-selected="false" data-filter="campaign" onclick="filterProjects('campaign', this)">Campaigns</button>
+          <!-- loading and empty state simulation buttons are commented out for production 
+          <button class="segment-tab" role="tab" aria-selected="false" data-filter="loading" onclick="simulateState('loading', this)">Simulate Loading</button>
+          <button class="segment-tab" role="tab" aria-selected="false" data-filter="empty" onclick="simulateState('empty', this)">Simulate Empty</button> -->
+        </div>
+      </nav>
+
+      <!-- State 1: Active Interactive Project Grid (Dissolving Overlays on Hover) -->
+      <section id="projects-active-grid" class="project-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 32px;" aria-label="Selected Projects">
+        
+        <!-- Cards are built automatically from css/js/projects.js (only projects with status: "live") -->
+
+      </section>
+
+      <!-- State 2: Shimmer Skeleton Screen -->
+      <section id="projects-loading-grid" class="project-grid is-hidden" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(360px, 1fr)); gap: 32px;" aria-label="Loading project archive" aria-live="polite">
+        <div class="apple-gradient-card skeleton-card">
+          <div class="card-floating-content">
+            <div class="card-header-row">
+              <div style="flex-grow: 1;">
+                <div class="skeleton-shimmer skeleton-text-eyebrow"></div>
+                <div class="skeleton-shimmer skeleton-text-title"></div>
+              </div>
+              <div class="skeleton-shimmer skeleton-circle-arrow"></div>
+            </div>
+            <div class="skeleton-shimmer skeleton-text-body"></div>
+          </div>
+        </div>
+
+        <div class="apple-gradient-card skeleton-card">
+          <div class="card-floating-content">
+            <div class="card-header-row">
+              <div style="flex-grow: 1;">
+                <div class="skeleton-shimmer skeleton-text-eyebrow"></div>
+                <div class="skeleton-shimmer skeleton-text-title"></div>
+              </div>
+              <div class="skeleton-shimmer skeleton-circle-arrow"></div>
+            </div>
+            <div class="skeleton-shimmer skeleton-text-body"></div>
+          </div>
+        </div>
+
+        <div class="apple-gradient-card skeleton-card">
+          <div class="card-floating-content">
+            <div class="card-header-row">
+              <div style="flex-grow: 1;">
+                <div class="skeleton-shimmer skeleton-text-eyebrow"></div>
+                <div class="skeleton-shimmer skeleton-text-title"></div>
+              </div>
+              <div class="skeleton-shimmer skeleton-circle-arrow"></div>
+            </div>
+            <div class="skeleton-shimmer skeleton-text-body"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- State 3: Empty Results State Panel -->
+      <section id="projects-empty-panel" class="empty-state-panel is-hidden" aria-label="No projects found" aria-live="polite">
+        <div class="empty-icon-well" aria-hidden="true">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            <line x1="8" y1="11" x2="14" y2="11"></line>
+          </svg>
+        </div>
+        <h2 class="empty-state-title">No matching releases</h2>
+        <p class="empty-state-desc">There are no archived projects in this selection right now. Reset the filter to browse the full studio catalog.</p>
+        <button class="apple-reset-btn" onclick="resetToAll()">Show All Works</button>
+      </section>
+
+      <!-- Archive: quiet list of older work (projects with status: "archive" in projects.js) -->
+      <section id="projects-archive" class="archive-section is-hidden" aria-labelledby="archive-title">
+        <h2 id="archive-title" class="archive-title">Archive</h2>
+        <ul class="archive-list"></ul>
+      </section>
+
+    </main>
+
+    <!-- Standard Site Footer -->
+    <footer class="site-footer">
+      <div class="footer-links">
+        <a href="https://linkedin.com/in/jonigodwin" target="_blank" rel="noopener noreferrer">Linkedin</a>
+        <a href="mailto:info@studiojoons.com">Email</a>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-brand">
+          <span class="brand-line"></span>
+          <strong>PORTFOLIO JONI GODWIN</strong>
+        </div>
+        <div class="footer-copyright">
+          &copy; Joni Godwin 2026
+          | KVK: 98562851 
+          | BTW: NL005338627B22
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="css/js/projects.js"></script>
+  <script>
+    // Build project cards from projects.js. Only "live" projects are shown.
+    (function buildProjectGrid() {
+      const grid = document.getElementById('projects-active-grid');
+      const arrow = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>';
+      const live = Object.entries(projectsData).filter(([, p]) => p.status === 'live' && p.card);
+
+      grid.insertAdjacentHTML('beforeend', live.map(([id, p], i) => {
+        const c = p.card;
+        const title = c.title || p.title;
+        return `
+        <a href="project.html?id=${encodeURIComponent(id)}" class="apple-gradient-card project-card-item fade-in" data-category="${p.category}"${i ? ` style="transition-delay: ${Math.min(i, 4) * 0.15}s;"` : ''} aria-label="View ${title} project">
+          <div class="card-media-backdrop">
+            <img src="${c.image || p.heroImage}" alt="${title} preview" loading="lazy" />
+          </div>
+          <div class="card-gradient-scrim"></div>
+          <div class="card-gradient-tint tint-${c.tint || 'blue'}"></div>
+          <div class="card-floating-content">
+            <div class="card-header-row">
+              <div>
+                <p class="card-eyebrow">${c.eyebrow || ''}</p>
+                <h2 class="card-title">${title}</h2>
+              </div>
+              <div class="card-corner-arrow" aria-hidden="true">${arrow}</div>
+            </div>
+            <p class="card-description">${c.description || ''}</p>
+          </div>
+        </a>`;
+      }).join(''));
+
+      // Archive list
+      const archived = Object.entries(projectsData).filter(([, p]) => p.status === 'archive');
+      if (archived.length) {
+        const list = document.querySelector('#projects-archive .archive-list');
+        list.innerHTML = archived.map(([id, p]) => `
+          <li>
+            <a class="archive-row" href="project.html?id=${encodeURIComponent(id)}">
+              <span class="archive-row-title">${(p.card && p.card.title) || p.title}</span>
+              <span class="archive-row-type">${(p.card && p.card.eyebrow) || p.role || ''}</span>
+              <span class="archive-row-year">${p.year || ''}</span>
+            </a>
+          </li>`).join('');
+        document.getElementById('projects-archive').classList.remove('is-hidden');
+      }
+
+      // Update the "All Works" count and hide filter tabs that have no live projects
+      document.querySelectorAll('.segment-tab[data-filter]').forEach(tab => {
+        const f = tab.dataset.filter;
+        if (f === 'all') {
+          tab.textContent = `All Works (${live.length})`;
+        } else if (!live.some(([, p]) => p.category === f)) {
+          tab.classList.add('is-hidden');
+        }
+      });
+    })();
+  </script>
+
+  <!-- Interactive State Engine & Navigation Visibility Engine -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      // 1. Hardware-Accelerated Floating Nav Scroll Controller
+      const navWrapper = document.querySelector('.floating-nav-wrapper');
+      if (navWrapper) {
+        let lastScrollY = window.pageYOffset || document.documentElement.scrollTop;
+        let isTicking = false;
+        const scrollThreshold = 10;
+        const pinOffset = 60;
+
+        const handleScroll = () => {
+          const currentScrollY = window.pageYOffset || document.documentElement.scrollTop;
+          const delta = currentScrollY - lastScrollY;
+
+          if (currentScrollY <= pinOffset) {
+            navWrapper.classList.remove('nav-hidden');
+          } else if (delta > scrollThreshold) {
+            navWrapper.classList.add('nav-hidden');
+          } else if (delta < -scrollThreshold) {
+            navWrapper.classList.remove('nav-hidden');
+          }
+
+          lastScrollY = Math.max(0, currentScrollY);
+          isTicking = false;
+        };
+
+        window.addEventListener('scroll', () => {
+          if (!isTicking) {
+            window.requestAnimationFrame(handleScroll);
+            isTicking = true;
+          }
+        }, { passive: true });
+      }
+
+      // 2. Fluid Intersection Observer for Elements
+      const fadeElements = document.querySelectorAll('.fade-in');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: "0px 0px -40px 0px" });
+
+      fadeElements.forEach(el => observer.observe(el));
+    });
+
+    // 3. Category Filter Logic
+    function filterProjects(category, buttonEl) {
+      document.getElementById('projects-loading-grid').classList.add('is-hidden');
+      document.getElementById('projects-empty-panel').classList.add('is-hidden');
+      const activeGrid = document.getElementById('projects-active-grid');
+      activeGrid.classList.remove('is-hidden');
+
+      // Update Segmented Control States
+      document.querySelectorAll('.segment-tab').forEach(tab => {
+        tab.classList.remove('active');
+        tab.setAttribute('aria-selected', 'false');
+      });
+      buttonEl.classList.add('active');
+      buttonEl.setAttribute('aria-selected', 'true');
+
+      // Filter Item Animation
+      const cards = activeGrid.querySelectorAll('.project-card-item');
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const itemCat = card.getAttribute('data-category');
+        if (category === 'all' || itemCat === category) {
+          card.classList.remove('is-hidden');
+          card.style.opacity = '1';
+          card.style.transform = 'translate3d(0, 0, 0)';
+          visibleCount++;
+        } else {
+          card.classList.add('is-hidden');
+        }
+      });
+
+      if (visibleCount === 0) {
+        activeGrid.classList.add('is-hidden');
+        document.getElementById('projects-empty-panel').classList.remove('is-hidden');
+      }
+    }
+
+    // 4. Interactive Simulation of Loading & Empty States
+    function simulateState(state, buttonEl) {
+      document.querySelectorAll('.segment-tab').forEach(tab => {
+        tab.classList.remove('active');
+        tab.setAttribute('aria-selected', 'false');
+      });
+      buttonEl.classList.add('active');
+      buttonEl.setAttribute('aria-selected', 'true');
+
+      const activeGrid = document.getElementById('projects-active-grid');
+      const loadingGrid = document.getElementById('projects-loading-grid');
+      const emptyPanel = document.getElementById('projects-empty-panel');
+
+      if (state === 'loading') {
+        activeGrid.classList.add('is-hidden');
+        emptyPanel.classList.add('is-hidden');
+        loadingGrid.classList.remove('is-hidden');
+      } else if (state === 'empty') {
+        activeGrid.classList.add('is-hidden');
+        loadingGrid.classList.add('is-hidden');
+        emptyPanel.classList.remove('is-hidden');
+      }
+    }
+
+    function resetToAll() {
+      const allTab = document.querySelector('[data-filter="all"]');
+      if (allTab) filterProjects('all', allTab);
+    }
+  </script>
+</body>
+</html>
