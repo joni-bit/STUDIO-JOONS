@@ -43,7 +43,7 @@
 
       <main class="project-main">
         <!-- De Back Knop -->
-        <a class="back-link back-dark fade-in" href="#" onclick="window.history.back(); return false;">← Back</a>
+        <a class="back-link back-dark fade-in" href="work" onclick="if (document.referrer.indexOf(location.host) !== -1) { history.back(); return false; }">← Back</a>
 
         <!-- Dynamische content container -->
         <div id="project-container"></div>
@@ -96,6 +96,10 @@
         if (project) {
           document.title = `Joni Godwin — ${project.title}`;
 
+          // Grey box that reserves space for an image that isn't ready yet
+          const placeholder = (label, ratio) =>
+            `<div class="project-placeholder" style="aspect-ratio: ${ratio || '3 / 2'};"><span>${label || 'Image coming soon'}</span></div>`;
+
           const renderItems = (items) => {
             if (!items) return '';
             return items.map(item => {
@@ -103,6 +107,9 @@
                 return item.content === 'Style Guide' 
                   ? `<h3 class="style-guide-title">${item.content}</h3>` 
                   : `<p class="project-text">${item.content}</p>`;
+              }
+              if (item.type === 'placeholder' || (item.type === 'image' && !item.src)) {
+                return placeholder(item.label, item.ratio);
               }
               if (item.type === 'image') {
                 return `<img class="project-image" src="${item.src}" alt="Project visual" loading="lazy" decoding="async" />`;
@@ -166,23 +173,77 @@
             }).join('');
           };
 
+          // Text in [square brackets] is a fact still to fill in: highlight it so it's easy to spot
+          const fill = (t) => (t || '').replace(/\[([^\]]+)\]/g, '<mark class="fill-in">[$1]</mark>');
+
+          // One image, video or placeholder. item = { src, label, caption, alt }
+          const media = (item, ratio) => {
+            if (!item) return '';
+            if (!item.src) return placeholder(item.label, ratio);
+            if (/\.(mp4|webm)$/i.test(item.src)) {
+              return `<video class="block-media" src="${item.src}" autoplay loop muted playsinline${item.poster ? ` poster="${item.poster}"` : ''}></video>`;
+            }
+            return `<img class="block-media" src="${item.src}" alt="${item.alt || item.label || project.title}" loading="lazy" decoding="async" />`;
+          };
+          const figure = (item, ratio) => `<figure class="block-figure">${media(item, ratio)}${item && item.caption ? `<figcaption>${fill(item.caption)}</figcaption>` : ''}</figure>`;
+          const caption = (block) => block.caption ? `<p class="block-caption">${fill(block.caption)}</p>` : '';
+
+          // The eight layout blocks from the visual plan (A–H), plus text sections
+          const renderBlock = (block) => {
+            const items = block.items || (block.item ? [block.item] : []);
+            switch (block.type) {
+              case 'section':
+                return `<section class="case-section fade-in">
+                  ${block.heading ? `<h3 class="case-heading">${block.heading}</h3>` : ''}
+                  ${(block.text || []).map(t => `<p class="project-text">${fill(t)}</p>`).join('')}
+                  ${block.list ? `<ul class="case-list">${block.list.map(li => `<li>${fill(li)}</li>`).join('')}</ul>` : ''}
+                </section>`;
+              case 'hero':      // A
+              case 'breakdown': // D
+              case 'canvas':    // E
+                return `<div class="case-block block-wide fade-in">${figure(items[0], block.ratio || '16 / 9')}${caption(block)}</div>`;
+              case 'split':     // B
+                return `<div class="case-block block-split fade-in">${items.map(i => figure(i, block.ratio || '4 / 5')).join('')}</div>${caption(block)}`;
+              case 'triptych':  // C
+                return `<div class="case-block block-triptych fade-in">${items.map(i => figure(i, block.ratio || '4 / 5')).join('')}</div>${caption(block)}`;
+              case 'grid':      // F
+                return `<div class="case-block block-grid cols-${block.columns || 3} fade-in">${items.map(i => figure(i, block.ratio || '1 / 1')).join('')}</div>${caption(block)}`;
+              case 'inset':     // G
+                return `<div class="case-block block-inset fade-in">${figure(items[0], block.ratio || '4 / 3')}${figure(items[1], '4 / 5')}</div>${caption(block)}`;
+              case 'loops':     // H
+                return `<div class="case-block block-loops fade-in">${items.map(i => figure(i, i.ratio || '16 / 9')).join('')}</div>${caption(block)}`;
+              default:
+                return '';
+            }
+          };
+
+          const hero = project.hero || (project.heroImage ? { src: project.heroImage } : { label: 'Hero image' });
+          const facts = project.facts || [['Client', project.client], ['Role', project.role], ['Year', project.year]].filter(f => f[1]);
+
           let html = `
             <div class="project-header fade-in">
               <h1 class="project-title accent-text">${project.title}</h1>
+              ${facts.length ? `
+              <dl class="project-meta">
+                ${facts.map(([k, v]) => `<div><dt>${k}</dt><dd>${fill(v)}</dd></div>`).join('')}
+              </dl>` : ''}
             </div>
             
             <div class="project-hero-image fade-in" style="transition-delay: 0.1s;">
-              <img src="${project.heroImage}" alt="${project.title} hero" />
+              ${hero.src ? media(hero) : placeholder(hero.label || 'Hero image', hero.ratio || '16 / 9')}
+              ${hero.caption ? `<p class="block-caption">${fill(hero.caption)}</p>` : ''}
             </div>
 
+            ${(project.hook || project.intro) ? `
             <div class="project-intro fade-in" style="transition-delay: 0.2s;">
-              <h2>${project.intro}</h2>
-            </div>
+              <h2>${fill(project.hook || project.intro)}</h2>
+            </div>` : ''}
             
             <div class="project-blocks">
+              ${(project.blocks || []).map(renderBlock).join('')}
           `;
 
-          project.content.forEach((block) => {
+          (project.content || []).forEach((block) => {
             if (block.type === 'two-column') {
               html += `
                 <div class="project-row two-col fade-in">
@@ -221,6 +282,20 @@
           });
 
           html += `</div>`;
+
+          // "Next project" link: the next live project in projects.js (loops around)
+          const liveIds = Object.keys(projectsData).filter(id => projectsData[id].status === 'live');
+          const nextId = liveIds.length ? liveIds[(liveIds.indexOf(projectId) + 1) % liveIds.length] : null;
+          if (nextId && nextId !== projectId) {
+            const next = projectsData[nextId];
+            html += `
+            <a class="project-next fade-in" href="project.html?id=${encodeURIComponent(nextId)}">
+              <span class="project-next-label">Next project</span>
+              <span class="project-next-title">${next.title} &rarr;</span>
+            </a>
+            <a class="project-all-link" href="work">All work</a>`;
+          }
+
           container.innerHTML = html;
 
           const carousels = document.querySelectorAll('.project-carousel-wrapper');

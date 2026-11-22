@@ -50,8 +50,9 @@
           <div class="hero-copy">
             <p class="section-label">Designer</p>
             <h1>
-              I'm <span><a href="about">Joni Godwin</a></span>. A visual <span>designer</span> based in The Netherlands. I'm currently making cool stuff at <a href="https://www.mediahuis.com/nl/jobs/" target="_blank" rel="noopener noreferrer">Mediahuis</a>.
+              I'm <span><a href="about">Joni Godwin</a></span>, a <span>creative designer</span> and concepter at <a href="https://www.mediahuis.com/nl/jobs/" target="_blank" rel="noopener noreferrer">Mediahuis Radio</a>.
             </h1>
+            <p class="worked-with"><span>Worked with</span> Radio Veronica · SLAM! · 100% NL · War Child · Kesbeke · Riot Restobar · Conscious Hotels · LiveWall · SKD Kozijnen · Kruiken Emblemen · Lanterfantje</p>
             
             <a href="#work" class="explore-link" aria-label="Scroll down to explore featured work">
               <svg width="32" height="34" viewBox="0 0 38 34" fill="none" aria-hidden="true">
@@ -83,89 +84,54 @@
           <!-- 1. Active Showcase State (50/50 Split Frames) -->
           <div id="showcase-active" class="split-showcase-list" aria-label="Featured projects list">
             
-            <!-- Project 1: DoMiBo (Text Left, Visual Right) -->
-            <article class="split-showcase-item">
-              <div class="split-copy-col">
-                <span class="split-project-eyebrow">Visual Identity</span>
-                <h3 href="project.html?id=domibo" class="split-project-text">
-                  A visual identity for a monthly &ldquo;after work drinks&rdquo; event. 
-                  <span class="accent-highlight">Thursday is the new friday!</span>
-                </h3>
-                <a href="project.html?id=domibo" class="apple-touch-pill" aria-label="Explore DoMiBo project">
-                  <span>Explore DoMiBo</span>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                    <polyline points="12 5 19 12 12 19"></polyline>
-                  </svg>
-                </a>
-              </div>
-
-              <div class="split-visual-col">
-                <a href="project.html?id=domibo" class="split-media-card domibo-stage" aria-label="View DoMiBo posters">
-                  <div class="stage-peek peek-left" aria-hidden="true">
-                    <img src="Assets/Projecten/DoMiBo/poster/Domibo_2.png" alt="" loading="lazy" />
-                  </div>
-                  <div class="stage-center-card">
-                    <img src="Assets/Projecten/DoMiBo/poster/Domibo_1.png" alt="DoMiBo character poster visual" loading="lazy" />
-                  </div>
-                  <div class="stage-peek peek-right" aria-hidden="true">
-                    <img src="Assets/Projecten/DoMiBo/poster/Domibo_2.png" alt="" loading="lazy" />
-                  </div>
-                </a>
-              </div>
-            </article>
-
-            <!-- Project 2: Drag Queen Disco Bingo (Visual Left, Text Right) -->
-            <article class="split-showcase-item is-reversed">
-              <div class="split-copy-col">
-                <span class="split-project-eyebrow">Visual Identity &amp; Campaign</span>
-                <h3 class="split-project-text">
-                  A new <span class="accent-highlight">visual identity</span> for a reoccurring Drag Bingo event at Barkantoor.
-                </h3>
-                <a href="project.html?id=dqdb" class="apple-touch-pill" aria-label="Explore Drag Queen Disco Bingo project">
-                  <span>Explore DQDB</span>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                    <polyline points="12 5 19 12 12 19"></polyline>
-                  </svg>
-                </a>
-              </div>
-
-              <div class="split-visual-col">
-                <a href="project.html?id=dqdb" class="split-media-card dqdb-stage" aria-label="View Drag Queen Disco Bingo artwork">
-                  <div class="stage-framed-card">
-                    <img src="Assets/Projecten/DQDB/DQDB_BK.webp" alt="Drag Queen Disco Bingo poster artwork" loading="lazy" />
-                  </div>
-                </a>
-              </div>
-            </article>
-
-            <!-- Project 3: Andgage (Text Left, Visual Right) -->
-            <article class="split-showcase-item">
-              <div class="split-copy-col">
-                <span class="split-project-eyebrow">UX / UI Architecture</span>
-                <h3 class="split-project-text">
-                  Streamlining live audience interaction through an intuitive, <span class="accent-highlight">component-driven interface</span> for LiveWall.
-                </h3>
-                <a href="project.html?id=andgage" class="apple-touch-pill" aria-label="Explore Andgage project">
-                  <span>Explore Andgage</span>
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                    <polyline points="12 5 19 12 12 19"></polyline>
-                  </svg>
-                </a>
-              </div>
-
-              <div class="split-visual-col">
-                <a href="project.html?id=andgage" class="split-media-card andgage-stage" aria-label="View Andgage interface case study">
-                  <div class="stage-framed-card">
-                    <img src="Assets/Projecten/Andgage/Hero_Andgage.webp" alt="Andgage interactive presentation tool UI preview" loading="lazy" />
-                  </div>
-                </a>
-              </div>
-            </article>
-
+            <!-- Highlights are built automatically from css/js/projects.js (projects with a "highlight" block) -->
           </div>
+
+          <script src="css/js/projects.js"></script>
+          <script>
+            // Build the homepage highlights from projects.js
+            (function buildHighlights() {
+              const list = document.getElementById('showcase-active');
+              const arrow = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>';
+              const items = Object.entries(projectsData)
+                .filter(([, p]) => p.status === 'live' && p.highlight)
+                .sort(([, a], [, b]) => (a.highlight.order || 99) - (b.highlight.order || 99));
+
+              const stage = (h, title) => {
+                const [main, side] = h.images || [];
+                if (h.stage === 'peek') {
+                  const peek = side || main;
+                  return `
+                  <div class="stage-peek peek-left" aria-hidden="true"><img src="${peek}" alt="" loading="lazy" /></div>
+                  <div class="stage-center-card"><img src="${main}" alt="${title} visual" loading="lazy" /></div>
+                  <div class="stage-peek peek-right" aria-hidden="true"><img src="${peek}" alt="" loading="lazy" /></div>`;
+                }
+                return `
+                  <div class="stage-framed-card">${main ? `<img src="${main}" alt="${title} visual" loading="lazy" />` : `<div class="project-placeholder" style="aspect-ratio: 3 / 2; margin: 0;"><span>${h.label || 'Image coming soon'}</span></div>`}</div>`;
+              };
+
+              list.insertAdjacentHTML('beforeend', items.map(([id, p], i) => {
+                const h = p.highlight;
+                const link = `project.html?id=${encodeURIComponent(id)}`;
+                return `
+            <article class="split-showcase-item${i % 2 ? ' is-reversed' : ''}">
+              <div class="split-copy-col">
+                <span class="split-project-eyebrow">${h.eyebrow || ''}</span>
+                <h3 class="split-project-text">${h.headline || p.title}</h3>
+                <a href="${link}" class="apple-touch-pill" aria-label="Explore ${p.title} project">
+                  <span>${h.button || 'Explore ' + p.title}</span>${arrow}
+                </a>
+              </div>
+              <div class="split-visual-col">
+                <a href="${link}" class="split-media-card ${h.stageClass || ''}" aria-label="View ${p.title}">${stage(h, p.title)}
+                </a>
+              </div>
+            </article>`;
+              }).join(''));
+
+              if (!items.length) document.getElementById('showcase-empty').classList.remove('is-hidden'); // nothing highlighted: show the 'Browse' panel
+            })();
+          </script>
 
           <!-- 2. Apple Skeleton Loading State -->
           <div id="showcase-loading" class="split-showcase-list is-hidden" aria-label="Loading showcase items" aria-live="polite">
