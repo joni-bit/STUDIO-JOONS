@@ -71,10 +71,10 @@ const projectsData = {
         "Where does a child feel safe? In their own bedroom. So I drew the studio as a colouring page: a kid's bedroom where they make their own radio. The open black-and-white line work kept the windows clear for the DJs, and it turned the studio into something everyone recognises from childhood: innocent, hopeful and unfinished, waiting to be filled in."
       ]},
       { type: "split", items: [
-        { src: "Assets/Projecten/Stop520/web/colouring-page-1.webp", alt: "(S)Top 520 colouring page drawing", caption: "The colouring page — flat drawing [re-export at 2400 px]" },
-        { label: "The coloured-in studio wall, same angle (photo 07267)" }
+        { src: "Assets/Projecten/Stop520/web/colouring-pages.webp", alt: "The two (S)Top 520 colouring pages", caption: "The drawing — colouring pages" },
+        { src: "Assets/Projecten/Stop520/web/studio-wall.webp", alt: "The coloured-in studio wall at Utrecht Centraal", caption: "The studio wall at Utrecht Centraal. Photo: Emma Pot" }
       ]},
-      { type: "hero", ratio: "16 / 10", item: { label: "Close-up of the line work on the studio wall (crop of photo 07269)" } },
+      { type: "hero", item: { src: "Assets/Projecten/Stop520/web/line-work.webp", alt: "Close-up of the coloured-in line work on the studio", caption: "Line work up close. Photo: Emma Pot" } },
       { type: "section", heading: "The system", text: [
         "From that drawing I built the whole campaign identity: the (S)Top 520 logo, the key visual, social templates and posts, ads and print. And real colouring pages to take home."
       ]},
