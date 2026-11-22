@@ -1,6 +1,26 @@
+/*
+  PROJECTS — the one place to manage your portfolio.
+
+  status:   "live"    = big card on the Work page (Selected Work)
+            "archive" = small line in the Archive list at the bottom of the Work page
+            "draft"   = hidden. Preview privately with:
+                      project.html?id=PROJECT-ID&preview=1
+  category: "identity" | "product" | "campaign"  (filter tabs)
+  card:     what the card on the Projects page shows
+            (tint: "blue" | "cyan" | "orange")
+  The order of projects here is the order on the Work page.
+*/
 const projectsData = {
   "domibo": {
     title: "DoMiBo",
+    status: "live",
+    category: "identity",
+    card: {
+      eyebrow: "Visual Identity",
+      image: "Assets/Projecten/DoMiBo/DoMiBo_1200x800.webp",
+      description: "Bold pin-up character branding and activation assets for recurring after-work gatherings.",
+      tint: "blue"
+    },
     heroImage: "Assets/Projecten/DoMiBo/DoMiBo_1200x800.webp",
     intro: "<span class='accent-text'>Visual identity</span> for a returning \"after work drinks\" <span class='accent-text'>event</span>.<br>Thursday is the new friday!",
     content: [
@@ -27,7 +47,7 @@ const projectsData = {
       {
         type: "two-column",
         left: [
-          { type: "image", src: "Assets/Projecten/DoMiBo/Moodboard.png" },
+          { type: "image", src: "Assets/Projecten/DoMiBo/Moodboard.webp" },
           { type: "text", content: "This playful yet edgy visual direction not only grabs attention but also builds a memorable connection with an audience that values self-expression and individuality. Tate's confident and provocative personality reflects the mindset of the target audience: who appreciate humor, are drawn to originality, and aren't afraid to make statements." },
           { type: "text", content: "The visual changes with every event: with Tate still in the spotlight accompanied by Riot's signature drink an (K)Oporzotje. On the glasses I've featured the event sponsors Jägermeister and Gulpener." }
         ],
@@ -45,7 +65,7 @@ const projectsData = {
       {
         type: "two-column",
         left: [
-          { type: "image", src: "Assets/Projecten/DoMiBo/Flyer_DoMiBo.jpg" }
+          { type: "image", src: "Assets/Projecten/DoMiBo/Flyer_DoMiBo.webp" }
         ],
         right: [
           { type: "text", content: "Accompanied with the social and in house advertising, we also send out <span class='accent-text'>personal invites</span> to neighbouring offices to spread the word about the event." }
@@ -64,14 +84,14 @@ const projectsData = {
               "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines4.png",
               "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines5.png",
               "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines6.png",
-              "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines7.png",
-              "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines8.png",
+              "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines7.webp",
+              "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines8.webp",
               "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines9.png",
               "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines10.png",
-              "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines11.png",
+              "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines11.webp",
               "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines12.png",
-              "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines13.png",
-              "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines14.png",
+              "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines13.webp",
+              "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines14.webp",
               "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines15.png"
             ] 
           }
@@ -81,6 +101,14 @@ const projectsData = {
   },
   "andgage": {
     title: "Andgage",
+    status: "live",
+    category: "product",
+    card: {
+      eyebrow: "UX / UI Design",
+      image: "Assets/Projecten/Andgage/Andgage_1200_800.webp",
+      description: "Streamlining interactive event presentation flows through structured user testing and design systems.",
+      tint: "cyan"
+    },
     role: "UX/UI Design",
     client: "LiveWall",
     year: "2024",
@@ -106,7 +134,7 @@ const projectsData = {
       {
         type: "full-width",
         items: [
-          { type: "image", src: "Assets/Projecten/Andgage/UX Persona.png" },
+          { type: "image", src: "Assets/Projecten/Andgage/UX Persona.webp" },
           { type: "text", content: "<strong>03 UX/UI</strong><br>The sitemap formed an essential foundation for structuring Andgage in a clear and intuitive way. It illustrates the hierarchy of the platform and outlines how the main event pages connect to supporting sections such as templates, flow items, and results. By mapping out the architecture early on, I was able to clarify relationships between content and functionality, and ensure that users can easily navigate without feeling overwhelmed. The sitemap also served as a reference point throughout the design process, helping to align design decisions with a logical structure and keeping the user journey streamlined and efficient." },
           { type: "image", src: "Assets/Projecten/Andgage/Andgage sitemap.webp" }
         ]
@@ -131,7 +159,7 @@ const projectsData = {
           { type: "text", content: "<strong>Explainer animation</strong>" }
         ],
         right: [
-          { type: "image", src: "Assets/Projecten/Andgage/Andgage_PR-animatie.gif" }
+          { type: "video", src: "Assets/Projecten/Andgage/Andgage_PR-animatie.mp4" }
         ]
       },
       {
@@ -182,10 +210,18 @@ const projectsData = {
   },
   "dqdb": {
     title: "Drag Queen Disco Bingo",
+    status: "live",
+    category: "identity",
+    card: {
+      eyebrow: "Visual Identity",
+      image: "Assets/Projecten/DQDB/DQDB_1200_800.webp",
+      description: "High-contrast, disco-infused identity designed for dynamic rotating performer line-ups.",
+      tint: "orange"
+    },
     role: "Visual Identity", 
     client: "Conscious Hotels", 
     year: "2024",
-    heroImage: "Assets/Projecten/DQDB/DQDB_1200_800.jpg", 
+    heroImage: "Assets/Projecten/DQDB/DQDB_1200_800_opt.webp", 
     intro: "<span class='accent-text'>Visual identity</span> for a reoccurring <span class='accent-text'>Drag Queen Bingo event</span> at Barkantoor.<br><br><span style='font-size: 1rem; font-weight: normal;'>During my internship at Conscious Hotels, I had the exciting opportunity to work on branding for Drag Queen Disco Bingo (DQDB), a vibrant event introduced to bring energy, inclusivity, and fun to the community.</span>",
     content: [
       {
@@ -194,13 +230,13 @@ const projectsData = {
           { type: "text", content: "Initially, the branding for DQDB was based on the style of the event location, Bar Kantoor, which didn't fully capture the unique, high-energy essence of the event. I saw this as an opportunity to redefine the event's look and feel to better align with its spirited and colorful atmosphere." }
         ],
         right: [
-          { type: "image", src: "Assets/Projecten/DQDB/DragQueen_Bingo_old.jpg" }
+          { type: "image", src: "Assets/Projecten/DQDB/DragQueen_Bingo_old.webp" }
         ]
       },
       {
         type: "two-column",
         left: [
-          { type: "image", src: "Assets/Projecten/DQDB/DQDB_BK.png" }
+          { type: "image", src: "Assets/Projecten/DQDB/DQDB_BK.webp" }
         ],
         right: [
           { type: "text", content: "As the lead designer on this project, I developed a completely new visual direction for DQDB. I focused on creating a cohesive and lively aesthetic that would appeal to a diverse audience and reflect the playful, disco-inspired vibe of the event.<br><br>I designed the logo, posters, and social media assets, ensuring that each element was bold, colorful, and eye-catching.<br><br>In addition, I crafted a comprehensive visual style guide to support consistency in the event's branding. This guide serves as a reference for future interns and designers, helping them to easily understand and continue the branding direction I established." }
@@ -213,7 +249,7 @@ const projectsData = {
         ],
         right: [
           { type: "text", content: "<strong>01 Moodboard</strong>" },
-          { type: "image", src: "Assets/Projecten/DQDB/Moodboard-DQDB.png" } 
+          { type: "image", src: "Assets/Projecten/DQDB/Moodboard-DQDB.webp" } 
         ]
       },
       {
@@ -230,7 +266,7 @@ const projectsData = {
         type: "full-width",
         items: [
           { type: "text", content: "<strong>03 Results</strong>" },
-          { type: "image", src: "Assets/Projecten/DQDB/Mockup-insta_DQDB.png" }
+          { type: "image", src: "Assets/Projecten/DQDB/Mockup-insta_DQDB.webp" }
         ]
       },
       {
@@ -240,22 +276,22 @@ const projectsData = {
           { 
             type: "carousel", 
             images: [
-              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_01.jpg",
-              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_02.jpg",
-              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_03.jpg",
-              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_04.jpg",
-              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_05.jpg",
-              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_06.jpg",
-              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_07.jpg",
-              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_08.jpg",
-              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_09.jpg",
-              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_10.jpg",
+              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_01.webp",
+              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_02.webp",
+              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_03.webp",
+              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_04.webp",
+              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_05.webp",
+              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_06.webp",
+              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_07.webp",
+              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_08.webp",
+              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_09.webp",
+              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_10.webp",
               "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_11.jpg", 
-              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_12.jpg",
-              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_13.jpg",
-              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_14.jpg",
-              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_15.jpg",
-              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_16.jpg"
+              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_12.webp",
+              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_13.webp",
+              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_14.webp",
+              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_15.webp",
+              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_16.webp"
             ] 
           }
         ]
@@ -264,6 +300,15 @@ const projectsData = {
   },
   "rhythm-and-roots": {
     title: "Rhythm and Roots",
+    status: "draft",
+    category: "product",
+    card: {
+      title: "Rhythm &amp; Roots",
+      eyebrow: "Visual Interface Design",
+      image: "Assets/Projecten/Rythm & Roots/RR_1200_800.webp",
+      description: "An immersive desktop editorial celebrating Afrobeats culture and visual storytelling.",
+      tint: "blue"
+    },
     role: "Visual Interface Design", 
     client: "HvA Minor", 
     year: "2024",
@@ -282,13 +327,13 @@ const projectsData = {
           { type: "text", content: "Listening to the beats and rhythms of Afrobeats music, I immersed myself in its energy and drew <span class='accent-text'>inspiration</span> from the lively nightlife of Lagos, known for its vibrant colors, movement, and high energy.<br><br>I chose bold, dynamic colors to reflect the genre's cultural richness and upbeat spirit, aiming to create a sense of rhythm and warmth that users would feel as soon as they landed on the site." }
         ],
         right: [
-          { type: "image", src: "Assets/Projecten/Rythm & Roots/Moodboards_portfolio_rr.png" }
+          { type: "image", src: "Assets/Projecten/Rythm & Roots/Moodboards_portfolio_rr.webp" }
         ]
       },
       {
         type: "two-column",
         left: [
-          { type: "image", src: "Assets/Projecten/Rythm & Roots/Schets.jpg" }
+          { type: "image", src: "Assets/Projecten/Rythm & Roots/Schets.webp" }
         ],
         right: [
           { type: "text", content: "For the <span class='accent-text'>wireframing</span> phase, I took a research based approach, analyzing similar websites and general music sites to understand effective ways of presenting information and engaging users.<br><br>This research helped me develop a clean, intuitive structure for the site, with sections dedicated to the genre's history, artist profiles, and multimedia elements that would allow users to dive deeper into the world of Afrobeats." }
@@ -307,11 +352,11 @@ const projectsData = {
         type: "three-column",
         left: [
           { type: "text", content: "<span style='color: var(--muted); font-size: 0.9em;'>01</span> <strong>Landingpage</strong>" },
-          { type: "image", src: "Assets/Projecten/Rythm & Roots/Home.jpg" }
+          { type: "image", src: "Assets/Projecten/Rythm & Roots/Home.webp" }
         ],
         middle: [
           { type: "text", content: "<span style='color: var(--muted); font-size: 0.9em;'>03</span> <strong>Subcategory</strong>" },
-          { type: "image", src: "Assets/Projecten/Rythm & Roots/Index.jpg" },
+          { type: "image", src: "Assets/Projecten/Rythm & Roots/Index.webp" },
           { type: "text", content: "<span style='color: var(--muted); font-size: 0.9em;'>04</span> <strong>Vision</strong>" },
           { type: "image", src: "Assets/Projecten/Rythm & Roots/About.jpg" }
         ],
@@ -325,11 +370,11 @@ const projectsData = {
         type: "two-column",
         left: [
           { type: "text", content: "<span style='color: var(--muted); font-size: 0.9em;'>05</span> <strong>Detail page</strong>" },
-          { type: "image", src: "Assets/Projecten/Rythm & Roots/Tems.jpg" }
+          { type: "image", src: "Assets/Projecten/Rythm & Roots/Tems.webp" }
         ],
         right: [
           { type: "text", content: " " },
-          { type: "image", src: "Assets/Projecten/Rythm & Roots/Burna.jpg" }
+          { type: "image", src: "Assets/Projecten/Rythm & Roots/Burna.webp" }
         ]
       },
       {
@@ -344,7 +389,7 @@ const projectsData = {
               "Assets/Projecten/Rythm & Roots/styleguide/Styguide grid.png",
               "Assets/Projecten/Rythm & Roots/styleguide/Styguide kleur.png",
               "Assets/Projecten/Rythm & Roots/styleguide/Styguide knop.png",
-              "Assets/Projecten/Rythm & Roots/styleguide/Styguide typografie.png"
+              "Assets/Projecten/Rythm & Roots/styleguide/Styguide typografie.webp"
             ] 
           }
         ]
@@ -353,6 +398,14 @@ const projectsData = {
   },
   "lnx": {
     title: "Lil Nas X Campaign",
+    status: "draft",
+    category: "campaign",
+    card: {
+      eyebrow: "Campaign Concept",
+      image: "Assets/Projecten/LNX/LNX_1200_800.webp",
+      description: "Meme-inspired cross-media rollout combining billboard stunts, AR lenses, and viral tweets.",
+      tint: "orange"
+    },
     role: "Campaign Concept & Design", 
     client: "Mojo Concerts", 
     year: "2024",
@@ -371,7 +424,7 @@ const projectsData = {
       {
         type: "two-column",
         left: [
-          { type: "image", src: "Assets/Projecten/LNX/Lil_Nas_X_poster.jpg" }
+          { type: "image", src: "Assets/Projecten/LNX/Lil_Nas_X_poster.webp" }
         ],
         right: [
           { type: "text", content: "The poster also takes the form of a tweet. Mojo announces the Dutch shows, and Lil Nas replies in a <span class='accent-text'>playful</span> way.<br><br>The campaign leans into <span class='accent-text'>humor</span> and meme culture, something his fans know and love him for. Lil Nas is famous for \"trolling\" on Twitter, and that vibe is carried through here as well." }
@@ -389,12 +442,12 @@ const projectsData = {
           { 
             type: "carousel", 
             images: [
-              "Assets/Projecten/LNX/Carousel/85582e64-e681-4550-92db-8518873b5bc6.jpeg",
-              "Assets/Projecten/LNX/Carousel/a53f77b2-f70b-4b41-a5eb-6b27ebd207c6.jpeg", 
-              "Assets/Projecten/LNX/Carousel/d6c998e5-1184-4ea9-837f-4676fc95a23e.jpeg",
+              "Assets/Projecten/LNX/Carousel/85582e64-e681-4550-92db-8518873b5bc6.webp",
+              "Assets/Projecten/LNX/Carousel/a53f77b2-f70b-4b41-a5eb-6b27ebd207c6.webp", 
+              "Assets/Projecten/LNX/Carousel/d6c998e5-1184-4ea9-837f-4676fc95a23e.webp",
               "Assets/Projecten/LNX/Carousel/IMG_3419.jpeg",
-              "Assets/Projecten/LNX/Carousel/280b7529-65e7-4215-a5d8-fdc5bdae014f.jpeg",
-              "Assets/Projecten/LNX/Carousel/IMG_3421.jpeg"
+              "Assets/Projecten/LNX/Carousel/280b7529-65e7-4215-a5d8-fdc5bdae014f.webp",
+              "Assets/Projecten/LNX/Carousel/IMG_3421.webp"
             ] 
           }
         ]
@@ -408,15 +461,15 @@ const projectsData = {
             images: [
               "Assets/Projecten/LNX/style guide/GodwinJoni_VisualStyleGuideSTcreate_2022_Page_01.png",
               "Assets/Projecten/LNX/style guide/GodwinJoni_VisualStyleGuideSTcreate_2022_Page_02.png",
-              "Assets/Projecten/LNX/style guide/GodwinJoni_VisualStyleGuideSTcreate_2022_Page_03.png",
+              "Assets/Projecten/LNX/style guide/GodwinJoni_VisualStyleGuideSTcreate_2022_Page_03.webp",
               "Assets/Projecten/LNX/style guide/GodwinJoni_VisualStyleGuideSTcreate_2022_Page_04.png",
               "Assets/Projecten/LNX/style guide/GodwinJoni_VisualStyleGuideSTcreate_2022_Page_05.png",
-              "Assets/Projecten/LNX/style guide/GodwinJoni_VisualStyleGuideSTcreate_2022_Page_06.png",
-              "Assets/Projecten/LNX/style guide/GodwinJoni_VisualStyleGuideSTcreate_2022_Page_07.png",
-              "Assets/Projecten/LNX/style guide/GodwinJoni_VisualStyleGuideSTcreate_2022_Page_08.png",
-              "Assets/Projecten/LNX/style guide/GodwinJoni_VisualStyleGuideSTcreate_2022_Page_09.png",
-              "Assets/Projecten/LNX/style guide/GodwinJoni_VisualStyleGuideSTcreate_2022_Page_10.png",
-              "Assets/Projecten/LNX/style guide/GodwinJoni_VisualStyleGuideSTcreate_2022_Page_11.png",
+              "Assets/Projecten/LNX/style guide/GodwinJoni_VisualStyleGuideSTcreate_2022_Page_06.webp",
+              "Assets/Projecten/LNX/style guide/GodwinJoni_VisualStyleGuideSTcreate_2022_Page_07.webp",
+              "Assets/Projecten/LNX/style guide/GodwinJoni_VisualStyleGuideSTcreate_2022_Page_08.webp",
+              "Assets/Projecten/LNX/style guide/GodwinJoni_VisualStyleGuideSTcreate_2022_Page_09.webp",
+              "Assets/Projecten/LNX/style guide/GodwinJoni_VisualStyleGuideSTcreate_2022_Page_10.webp",
+              "Assets/Projecten/LNX/style guide/GodwinJoni_VisualStyleGuideSTcreate_2022_Page_11.webp",
               "Assets/Projecten/LNX/style guide/GodwinJoni_VisualStyleGuideSTcreate_2022_Page_12.png"
             ] 
           }
@@ -426,6 +479,14 @@ const projectsData = {
   },
   "stop520": {
     title: "Radio Veronica x WAR CHILD (S)TOP 520",
+    status: "draft",
+    category: "identity",
+    card: {
+      eyebrow: "Visual Identity & Campaign",
+      image: "Assets/Projecten/Stop520/Stop520_1200_800.webp",
+      description: "Visual identity for a Radio Veronica and War Child campaign for children growing up in conflict zones.",
+      tint: "orange"
+    },
     role: "Visual Identity & Campaign Design",
     client: "Radio Veronica & War Child",
     year: "2024",
