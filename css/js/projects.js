@@ -38,7 +38,7 @@ const projectsData = {
     card: {
       title: "Radio Veronica × War Child — (S)Top 520",
       eyebrow: "Campaigns",
-      image: "Assets/Projecten/Stop520/Stop520_1200_800.webp",
+      image: "Assets/Projecten/Stop520/web/card.webp",
       description: "Turning a radio studio into a child's colouring page, for 520 million children growing up with war.",
       tint: "orange"
     },
@@ -48,7 +48,7 @@ const projectsData = {
       headline: "A colouring page <span class=\"accent-highlight\">the size of a radio studio</span>.",
       button: "Explore (S)Top 520",
       stage: "framed",
-      images: ["Assets/Projecten/Stop520/Stop520_1200_800.webp"]
+      images: ["Assets/Projecten/Stop520/web/card.webp"]
     },
     year: "2026",
     facts: [
@@ -58,7 +58,7 @@ const projectsData = {
       ["My role", "Visual concept and design (campaign concept by the Veronica team)"],
       ["Deliverables", "Studio exterior, campaign logo, key visual, colouring pages, social templates, ads, print, car wrap"]
     ],
-    hero: { label: "Hero — the studio in the station hall, travellers walking past (photo 07314, Emma Pot / Jeroen Zondag)" },
+    hero: { src: "Assets/Projecten/Stop520/web/studio-station-hero.webp", alt: "The (S)Top 520 studio at Utrecht Centraal, travellers walking past", caption: "Photo: Emma Pot" },
     hook: "A colouring page the size of a radio studio.",
     blocks: [
       { type: "section", heading: "The campaign", text: [
@@ -72,28 +72,25 @@ const projectsData = {
       ]},
       { type: "split", items: [
         { src: "Assets/Projecten/Stop520/web/colouring-pages.webp", alt: "The two (S)Top 520 colouring pages", caption: "The drawing — colouring pages" },
-        { src: "Assets/Projecten/Stop520/web/studio-wall.webp", alt: "The coloured-in studio wall at Utrecht Centraal", caption: "The studio wall at Utrecht Centraal. Photo: Emma Pot" }
+        { src: "Assets/Projecten/Stop520/web/studio-wall.webp", alt: "The coloured-in studio wall", caption: "The studio wall. Photo: Emma Pot" }
       ]},
-      { type: "hero", item: { src: "Assets/Projecten/Stop520/web/line-work.webp", alt: "Close-up of the coloured-in line work on the studio", caption: "Line work up close. Photo: Emma Pot" } },
+      { type: "hero", item: { src: "Assets/Projecten/Stop520/web/line-work.webp", alt: "Close-up of the coloured-in line work", caption: "Line work up close. Photo: Emma Pot" } },
       { type: "section", heading: "The system", text: [
         "From that drawing I built the whole campaign identity: the (S)Top 520 logo, the key visual, social templates and posts, ads and print. And real colouring pages to take home."
       ]},
-      { type: "canvas", item: { label: "Roll-out canvas — logo, key visual, social posts, ad and print on white (to make)" } },
-      { type: "split", items: [
-        { src: "Assets/Projecten/Stop520/web/colouring-page-2.webp", alt: "Second (S)Top 520 colouring page", caption: "Colouring page to take home" },
-        { src: "Assets/Projecten/Stop520/web/bedboys-car.webp", alt: "M line Bed Boys car wrapped in the (S)Top 520 campaign", caption: "Car wrap — M line Bed Boys" }
-      ]},
+      { type: "canvas", item: { src: "Assets/Projecten/Stop520/web/rollout-canvas.webp", alt: "(S)Top 520 roll-out: key visual, studio, social, car wrap and coloured pages", caption: "Key visual, studio, social and the Bed Boys car wrap" } },
       { type: "section", heading: "What happened", text: [
         "Kids came to the station with their parents just to get a colouring page. The studio drew crowds of travellers all week, De Telegraaf covered the campaign several times, and both Radio Veronica and War Child were beyond happy with how it looked. [Optional: “The list closed with John Lennon's Imagine at number one.”]"
       ]},
       { type: "split", items: [
-        { label: "A table full of coloured-in pages (photo JZ12331)" },
-        { label: "DJs live in the studio (photo 03814)" }
+        { src: "Assets/Projecten/Stop520/web/table-of-pages.webp", alt: "Coloured-in pages from kids", caption: "Coloured-in pages. Photo: Jeroen Zondag" },
+        { src: "Assets/Projecten/Stop520/web/wall-of-pages.webp", alt: "A wall full of coloured-in pages in the studio", caption: "The studio wall filling up. Photo: Lars Goosselink" }
       ]},
+      { type: "hero", item: { src: "Assets/Projecten/Stop520/web/djs-live.webp", alt: "The DJs live in the studio, with the Instagram story next to it", caption: "Live on air, and on Instagram. Photo: Emma Pot" } },
       { type: "inset", items: [
-        { label: "The studio in the whole station hall (photo 03038 or 07345)" },
+        { src: "Assets/Projecten/Stop520/web/station-hall-wide.webp", alt: "The studio in the station hall", caption: "The studio in Utrecht Centraal. Photo: Emma Pot" },
         { label: "Telegraaf clipping, small" }
-      ], caption: "Photos: [Emma Pot / Jeroen Zondag]" }
+      ]}
     ]
   },
   "vriendenweekend": {
@@ -103,6 +100,7 @@ const projectsData = {
     card: {
       title: "Radio Veronica — Het Nationale Vriendenweekend",
       eyebrow: "Campaigns",
+      image: "Assets/Projecten/Vriendenweekend/web/card.webp",
       description: "Claiming one weekend for every friend group in the country. Logo approved at first pitch.",
       tint: "blue"
     },
@@ -112,8 +110,7 @@ const projectsData = {
       headline: "One weekend for <span class=\"accent-highlight\">every friend group</span> in the country.",
       button: "Explore Vriendenweekend",
       stage: "framed",
-      images: [],
-      label: "The branded house by the water, drone shot (DJI_0041)"
+      images: ["Assets/Projecten/Vriendenweekend/web/card.webp"]
     },
     year: "2026",
     facts: [
@@ -122,7 +119,7 @@ const projectsData = {
       ["My role", "Sole designer, visual concept and design (campaign concept by the Veronica team)"],
       ["Deliverables", "Logo, campaign identity, print, display, social, studio screens, web, branded beer and champagne bottles"]
     ],
-    hero: { label: "Hero — the logo, large, on the Veronica blue gradient (Vriendenweekend liggend 1920×1080)" },
+    hero: { src: "Assets/Projecten/Vriendenweekend/web/logo-hero.webp", alt: "Het Nationale Vriendenweekend logo on Veronica blue" },
     hook: "One weekend for every friend group in the country.",
     blocks: [
       { type: "section", heading: "The campaign", text: [
@@ -132,24 +129,28 @@ const projectsData = {
         "Carte blanche: make the weekend feel like a national tradition from day one."
       ]},
       { type: "section", heading: "The idea", text: [
-        "[Describe in 2 sentences what the logo is: e.g. “A holiday house full of friends, under a ribbon banner like an official seal: part holiday-park sign, part national holiday.”] I explored [x] directions, each built on a different side of a weekend away: [e.g. the journey, the house, the group, the party]. The one we chose got the strongest reaction, and the logo was approved at the first pitch with no changes."
+        "Three holiday houses huddled together under a golden ribbon, like an official seal: part holiday-park sign, part national holiday. I explored four directions, each built on a different side of a weekend away: the house, the roof over everyone, the packed weekend bag and the group itself. The one we chose got the strongest reaction, and the logo was approved at the first pitch with no changes."
       ]},
       { type: "grid", columns: 4, items: [
-        { label: "Direction 1" }, { label: "Direction 2" }, { label: "Direction 3" }, { label: "Chosen direction" }
-      ], caption: "The explored directions, chosen one marked (to make)" },
+        { src: "Assets/Projecten/Vriendenweekend/web/direction-1.webp", alt: "Chosen direction: houses under a golden ribbon" },
+        { src: "Assets/Projecten/Vriendenweekend/web/direction-2.webp", alt: "Direction: one roof over everyone" },
+        { src: "Assets/Projecten/Vriendenweekend/web/direction-3.webp", alt: "Direction: the weekend bag" },
+        { src: "Assets/Projecten/Vriendenweekend/web/direction-4.webp", alt: "Direction: the friend group" }
+      ], caption: "Four directions — the chosen one first" },
       { type: "section", heading: "The roll-out", text: [
         "From one logo to everything the weekend touched: print, display and social campaigns, studio screens, web, and branded beer and champagne bottles for the weekend itself."
       ]},
-      { type: "canvas", item: { label: "Format canvas — social, display, studio screen and web on one blue background (to make)" } },
+      { type: "canvas", item: { src: "Assets/Projecten/Vriendenweekend/web/rollout-canvas.webp", alt: "The weekend in photos: studio, house, bingo, bottles and friends", caption: "The weekend itself. Photos: Jeroen Zondag" } },
       { type: "split", items: [
-        { label: "Bingo board, welcome card and coaster on one table (CSZ26222)" },
-        { label: "Pitch & Putt and Escape signs on easels (CSZ13035)" }
+        { src: "Assets/Projecten/Vriendenweekend/web/bingo-table.webp", alt: "Bingo board, welcome card, coaster and cava on the table", caption: "Bingo board, welcome card and coaster" },
+        { src: "Assets/Projecten/Vriendenweekend/web/signs-easels.webp", alt: "Pitch & Putt and Escape signs on easels", caption: "Activity signs" }
       ]},
       { type: "split", items: [
-        { label: "Beer bottle" },
-        { label: "Champagne bottle" }
+        { src: "Assets/Projecten/Vriendenweekend/web/beer-bottle.webp", alt: "Vriendenweekend beer bottle", caption: "Beer" },
+        { src: "Assets/Projecten/Vriendenweekend/web/cava-bottle.webp", alt: "Vriendenweekend cava bottle", caption: "Cava" }
       ]},
-      { type: "hero", item: { label: "The weekend itself — drone shot of the branded house by the water (DJI_0041)" }, caption: "Photos: [photographer]" }
+      { type: "hero", item: { src: "Assets/Projecten/Vriendenweekend/web/friends-bingo.webp", alt: "A friend group with their completed bingo board", caption: "A full bingo card. Photo: Jeroen Zondag" } },
+      { type: "hero", item: { src: "Assets/Projecten/Vriendenweekend/web/drone-house.webp", alt: "Drone shot of everyone in front of the branded house by the water", caption: "Everyone at the Veronica house. Photo: Jeroen Zondag" } }
     ]
   },
   "mediahuis-radio": {
@@ -159,6 +160,7 @@ const projectsData = {
     card: {
       title: "Mediahuis Radio — Brand in daily use",
       eyebrow: "Campaigns",
+      image: "Assets/Projecten/MediahuisRadio/web/mhr-illustration.webp",
       description: "Keeping Radio Veronica, SLAM! and 100% NL recognisable everywhere, and dreaming up the branded content around them.",
       tint: "cyan"
     },
@@ -169,46 +171,85 @@ const projectsData = {
       ["Role", "Junior Creative Designer & creative concepter, in-house"],
       ["Output", "Studio screens, print up to A0, 9:16 digital, social ads, HTML5 banners, merch and prizes"]
     ],
-    hero: { label: "Hero — a studio with your screen design live on air, or the A0 poster in place" },
+    hero: { src: "Assets/Projecten/MediahuisRadio/web/mhr-illustration.webp", alt: "Mediahuis Radio illustration: listeners of SLAM!, 100% NL, Sublime and Radio Veronica", caption: "Mediahuis Radio — illustrated by me" },
     hook: "Not every brief is a billboard.",
     blocks: [
       { type: "section", text: [
         "Most days I'm making three very different radio brands work in a hundred small places: studio screens (static and animated), A0 posters, 9:16 screens, social ads, HTML5 banners, and the prizes listeners win, from mugs to greeting cards to socks. The job is to keep every piece unmistakably Veronica, SLAM! or 100% NL, and still make it feel made for its moment."
       ]},
       { type: "grid", columns: 4, items: [
-        { label: "Radio Veronica" }, { label: "Radio Veronica" }, { label: "Radio Veronica" }, { label: "Radio Veronica" },
-        { label: "SLAM!" }, { label: "SLAM!" }, { label: "SLAM!" }, { label: "SLAM!" },
-        { label: "100% NL" }, { label: "100% NL" }, { label: "100% NL" }, { label: "100% NL" }
-      ], caption: "Radio Veronica · SLAM! · 100% NL — 16–20 assets, grouped by brand" },
+        { src: "Assets/Projecten/MediahuisRadio/web/veronica-muziekquiz.webp", alt: "Radio Veronica De Beste Muziekquiz Allertijden" },
+        { src: "Assets/Projecten/MediahuisRadio/web/veronica-cafe.webp", alt: "Het Radio Veronica Café social post" },
+        { src: "Assets/Projecten/MediahuisRadio/web/veronica-efteling.webp", alt: "Radio Veronica x Efteling Love at First Ride" },
+        { src: "Assets/Projecten/MediahuisRadio/web/veronica-fluisteraar.webp", alt: "Radio Veronica De Fluisteraar" }
+      ], caption: "Radio Veronica" },
+      { type: "grid", columns: 4, items: [
+        { src: "Assets/Projecten/MediahuisRadio/web/slam-summer500.webp", alt: "SLAM! Summer 500" },
+        { src: "Assets/Projecten/MediahuisRadio/web/slam-alaafondshow.webp", alt: "SLAM! Alaafondshow" },
+        { src: "Assets/Projecten/MediahuisRadio/web/slam-gok-winners.webp", alt: "SLAM! Gok van je leven winners" },
+        { src: "Assets/Projecten/MediahuisRadio/web/slam-festivalmaand.webp", alt: "SLAM! Festivalmaand" }
+      ], caption: "SLAM!" },
+      { type: "grid", columns: 4, items: [
+        { src: "Assets/Projecten/MediahuisRadio/web/100nl-top1000.webp", alt: "100% NL Top 1000" },
+        { src: "Assets/Projecten/MediahuisRadio/web/100nl-sinterklaas.webp", alt: "100% NL Sinterklaas" },
+        { src: "Assets/Projecten/MediahuisRadio/web/100nl-somertijd.webp", alt: "100% NL Somertijd BBQ cards" },
+        { src: "Assets/Projecten/MediahuisRadio/web/100nl-tijdmachine.webp", alt: "100% NL Tijdmachine" }
+      ], caption: "100% NL" },
       { type: "section", heading: "Living a new identity", text: [
         "I started just as Radio Veronica rolled out a new visual identity. I didn't write the guidelines, but I helped bring them to life: updating visuals across every channel, keeping new work in line, and building each new campaign on top of the brand guide. On photoshoots I was second designer on set, checking that every shot fitted the new direction and that we caught the energy of each show."
       ]},
       { type: "section", heading: "Highlights", list: [
+        "<strong>Radio Veronica — Het Radio Veronica Café:</strong> [one line — confirm which parts of the Café identity you designed].",
+        "<strong>100% NL — Tijdmachine:</strong> [one line].",
+        "<strong>SLAM! — Festivalmaand:</strong> [one line].",
+        "<strong>SLAM! — Summer 500:</strong> [one line].",
         "<strong>SLAM! — Gok van je leven:</strong> my first big campaign at Mediahuis, as the sole designer.",
-        "<strong>Radio Veronica — De Beste Muziekquiz Allertijden:</strong> logo and digital campaign for the Top 3000 edition.",
-        "<strong>SLAM! — Festivalmaand &amp; ADE:</strong> [one line].",
-        "<strong>100% NL — Tijdmachine &amp; Somertijd:</strong> [one line]."
+        "<strong>Radio Veronica — De Beste Muziekquiz Allertijden:</strong> logo and digital campaign for the Top 3000 edition."
       ]},
-      { type: "triptych", ratio: "4 / 5", items: [
-        { label: "Social post 1080×1350" }, { label: "Story 1080×1920" }, { label: "Thumb 1920×1080" }
-      ], caption: "SLAM! — Gok van je leven: one key visual in three formats" },
       { type: "split", items: [
-        { label: "DBMAT logo on blue" }, { label: "Top 3000 edition" }
-      ], caption: "Radio Veronica — De Beste Muziekquiz Allertijden" },
-      { type: "hero", item: { label: "Tijdmachine logo concepts (4 directions)" } },
+        { src: "Assets/Projecten/MediahuisRadio/web/cafe-key-visual.webp", alt: "Het Radio Veronica Café key visual" },
+        { src: "Assets/Projecten/MediahuisRadio/web/cafe-coaster.webp", alt: "Het Radio Veronica Café coaster in the bar", caption: "In the bar. Photo: Bram Rietveld" }
+      ], caption: "Radio Veronica — Het Radio Veronica Café" },
+      { type: "hero", item: { src: "Assets/Projecten/MediahuisRadio/web/cafe-studio.webp", alt: "DJ live in the Café studio, in front of the shield", caption: "Live from the Café. Photo: Bram Rietveld" } },
+      { type: "hero", item: { src: "Assets/Projecten/MediahuisRadio/web/tijdmachine-concepts.webp", alt: "Four logo concepts for 100% NL Tijdmachine", caption: "Four logo concepts" } },
+      { type: "hero", item: { src: "Assets/Projecten/MediahuisRadio/web/tijdmachine-chosen.webp", alt: "The chosen Tijdmachine logo on orange", caption: "The chosen logo" } },
       { type: "triptych", ratio: "9 / 16", items: [
-        { label: "Studio screen — Jaren 80" }, { label: "Studio screen — Jaren 90" }, { label: "Studio screen — Jaren 00" }
+        { src: "Assets/Projecten/MediahuisRadio/web/tijdmachine-80.webp", alt: "Tijdmachine studio screen Jaren 80" },
+        { src: "Assets/Projecten/MediahuisRadio/web/tijdmachine-90.webp", alt: "Tijdmachine studio screen Jaren 90" },
+        { src: "Assets/Projecten/MediahuisRadio/web/tijdmachine-00.webp", alt: "Tijdmachine studio screen Jaren 00" }
       ], caption: "100% NL — Tijdmachine: same frame, different decade" },
+      { type: "grid", columns: 4, items: [
+        { src: "Assets/Projecten/MediahuisRadio/web/festivalmaand-wip1.webp", alt: "Festivalmaand work in progress 1" },
+        { src: "Assets/Projecten/MediahuisRadio/web/festivalmaand-wip3.webp", alt: "Festivalmaand work in progress 3" },
+        { src: "Assets/Projecten/MediahuisRadio/web/festivalmaand-wip5.webp", alt: "Festivalmaand work in progress 5" },
+        { src: "Assets/Projecten/MediahuisRadio/web/festivalmaand-wip8.webp", alt: "Festivalmaand work in progress 8" }
+      ], caption: "SLAM! — Festivalmaand: the road to the logo" },
+      { type: "split", items: [
+        { src: "Assets/Projecten/MediahuisRadio/web/festivalmaand-wristband.webp", alt: "Festivalmaand wristband direction", caption: "The wristband direction" },
+        { src: "Assets/Projecten/MediahuisRadio/web/festivalmaand-story.webp", alt: "Final Festivalmaand 9:16 screen", caption: "Final — 9:16" }
+      ]},
+      { type: "triptych", ratio: "16 / 9", items: [
+        { src: "Assets/Projecten/MediahuisRadio/web/summer500-v1.webp", alt: "Summer 500 version 1" },
+        { src: "Assets/Projecten/MediahuisRadio/web/summer500-v3.webp", alt: "Summer 500 version 3" },
+        { src: "Assets/Projecten/MediahuisRadio/web/summer500-v4.webp", alt: "Summer 500 version 4" }
+      ], caption: "SLAM! — Summer 500: earlier versions" },
+      { type: "hero", item: { src: "Assets/Projecten/MediahuisRadio/web/summer500-final.webp", alt: "Final Summer 500 visual", caption: "Final version" } },
+      { type: "split", items: [
+        { src: "Assets/Projecten/MediahuisRadio/web/gok-post.webp", alt: "Gok van je leven social post", caption: "Social post" },
+        { src: "Assets/Projecten/MediahuisRadio/web/gok-story.webp", alt: "Gok van je leven story: win a trip to Las Vegas", caption: "Story" }
+      ], caption: "SLAM! — Gok van je leven" },
+      { type: "hero", item: { src: "Assets/Projecten/MediahuisRadio/web/gok-cheque.webp", alt: "The winners with the Gok van je leven cheque", caption: "The winners, with the cheque I designed" } },
+      { type: "split", ratio: "16 / 9", items: [
+        { src: "Assets/Projecten/MediahuisRadio/web/muziekquiz-logo.webp", alt: "De Beste Muziekquiz Allertijden logo", caption: "The logo" },
+        { src: "Assets/Projecten/MediahuisRadio/web/muziekquiz-top3000.webp", alt: "De Beste Muziekquiz Allertijden Top 3000 edition", caption: "Top 3000 edition" }
+      ], caption: "Radio Veronica — De Beste Muziekquiz Allertijden" },
       { type: "section", heading: "Branded content: from idea to pitch", text: [
         "Next to design, I come up with branded content concepts: ways to weave an advertiser's message into the radio, so it feels like content instead of an ad. I pitch them to station directors, marketing directors and account managers. They range from a quick, sharp radio game for the release of <em>Scream 7</em> on SLAM! (“Win or Die”) to large productions like Jumbo × 100% NL's <em>Het Super Kerstdiner</em>: a full Christmas dinner for 100 listeners inside a Jumbo supermarket. [Check: which parts of each concept were yours?]"
       ]},
-      { type: "split", ratio: "16 / 10", items: [
-        { label: "Concept board — Scream 7 “Win or Die”" }, { label: "Concept board — Jumbo Het Super Kerstdiner" }
-      ]},
-      { type: "section", heading: "Making the system better", text: [
-        "I'm building an AI-assisted workflow that takes a finished key visual and adapts it to every format, so the designer's time goes to the idea, not the resizing. And I'm redesigning how briefs come in, how work gets checked, and when each team joins."
-      ]},
-      { type: "breakdown", item: { label: "Optional — the AI format workflow as a simple diagram (key visual → all formats)" } }
+      { type: "split", items: [
+        { src: "Assets/Projecten/MediahuisRadio/web/best-best-man.webp", alt: "SLAM! concept board The Best Best Man", caption: "SLAM! — The Best Best Man" },
+        { src: "Assets/Projecten/MediahuisRadio/web/jumbo-kerstdiner.webp", alt: "Jumbo x 100% NL Het Super Kerstdiner concept board", caption: "Jumbo × 100% NL — Het Super Kerstdiner" }
+      ]}
     ]
   },
   "domibo": {
