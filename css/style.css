@@ -2753,3 +2753,20 @@ mark.fill-in { background: rgba(255, 196, 0, 0.28); color: inherit; border-radiu
 .resume-link { display: inline-block; margin-top: 4px; font-size: 14px; font-weight: 500; color: var(--color-text-on-dark); text-decoration: underline; text-underline-offset: 3px; }
 .resume-desc a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
 .about-me-copy p { margin: 0; } /* spacing comes from the grid gap only */
+
+/* Client logos (homepage "Worked with", About "Clients"): white PNGs shown in one quiet grey */
+.client-logos { list-style: none; margin: 8px 0 0; padding: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 14px 32px; }
+.client-logos img { display: block; height: 30px; width: auto; max-width: 130px; object-fit: contain; filter: brightness(0); opacity: 0.55; transition: opacity 0.2s ease; }
+.client-logos li:hover img { opacity: 0.9; }
+.client-logos .client-name { font-size: 14px; font-weight: 600; color: var(--color-text-tertiary); white-space: nowrap; }
+.worked-with .client-logos { margin-top: 12px; }
+.about-facts .client-logos img { height: 26px; }
+@media (max-width: 600px) { .client-logos { gap: 12px 22px; } .client-logos img { height: 24px; } }
+/* Optical sizing: square and tall marks need more height to look as big as wide wordmarks */
+.client-logos img.logo-wide { height: 34px; }
+.client-logos img.logo-square { height: 46px; }
+.client-logos img.logo-tall { height: 54px; }
+.about-facts .client-logos img.logo-wide { height: 30px; }
+.about-facts .client-logos img.logo-square { height: 40px; }
+.about-facts .client-logos img.logo-tall { height: 46px; }
+@media (max-width: 600px) { .client-logos img.logo-wide { height: 28px; } .client-logos img.logo-square { height: 36px; } .client-logos img.logo-tall { height: 42px; } }
