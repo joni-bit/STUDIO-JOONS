@@ -44,7 +44,7 @@
           Selected Work
         </h1>
         <p class="section-body-lead" style="font-size: 17px; line-height: 1.52; color: var(--color-text-secondary); max-width: 620px; margin: 0;">
-          A showcase of visual branding, digital interface architecture, and campaign narratives crafted across independent and broadcast media.
+          Campaigns, identities and motion for broadcast and hospitality brands.
         </p>
       </header>
 
@@ -52,9 +52,9 @@
       <nav class="filter-bar-wrapper fade-in" aria-label="Project filter tabs">
         <div class="segmented-control" role="tablist">
           <button class="segment-tab active" role="tab" aria-selected="true" data-filter="all" onclick="filterProjects('all', this)">All Works</button>
-          <button class="segment-tab" role="tab" aria-selected="false" data-filter="identity" onclick="filterProjects('identity', this)">Visual Identity</button>
-          <button class="segment-tab" role="tab" aria-selected="false" data-filter="product" onclick="filterProjects('product', this)">UX / UI</button>
           <button class="segment-tab" role="tab" aria-selected="false" data-filter="campaign" onclick="filterProjects('campaign', this)">Campaigns</button>
+          <button class="segment-tab" role="tab" aria-selected="false" data-filter="identity" onclick="filterProjects('identity', this)">Identity</button>
+          <button class="segment-tab" role="tab" aria-selected="false" data-filter="motion" onclick="filterProjects('motion', this)">Motion</button>
           <!-- loading and empty state simulation buttons are commented out for production 
           <button class="segment-tab" role="tab" aria-selected="false" data-filter="loading" onclick="simulateState('loading', this)">Simulate Loading</button>
           <button class="segment-tab" role="tab" aria-selected="false" data-filter="empty" onclick="simulateState('empty', this)">Simulate Empty</button> -->
@@ -166,7 +166,7 @@
         return `
         <a href="project.html?id=${encodeURIComponent(id)}" class="apple-gradient-card project-card-item fade-in" data-category="${p.category}"${i ? ` style="transition-delay: ${Math.min(i, 4) * 0.15}s;"` : ''} aria-label="View ${title} project">
           <div class="card-media-backdrop">
-            <img src="${c.image || p.heroImage}" alt="${title} preview" loading="lazy" />
+            ${(c.image || p.heroImage) ? `<img src="${c.image || p.heroImage}" alt="${title} preview" loading="lazy" />` : `<div class="card-placeholder">Card image coming soon</div>`}
           </div>
           <div class="card-gradient-scrim"></div>
           <div class="card-gradient-tint tint-${c.tint || 'blue'}"></div>

@@ -1,98 +1,481 @@
 /*
   PROJECTS — the one place to manage your portfolio.
 
-  status:   "live"    = big card on the Work page (Selected Work)
-            "archive" = small line in the Archive list at the bottom of the Work page
-            "draft"   = hidden. Preview privately with:
+  status:   "live"     = big card on the Work page (Selected Work)
+            "archive"  = small line in the Archive list at the bottom of the Work page
+            "unlisted" = page works if you link to it (e.g. from About), but isn't listed
+            "draft"    = hidden. Preview privately with:
                       project.html?id=PROJECT-ID&preview=1
-  category: "identity" | "product" | "campaign"  (filter tabs)
-  card:     what the card on the Projects page shows
+  category: "campaign" | "identity" | "motion"  (filter tabs on the Work page)
+  card:     what the card on the Work page shows
             (tint: "blue" | "cyan" | "orange")
+  highlight (optional): shows the project on the homepage.
+            order:  position on the homepage (1 = first)
+            stage:  "peek"   = one image in the middle, a second peeking left and right
+                    "framed" = one image in a frame
+            Remove the highlight block to take a project off the homepage.
+  facts:    the fact strip under the title: [["Client", "..."], ["Year", "..."], ...]
+  hero:     { src: "path" } or { label: "what goes here" } for a placeholder
+  hook:     the big line under the hero
+  blocks:   the case, top to bottom. Text: { type: "section", heading, text: [...] }
+            Images (layout blocks from the visual plan):
+              hero / breakdown / canvas  one wide image      { item: {...} }
+              split     2 side by side                       { items: [a, b] }
+              triptych  3 in a row                           { items: [a, b, c], ratio: "4 / 5" or "9 / 16" }
+              grid      3 or 4 columns of squares            { items: [...], columns: 3 }
+              inset     1 large + 1 small                    { items: [large, small] }
+              loops     videos, 2 per row                    { items: [...] }
+            Each image: { src, alt, caption }. No src yet? Use { label: "what goes here" }
+            and a grey placeholder shows instead.
+  Text in [square brackets] is shown highlighted: a fact still to fill in.
   The order of projects here is the order on the Work page.
 */
 const projectsData = {
+  "stop520": {
+    title: "(S)Top 520",
+    status: "live",
+    category: "campaign",
+    card: {
+      title: "Radio Veronica × War Child — (S)Top 520",
+      eyebrow: "Campaigns",
+      image: "Assets/Projecten/Stop520/web/card.webp",
+      description: "Turning a radio studio into a child's colouring page, for 520 million children growing up with war.",
+      tint: "orange"
+    },
+    highlight: {
+      order: 1,
+      eyebrow: "Radio Veronica × War Child",
+      headline: "A colouring page <span class=\"accent-highlight\">the size of a radio studio</span>.",
+      button: "Explore (S)Top 520",
+      stage: "framed",
+      images: ["Assets/Projecten/Stop520/web/card.webp"]
+    },
+    year: "2026",
+    facts: [
+      ["Client", "Radio Veronica × War Child"],
+      ["Year", "2026"],
+      ["Location", "Utrecht Centraal"],
+      ["My role", "Visual concept and design (campaign concept by the Veronica team)"],
+      ["Deliverables", "Studio exterior, campaign logo, key visual, colouring pages, social templates, ads, print, car wrap"]
+    ],
+    hero: { src: "Assets/Projecten/Stop520/web/studio-station-hero.webp", alt: "The (S)Top 520 studio at Utrecht Centraal, travellers walking past", caption: "Photo: Emma Pot" },
+    hook: "A colouring page the size of a radio studio.",
+    blocks: [
+      { type: "section", heading: "The campaign", text: [
+        "520 million children worldwide grow up with the effects of war. For a week in March, Radio Veronica and War Child asked listeners for 520 songs that give hope. Inspired by John Lennon and Yoko Ono's Bed-In, the DJs broadcast live for five days from a giant bed in the middle of Utrecht Centraal: a symbol of every child's right to a safe place to sleep."
+      ]},
+      { type: "section", heading: "The brief", text: [
+        "Design the outside of the studio. The only reference was what other brands had built on the same spot, and one hard constraint: no full wrap, because the DJs needed to see out."
+      ]},
+      { type: "section", heading: "The idea", text: [
+        "Where does a child feel safe? In their own bedroom. So I drew the studio as a colouring page: a kid's bedroom where they make their own radio. The open black-and-white line work kept the windows clear for the DJs, and it turned the studio into something everyone recognises from childhood: innocent, hopeful and unfinished, waiting to be filled in."
+      ]},
+      { type: "split", items: [
+        { src: "Assets/Projecten/Stop520/web/colouring-pages.webp", alt: "The two (S)Top 520 colouring pages", caption: "The drawing — colouring pages" },
+        { src: "Assets/Projecten/Stop520/web/studio-wall.webp", alt: "The coloured-in studio wall", caption: "The studio wall. Photo: Emma Pot" }
+      ]},
+      { type: "hero", item: { src: "Assets/Projecten/Stop520/web/line-work.webp", alt: "Close-up of the coloured-in line work", caption: "Line work up close. Photo: Emma Pot" } },
+      { type: "section", heading: "The system", text: [
+        "From that drawing I built the whole campaign identity: the (S)Top 520 logo, the key visual, social templates and posts, ads and print. And real colouring pages to take home."
+      ]},
+      { type: "canvas", item: { src: "Assets/Projecten/Stop520/web/rollout-canvas.webp", alt: "(S)Top 520 roll-out: key visual, studio, social, car wrap and coloured pages", caption: "Key visual, studio, social and the Bed Boys car wrap" } },
+      { type: "section", heading: "What happened", text: [
+        "Kids came to the station with their parents just to get a colouring page. The studio drew crowds of travellers all week, De Telegraaf covered the campaign several times, and both Radio Veronica and War Child were beyond happy with how it looked. [Optional: “The list closed with John Lennon's Imagine at number one.”]"
+      ]},
+      { type: "split", items: [
+        { src: "Assets/Projecten/Stop520/web/table-of-pages.webp", alt: "Coloured-in pages from kids", caption: "Coloured-in pages. Photo: Jeroen Zondag" },
+        { src: "Assets/Projecten/Stop520/web/wall-of-pages.webp", alt: "A wall full of coloured-in pages in the studio", caption: "The studio wall filling up. Photo: Lars Goosselink" }
+      ]},
+      { type: "hero", item: { src: "Assets/Projecten/Stop520/web/djs-live.webp", alt: "The DJs live in the studio, with the Instagram story next to it", caption: "Live on air, and on Instagram. Photo: Emma Pot" } },
+      { type: "inset", items: [
+        { src: "Assets/Projecten/Stop520/web/station-hall-wide.webp", alt: "The studio in the station hall", caption: "The studio in Utrecht Centraal. Photo: Emma Pot" },
+        { label: "Telegraaf clipping, small" }
+      ]}
+    ]
+  },
+  "vriendenweekend": {
+    title: "Het Nationale Vriendenweekend",
+    status: "live",
+    category: "campaign",
+    card: {
+      title: "Radio Veronica — Het Nationale Vriendenweekend",
+      eyebrow: "Campaigns",
+      image: "Assets/Projecten/Vriendenweekend/web/card.webp",
+      description: "Claiming one weekend for every friend group in the country. Logo approved at first pitch.",
+      tint: "blue"
+    },
+    highlight: {
+      order: 2,
+      eyebrow: "Radio Veronica",
+      headline: "One weekend for <span class=\"accent-highlight\">every friend group</span> in the country.",
+      button: "Explore Vriendenweekend",
+      stage: "framed",
+      images: ["Assets/Projecten/Vriendenweekend/web/card.webp"]
+    },
+    year: "2026",
+    facts: [
+      ["Client", "Radio Veronica"],
+      ["Year", "2026"],
+      ["My role", "Sole designer, visual concept and design (campaign concept by the Veronica team)"],
+      ["Deliverables", "Logo, campaign identity, print, display, social, studio screens, web, branded beer and champagne bottles"]
+    ],
+    hero: { src: "Assets/Projecten/Vriendenweekend/web/logo-hero.webp", alt: "Het Nationale Vriendenweekend logo on Veronica blue" },
+    hook: "One weekend for every friend group in the country.",
+    blocks: [
+      { type: "section", heading: "The campaign", text: [
+        "Everyone knows the group chat: eight friends, three date polls, six months later still nothing planned. Radio Veronica decided to fix it for the whole country by claiming the first weekend of November as <em>Het Nationale Vriendenweekend</em>. In the first edition, ten friend groups won a weekend at EuroParcs Hindeloopen with Veronica's DJs, a barbecue, a party and live radio from the park."
+      ]},
+      { type: "section", heading: "The brief", text: [
+        "Carte blanche: make the weekend feel like a national tradition from day one."
+      ]},
+      { type: "section", heading: "The idea", text: [
+        "Three holiday houses huddled together under a golden ribbon, like an official seal: part holiday-park sign, part national holiday. I explored four directions, each built on a different side of a weekend away: the house, the roof over everyone, the packed weekend bag and the group itself. The one we chose got the strongest reaction, and the logo was approved at the first pitch with no changes."
+      ]},
+      { type: "grid", columns: 4, items: [
+        { src: "Assets/Projecten/Vriendenweekend/web/direction-1.webp", alt: "Chosen direction: houses under a golden ribbon" },
+        { src: "Assets/Projecten/Vriendenweekend/web/direction-2.webp", alt: "Direction: one roof over everyone" },
+        { src: "Assets/Projecten/Vriendenweekend/web/direction-3.webp", alt: "Direction: the weekend bag" },
+        { src: "Assets/Projecten/Vriendenweekend/web/direction-4.webp", alt: "Direction: the friend group" }
+      ], caption: "Four directions — the chosen one first" },
+      { type: "section", heading: "The roll-out", text: [
+        "From one logo to everything the weekend touched: print, display and social campaigns, studio screens, web, and branded beer and champagne bottles for the weekend itself."
+      ]},
+      { type: "canvas", item: { src: "Assets/Projecten/Vriendenweekend/web/rollout-canvas.webp", alt: "The weekend in photos: studio, house, bingo, bottles and friends", caption: "The weekend itself. Photos: Jeroen Zondag" } },
+      { type: "split", items: [
+        { src: "Assets/Projecten/Vriendenweekend/web/bingo-table.webp", alt: "Bingo board, welcome card, coaster and cava on the table", caption: "Bingo board, welcome card and coaster" },
+        { src: "Assets/Projecten/Vriendenweekend/web/signs-easels.webp", alt: "Pitch & Putt and Escape signs on easels", caption: "Activity signs" }
+      ]},
+      { type: "split", items: [
+        { src: "Assets/Projecten/Vriendenweekend/web/beer-bottle.webp", alt: "Vriendenweekend beer bottle", caption: "Beer" },
+        { src: "Assets/Projecten/Vriendenweekend/web/cava-bottle.webp", alt: "Vriendenweekend cava bottle", caption: "Cava" }
+      ]},
+      { type: "hero", item: { src: "Assets/Projecten/Vriendenweekend/web/friends-bingo.webp", alt: "A friend group with their completed bingo board", caption: "A full bingo card. Photo: Jeroen Zondag" } },
+      { type: "hero", item: { src: "Assets/Projecten/Vriendenweekend/web/drone-house.webp", alt: "Drone shot of everyone in front of the branded house by the water", caption: "Everyone at the Veronica house. Photo: Jeroen Zondag" } }
+    ]
+  },
+  "mediahuis-radio": {
+    title: "Brand in daily use",
+    status: "live",
+    category: "campaign",
+    card: {
+      title: "Mediahuis Radio — Brand in daily use",
+      eyebrow: "Campaigns",
+      image: "Assets/Projecten/MediahuisRadio/web/mhr-illustration.webp",
+      description: "Keeping Radio Veronica, SLAM! and 100% NL recognisable everywhere, and dreaming up the branded content around them.",
+      tint: "cyan"
+    },
+    year: "2025",
+    facts: [
+      ["Brands", "Radio Veronica, SLAM!, 100% NL"],
+      ["Since", "November 2025"],
+      ["Role", "Junior Creative Designer & creative concepter, in-house"],
+      ["Output", "Studio screens, print up to A0, 9:16 digital, social ads, HTML5 banners, merch and prizes"]
+    ],
+    hero: { src: "Assets/Projecten/MediahuisRadio/web/mhr-illustration.webp", alt: "Mediahuis Radio illustration: listeners of SLAM!, 100% NL, Sublime and Radio Veronica", caption: "Mediahuis Radio — illustrated by me" },
+    hook: "Not every brief is a billboard.",
+    blocks: [
+      { type: "section", text: [
+        "Most days I'm making three very different radio brands work in a hundred small places: studio screens (static and animated), A0 posters, 9:16 screens, social ads, HTML5 banners, and the prizes listeners win, from mugs to greeting cards to socks. The job is to keep every piece unmistakably Veronica, SLAM! or 100% NL, and still make it feel made for its moment."
+      ]},
+      { type: "grid", columns: 4, items: [
+        { src: "Assets/Projecten/MediahuisRadio/web/veronica-muziekquiz.webp", alt: "Radio Veronica De Beste Muziekquiz Allertijden" },
+        { src: "Assets/Projecten/MediahuisRadio/web/veronica-cafe.webp", alt: "Het Radio Veronica Café social post" },
+        { src: "Assets/Projecten/MediahuisRadio/web/veronica-efteling.webp", alt: "Radio Veronica x Efteling Love at First Ride" },
+        { src: "Assets/Projecten/MediahuisRadio/web/veronica-fluisteraar.webp", alt: "Radio Veronica De Fluisteraar" }
+      ], caption: "Radio Veronica" },
+      { type: "grid", columns: 4, items: [
+        { src: "Assets/Projecten/MediahuisRadio/web/slam-summer500.webp", alt: "SLAM! Summer 500" },
+        { src: "Assets/Projecten/MediahuisRadio/web/slam-alaafondshow.webp", alt: "SLAM! Alaafondshow" },
+        { src: "Assets/Projecten/MediahuisRadio/web/slam-gok-winners.webp", alt: "SLAM! Gok van je leven winners" },
+        { src: "Assets/Projecten/MediahuisRadio/web/slam-festivalmaand.webp", alt: "SLAM! Festivalmaand" }
+      ], caption: "SLAM!" },
+      { type: "grid", columns: 4, items: [
+        { src: "Assets/Projecten/MediahuisRadio/web/100nl-top1000.webp", alt: "100% NL Top 1000" },
+        { src: "Assets/Projecten/MediahuisRadio/web/100nl-sinterklaas.webp", alt: "100% NL Sinterklaas" },
+        { src: "Assets/Projecten/MediahuisRadio/web/100nl-somertijd.webp", alt: "100% NL Somertijd BBQ cards" },
+        { src: "Assets/Projecten/MediahuisRadio/web/100nl-tijdmachine.webp", alt: "100% NL Tijdmachine" }
+      ], caption: "100% NL" },
+      { type: "section", heading: "Living a new identity", text: [
+        "I started just as Radio Veronica rolled out a new visual identity. I didn't write the guidelines, but I helped bring them to life: updating visuals across every channel, keeping new work in line, and building each new campaign on top of the brand guide. On photoshoots I was second designer on set, checking that every shot fitted the new direction and that we caught the energy of each show."
+      ]},
+      { type: "section", heading: "Highlights", list: [
+        "<strong>Radio Veronica — Het Radio Veronica Café:</strong> [one line — confirm which parts of the Café identity you designed].",
+        "<strong>100% NL — Tijdmachine:</strong> [one line].",
+        "<strong>SLAM! — Festivalmaand:</strong> [one line].",
+        "<strong>SLAM! — Summer 500:</strong> [one line].",
+        "<strong>SLAM! — Gok van je leven:</strong> my first big campaign at Mediahuis, as the sole designer.",
+        "<strong>Radio Veronica — De Beste Muziekquiz Allertijden:</strong> logo and digital campaign for the Top 3000 edition."
+      ]},
+      { type: "split", items: [
+        { src: "Assets/Projecten/MediahuisRadio/web/cafe-key-visual.webp", alt: "Het Radio Veronica Café key visual" },
+        { src: "Assets/Projecten/MediahuisRadio/web/cafe-coaster.webp", alt: "Het Radio Veronica Café coaster in the bar", caption: "In the bar. Photo: Bram Rietveld" }
+      ], caption: "Radio Veronica — Het Radio Veronica Café" },
+      { type: "hero", item: { src: "Assets/Projecten/MediahuisRadio/web/cafe-studio.webp", alt: "DJ live in the Café studio, in front of the shield", caption: "Live from the Café. Photo: Bram Rietveld" } },
+      { type: "hero", item: { src: "Assets/Projecten/MediahuisRadio/web/tijdmachine-concepts.webp", alt: "Four logo concepts for 100% NL Tijdmachine", caption: "Four logo concepts" } },
+      { type: "hero", item: { src: "Assets/Projecten/MediahuisRadio/web/tijdmachine-chosen.webp", alt: "The chosen Tijdmachine logo on orange", caption: "The chosen logo" } },
+      { type: "triptych", ratio: "9 / 16", items: [
+        { src: "Assets/Projecten/MediahuisRadio/web/tijdmachine-80.webp", alt: "Tijdmachine studio screen Jaren 80" },
+        { src: "Assets/Projecten/MediahuisRadio/web/tijdmachine-90.webp", alt: "Tijdmachine studio screen Jaren 90" },
+        { src: "Assets/Projecten/MediahuisRadio/web/tijdmachine-00.webp", alt: "Tijdmachine studio screen Jaren 00" }
+      ], caption: "100% NL — Tijdmachine: same frame, different decade" },
+      { type: "grid", columns: 4, items: [
+        { src: "Assets/Projecten/MediahuisRadio/web/festivalmaand-wip1.webp", alt: "Festivalmaand work in progress 1" },
+        { src: "Assets/Projecten/MediahuisRadio/web/festivalmaand-wip3.webp", alt: "Festivalmaand work in progress 3" },
+        { src: "Assets/Projecten/MediahuisRadio/web/festivalmaand-wip5.webp", alt: "Festivalmaand work in progress 5" },
+        { src: "Assets/Projecten/MediahuisRadio/web/festivalmaand-wip8.webp", alt: "Festivalmaand work in progress 8" }
+      ], caption: "SLAM! — Festivalmaand: the road to the logo" },
+      { type: "split", items: [
+        { src: "Assets/Projecten/MediahuisRadio/web/festivalmaand-wristband.webp", alt: "Festivalmaand wristband direction", caption: "The wristband direction" },
+        { src: "Assets/Projecten/MediahuisRadio/web/festivalmaand-story.webp", alt: "Final Festivalmaand 9:16 screen", caption: "Final — 9:16" }
+      ]},
+      { type: "triptych", ratio: "16 / 9", items: [
+        { src: "Assets/Projecten/MediahuisRadio/web/summer500-v1.webp", alt: "Summer 500 version 1" },
+        { src: "Assets/Projecten/MediahuisRadio/web/summer500-v3.webp", alt: "Summer 500 version 3" },
+        { src: "Assets/Projecten/MediahuisRadio/web/summer500-v4.webp", alt: "Summer 500 version 4" }
+      ], caption: "SLAM! — Summer 500: earlier versions" },
+      { type: "hero", item: { src: "Assets/Projecten/MediahuisRadio/web/summer500-final.webp", alt: "Final Summer 500 visual", caption: "Final version" } },
+      { type: "split", items: [
+        { src: "Assets/Projecten/MediahuisRadio/web/gok-post.webp", alt: "Gok van je leven social post", caption: "Social post" },
+        { src: "Assets/Projecten/MediahuisRadio/web/gok-story.webp", alt: "Gok van je leven story: win a trip to Las Vegas", caption: "Story" }
+      ], caption: "SLAM! — Gok van je leven" },
+      { type: "hero", item: { src: "Assets/Projecten/MediahuisRadio/web/gok-cheque.webp", alt: "The winners with the Gok van je leven cheque", caption: "The winners, with the cheque I designed" } },
+      { type: "split", ratio: "16 / 9", items: [
+        { src: "Assets/Projecten/MediahuisRadio/web/muziekquiz-logo.webp", alt: "De Beste Muziekquiz Allertijden logo", caption: "The logo" },
+        { src: "Assets/Projecten/MediahuisRadio/web/muziekquiz-top3000.webp", alt: "De Beste Muziekquiz Allertijden Top 3000 edition", caption: "Top 3000 edition" }
+      ], caption: "Radio Veronica — De Beste Muziekquiz Allertijden" },
+      { type: "section", heading: "Branded content: from idea to pitch", text: [
+        "Next to design, I come up with branded content concepts: ways to weave an advertiser's message into the radio, so it feels like content instead of an ad. I pitch them to station directors, marketing directors and account managers. They range from radio games to large productions like Jumbo × 100% NL's <em>Het Super Kerstdiner</em>: a full Christmas dinner for 100 listeners inside a Jumbo supermarket.",
+        "One of my favourites is <em>The Best Best Man</em> for SLAM! × OFM. In the morning show, Anoûl & Marijn go looking for the most loyal best man in the country. Every day they call a groom and his best man, and both have to pick up with “Ja, ik wil”. Three best men make it to the final, where they anonymously hold up a sign for every dare: would you shave your head for your groom? Get a tattoo? Drink beer from a shoe? Whoever goes furthest wins a bachelor party and an OFM wedding suit for the groom. The twist: none of the dares ever have to happen. It was only ever about how far you'd go."
+      ]},
+      { type: "split", items: [
+        { src: "Assets/Projecten/MediahuisRadio/web/best-best-man.webp", alt: "SLAM! concept board The Best Best Man", caption: "SLAM! × OFM — The Best Best Man (concept)" },
+        { src: "Assets/Projecten/MediahuisRadio/web/jumbo-kerstdiner.webp", alt: "Jumbo x 100% NL Het Super Kerstdiner concept board", caption: "Jumbo × 100% NL — Het Super Kerstdiner" }
+      ]}
+    ]
+  },
   "domibo": {
     title: "DoMiBo",
     status: "live",
     category: "identity",
     card: {
-      eyebrow: "Visual Identity",
+      title: "Riot Restobar — DoMiBo",
+      eyebrow: "Identity",
       image: "Assets/Projecten/DoMiBo/DoMiBo_1200x800.webp",
-      description: "Bold pin-up character branding and activation assets for recurring after-work gatherings.",
+      description: "Turning a potato into a pin-up. My first solo identity, for a monthly after-work event.",
       tint: "blue"
     },
-    heroImage: "Assets/Projecten/DoMiBo/DoMiBo_1200x800.webp",
-    intro: "<span class='accent-text'>Visual identity</span> for a returning \"after work drinks\" <span class='accent-text'>event</span>.<br>Thursday is the new friday!",
+    highlight: {
+      order: 3,
+      eyebrow: "Riot Restobar",
+      headline: "Turning a potato into a pin-up. <span class=\"accent-highlight\">Thursday is the new Friday!</span>",
+      button: "Explore DoMiBo",
+      stage: "peek",
+      stageClass: "domibo-stage",
+      images: ["Assets/Projecten/DoMiBo/web/story-streetcart.webp", "Assets/Projecten/DoMiBo/web/story-terrace.webp"]
+    },
+    year: "2024",
+    facts: [
+      ["Client", "Riot Restobar (Conscious Hotels)"],
+      ["Year", "2024"],
+      ["My role", "Sole designer and illustrator, my first solo project"],
+      ["Deliverables", "Identity, character illustration, posters, social, printed invitations"]
+    ],
+    hero: { label: "Hero — Tate alone, large, on cream (export at 2400 px)", ratio: "16 / 10" },
+    hook: "Thursday is the new Friday.",
+    blocks: [
+      { type: "section", heading: "The brief", text: [
+        "Riot wanted its monthly after-work drinks to become a fixed date for the offices around it. The look had to stand out on the street and on Instagram, and refresh every month without starting over."
+      ]},
+      { type: "section", heading: "The idea", text: [
+        "Riot's story started with potatoes, so I made one the star: Tate the Potato, a retro pin-up with more confidence than most of us. Drawn in the style of vintage martini-girl illustration, she gives the event a face you recognise from across the room."
+      ]},
+      { type: "triptych", items: [
+        { src: "Assets/Projecten/DoMiBo/web/poster-streetcart.webp", alt: "DoMiBo poster: Tate on a Dutch street cart" },
+        { src: "Assets/Projecten/DoMiBo/web/poster-beachchair.webp", alt: "DoMiBo poster: Tate in a beach chair" },
+        { src: "Assets/Projecten/DoMiBo/web/poster-gulpener.webp", alt: "DoMiBo poster: Tate in a Gulpener glass" }
+      ], caption: "Three editions: street cart, beach chair, sponsor" },
+      { type: "section", heading: "The system", text: [
+        "Every edition shares one frame: the brushed DoMiBo wordmark, a cream panel, the purple wave with date and address, and Riot's logo. Only Tate's scene changes, from a Dutch street cart to a beach chair, often with Riot's signature drink or the sponsors (Jägermeister, Gulpener) drawn in. Fast to produce, instantly recognisable."
+      ]},
+      { type: "breakdown", item: { label: "Fixed vs changing — one poster with labels: wordmark, cream panel, purple wave, Riot logo vs Tate's scene (to make, start from Guidelines 3)" } },
+      { type: "section", heading: "Roll-out", text: [
+        "Posters, Instagram posts and stories, and printed invitations hand-delivered to neighbouring offices."
+      ]},
+      { type: "triptych", ratio: "9 / 16", items: [
+        { src: "Assets/Projecten/DoMiBo/web/story-glass.webp", alt: "DoMiBo Instagram story: giant glass" },
+        { src: "Assets/Projecten/DoMiBo/web/story-terrace.webp", alt: "DoMiBo Instagram story: terrace" },
+        { src: "Assets/Projecten/DoMiBo/web/story-streetcart.webp", alt: "DoMiBo Instagram story: street cart" }
+      ], caption: "Instagram stories" },
+      { type: "inset", items: [
+        { src: "Assets/Projecten/DoMiBo/web/invitation.webp", alt: "DoMiBo printed invitation", caption: "Printed invitation [replace with a photo of a real one]" },
+        { label: "Poster on a wall" }
+      ]}
+    ]
+  },
+  "patches": {
+    title: "Patches & Studio Joons",
+    status: "live",
+    category: "identity",
+    card: {
+      title: "Patches & Studio Joons",
+      eyebrow: "Identity",
+      image: "Assets/Projecten/Patches/web/freakandel-jacket.webp",
+      description: "Designing carnaval patches for Familie Kesbeke and others, and selling my own.",
+      tint: "orange"
+    },
+    year: "2025",
+    facts: [
+      ["Clients", "Familie Kesbeke, Bakkerijt, SKD Kozijnen, 100% NL"],
+      ["Since", "2025"],
+      ["Role", "Freelance designer, plus my own label"],
+      ["Deliverables", "Embroidered carnaval patches"]
+    ],
+    hero: { src: "Assets/Projecten/Patches/web/jacket-combi.webp", alt: "Studio Joons patches on a navy jacket sleeve", caption: "[Replace with produced client patches on a jacket]" },
+    hook: "Small canvas, big character.",
+    blocks: [
+      { type: "section", heading: "How it started", text: [
+        "A colleague from my graduation internship runs a patch company and asked me to design for his clients. Carnaval patches are tiny brand pieces: they need to read from across a packed café, survive being embroidered, and make people laugh."
+      ]},
+      { type: "section", heading: "How I work", text: [
+        "Some clients arrive with a clear idea, some with nothing at all. I always start with a conversation about what they want and the do's and don'ts, then show 3–5 concepts. We talk through what works, and I refine from there. For Familie Kesbeke I designed four patches, two of which went into production: pickles with attitude, in their own Brabant dialect (“Heé Slappe!”, “Kiek nie zo zuur”)."
+      ]},
+      { type: "breakdown", item: { label: "Kesbeke concept sheet — 4 designs, the 2 produced ones marked (to make)" } },
+      { type: "grid", columns: 3, items: [
+        { label: "Kesbeke — Heé Slappe!" }, { label: "Kesbeke — Kiek nie zo zuur" }, { label: "Bakkerijt" },
+        { label: "SKD Kozijnen" }, { label: "100% NL" }, { label: "Produced patch" }
+      ], caption: "Produced client patches, shot from straight above" },
+      { type: "section", heading: "Studio Joons", text: [
+        "I also wanted to learn everything that happens after the design: production, pricing, selling. So I started my own small label. The first patches are fried snacks with a wink at <em>Ex on the Beach</em> (FREAKandel, BitterB00Bs), sold at carnaval in Brabant and in <a href=\"shop\">the shop</a>."
+      ]},
+      { type: "split", ratio: "1 / 1", items: [
+        { src: "Assets/Projecten/Patches/web/freakandel-design.webp", alt: "FREAKandel patch design", caption: "FREAKandel — design" },
+        { src: "Assets/Projecten/Patches/web/freakandel-jacket.webp", alt: "FREAKandel patch on a jacket", caption: "FREAKandel — the real patch" }
+      ]},
+      { type: "split", ratio: "1 / 1", items: [
+        { src: "Assets/Projecten/Patches/web/bitterboobs-design.webp", alt: "BitterB00Bs patch design", caption: "BitterB00Bs — design" },
+        { src: "Assets/Projecten/Patches/web/bitterboobs-jacket.webp", alt: "BitterB00Bs patch on a jacket", caption: "BitterB00Bs — the real patch" }
+      ]}
+    ]
+  },
+  "motion": {
+    title: "Motion & Play",
+    status: "live",
+    category: "motion",
+    card: {
+      title: "Motion & Play",
+      eyebrow: "Motion",
+      description: "Logos that move, HTML5 banners, and a hand-drawn Christmas card every year.",
+      tint: "cyan"
+    },
+    year: "2026",
+    facts: [],
+    hero: { src: "Assets/Projecten/Stop520/web/stop520-logo-animation.mp4", caption: "Radio Veronica × War Child — (S)Top 520 logo animation" },
+    hook: "More and more of my work moves. To me, motion is a puzzle: how do you make a brand feel alive in five seconds?",
+    blocks: [
+      { type: "loops", items: [
+        { label: "Radio Veronica — logo animation, studio screen", caption: "Radio Veronica — logo animation, studio screen" },
+        { label: "SLAM! — logo animation, studio screen", caption: "SLAM! — logo animation, studio screen" }
+      ]},
+      { type: "hero", ratio: "32 / 9", item: { label: "SLAM! — triple digital screen", caption: "SLAM! — triple digital screen" } },
+      { type: "loops", items: [
+        { label: "100% NL — Sinterklaas animation, social", caption: "100% NL — Sinterklaas animation, social", ratio: "9 / 16" },
+        { label: "Radio Veronica — 80s animation", caption: "Radio Veronica — 80s animation, [format]", ratio: "9 / 16" }
+      ]},
+      { type: "canvas", item: { label: "HTML5 banner set — all sizes playing together (screen-record the Veronica Top 1000 van de 90s set)" }, caption: "SLAM! — HTML5 banner set, [x] sizes" },
+      { type: "section", heading: "Play (personal work)", text: [
+        "Every year I draw and animate my own Christmas card. The one after a December trip to New York starred a row of nutcrackers."
+      ]},
+      { type: "loops", items: [
+        { label: "Christmas card — New York nutcrackers", caption: "Personal — Christmas card [year]: New York nutcrackers, illustrated and animated", ratio: "4 / 5" },
+        { label: "Next year's card", ratio: "4 / 5" }
+      ]}
+    ]
+  },
+  "dqdb": {
+    title: "Drag Queen Disco Bingo",
+    status: "archive",
+    category: "identity",
+    card: {
+      title: "Bar Kantoor — Drag Queen Disco Bingo",
+      eyebrow: "Identity",
+      image: "Assets/Projecten/DQDB/DQDB_1200_800.webp",
+      description: "High-contrast, disco-infused identity designed for dynamic rotating performer line-ups.",
+      tint: "orange"
+    },
+    role: "Visual Identity", 
+    client: "Conscious Hotels", 
+    year: "2024",
+    heroImage: "Assets/Projecten/DQDB/DQDB_1200_800_opt.webp", 
+    intro: "<span class='accent-text'>Visual identity</span> for a reoccurring <span class='accent-text'>Drag Queen Bingo event</span> at Barkantoor.<br><br><span style='font-size: 1rem; font-weight: normal;'>During my internship at Conscious Hotels, I had the exciting opportunity to work on branding for Drag Queen Disco Bingo (DQDB), a vibrant event introduced to bring energy, inclusivity, and fun to the community.</span>",
     content: [
       {
-        type: "full-width",
-        items: [
-          {
-             src: "https://lottie.host/b7f80910-a2e9-4012-af41-557f0eb4d76f/P76pFw4sjR.json"
-          }
+        type: "two-column",
+        left: [
+          { type: "text", content: "Initially, the branding for DQDB was based on the style of the event location, Bar Kantoor, which didn't fully capture the unique, high-energy essence of the event. I saw this as an opportunity to redefine the event's look and feel to better align with its spirited and colorful atmosphere." }
+        ],
+        right: [
+          { type: "image", src: "Assets/Projecten/DQDB/DragQueen_Bingo_old.webp" }
         ]
       },
       {
         type: "two-column",
         left: [
-          { type: "text", content: "For the <span class='accent-text'>DoMiBo</span> branding, the concept revolved around a unique and unexpected muse: Tate the Potato. Inspired by Riot Restobar's playful origin story, Tate isn't just any potato; she's bold, feminine, and unapologetically herself." },
-          { type: "text", content: "In creating Tate, I wanted to design a character that embodied both charm and confidence. Tate (she/her) brings a quirky twist to DoMiBo's brand, personifying the potato as a powerful, sultry icon." },
-          { type: "text", content: "She's a potato who knows her worth and doesn't care about anyone's opinions. As a staple ingredient in beloved dishes, Tate is iconic and timeless. She's that girl: the one who's always been there, versatile, and adored." }
+          { type: "image", src: "Assets/Projecten/DQDB/DQDB_BK.webp" }
         ],
         right: [
-          { type: "image", src: "Assets/Projecten/DoMiBo/poster/Domibo_1.png" },
-          { type: "text", content: "To bring Tate to life, I drew <span class='accent-text'>inspiration</span> from vintage pin-up and martini girls, giving her a sassy, retro feel with a modern edge. Her style is sexy, funny, and provocatively confident, designed to capture attention and evoke a reaction from the audience." }
+          { type: "text", content: "As the lead designer on this project, I developed a completely new visual direction for DQDB. I focused on creating a cohesive and lively aesthetic that would appeal to a diverse audience and reflect the playful, disco-inspired vibe of the event.<br><br>I designed the logo, posters, and social media assets, ensuring that each element was bold, colorful, and eye-catching.<br><br>In addition, I crafted a comprehensive visual style guide to support consistency in the event's branding. This guide serves as a reference for future interns and designers, helping them to easily understand and continue the branding direction I established." }
         ]
       },
       {
         type: "two-column",
         left: [
-          { type: "image", src: "Assets/Projecten/DoMiBo/Moodboard.webp" },
-          { type: "text", content: "This playful yet edgy visual direction not only grabs attention but also builds a memorable connection with an audience that values self-expression and individuality. Tate's confident and provocative personality reflects the mindset of the target audience: who appreciate humor, are drawn to originality, and aren't afraid to make statements." },
-          { type: "text", content: "The visual changes with every event: with Tate still in the spotlight accompanied by Riot's signature drink an (K)Oporzotje. On the glasses I've featured the event sponsors Jägermeister and Gulpener." }
+          { type: "text", content: "To capture the essence of <span class='accent-text'>Drag Queen Disco Bingo</span>, I researched similar events and their branding strategies. Our audience was primarily young adults and the LGBTQ+ community, eager for a vibrant, unique experience.<br><br>For inspiration, I explored visuals from different LGBTQ+ events from the disco side till the brunch. I selected high-contrast neon elements paired with bold typography to bring the energy and excitement of the disco era to life.<br><br>Since DQDB needed to allow for a rotating lineup of performers, I focused on creating a bold, adaptable look that could represent the energy of the event itself rather than individual personalities.<br><br>To achieve this flexibility, I decided on a high-contrast color scheme. This ensured that each event would maintain a cohesive look without relying on specific faces.<br><br>The high-contrast palette and disco-inspired elements became the basis for my concepts, creating a bold, vibrant brand that could be adapted." }
         ],
         right: [
-          { type: "image", src: "Assets/Projecten/DoMiBo/poster/Domibo_2.png" }
-        ]
-      },
-      {
-        type: "full-width",
-        items: [
-          { type: "text", content: "Promotion for the monthly event goes from printed to social media like <span class='accent-text'>instagram posts</span> and <span class='accent-text'>stories</span>." },
-          { type: "image", src: "Assets/Projecten/DoMiBo/Mockup-insta_BG.png" }
+          { type: "text", content: "<strong>01 Moodboard</strong>" },
+          { type: "image", src: "Assets/Projecten/DQDB/Moodboard-DQDB.webp" } 
         ]
       },
       {
         type: "two-column",
         left: [
-          { type: "image", src: "Assets/Projecten/DoMiBo/Flyer_DoMiBo.webp" }
+          { type: "text", content: "<strong>02 Concepts</strong>" },
+          { type: "image", src: "Assets/Projecten/DQDB/DQDB_concepts.webp" } 
         ],
         right: [
-          { type: "text", content: "Accompanied with the social and in house advertising, we also send out <span class='accent-text'>personal invites</span> to neighbouring offices to spread the word about the event." }
+          { type: "text", content: "To ensure the visual direction aligned perfectly, I presented three design concepts and sought feedback from the team. We collectively decided that <span class='accent-text'>option 2</span> was the best fit for the event.<br><br>This concept balanced boldness and approachability without feeling overly soft or leaning too heavily into a nightlife aesthetic. This choice allowed us to create a vibrant, inclusive look that would appeal to a wide audience while still capturing the lively, disco-inspired energy of the event." }
         ]
       },
       {
         type: "full-width",
         items: [
-          { type: "text", content: "Style Guide" },
+          { type: "text", content: "<strong>03 Results</strong>" },
+          { type: "image", src: "Assets/Projecten/DQDB/Mockup-insta_DQDB.webp" }
+        ]
+      },
+      {
+        type: "full-width",
+        items: [
+          { type: "text", content: "<strong>04 Visual Style Guide</strong>" },
           { 
             type: "carousel", 
             images: [
-              "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines.png",
-              "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines2.png",
-              "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines3.png",
-              "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines4.png",
-              "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines5.png",
-              "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines6.png",
-              "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines7.webp",
-              "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines8.webp",
-              "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines9.png",
-              "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines10.png",
-              "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines11.webp",
-              "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines12.png",
-              "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines13.webp",
-              "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines14.webp",
-              "Assets/Projecten/DoMiBo/DoMiBo Guidelines/DoMiBo_Guidelines15.png"
+              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_01.webp",
+              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_02.webp",
+              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_03.webp",
+              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_04.webp",
+              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_05.webp",
+              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_06.webp",
+              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_07.webp",
+              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_08.webp",
+              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_09.webp",
+              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_10.webp",
+              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_11.jpg", 
+              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_12.webp",
+              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_13.webp",
+              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_14.webp",
+              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_15.webp",
+              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_16.webp"
             ] 
           }
         ]
@@ -101,7 +484,7 @@ const projectsData = {
   },
   "andgage": {
     title: "Andgage",
-    status: "live",
+    status: "unlisted",
     category: "product",
     card: {
       eyebrow: "UX / UI Design",
@@ -202,96 +585,6 @@ const projectsData = {
               "Assets/Projecten/Andgage/Flow 3/Flow3.2.avif",
               "Assets/Projecten/Andgage/Flow 3/Flow3.3.avif",
               "Assets/Projecten/Andgage/Flow 3/Flow3.4.avif"
-            ] 
-          }
-        ]
-      }
-    ]
-  },
-  "dqdb": {
-    title: "Drag Queen Disco Bingo",
-    status: "live",
-    category: "identity",
-    card: {
-      eyebrow: "Visual Identity",
-      image: "Assets/Projecten/DQDB/DQDB_1200_800.webp",
-      description: "High-contrast, disco-infused identity designed for dynamic rotating performer line-ups.",
-      tint: "orange"
-    },
-    role: "Visual Identity", 
-    client: "Conscious Hotels", 
-    year: "2024",
-    heroImage: "Assets/Projecten/DQDB/DQDB_1200_800_opt.webp", 
-    intro: "<span class='accent-text'>Visual identity</span> for a reoccurring <span class='accent-text'>Drag Queen Bingo event</span> at Barkantoor.<br><br><span style='font-size: 1rem; font-weight: normal;'>During my internship at Conscious Hotels, I had the exciting opportunity to work on branding for Drag Queen Disco Bingo (DQDB), a vibrant event introduced to bring energy, inclusivity, and fun to the community.</span>",
-    content: [
-      {
-        type: "two-column",
-        left: [
-          { type: "text", content: "Initially, the branding for DQDB was based on the style of the event location, Bar Kantoor, which didn't fully capture the unique, high-energy essence of the event. I saw this as an opportunity to redefine the event's look and feel to better align with its spirited and colorful atmosphere." }
-        ],
-        right: [
-          { type: "image", src: "Assets/Projecten/DQDB/DragQueen_Bingo_old.webp" }
-        ]
-      },
-      {
-        type: "two-column",
-        left: [
-          { type: "image", src: "Assets/Projecten/DQDB/DQDB_BK.webp" }
-        ],
-        right: [
-          { type: "text", content: "As the lead designer on this project, I developed a completely new visual direction for DQDB. I focused on creating a cohesive and lively aesthetic that would appeal to a diverse audience and reflect the playful, disco-inspired vibe of the event.<br><br>I designed the logo, posters, and social media assets, ensuring that each element was bold, colorful, and eye-catching.<br><br>In addition, I crafted a comprehensive visual style guide to support consistency in the event's branding. This guide serves as a reference for future interns and designers, helping them to easily understand and continue the branding direction I established." }
-        ]
-      },
-      {
-        type: "two-column",
-        left: [
-          { type: "text", content: "To capture the essence of <span class='accent-text'>Drag Queen Disco Bingo</span>, I researched similar events and their branding strategies. Our audience was primarily young adults and the LGBTQ+ community, eager for a vibrant, unique experience.<br><br>For inspiration, I explored visuals from different LGBTQ+ events from the disco side till the brunch. I selected high-contrast neon elements paired with bold typography to bring the energy and excitement of the disco era to life.<br><br>Since DQDB needed to allow for a rotating lineup of performers, I focused on creating a bold, adaptable look that could represent the energy of the event itself rather than individual personalities.<br><br>To achieve this flexibility, I decided on a high-contrast color scheme. This ensured that each event would maintain a cohesive look without relying on specific faces.<br><br>The high-contrast palette and disco-inspired elements became the basis for my concepts, creating a bold, vibrant brand that could be adapted." }
-        ],
-        right: [
-          { type: "text", content: "<strong>01 Moodboard</strong>" },
-          { type: "image", src: "Assets/Projecten/DQDB/Moodboard-DQDB.webp" } 
-        ]
-      },
-      {
-        type: "two-column",
-        left: [
-          { type: "text", content: "<strong>02 Concepts</strong>" },
-          { type: "image", src: "Assets/Projecten/DQDB/DQDB_concepts.webp" } 
-        ],
-        right: [
-          { type: "text", content: "To ensure the visual direction aligned perfectly, I presented three design concepts and sought feedback from the team. We collectively decided that <span class='accent-text'>option 2</span> was the best fit for the event.<br><br>This concept balanced boldness and approachability without feeling overly soft or leaning too heavily into a nightlife aesthetic. This choice allowed us to create a vibrant, inclusive look that would appeal to a wide audience while still capturing the lively, disco-inspired energy of the event." }
-        ]
-      },
-      {
-        type: "full-width",
-        items: [
-          { type: "text", content: "<strong>03 Results</strong>" },
-          { type: "image", src: "Assets/Projecten/DQDB/Mockup-insta_DQDB.webp" }
-        ]
-      },
-      {
-        type: "full-width",
-        items: [
-          { type: "text", content: "<strong>04 Visual Style Guide</strong>" },
-          { 
-            type: "carousel", 
-            images: [
-              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_01.webp",
-              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_02.webp",
-              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_03.webp",
-              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_04.webp",
-              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_05.webp",
-              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_06.webp",
-              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_07.webp",
-              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_08.webp",
-              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_09.webp",
-              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_10.webp",
-              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_11.jpg", 
-              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_12.webp",
-              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_13.webp",
-              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_14.webp",
-              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_15.webp",
-              "Assets/Projecten/DQDB/Style guide/Branding_DQDB-Page_16.webp"
             ] 
           }
         ]
@@ -473,86 +766,6 @@ const projectsData = {
               "Assets/Projecten/LNX/style guide/GodwinJoni_VisualStyleGuideSTcreate_2022_Page_12.png"
             ] 
           }
-        ]
-      }
-    ]
-  },
-  "stop520": {
-    title: "Radio Veronica x WAR CHILD (S)TOP 520",
-    status: "draft",
-    category: "identity",
-    card: {
-      eyebrow: "Visual Identity & Campaign",
-      image: "Assets/Projecten/Stop520/Stop520_1200_800.webp",
-      description: "Visual identity for a Radio Veronica and War Child campaign for children growing up in conflict zones.",
-      tint: "orange"
-    },
-    role: "Visual Identity & Campaign Design",
-    client: "Radio Veronica & War Child",
-    year: "2024",
-    heroImage: "Assets/Projecten/Stop520/Stop520_1200_800.webp",
-    intro: "I created the unified <span class='accent-text'>visual identity</span> for <span class='accent-text'>(S)top 520</span>, a powerful campaign by Radio Veronica and War Child. This collaborative initiative is dedicated to raising awareness for the 520 million children growing up in conflict zones, transforming a traditional music chart into a call to action.",
-    content: [
-      {
-        type: "two-column",
-        left: [
-          { type: "text", content: "I created the unified <span class='accent-text'>visual identity</span> for <span class='accent-text'>(S)top 520</span>, a powerful campaign by Radio Veronica and War Child. This collaborative initiative is dedicated to raising awareness for the 520 million children growing up in conflict zones, transforming a traditional music chart into a call to action." }
-        ],
-        right: [
-          { type: "image", src: "Assets/Projecten/Stop520/Stop520_banner.jpg" }
-        ]
-      },
-      {
-        type: "two-column",
-        left: [
-          { type: "image", src: "Assets/Projecten/Stop520/Stop520_child.jpg" },
-          { type: "text", content: "Then monitor and guide action how important we mean for the children what they have for their future." }
-        ],
-        right: [
-          { type: "image", src: "Assets/Projecten/Stop520/Stop520_logo.jpg" }
-        ]
-      },
-      {
-        type: "full-width",
-        items: [
-          { type: "text", content: "<strong>Pop-up store</strong>" },
-          { type: "image", src: "Assets/Projecten/Stop520/Stop520_popup1.jpg" },
-          { type: "image", src: "Assets/Projecten/Stop520/Stop520_popup2.jpg" }
-        ]
-      },
-      {
-        type: "two-column",
-        left: [
-          { type: "image", src: "Assets/Projecten/Stop520/Stop520_sketch1.jpg" }
-        ],
-        right: [
-          { type: "image", src: "Assets/Projecten/Stop520/Stop520_sketch2.jpg" }
-        ]
-      },
-      {
-        type: "full-width",
-        items: [
-          { type: "text", content: "<strong>Car branding</strong>" },
-          { type: "image", src: "Assets/Projecten/Stop520/(S)Top 520 - Kleurplaat print_v1.jpg" },
-          { type: "image", src: "Assets/Projecten/Stop520/(S)Top 520 - Kleurplaat print_v1.jpg" }
-        ]
-      },
-      {
-        type: "edge-to-edge",
-        items: [
-          { type: "image", src: "Assets/Projecten/Stop520/(S)Top 520 - Kleurplaat print_v1.jpg" }
-        ]
-      },
-      {
-        type: "full-width",
-        items: [
-          { type: "image", src: "Assets/Projecten/Stop520/Stop520_full2.jpg" }
-        ]
-      },
-      {
-        type: "full-width",
-        items: [
-          { type: "image", src: "Assets/Projecten/Stop520/Stop520_full3.jpg" }
         ]
       }
     ]
