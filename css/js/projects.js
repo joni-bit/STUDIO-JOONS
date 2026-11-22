@@ -244,10 +244,11 @@ const projectsData = {
         { src: "Assets/Projecten/MediahuisRadio/web/muziekquiz-top3000.webp", alt: "De Beste Muziekquiz Allertijden Top 3000 edition", caption: "Top 3000 edition" }
       ], caption: "Radio Veronica — De Beste Muziekquiz Allertijden" },
       { type: "section", heading: "Branded content: from idea to pitch", text: [
-        "Next to design, I come up with branded content concepts: ways to weave an advertiser's message into the radio, so it feels like content instead of an ad. I pitch them to station directors, marketing directors and account managers. They range from a quick, sharp radio game for the release of <em>Scream 7</em> on SLAM! (“Win or Die”) to large productions like Jumbo × 100% NL's <em>Het Super Kerstdiner</em>: a full Christmas dinner for 100 listeners inside a Jumbo supermarket. [Check: which parts of each concept were yours?]"
+        "Next to design, I come up with branded content concepts: ways to weave an advertiser's message into the radio, so it feels like content instead of an ad. I pitch them to station directors, marketing directors and account managers. They range from radio games to large productions like Jumbo × 100% NL's <em>Het Super Kerstdiner</em>: a full Christmas dinner for 100 listeners inside a Jumbo supermarket. [Check: which parts of the Jumbo concept were yours?]",
+        "One of my favourites is <em>The Best Best Man</em> for SLAM! × OFM. In the morning show, Anoûl & Marijn go looking for the most loyal best man in the country. Every day they call a groom and his best man, and both have to pick up with “Ja, ik wil”. Three best men make it to the final, where they anonymously hold up a sign for every dare: would you shave your head for your groom? Get a tattoo? Drink beer from a shoe? Whoever goes furthest wins a bachelor party and an OFM wedding suit for the groom. The twist: none of the dares ever have to happen. It was only ever about how far you'd go."
       ]},
       { type: "split", items: [
-        { src: "Assets/Projecten/MediahuisRadio/web/best-best-man.webp", alt: "SLAM! concept board The Best Best Man", caption: "SLAM! — The Best Best Man" },
+        { src: "Assets/Projecten/MediahuisRadio/web/best-best-man.webp", alt: "SLAM! concept board The Best Best Man", caption: "SLAM! × OFM — The Best Best Man (concept)" },
         { src: "Assets/Projecten/MediahuisRadio/web/jumbo-kerstdiner.webp", alt: "Jumbo x 100% NL Het Super Kerstdiner concept board", caption: "Jumbo × 100% NL — Het Super Kerstdiner" }
       ]}
     ]
