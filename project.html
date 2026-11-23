@@ -335,5 +335,26 @@
         fadeElements.forEach(el => observer.observe(el));
       });
     </script>
-  </body>
+  
+    <!-- Menu hides when you scroll down and comes back when you scroll up (same as the other pages) -->
+    <script>
+      (function () {
+        const navWrapper = document.querySelector('.floating-nav-wrapper');
+        if (!navWrapper) return;
+        let lastY = window.pageYOffset, ticking = false;
+        const threshold = 10, pinOffset = 60;
+        window.addEventListener('scroll', () => {
+          if (ticking) return;
+          ticking = true;
+          requestAnimationFrame(() => {
+            const y = window.pageYOffset, d = y - lastY;
+            if (y <= pinOffset || d < -threshold) navWrapper.classList.remove('nav-hidden');
+            else if (d > threshold) navWrapper.classList.add('nav-hidden');
+            lastY = Math.max(0, y);
+            ticking = false;
+          });
+        }, { passive: true });
+      })();
+    </script>
+</body>
 </html>
