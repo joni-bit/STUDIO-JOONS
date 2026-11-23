@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css?v=20261123a" />
+    <link rel="stylesheet" href="css/brands.css?v=20261123n" />
     <!-- Lottie speler script -->
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
   </head>
@@ -71,7 +72,9 @@
     </div>
 
     <!-- Data en Script -->
-    <script src="css/js/projects.js?v=20261122e"></script>
+    <script src="css/js/projects.js?v=20261123a"></script>
+    <script src="css/js/brands-data.js?v=20261123a"></script>
+    <script src="css/js/brands.js?v=20261123h"></script>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const urlParams = new URLSearchParams(window.location.search);
@@ -192,6 +195,8 @@
           const renderBlock = (block) => {
             const items = block.items || (block.item ? [block.item] : []);
             switch (block.type) {
+              case 'brandscroll':  // Brand in daily use: radio dial + rolodex per brand (brands.js)
+                return `<div class="bs-scroll"></div>`;
               case 'section':
                 return `<section class="case-section fade-in">
                   ${block.heading ? `<h3 class="case-heading">${block.heading}</h3>` : ''}
@@ -297,6 +302,7 @@
           }
 
           container.innerHTML = html;
+          if (window.initBrandScroll && container.querySelector('.bs-scroll')) initBrandScroll();
 
           const carousels = document.querySelectorAll('.project-carousel-wrapper');
           carousels.forEach(wrapper => {
@@ -329,5 +335,26 @@
         fadeElements.forEach(el => observer.observe(el));
       });
     </script>
-  </body>
+  
+    <!-- Menu hides when you scroll down and comes back when you scroll up (same as the other pages) -->
+    <script>
+      (function () {
+        const navWrapper = document.querySelector('.floating-nav-wrapper');
+        if (!navWrapper) return;
+        let lastY = window.pageYOffset, ticking = false;
+        const threshold = 10, pinOffset = 60;
+        window.addEventListener('scroll', () => {
+          if (ticking) return;
+          ticking = true;
+          requestAnimationFrame(() => {
+            const y = window.pageYOffset, d = y - lastY;
+            if (y <= pinOffset || d < -threshold) navWrapper.classList.remove('nav-hidden');
+            else if (d > threshold) navWrapper.classList.add('nav-hidden');
+            lastY = Math.max(0, y);
+            ticking = false;
+          });
+        }, { passive: true });
+      })();
+    </script>
+</body>
 </html>

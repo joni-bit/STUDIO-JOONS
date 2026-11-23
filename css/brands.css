@@ -240,3 +240,11 @@ body[data-brand="slam"] .bs-station { color: #d9d9d9; }
 .bs-pop figcaption { font-size: 16px; font-weight: 500; color: #fff; text-shadow: 0 1px 12px rgba(0, 0, 0, 0.35); }
 .bs-pop figcaption:empty { display: none; }
 @media (max-width: 700px) { .bs-pop { --dial-space: 200px; } .bs-caption { top: calc(38vh + 29vw + 22px); font-size: 14px; } }
+
+/* ---------- On the project page (Brand in daily use) ---------- */
+body.project-page { overflow-x: clip; }
+body.project-page .project-main, body.project-page .topbar { position: relative; z-index: 1; }
+/* Full width, out of the 900px text column */
+.project-page .bs-scroll { width: 100vw; margin-left: calc(50% - 50vw); }
+/* Fade in from the page colour: the backdrop only shows while a brand is on screen */
+.project-page .bs-backdrop { z-index: 0; }
