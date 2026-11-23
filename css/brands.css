@@ -1,0 +1,127 @@
+/* ===== Brand in daily use — rolodex scroll (prototype) =====
+   Each brand pins for ~3 screen heights. Its work sits on a turning wheel,
+   like flipping through records in a crate. Hover a card for 1s to pull it out. */
+
+:root { --bg: #f3f0ea; --ink: #141414; }
+
+body.brands-page {
+  background: var(--bg);
+  color: var(--ink);
+  transition: background-color 0.7s ease, color 0.7s ease;
+  overflow-x: hidden;
+}
+body.brands-page .brand-name { color: var(--ink); transition: color 0.7s ease; }
+body.brands-page .topbar { position: relative; z-index: 40; }
+
+/* Radio dial: a knob that turns to the station you're on. Click a station (or the knob) to tune in. */
+.bs-radio {
+  position: fixed; right: 28px; bottom: 28px; z-index: 50;
+  width: 300px; height: 176px;
+  opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+}
+.bs-radio.is-on { opacity: 1; pointer-events: auto; }
+.bs-radio-face {
+  position: absolute; inset: 0; border-radius: 150px 150px 32px 32px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 18px 40px -16px rgba(0, 0, 0, 0.45), inset 0 0 0 1px rgba(25, 0, 255, 0.12);
+}
+.bs-station {
+  position: absolute; left: 50%; top: 118px; width: 100px; margin-left: -50px; padding: 0;
+  border: 0; background: none; cursor: pointer; text-align: center;
+  font-family: inherit; font-size: 15px; font-weight: 700; line-height: 1; letter-spacing: 0.01em; color: #8a8a8a;
+  transform-origin: 50% 0; transform: rotate(var(--a)) translateY(-100px) rotate(calc(var(--a) * -1));
+  transition: color 0.3s ease;
+}
+.bs-station::before {               /* tick mark on the scale */
+  content: ""; display: block; width: 2px; height: 8px; margin: 0 auto 6px; border-radius: 2px; background: currentColor;
+}
+.bs-station[aria-current="true"] { color: #1900ff; }
+.bs-station:focus-visible { outline: 2px solid #1900ff; outline-offset: 4px; border-radius: 6px; }
+.bs-knob {
+  position: absolute; left: 50%; top: 118px; width: 92px; height: 92px; margin: -46px 0 0 -46px;
+  border: 0; padding: 0; border-radius: 50%; cursor: pointer;
+  background:
+    repeating-conic-gradient(from 0deg, rgba(0,0,0,0.07) 0 4deg, transparent 4deg 10deg),
+    radial-gradient(circle at 35% 30%, #ffffff, #e6e4f2 70%);
+  box-shadow: 0 8px 18px -6px rgba(0, 0, 0, 0.45), inset 0 0 0 1px rgba(0, 0, 0, 0.06);
+  transform: rotate(var(--knob, 0deg));
+  transition: transform 0.5s cubic-bezier(.3, 1.4, .5, 1);
+}
+.bs-knob::after {                    /* the pointer */
+  content: ""; position: absolute; left: 50%; top: 8px; width: 6px; height: 28px; margin-left: -3px;
+  border-radius: 3px; background: #1900ff;
+}
+.bs-knob:focus-visible { outline: 2px solid #1900ff; outline-offset: 4px; }
+
+/* One brand: 100vh pinned + 300vh of scroll */
+.bs-brand { position: relative; height: 400vh; }
+.bs-stage {
+  position: sticky; top: 0; height: 100vh; overflow: hidden;
+  perspective: 1400px; perspective-origin: 50% 45%;
+}
+.bs-logo {
+  position: absolute; left: 50%; top: 50%; width: min(70vw, 900px); height: auto;
+  transform: translate(-50%, -50%); opacity: 0.22; pointer-events: none; z-index: 0;
+}
+.bs-end { height: 30vh; }
+
+/* The wheel: cards sit around a horizontal axis, turned slightly for depth */
+.bs-wheel {
+  --card: min(30vw, 350px);
+  --radius: calc(var(--card) * 1.9);
+  position: absolute; left: 50%; top: 50%;
+  width: var(--card); height: var(--card);
+  margin: calc(var(--card) / -2) 0 0 calc(var(--card) / -2);
+  transform-style: preserve-3d;
+  transform: rotateY(-14deg) rotateZ(-3deg) translateZ(calc(var(--radius) * -1));
+  z-index: 1;
+}
+.bs-card {
+  position: absolute; inset: 0; padding: 0; margin: 0; border: 0; cursor: pointer;
+  border-radius: 8px; overflow: hidden;
+  background: rgba(0, 0, 0, 0.22);           /* the sleeve behind non-square work */
+  box-shadow: 0 24px 50px -18px rgba(0, 0, 0, 0.55);
+  backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  will-change: transform, opacity;
+  transition: box-shadow 0.3s ease;
+}
+.bs-card img { display: block; width: 100%; height: 100%; object-fit: contain; pointer-events: none; }
+.bs-card:focus-visible { outline: 3px solid var(--ink); outline-offset: 4px; }
+
+/* While you hover, a thin ring fills up for 1s: the card is about to come out */
+.bs-card::after {
+  content: ""; position: absolute; left: 0; bottom: 0; height: 4px; width: 0;
+  background: var(--ink); opacity: 0.9;
+}
+.bs-card.is-arming::after { width: 100%; transition: width 1s linear; }
+
+/* The pulled-out card */
+.bs-pop {
+  position: fixed; inset: 0; z-index: 80; display: grid; place-items: center;
+  background: rgba(0, 0, 0, 0.35);
+  opacity: 0; pointer-events: none; transition: opacity 0.25s ease;
+}
+.bs-pop img {
+  max-width: min(86vw, 1100px); max-height: 80vh; width: auto; height: auto;
+  border-radius: 10px; box-shadow: 0 40px 90px -20px rgba(0, 0, 0, 0.6);
+  transform: scale(0.92) translateY(12px); transition: transform 0.35s cubic-bezier(.2, .8, .2, 1);
+}
+.bs-pop.is-open { opacity: 1; pointer-events: auto; }
+.bs-pop.is-open img { transform: none; }
+
+@media (max-width: 700px) {
+  .bs-radio { right: 50%; transform: translateX(50%) scale(0.8); transform-origin: bottom center; bottom: 12px; }
+  .bs-wheel { --card: 70vw; }
+  .bs-logo { width: 88vw; }
+}
+
+/* Reduced motion: no wheel, a calm grid per brand */
+@media (prefers-reduced-motion: reduce) {
+  body.brands-page, .bs-radio, .bs-knob, .bs-pop, .bs-pop img { transition: none; }
+  .bs-brand { height: auto; padding: 14vh 6vw; }
+  .bs-stage { position: static; height: auto; overflow: visible; perspective: none; }
+  .bs-logo { position: static; transform: none; display: block; margin: 0 auto 32px; width: min(60vw, 480px); opacity: 1; }
+  .bs-wheel { position: static; width: auto; height: auto; margin: 0; transform: none;
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+  .bs-card { position: relative; inset: auto; aspect-ratio: 1; transform: none !important; opacity: 1 !important; }
+}

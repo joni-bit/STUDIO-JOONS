@@ -5,97 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/png" sizes="32x32" href="Assets/Images/favicon.png">
   <title>Joni Godwin — Brand in daily use (prototype)</title>
-  <!-- PROTOTYPE: not linked from the site yet. Text is placeholder, to be workshopped. -->
+  <!-- PROTOTYPE: not linked from the site yet. -->
   <meta name="robots" content="noindex" />
   <link rel="stylesheet" href="css/style.css?v=20261122e" />
-  <style>
-    /* ---------- Brand scroll prototype ---------- */
-    :root { --bg: #f3f0ea; --ink: #141414; }
-    body.brands-page {
-      background: var(--bg);
-      color: var(--ink);
-      transition: background-color 0.7s ease, color 0.7s ease;
-      overflow-x: hidden;
-    }
-    body.brands-page .brand-name { color: var(--ink); transition: color 0.7s ease; }
-
-    /* Intro */
-    .bs-intro { min-height: 92vh; display: grid; align-content: center; padding: 0 6vw; max-width: 1100px; }
-    .bs-intro h1 { font-size: clamp(44px, 8vw, 112px); line-height: 0.95; letter-spacing: -0.04em; margin: 0; font-weight: 700; }
-    .bs-intro p { font-size: clamp(18px, 1.6vw, 22px); line-height: 1.5; max-width: 34ch; margin: 28px 0 0; }
-
-    /* Station dial: which brand you're tuned into */
-    .bs-dial {
-      position: fixed; left: 50%; bottom: 28px; transform: translateX(-50%); z-index: 50;
-      display: flex; gap: 4px; padding: 6px; border-radius: 999px;
-      background: rgba(255,255,255,0.18); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(255,255,255,0.35);
-      opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
-    }
-    .bs-dial.is-on { opacity: 1; pointer-events: auto; }
-    .bs-dial a {
-      font-size: 14px; font-weight: 600; color: var(--ink); text-decoration: none;
-      padding: 9px 16px; border-radius: 999px; transition: background-color 0.3s ease, color 0.3s ease;
-    }
-    .bs-dial a[aria-current="true"] { background: var(--ink); color: var(--bg); }
-    .bs-dial a:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
-
-    /* One brand = a tall scroll track with a sticky stage */
-    .bs-brand { position: relative; height: 520vh; }
-    .bs-stage { position: sticky; top: 0; height: 100vh; overflow: hidden; }
-
-    .bs-logo {
-      position: absolute; left: 50%; top: 50%; width: min(56vw, 640px); height: auto;
-      transform: translate(-50%, -50%); transform-origin: center;
-      will-change: transform, opacity; z-index: 1;
-    }
-    .bs-line {
-      position: absolute; left: 50%; top: calc(50% + min(14vw, 150px)); transform: translateX(-50%);
-      width: min(88vw, 760px); text-align: center; margin: 0; z-index: 1;
-      font-size: clamp(22px, 2.6vw, 34px); line-height: 1.25; letter-spacing: -0.01em; font-weight: 600;
-      will-change: opacity;
-    }
-    .bs-what {
-      position: absolute; left: 50%; bottom: 96px; transform: translateX(-50%);
-      margin: 0; font-size: 15px; opacity: 0.8; text-align: center; width: 88vw; z-index: 1;
-    }
-
-    .bs-tile {
-      position: absolute; top: 0; left: var(--x); width: var(--w); margin: 0; z-index: 2;
-      will-change: transform;
-    }
-    .bs-tile img { display: block; width: 100%; height: auto; border-radius: 10px; box-shadow: 0 30px 60px -20px rgba(0,0,0,0.45); }
-    .bs-tile.is-back { z-index: 0; filter: saturate(0.9); }
-    .bs-tile.is-back img { box-shadow: none; opacity: 0.9; }
-
-    /* Closing */
-    .bs-outro { min-height: 80vh; display: grid; align-content: center; padding: 0 6vw; }
-    .bs-outro h2 { font-size: clamp(32px, 4.5vw, 64px); letter-spacing: -0.03em; margin: 0; }
-    .bs-outro p { max-width: 46ch; font-size: 18px; line-height: 1.6; margin: 20px 0 0; }
-    .bs-outro a { color: inherit; }
-
-    .bs-note { position: fixed; top: 92px; right: 20px; z-index: 60; background: #ffd400; color: #141414; font-size: 12px; font-weight: 600; padding: 6px 10px; border-radius: 6px; }
-
-    @media (max-width: 700px) {
-      .bs-brand { height: 420vh; }
-      .bs-logo { width: 78vw; }
-      .bs-line { top: calc(50% + 22vw); }
-    }
-
-    /* Reduced motion: no flying tiles, a calm grid per brand */
-    @media (prefers-reduced-motion: reduce) {
-      body.brands-page { transition: none; }
-      .bs-brand { height: auto; padding: 18vh 6vw; }
-      .bs-stage { position: static; height: auto; overflow: visible; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
-      .bs-logo, .bs-line, .bs-what { position: static; transform: none; grid-column: 1 / -1; margin: 0 auto 16px; }
-      .bs-tile { position: static; width: auto; transform: none !important; }
-    }
-  </style>
+  <link rel="stylesheet" href="css/brands.css?v=20261123c" />
 </head>
 <body class="brands-page">
-  <div class="bs-note">Prototype — text is placeholder</div>
-
-  <header class="topbar" style="position: relative; z-index: 40;">
+  <header class="topbar">
     <div class="header-brand-wrapper">
       <a href="about" class="profile-hover-btn" aria-label="About Joni Godwin">
         <div class="profile-backdrop"></div>
@@ -113,132 +29,71 @@
     </div>
   </header>
 
+  <nav class="bs-radio" aria-label="Tune in to a brand">
+    <div class="bs-radio-face"></div>
+    <button class="bs-station" type="button" data-target="veronica" style="--a:-58deg">Veronica</button>
+    <button class="bs-station" type="button" data-target="100nl" style="--a:0deg">100% NL</button>
+    <button class="bs-station" type="button" data-target="slam" style="--a:58deg">SLAM!</button>
+    <button class="bs-knob" type="button" aria-label="Next station"></button>
+  </nav>
+
   <main>
-    <section class="bs-intro" data-bg="#f3f0ea" data-ink="#141414">
-      <h1>Three stations. One designer.</h1>
-      <p>Not every brief is a billboard. Most days I make Radio Veronica, 100% NL and SLAM! work in a hundred small places. Scroll to tune in.</p>
-    </section>
-
-    <nav class="bs-dial" aria-label="Brands">
-      <a href="#veronica">Veronica</a>
-      <a href="#100nl">100% NL</a>
-      <a href="#slam">SLAM!</a>
-    </nav>
-
-    <!-- Each tile: --x / --w = position and width (vw), data-start = when it enters (0–1 of the brand's scroll),
-         data-speed = how fast it crosses, data-r = rotation in degrees, is-back = behind the logo -->
     <section class="bs-brand" id="veronica" data-bg="#1a9bff" data-ink="#ffffff" aria-label="Radio Veronica">
       <div class="bs-stage">
         <img class="bs-logo" src="Assets/icons/clients/radio-veronica.webp" alt="Radio Veronica" />
-        <p class="bs-line">Big, blue and always in on the joke.</p>
-        <p class="bs-what">Studio screens · social · quiz shows · Het Radio Veronica Café</p>
-
-        <figure class="bs-tile is-back" style="--x:4vw;  --w:19vw" data-start="0.02" data-speed="0.9" data-r="-5"><img src="Assets/Projecten/MediahuisRadio/web/veronica-muziekquiz.webp" alt="De Beste Muziekquiz Allertijden" /></figure>
-        <figure class="bs-tile"         style="--x:70vw; --w:24vw" data-start="0.08" data-speed="1.2" data-r="4"><img src="Assets/Projecten/MediahuisRadio/web/cafe-key-visual.webp" alt="Het Radio Veronica Café key visual" /></figure>
-        <figure class="bs-tile"         style="--x:16vw; --w:30vw" data-start="0.2"  data-speed="1.0" data-r="-2"><img src="Assets/Projecten/MediahuisRadio/web/cafe-studio.webp" alt="DJ live in the Café studio" /></figure>
-        <figure class="bs-tile is-back" style="--x:76vw; --w:17vw" data-start="0.26" data-speed="0.8" data-r="6"><img src="Assets/Projecten/MediahuisRadio/web/veronica-fluisteraar.webp" alt="De Fluisteraar" /></figure>
-        <figure class="bs-tile"         style="--x:52vw; --w:21vw" data-start="0.36" data-speed="1.3" data-r="-4"><img src="Assets/Projecten/MediahuisRadio/web/veronica-efteling.webp" alt="Love at First Ride, with Efteling" /></figure>
-        <figure class="bs-tile"         style="--x:6vw;  --w:22vw" data-start="0.48" data-speed="1.1" data-r="3"><img src="Assets/Projecten/MediahuisRadio/web/cafe-coaster.webp" alt="Café coaster in the bar" /></figure>
-        <figure class="bs-tile is-back" style="--x:38vw; --w:26vw" data-start="0.56" data-speed="0.85" data-r="-3"><img src="Assets/Projecten/MediahuisRadio/web/muziekquiz-top3000.webp" alt="Muziekquiz Top 3000 edition" /></figure>
-        <figure class="bs-tile"         style="--x:72vw; --w:20vw" data-start="0.64" data-speed="1.25" data-r="5"><img src="Assets/Projecten/MediahuisRadio/web/veronica-cafe.webp" alt="Het Radio Veronica Café social post" /></figure>
+        <div class="bs-wheel">
+          <button class="bs-card" type="button" aria-label="Show De Beste Muziekquiz Allertijden"><img src="Assets/Projecten/MediahuisRadio/web/veronica-muziekquiz.webp" alt="De Beste Muziekquiz Allertijden" loading="lazy" /></button>
+          <button class="bs-card" type="button" aria-label="Show Het Radio Veronica Café key visual"><img src="Assets/Projecten/MediahuisRadio/web/cafe-key-visual.webp" alt="Het Radio Veronica Café key visual" loading="lazy" /></button>
+          <button class="bs-card" type="button" aria-label="Show DJ live in the Café studio"><img src="Assets/Projecten/MediahuisRadio/web/cafe-studio.webp" alt="DJ live in the Café studio" loading="lazy" /></button>
+          <button class="bs-card" type="button" aria-label="Show De Fluisteraar"><img src="Assets/Projecten/MediahuisRadio/web/veronica-fluisteraar.webp" alt="De Fluisteraar" loading="lazy" /></button>
+          <button class="bs-card" type="button" aria-label="Show Love at First Ride, with Efteling"><img src="Assets/Projecten/MediahuisRadio/web/veronica-efteling.webp" alt="Love at First Ride, with Efteling" loading="lazy" /></button>
+          <button class="bs-card" type="button" aria-label="Show Café coaster in the bar"><img src="Assets/Projecten/MediahuisRadio/web/cafe-coaster.webp" alt="Café coaster in the bar" loading="lazy" /></button>
+          <button class="bs-card" type="button" aria-label="Show Muziekquiz Top 3000 edition"><img src="Assets/Projecten/MediahuisRadio/web/muziekquiz-top3000.webp" alt="Muziekquiz Top 3000 edition" loading="lazy" /></button>
+          <button class="bs-card" type="button" aria-label="Show Het Radio Veronica Café social post"><img src="Assets/Projecten/MediahuisRadio/web/veronica-cafe.webp" alt="Het Radio Veronica Café social post" loading="lazy" /></button>
+          <button class="bs-card" type="button" aria-label="Show De Beste Muziekquiz Allertijden logo"><img src="Assets/Projecten/MediahuisRadio/web/muziekquiz-logo.webp" alt="De Beste Muziekquiz Allertijden logo" loading="lazy" /></button>
+        </div>
       </div>
     </section>
-
     <section class="bs-brand" id="100nl" data-bg="#f07d00" data-ink="#141414" aria-label="100% NL">
       <div class="bs-stage">
         <img class="bs-logo" src="Assets/icons/clients/100pnl.webp" alt="100% NL" style="filter: brightness(0);" />
-        <p class="bs-line">Sing-alongs, Sinterklaas and a time machine.</p>
-        <p class="bs-what">Tijdmachine · Top 1000 · Somertijd · Sinterklaas</p>
-
-        <figure class="bs-tile"         style="--x:6vw;  --w:14vw" data-start="0.02" data-speed="1.1" data-r="-4"><img src="Assets/Projecten/MediahuisRadio/web/tijdmachine-80.webp" alt="Tijdmachine Jaren 80" /></figure>
-        <figure class="bs-tile"         style="--x:24vw; --w:14vw" data-start="0.1"  data-speed="1.1" data-r="0"><img src="Assets/Projecten/MediahuisRadio/web/tijdmachine-90.webp" alt="Tijdmachine Jaren 90" /></figure>
-        <figure class="bs-tile"         style="--x:42vw; --w:14vw" data-start="0.18" data-speed="1.1" data-r="4"><img src="Assets/Projecten/MediahuisRadio/web/tijdmachine-00.webp" alt="Tijdmachine Jaren 00" /></figure>
-        <figure class="bs-tile is-back" style="--x:66vw; --w:28vw" data-start="0.12" data-speed="0.8" data-r="3"><img src="Assets/Projecten/MediahuisRadio/web/tijdmachine-chosen.webp" alt="Tijdmachine logo" /></figure>
-        <figure class="bs-tile"         style="--x:62vw; --w:20vw" data-start="0.38" data-speed="1.25" data-r="-5"><img src="Assets/Projecten/MediahuisRadio/web/100nl-sinterklaas.webp" alt="100% NL Sinterklaas" /></figure>
-        <figure class="bs-tile is-back" style="--x:10vw; --w:22vw" data-start="0.46" data-speed="0.85" data-r="5"><img src="Assets/Projecten/MediahuisRadio/web/100nl-top1000.webp" alt="100% NL Top 1000" /></figure>
-        <figure class="bs-tile"         style="--x:36vw; --w:20vw" data-start="0.58" data-speed="1.2" data-r="-2"><img src="Assets/Projecten/MediahuisRadio/web/100nl-somertijd.webp" alt="Somertijd BBQ cards" /></figure>
-        <figure class="bs-tile"         style="--x:74vw; --w:18vw" data-start="0.66" data-speed="1.1" data-r="4"><img src="Assets/Projecten/MediahuisRadio/web/100nl-tijdmachine.webp" alt="100% NL Tijdmachine" /></figure>
+        <div class="bs-wheel">
+          <button class="bs-card" type="button" aria-label="Show Tijdmachine Jaren 80"><img src="Assets/Projecten/MediahuisRadio/web/tijdmachine-80.webp" alt="Tijdmachine Jaren 80" loading="lazy" /></button>
+          <button class="bs-card" type="button" aria-label="Show Tijdmachine Jaren 90"><img src="Assets/Projecten/MediahuisRadio/web/tijdmachine-90.webp" alt="Tijdmachine Jaren 90" loading="lazy" /></button>
+          <button class="bs-card" type="button" aria-label="Show Tijdmachine Jaren 00"><img src="Assets/Projecten/MediahuisRadio/web/tijdmachine-00.webp" alt="Tijdmachine Jaren 00" loading="lazy" /></button>
+          <button class="bs-card" type="button" aria-label="Show Tijdmachine logo"><img src="Assets/Projecten/MediahuisRadio/web/tijdmachine-chosen.webp" alt="Tijdmachine logo" loading="lazy" /></button>
+          <button class="bs-card" type="button" aria-label="Show 100% NL Sinterklaas"><img src="Assets/Projecten/MediahuisRadio/web/100nl-sinterklaas.webp" alt="100% NL Sinterklaas" loading="lazy" /></button>
+          <button class="bs-card" type="button" aria-label="Show 100% NL Top 1000"><img src="Assets/Projecten/MediahuisRadio/web/100nl-top1000.webp" alt="100% NL Top 1000" loading="lazy" /></button>
+          <button class="bs-card" type="button" aria-label="Show Somertijd BBQ cards"><img src="Assets/Projecten/MediahuisRadio/web/100nl-somertijd.webp" alt="Somertijd BBQ cards" loading="lazy" /></button>
+          <button class="bs-card" type="button" aria-label="Show 100% NL Tijdmachine"><img src="Assets/Projecten/MediahuisRadio/web/100nl-tijdmachine.webp" alt="100% NL Tijdmachine" loading="lazy" /></button>
+          <button class="bs-card" type="button" aria-label="Show Tijdmachine logo concepts"><img src="Assets/Projecten/MediahuisRadio/web/tijdmachine-concepts.webp" alt="Tijdmachine logo concepts" loading="lazy" /></button>
+        </div>
       </div>
     </section>
-
     <section class="bs-brand" id="slam" data-bg="#121212" data-ink="#ffffff" aria-label="SLAM!">
       <div class="bs-stage">
         <img class="bs-logo" src="Assets/icons/clients/slam.webp" alt="SLAM!" />
-        <p class="bs-line">Loud, late and never still.</p>
-        <p class="bs-what">Festivalmaand · Summer 500 · Gok van je leven · Alaafondshow</p>
-
-        <figure class="bs-tile"         style="--x:5vw;  --w:15vw" data-start="0.02" data-speed="1.3" data-r="-6"><img src="Assets/Projecten/MediahuisRadio/web/festivalmaand-story.webp" alt="Festivalmaand 9:16" /></figure>
-        <figure class="bs-tile is-back" style="--x:58vw; --w:30vw" data-start="0.08" data-speed="0.85" data-r="3"><img src="Assets/Projecten/MediahuisRadio/web/summer500-final.webp" alt="Summer 500" /></figure>
-        <figure class="bs-tile"         style="--x:30vw; --w:19vw" data-start="0.2"  data-speed="1.2" data-r="5"><img src="Assets/Projecten/MediahuisRadio/web/slam-alaafondshow.webp" alt="Alaafondshow" /></figure>
-        <figure class="bs-tile"         style="--x:76vw; --w:15vw" data-start="0.3"  data-speed="1.35" data-r="-4"><img src="Assets/Projecten/MediahuisRadio/web/gok-story.webp" alt="Gok van je leven story" /></figure>
-        <figure class="bs-tile is-back" style="--x:8vw;  --w:24vw" data-start="0.4"  data-speed="0.9" data-r="-3"><img src="Assets/Projecten/MediahuisRadio/web/festivalmaand-wristband.webp" alt="Festivalmaand wristband" /></figure>
-        <figure class="bs-tile"         style="--x:46vw; --w:22vw" data-start="0.5"  data-speed="1.15" data-r="2"><img src="Assets/Projecten/MediahuisRadio/web/slam-gok-winners.webp" alt="Gok van je leven winners" /></figure>
-        <figure class="bs-tile"         style="--x:12vw; --w:20vw" data-start="0.62" data-speed="1.25" data-r="4"><img src="Assets/Projecten/MediahuisRadio/web/slam-summer500.webp" alt="Summer 500 social post" /></figure>
-        <figure class="bs-tile"         style="--x:70vw; --w:20vw" data-start="0.68" data-speed="1.1" data-r="-5"><img src="Assets/Projecten/MediahuisRadio/web/slam-festivalmaand.webp" alt="Festivalmaand social post" /></figure>
+        <div class="bs-wheel">
+          <button class="bs-card" type="button" aria-label="Show Festivalmaand 9:16"><img src="Assets/Projecten/MediahuisRadio/web/festivalmaand-story.webp" alt="Festivalmaand 9:16" loading="lazy" /></button>
+          <button class="bs-card" type="button" aria-label="Show Summer 500"><img src="Assets/Projecten/MediahuisRadio/web/summer500-final.webp" alt="Summer 500" loading="lazy" /></button>
+          <button class="bs-card" type="button" aria-label="Show Alaafondshow"><img src="Assets/Projecten/MediahuisRadio/web/slam-alaafondshow.webp" alt="Alaafondshow" loading="lazy" /></button>
+          <button class="bs-card" type="button" aria-label="Show Gok van je leven story"><img src="Assets/Projecten/MediahuisRadio/web/gok-story.webp" alt="Gok van je leven story" loading="lazy" /></button>
+          <button class="bs-card" type="button" aria-label="Show Festivalmaand wristband"><img src="Assets/Projecten/MediahuisRadio/web/festivalmaand-wristband.webp" alt="Festivalmaand wristband" loading="lazy" /></button>
+          <button class="bs-card" type="button" aria-label="Show Gok van je leven winners"><img src="Assets/Projecten/MediahuisRadio/web/slam-gok-winners.webp" alt="Gok van je leven winners" loading="lazy" /></button>
+          <button class="bs-card" type="button" aria-label="Show Summer 500 social post"><img src="Assets/Projecten/MediahuisRadio/web/slam-summer500.webp" alt="Summer 500 social post" loading="lazy" /></button>
+          <button class="bs-card" type="button" aria-label="Show Festivalmaand social post"><img src="Assets/Projecten/MediahuisRadio/web/slam-festivalmaand.webp" alt="Festivalmaand social post" loading="lazy" /></button>
+          <button class="bs-card" type="button" aria-label="Show Gok van je leven post"><img src="Assets/Projecten/MediahuisRadio/web/gok-post.webp" alt="Gok van je leven post" loading="lazy" /></button>
+          <button class="bs-card" type="button" aria-label="Show Summer 500 version"><img src="Assets/Projecten/MediahuisRadio/web/summer500-v4.webp" alt="Summer 500 version" loading="lazy" /></button>
+          <button class="bs-card" type="button" aria-label="Show Festivalmaand sketch"><img src="Assets/Projecten/MediahuisRadio/web/festivalmaand-wip5.webp" alt="Festivalmaand sketch" loading="lazy" /></button>
+        </div>
       </div>
     </section>
-
-    <section class="bs-outro" data-bg="#f3f0ea" data-ink="#141414">
-      <h2>And the ideas around them.</h2>
-      <p>Next to design I pitch branded content, like The Best Best Man for SLAM! × OFM and Jumbo × 100% NL's Het Super Kerstdiner. <a href="project.html?id=mediahuis-radio">See the full case</a>.</p>
-    </section>
+    <div class="bs-end" data-bg="#f3f0ea" data-ink="#141414"></div>
   </main>
 
-  <script>
-    (function () {
-      const body = document.body;
-      const brands = [...document.querySelectorAll('.bs-brand')];
-      const colourBlocks = [...document.querySelectorAll('[data-bg]')];
-      const dial = document.querySelector('.bs-dial');
-      const dialLinks = [...dial.querySelectorAll('a')];
-      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
-      const ease = (t) => t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+  <!-- Hover a card for 1 second (or click / Enter) and it comes out of the wheel -->
+  <div class="bs-pop" aria-hidden="true"><img alt="" /></div>
 
-      function setColours() {
-        // The block that covers the middle of the screen sets the page colour
-        const mid = window.innerHeight * 0.5;
-        let active = colourBlocks[0];
-        colourBlocks.forEach(el => { const r = el.getBoundingClientRect(); if (r.top <= mid && r.bottom > mid) active = el; });
-        body.style.setProperty('--bg', active.dataset.bg);
-        body.style.setProperty('--ink', active.dataset.ink);
-        const inBrand = brands.includes(active);
-        dial.classList.toggle('is-on', inBrand);
-        dialLinks.forEach(a => a.setAttribute('aria-current', inBrand && a.getAttribute('href') === '#' + active.id ? 'true' : 'false'));
-      }
-
-      function frame() {
-        setColours();
-        if (reduce) return;
-        const vh = window.innerHeight;
-        brands.forEach(sec => {
-          const r = sec.getBoundingClientRect();
-          const p = clamp(-r.top / (r.height - vh), 0, 1);   // 0 → 1 while this brand is pinned
-          const logo = sec.querySelector('.bs-logo');
-          const line = sec.querySelector('.bs-line');
-          const what = sec.querySelector('.bs-what');
-          // Logo: big and alone at first, then steps back as the work flies past
-          const back = ease(clamp((p - 0.06) / 0.2, 0, 1));
-          logo.style.transform = `translate(-50%, -50%) scale(${1 - back * 0.25})`;
-          logo.style.opacity = String(1 - back * 0.55);
-          line.style.opacity = String((1 - clamp((p - 0.18) / 0.08, 0, 1)) + clamp((p - 0.9) / 0.06, 0, 1));
-          what.style.opacity = String(0.8 * clamp((p - 0.86) / 0.08, 0, 1));
-          // Tiles: rise from below the screen and leave at the top, each at its own pace
-          sec.querySelectorAll('.bs-tile').forEach(t => {
-            const start = +t.dataset.start, speed = +t.dataset.speed, rot = +t.dataset.r;
-            const local = (p - start) * speed / 0.55;             // 0 = just below the screen, 1 = gone above
-            const y = vh * 1.05 - local * (vh * 2.3);
-            t.style.transform = `translate3d(0, ${y}px, 0) rotate(${rot * (1 - local * 0.6)}deg)`;
-          });
-        });
-      }
-
-      let ticking = false;
-      const onScroll = () => { if (!ticking) { ticking = true; requestAnimationFrame(() => { frame(); ticking = false; }); } };
-      window.addEventListener('scroll', onScroll, { passive: true });
-      window.addEventListener('resize', onScroll);
-      frame();
-    })();
-  </script>
+  <script src="css/js/brands.js?v=20261123b"></script>
 </body>
 </html>
