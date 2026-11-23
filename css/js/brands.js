@@ -12,6 +12,8 @@
   const ANGLES = stations.map(b => parseFloat(b.style.getPropertyValue('--a')));
   const pop = document.querySelector('.bs-pop');
   const popImg = pop.querySelector('img');
+  const popCap = pop.querySelector('figcaption');
+  const caption = document.querySelector('.bs-caption');
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   // Lens refraction via an SVG filter in backdrop-filter only works in Chromium browsers
   if (navigator.userAgentData && navigator.userAgentData.brands.some(b => /Chromium/.test(b.brand))) document.documentElement.classList.add('has-lens');
@@ -92,6 +94,8 @@
     const img = card.querySelector('img');
     popImg.src = img.currentSrc || img.src;
     popImg.alt = img.alt;
+    popCap.textContent = card.dataset.caption || '';
+    caption.classList.remove('is-on');
     pop.classList.add('is-open');
     pop.setAttribute('aria-hidden', 'false');
   }
@@ -100,11 +104,15 @@
     pop.setAttribute('aria-hidden', 'true');
   }
   document.querySelectorAll('.bs-card').forEach(card => {
+    const showCaption = () => { caption.textContent = card.dataset.caption || ''; caption.classList.toggle('is-on', !!card.dataset.caption); };
+    card.addEventListener('focus', showCaption);
+    card.addEventListener('blur', () => caption.classList.remove('is-on'));
     card.addEventListener('mouseenter', () => {
+      showCaption();
       card.classList.add('is-arming');
       timer = setTimeout(() => { card.classList.remove('is-arming'); openPop(card); }, 1000);
     });
-    card.addEventListener('mouseleave', () => { clearTimeout(timer); card.classList.remove('is-arming'); });
+    card.addEventListener('mouseleave', () => { clearTimeout(timer); card.classList.remove('is-arming'); caption.classList.remove('is-on'); });
     card.addEventListener('click', () => { clearTimeout(timer); card.classList.remove('is-arming'); openPop(card); });
   });
   pop.addEventListener('click', closePop);
