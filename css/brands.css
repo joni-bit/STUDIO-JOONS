@@ -80,8 +80,9 @@ body.brands-page main { position: relative; z-index: 1; }
 .bs-knob {
   width: var(--knob); height: var(--knob); bottom: calc(var(--knob) / -2); margin-left: calc(var(--knob) / -2);
   padding: 0; border: 0; cursor: pointer;
-  background: rgba(247, 247, 247, 0.82);
+  background: var(--knob-glass, rgba(247, 247, 247, 0.82));
   backdrop-filter: blur(28px) saturate(180%); -webkit-backdrop-filter: blur(28px) saturate(180%);
+  transition: background-color 0.5s ease, transform 0.25s ease, box-shadow 0.25s ease;
   box-shadow:
     0 -6px 30px rgba(0, 0, 0, 0.12),
     inset 0 1.5px 0 rgba(255, 255, 255, 1),
@@ -99,6 +100,13 @@ body.brands-page main { position: relative; z-index: 1; }
   -webkit-mask-position: center; mask-position: center; -webkit-mask-size: contain; mask-size: contain; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
 }
 .bs-knob-logo.is-on { opacity: 1; }
+/* Knob glass per station, so the white Veronica and SLAM! logos stay white and readable:
+   a deeper, slightly grey-blue glass for Veronica, smoky grey glass for SLAM!,
+   light glass for 100% NL (its logo has its own dark plate) */
+body[data-brand="veronica"] .bs-knob { --knob-glass: rgba(40, 70, 140, 0.42); }
+body[data-brand="slam"]     .bs-knob { --knob-glass: rgba(90, 90, 96, 0.55); }
+body[data-brand="veronica"] .bs-knob-logo,
+body[data-brand="slam"] .bs-knob-logo { filter: drop-shadow(0 1px 6px rgba(0, 0, 0, 0.25)); }
 .bs-knob:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
 
 /* The pointer: a blue pill on the face that turns to the station */
