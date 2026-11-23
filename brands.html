@@ -8,7 +8,7 @@
   <!-- PROTOTYPE: not linked from the site yet. -->
   <meta name="robots" content="noindex" />
   <link rel="stylesheet" href="css/style.css?v=20261123a" />
-  <link rel="stylesheet" href="css/brands.css?v=20261123g" />
+  <link rel="stylesheet" href="css/brands.css?v=20261123h" />
 </head>
 <body class="brands-page">
   <header class="topbar">
@@ -37,6 +37,14 @@
   </div>
 
   <!-- Radio dial: glass ring with a pointer; stations around it, the current logo in the middle -->
+  <!-- Liquid glass lens: bends what's behind the dial at its rim (Chromium); other browsers keep frosted glass -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <filter id="bs-lens" x="0" y="0" width="1" height="1" primitiveUnits="objectBoundingBox" color-interpolation-filters="sRGB">
+      <feImage href="Assets/icons/stations/glass-lens.png" x="0" y="0" width="1" height="1" preserveAspectRatio="none" result="map" />
+      <feDisplacementMap in="SourceGraphic" in2="map" scale="0.09" xChannelSelector="R" yChannelSelector="G" result="bent" />
+      <feGaussianBlur in="bent" stdDeviation="0.012" />
+    </filter>
+  </svg>
   <nav class="bs-radio" aria-label="Tune in to a brand">
     <div class="bs-ring"><span class="bs-tick" style="--a:-50deg"></span><span class="bs-tick" style="--a:0deg"></span><span class="bs-tick" style="--a:50deg"></span></div>
     <div class="bs-pointer-arm"><span class="bs-pointer"></span></div>
@@ -113,6 +121,6 @@
   <!-- Hover a card for 1 second (or click / Enter) and it comes out of the wheel -->
   <div class="bs-pop" aria-hidden="true"><img alt="" /></div>
 
-  <script src="css/js/brands.js?v=20261123d"></script>
+  <script src="css/js/brands.js?v=20261123e"></script>
 </body>
 </html>

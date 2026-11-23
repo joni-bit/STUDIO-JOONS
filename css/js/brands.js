@@ -13,6 +13,8 @@
   const pop = document.querySelector('.bs-pop');
   const popImg = pop.querySelector('img');
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // Lens refraction via an SVG filter in backdrop-filter only works in Chromium browsers
+  if (navigator.userAgentData && navigator.userAgentData.brands.some(b => /Chromium/.test(b.brand))) document.documentElement.classList.add('has-lens');
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
 
   const STEP = 22;      // degrees between cards on the wheel

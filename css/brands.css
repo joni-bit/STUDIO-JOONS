@@ -199,3 +199,25 @@ body[data-brand="slam"] .bs-station { color: #d9d9d9; }
     display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
   .bs-card { position: relative; inset: auto; aspect-ratio: 1; transform: none !important; opacity: 1 !important; }
 }
+
+/* ---------- Real liquid glass (Chromium): the rim bends the background like a lens ----------
+   Principles borrowed from Apple's Liquid Glass: glass refracts and catches light rather than
+   just blurring; tint only for prominence; it reacts when you touch it. */
+.has-lens .bs-ring {
+  background: rgba(255, 255, 255, 0.22);
+  backdrop-filter: url(#bs-lens) blur(6px) saturate(170%) brightness(1.06);
+}
+.has-lens .bs-knob {
+  backdrop-filter: url(#bs-lens) blur(10px) saturate(180%) brightness(1.04);
+}
+/* Specular highlight: a soft sheen across the top-left of the glass */
+.bs-ring::before, .bs-knob::before {
+  content: ""; position: absolute; inset: 0; border-radius: 50%; pointer-events: none;
+  background:
+    radial-gradient(120% 60% at 30% 8%, rgba(255,255,255,0.55), rgba(255,255,255,0) 45%),
+    radial-gradient(80% 40% at 75% 100%, rgba(255,255,255,0.18), rgba(255,255,255,0) 60%);
+  mix-blend-mode: screen;
+}
+.bs-knob { overflow: hidden; }
+/* Pressing the knob squishes the glass slightly, like Apple's interactive glass */
+.bs-knob:active { transform: scale(0.97); }
