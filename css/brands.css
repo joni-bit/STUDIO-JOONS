@@ -167,7 +167,8 @@ body[data-brand="slam"] .bs-station { color: #d9d9d9; }
   backface-visibility: hidden; -webkit-backface-visibility: hidden;
   will-change: transform, opacity;
 }
-.bs-card img { display: block; width: 100%; height: 100%; object-fit: contain; pointer-events: none; }
+/* Cards are always filled: other sizes are cropped to the square (the full image shows on hover) */
+.bs-card img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center; pointer-events: none; }
 .bs-card:focus-visible { outline: 3px solid #fff; outline-offset: 4px; }
 
 /* The pulled-out card */
