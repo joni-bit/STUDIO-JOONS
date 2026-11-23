@@ -172,16 +172,19 @@ function initBrandScroll() {
 
   // ---- Pull a card out: hover 0.3 seconds, or click / Enter ----
   let timer = null;
+  let openCard = null;   // the card that opened the pop-up
   function openPop(card) {
     const img = card.querySelector('img');
     popImg.src = card.dataset.full || img.currentSrc || img.src;   // the original, uncropped
     popImg.alt = img.alt;
     popCap.textContent = card.dataset.caption || '';
     caption.classList.remove('is-on');
+    openCard = card;
     pop.classList.add('is-open');
     pop.setAttribute('aria-hidden', 'false');
   }
   function closePop() {
+    openCard = null;
     pop.classList.remove('is-open');
     pop.setAttribute('aria-hidden', 'true');
   }
@@ -197,7 +200,12 @@ function initBrandScroll() {
     card.addEventListener('click', () => { clearTimeout(timer); openPop(card); });
   });
   pop.addEventListener('click', closePop);
-  pop.addEventListener('mouseleave', closePop);
+  // Close as soon as the mouse is on neither the enlarged image nor the card it came from
+  const inside = (el, x, y) => { const r = el.getBoundingClientRect(); return x >= r.left && x <= r.right && y >= r.top && y <= r.bottom; };
+  document.addEventListener('mousemove', e => {
+    if (!openCard) return;
+    if (!inside(popImg, e.clientX, e.clientY) && !inside(openCard, e.clientX, e.clientY)) closePop();
+  });
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closePop(); });
 }
 
