@@ -93,7 +93,7 @@ function initBrandScroll() {
   // Cards sit on a cylinder (radius = 2.4 × card). 30° apart leaves a clear gap between cards,
   // so neighbours never cut through each other.
   const STEP = 30;      // degrees between cards on the wheel
-  const FRONT = 1.18;   // the card facing you grows to this size (1 = same as the others)
+  const FRONT = 1.7;    // the card facing you grows to this size (1 = same as the others)
   const VISIBLE = 3;    // how many cards you still see on each side
 
   const sec = brands[0];
@@ -141,7 +141,8 @@ function initBrandScroll() {
       const fade = 1 - clamp((Math.abs(d) - 1) / VISIBLE, 0, 1);
       const near = Math.max(0, 1 - Math.abs(d));    // 1 when facing you, 0 from one card away
       const grow = 1 + (FRONT - 1) * near * near * (3 - 2 * near);
-      card.style.transform = `rotateY(${d * STEP}deg) translateZ(var(--radius)) scale(${grow.toFixed(3)})`;   // upcoming on the right, past on the left (reads left → right)
+      const push = Math.sign(d) * Math.min(Math.abs(d), 1) * (FRONT - 1) * 14;   // neighbours step aside for the big front card
+      card.style.transform = `rotateY(${d * STEP + push}deg) translateZ(var(--radius)) scale(${grow.toFixed(3)})`;   // upcoming on the right, past on the left (reads left → right)
       card.style.opacity = far ? '0' : String(0.25 + 0.75 * fade);
       card.style.visibility = far ? 'hidden' : 'visible';
       card.style.pointerEvents = Math.abs(d) < 2.5 ? 'auto' : 'none';
