@@ -87,8 +87,10 @@ function initBrandScroll() {
   if (navigator.userAgentData && navigator.userAgentData.brands.some(b => /Chromium/.test(b.brand))) document.documentElement.classList.add('has-lens');
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
 
-  const STEP = 22;      // degrees between cards on the wheel
-  const VISIBLE = 4;    // how many cards you still see on each side
+  // Cards sit on a cylinder (radius = 2.4 × card). 30° apart leaves a clear gap between cards,
+  // so neighbours never cut through each other.
+  const STEP = 30;      // degrees between cards on the wheel
+  const VISIBLE = 3;    // how many cards you still see on each side
 
   function setColours() {
     const mid = window.innerHeight * 0.5;

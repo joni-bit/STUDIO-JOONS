@@ -2780,3 +2780,6 @@ mark.fill-in { background: rgba(255, 196, 0, 0.28); color: inherit; border-radiu
   100% { opacity: 0; transform: scale(0.7) translateX(-15px); max-width: 0;     padding: 0;      margin-left: 0; margin-right: 0;  gap: 0; }
 }
 @media (prefers-reduced-motion: reduce) { .nav-cart-btn.is-leaving { animation-duration: 0.01s; } }
+
+/* Caption under a project hero: clear gap below the image (was overlapping it) */
+.project-hero-image .block-caption { margin: 10px 0 0; position: relative; }
