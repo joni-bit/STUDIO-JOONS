@@ -175,12 +175,14 @@ body[data-brand="slam"] .bs-station { color: #d9d9d9; }
 
 /* The pulled-out card */
 .bs-pop {
-  position: fixed; inset: 0; z-index: 80; display: grid; place-items: center;
+  /* Sits under the menu (z 40) and the dial (z 50), and only uses the space between them */
+  position: fixed; inset: 0; z-index: 35; display: grid; place-items: center;
+  padding: 104px 24px calc(var(--dial-space, 250px) + 12px);
   background: rgba(0, 0, 0, 0.35);
   opacity: 0; pointer-events: none; transition: opacity 0.25s ease;
 }
 .bs-pop img {
-  max-width: min(86vw, 1100px); max-height: 80vh; width: auto; height: auto;
+  max-width: min(86vw, 1100px); max-height: calc(100vh - 104px - var(--dial-space, 250px) - 70px); width: auto; height: auto;
   border-radius: 10px; box-shadow: 0 40px 90px -20px rgba(0, 0, 0, 0.6);
   transform: scale(0.92) translateY(12px); transition: transform 0.35s cubic-bezier(.2, .8, .2, 1);
 }
@@ -237,4 +239,4 @@ body[data-brand="slam"] .bs-station { color: #d9d9d9; }
 .bs-pop figure { margin: 0; display: grid; justify-items: center; gap: 16px; }
 .bs-pop figcaption { font-size: 16px; font-weight: 500; color: #fff; text-shadow: 0 1px 12px rgba(0, 0, 0, 0.35); }
 .bs-pop figcaption:empty { display: none; }
-@media (max-width: 700px) { .bs-caption { top: calc(38vh + 29vw + 22px); font-size: 14px; } }
+@media (max-width: 700px) { .bs-pop { --dial-space: 200px; } .bs-caption { top: calc(38vh + 29vw + 22px); font-size: 14px; } }
