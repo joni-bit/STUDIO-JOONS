@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
   <title>Studio Joons — STORE Carnavals emblemen! </title>
   <meta name="description" content="STUDIO Joons STORE emblemen. Nieuwe drop voor 2027 maak je kiel compleet." />
-  <link rel="stylesheet" href="css/style.css?v=20261122e" />
+  <link rel="stylesheet" href="css/style.css?v=20261123a" />
   <link rel="icon" type="image/png" sizes="32x32" href="Assets/Images/favicon_shop.png">
   <script src="https://js.stripe.com/v3/"></script>
   <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="87ab8097-1b34-4175-9364-17580edce42e" data-blockingmode="auto" type="text/javascript"></script>
@@ -317,11 +317,27 @@
       link.addEventListener('click', function(e) {
         const target = this.getAttribute('href');
         if (target && target !== '#' && !this.classList.contains('nav-cart-btn')) {
-          e.preventDefault(); 
-          document.body.classList.remove('shop-page');
+          e.preventDefault();
+          // Reverse of the pop-in: the basket shrinks back into the menu, then we go
           const cartBtn = document.querySelector('.nav-cart-btn');
-          if (cartBtn) cartBtn.style.opacity = '0';
-          setTimeout(() => { window.location.href = target; }, 450);
+          const nav = document.querySelector('.floating-nav');
+          if (nav) nav.querySelectorAll('a').forEach(a => a.removeAttribute('aria-current'));
+          this.setAttribute('aria-current', 'page');
+          if (cartBtn) cartBtn.classList.add('is-leaving');
+          if (nav) {
+            // Measure how wide the menu is on the other pages, then glide to that width
+            nav.style.transition = 'none';
+            const from = nav.getBoundingClientRect().width;
+            document.body.classList.remove('shop-page');
+            const to = nav.getBoundingClientRect().width;
+            document.body.classList.add('shop-page');
+            nav.style.width = from + 'px';
+            void nav.offsetWidth;
+            nav.style.transition = 'width 0.45s cubic-bezier(.4, 0, .2, 1)';
+            nav.style.width = to + 'px';
+          }
+          const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          setTimeout(() => { window.location.href = target; }, reduce ? 0 : 430);
         }
       });
     });

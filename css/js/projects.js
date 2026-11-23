@@ -280,7 +280,7 @@ const projectsData = {
       ["My role", "Sole designer and illustrator, my first solo project"],
       ["Deliverables", "Identity, character illustration, posters, social, printed invitations"]
     ],
-    hero: { label: "Hero — Tate alone, large, on cream (export at 2400 px)", ratio: "16 / 10" },
+    hero: { src: "Assets/Projecten/DoMiBo/web/tate-hero.webp", alt: "Tate the Potato, a retro pin-up, lounging on a giant beer glass" },
     hook: "Thursday is the new Friday.",
     blocks: [
       { type: "section", heading: "The brief", text: [
@@ -297,7 +297,7 @@ const projectsData = {
       { type: "section", heading: "The system", text: [
         "Every edition shares one frame: the brushed DoMiBo wordmark, a cream panel, the purple wave with date and address, and Riot's logo. Only Tate's scene changes, from a Dutch street cart to a beach chair, often with Riot's signature drink or the sponsors (Jägermeister, Gulpener) drawn in. Fast to produce, instantly recognisable."
       ]},
-      { type: "breakdown", item: { label: "Fixed vs changing — one poster with labels: wordmark, cream panel, purple wave, Riot logo vs Tate's scene (to make, start from Guidelines 3)" } },
+      { type: "breakdown", item: { src: "Assets/Projecten/DoMiBo/web/breakdown.webp", alt: "Riot elements: paintstroke, frame and wave, next to a finished DoMiBo poster", caption: "The fixed parts: paintstroke wordmark, Riot frame and Riot wave. Only Tate's scene changes." } },
       { type: "section", heading: "Roll-out", text: [
         "Posters, Instagram posts and stories, and printed invitations hand-delivered to neighbouring offices."
       ]},
@@ -306,10 +306,7 @@ const projectsData = {
         { src: "Assets/Projecten/DoMiBo/web/story-terrace.webp", alt: "DoMiBo Instagram story: terrace" },
         { src: "Assets/Projecten/DoMiBo/web/story-streetcart.webp", alt: "DoMiBo Instagram story: street cart" }
       ], caption: "Instagram stories" },
-      { type: "inset", items: [
-        { src: "Assets/Projecten/DoMiBo/web/invitation.webp", alt: "DoMiBo printed invitation", caption: "Printed invitation [replace with a photo of a real one]" },
-        { label: "Poster on a wall" }
-      ]}
+      { type: "hero", ratio: "2 / 1", item: { src: "Assets/Projecten/DoMiBo/web/invitation.webp", alt: "DoMiBo printed invitation", caption: "Printed invitation for the neighbouring offices" } }
     ]
   },
   "patches": {
@@ -319,7 +316,7 @@ const projectsData = {
     card: {
       title: "Patches & Studio Joons",
       eyebrow: "Identity",
-      image: "Assets/Projecten/Patches/web/freakandel-jacket.webp",
+      image: "Assets/Projecten/Patches/web/macro.webp",
       description: "Designing carnaval patches for Familie Kesbeke and others, and selling my own.",
       tint: "orange"
     },
@@ -330,7 +327,7 @@ const projectsData = {
       ["Role", "Freelance designer, plus my own label"],
       ["Deliverables", "Embroidered carnaval patches"]
     ],
-    hero: { src: "Assets/Projecten/Patches/web/jacket-combi.webp", alt: "Studio Joons patches on a navy jacket sleeve", caption: "[Replace with produced client patches on a jacket]" },
+    hero: { src: "Assets/Projecten/Patches/web/macro.webp", alt: "Two Snacks on the Beach patches on navy jackets, stitching up close" },
     hook: "Small canvas, big character.",
     blocks: [
       { type: "section", heading: "How it started", text: [
@@ -339,22 +336,32 @@ const projectsData = {
       { type: "section", heading: "How I work", text: [
         "Some clients arrive with a clear idea, some with nothing at all. I always start with a conversation about what they want and the do's and don'ts, then show 3–5 concepts. We talk through what works, and I refine from there. For Familie Kesbeke I designed four patches, two of which went into production: pickles with attitude, in their own Brabant dialect (“Heé Slappe!”, “Kiek nie zo zuur”)."
       ]},
-      { type: "breakdown", item: { label: "Kesbeke concept sheet — 4 designs, the 2 produced ones marked (to make)" } },
-      { type: "grid", columns: 3, items: [
-        { label: "Kesbeke — Heé Slappe!" }, { label: "Kesbeke — Kiek nie zo zuur" }, { label: "Bakkerijt" },
-        { label: "SKD Kozijnen" }, { label: "100% NL" }, { label: "Produced patch" }
-      ], caption: "Produced client patches, shot from straight above" },
+      { type: "breakdown", item: { src: "Assets/Projecten/Patches/web/kesbeke-concepts.webp", alt: "Four Familie Kesbeke patch designs; the two produced ones glow blue", caption: "Familie Kesbeke — four designs, the two produced ones marked in blue" } },
+      { type: "triptych", ratio: "1 / 1", items: [
+        { src: "Assets/Projecten/Patches/web/kesbeke-hee-slappe.webp", alt: "Kesbeke patch: Heé Slappe!" },
+        { src: "Assets/Projecten/Patches/web/kesbeke-kiek.webp", alt: "Kesbeke patch: Kiek nie zo zuur" },
+        { src: "Assets/Projecten/Patches/web/kesbeke-kekt.webp", alt: "Kesbeke patch: Kèkt nie zo zuur" }
+      ], caption: "Heé Slappe! · Kiek nie zo zuur · Kèkt nie zo zuur" },
+      { type: "triptych", ratio: "1 / 1", items: [
+        { src: "Assets/Projecten/Patches/web/bakkerijt.webp", alt: "Bakkerijt patch: Iedere sneej un smaoksènsaosie" },
+        { src: "Assets/Projecten/Patches/web/skd.webp", alt: "SKD Kozijnen patch: Hier gaot 't dak d'r pas écht af!" },
+        { src: "Assets/Projecten/Patches/web/100nl.webp", alt: "100% NL patch: Maakt je dag!" }
+      ], caption: "Bakkerijt · SKD Kozijnen · 100% NL" },
       { type: "section", heading: "Studio Joons", text: [
         "I also wanted to learn everything that happens after the design: production, pricing, selling. So I started my own small label. The first patches are fried snacks with a wink at <em>Ex on the Beach</em> (FREAKandel, BitterB00Bs), sold at carnaval in Brabant and in <a href=\"shop\">the shop</a>."
       ]},
-      { type: "split", ratio: "1 / 1", items: [
+      { type: "split", items: [
         { src: "Assets/Projecten/Patches/web/freakandel-design.webp", alt: "FREAKandel patch design", caption: "FREAKandel — design" },
         { src: "Assets/Projecten/Patches/web/freakandel-jacket.webp", alt: "FREAKandel patch on a jacket", caption: "FREAKandel — the real patch" }
       ]},
-      { type: "split", ratio: "1 / 1", items: [
+      { type: "split", items: [
         { src: "Assets/Projecten/Patches/web/bitterboobs-design.webp", alt: "BitterB00Bs patch design", caption: "BitterB00Bs — design" },
         { src: "Assets/Projecten/Patches/web/bitterboobs-jacket.webp", alt: "BitterB00Bs patch on a jacket", caption: "BitterB00Bs — the real patch" }
-      ]}
+      ]},
+      { type: "split", items: [
+        { src: "Assets/Projecten/Patches/web/jackets-pair.webp", alt: "Both Studio Joons patches on navy carnaval jackets" },
+        { src: "Assets/Projecten/Patches/web/jacket-carnaval.webp", alt: "BitterB00Bs patch on a carnaval jacket between other patches" }
+      ], caption: "Worn at carnaval" }
     ]
   },
   "motion": {

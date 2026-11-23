@@ -2770,3 +2770,13 @@ mark.fill-in { background: rgba(255, 196, 0, 0.28); color: inherit; border-radiu
 .about-facts .client-logos img.logo-square { height: 40px; }
 .about-facts .client-logos img.logo-tall { height: 46px; }
 @media (max-width: 600px) { .client-logos img.logo-wide { height: 28px; } .client-logos img.logo-square { height: 36px; } .client-logos img.logo-tall { height: 42px; } }
+
+/* Leaving the shop: the basket tucks back into the menu, the reverse of how it pops out */
+.nav-cart-btn { max-width: 160px; overflow: hidden; }
+.nav-cart-btn.is-leaving { animation: cartTuckAway 0.45s cubic-bezier(.4, 0, .2, 1) forwards; pointer-events: none; }
+@keyframes cartTuckAway {
+  0%   { opacity: 1; transform: scale(1) translateX(0);       max-width: 160px; padding: 0 14px; margin-left: 0; margin-right: 2px; gap: 6px; }
+  60%  { opacity: 0; transform: scale(0.7) translateX(-15px); }
+  100% { opacity: 0; transform: scale(0.7) translateX(-15px); max-width: 0;     padding: 0;      margin-left: 0; margin-right: 0;  gap: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .nav-cart-btn.is-leaving { animation-duration: 0.01s; } }

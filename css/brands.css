@@ -1,0 +1,242 @@
+/* ===== Brand in daily use — rolodex scroll (prototype) =====
+   Each brand pins for ~3 screen heights with its own background.
+   The work turns past on a rolodex, left to right. Hover a card 1s to pull it out.
+   A glass radio dial at the bottom shows (and switches) the station. */
+
+:root { --bg: #f3f0ea; --ink: #141414; }
+
+body.brands-page {
+  background: var(--bg);
+  color: var(--ink);
+  transition: background-color 0.7s ease, color 0.7s ease;
+  overflow-x: hidden;
+}
+body.brands-page .brand-name { color: var(--ink); transition: color 0.7s ease; }
+body.brands-page .topbar { position: relative; z-index: 40; }
+
+/* ---------- Brand backgrounds ---------- */
+.bs-backdrop { position: fixed; inset: 0; z-index: 0; pointer-events: none; }
+body.brands-page main { position: relative; z-index: 1; }
+.bs-bg { position: absolute; inset: 0; opacity: 0; transition: opacity 0.7s ease; overflow: hidden; }
+.bs-bg.is-on { opacity: 1; }
+.bs-bg[data-for="veronica"] { background: linear-gradient(180deg, #21a7ff 0%, #0688ff 100%); }
+.bs-bg[data-for="100nl"]    { background: linear-gradient(180deg, #f39200 0%, #ec7b04 100%); }
+.bs-bg[data-for="slam"]     { background: #1e1e1e; }
+
+/* SLAM! diagonal stripes: cyan on the left, magenta on the right, fading toward the middle */
+.bs-stripes { position: absolute; top: -20%; bottom: -20%; width: 30vw; transform: skewX(-18deg); }
+.bs-stripes.is-left {
+  left: -8vw;
+  background: repeating-linear-gradient(90deg, #00a6dd 0 7px, transparent 7px 52px);
+  -webkit-mask-image: linear-gradient(90deg, rgba(0,0,0,0.9), transparent);
+  mask-image: linear-gradient(90deg, rgba(0,0,0,0.9), transparent);
+}
+.bs-stripes.is-right {
+  right: -8vw;
+  background: repeating-linear-gradient(90deg, #e5005a 0 7px, transparent 7px 52px);
+  -webkit-mask-image: linear-gradient(270deg, rgba(0,0,0,0.9), transparent);
+  mask-image: linear-gradient(270deg, rgba(0,0,0,0.9), transparent);
+}
+
+/* ---------- Radio dial (liquid glass) ----------
+   Style taken from Joni's "Button – Liquid Glass – Text": milky white glass (65%),
+   a soft 30px drop shadow, no hard outline. Portfolio blue (#1900ff) is the one accent:
+   the pointer glows blue, like the light on an old tuner. */
+.bs-radio {
+  --ring: 340px;
+  --knob: 176px;
+  --turn: 0deg;
+  --blue: #1900ff;
+  position: fixed; left: 50%; bottom: 0; z-index: 50;
+  width: var(--ring); height: calc(var(--ring) / 2 + 80px);
+  transform: translateX(-50%);
+  opacity: 0; pointer-events: none; transition: opacity 0.4s ease;
+}
+.bs-radio.is-on { opacity: 1; pointer-events: auto; }
+.bs-ring, .bs-knob { position: absolute; left: 50%; border-radius: 50%; }
+
+/* Outer ring: the glass dial face */
+.bs-ring {
+  width: var(--ring); height: var(--ring); bottom: calc(var(--ring) / -2); margin-left: calc(var(--ring) / -2);
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(24px) saturate(180%); -webkit-backdrop-filter: blur(24px) saturate(180%);
+  box-shadow:
+    0 6px 30px rgba(0, 0, 0, 0.12),               /* the button's drop shadow */
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.95),     /* light catching the top edge */
+    inset 0 -18px 40px -24px rgba(25, 0, 255, 0.18), /* a faint blue glow inside the glass */
+    inset 0 0 0 1px rgba(255, 255, 255, 0.45);
+}
+/* Tick marks on the face, one per station; the active one lights up blue */
+.bs-tick {
+  position: absolute; left: 50%; bottom: 50%; width: 3px; height: 12px; margin-left: -1.5px; border-radius: 2px;
+  background: rgba(50, 50, 50, 0.22);
+  transform-origin: 50% 100%;
+  transform: rotate(var(--a)) translateY(calc(var(--ring) / -2 + 10px));
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+.bs-tick.is-on { background: var(--blue); box-shadow: 0 0 8px rgba(25, 0, 255, 0.6); }
+
+/* Inner knob: brighter glass, lifted off the face */
+.bs-knob {
+  width: var(--knob); height: var(--knob); bottom: calc(var(--knob) / -2); margin-left: calc(var(--knob) / -2);
+  padding: 0; border: 0; cursor: pointer;
+  background: var(--knob-glass, rgba(247, 247, 247, 0.82));
+  backdrop-filter: blur(28px) saturate(180%); -webkit-backdrop-filter: blur(28px) saturate(180%);
+  transition: background-color 0.5s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow:
+    0 -6px 30px rgba(0, 0, 0, 0.12),
+    inset 0 1.5px 0 rgba(255, 255, 255, 1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.bs-knob:hover { transform: translateY(-2px); box-shadow: 0 -8px 34px rgba(0, 0, 0, 0.14), 0 0 0 4px rgba(25, 0, 255, 0.08), inset 0 1.5px 0 #fff, inset 0 0 0 1px rgba(255,255,255,0.6); }
+.bs-knob-logo {
+  position: absolute; left: 50%; top: 33%; width: 56%; height: auto; transform: translate(-50%, -50%);
+  opacity: 0; transition: opacity 0.4s ease;
+}
+/* White logo files, coloured in their brand colour so they read on white glass */
+.bs-knob-logo.is-mask {
+  display: block; background: var(--tint);
+  -webkit-mask-position: center; mask-position: center; -webkit-mask-size: contain; mask-size: contain; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+}
+.bs-knob-logo.is-on { opacity: 1; }
+/* Knob glass per station, so the white Veronica and SLAM! logos stay white and readable:
+   a deeper, slightly grey-blue glass for Veronica, smoky grey glass for SLAM!,
+   light glass for 100% NL (its logo has its own dark plate) */
+body[data-brand="veronica"] .bs-knob { --knob-glass: rgba(40, 70, 140, 0.42); }
+body[data-brand="slam"]     .bs-knob { --knob-glass: rgba(90, 90, 96, 0.55); }
+body[data-brand="100nl"]    .bs-knob { --knob-glass: rgba(150, 70, 0, 0.42); }
+body[data-brand="veronica"] .bs-knob-logo,
+body[data-brand="slam"] .bs-knob-logo,
+body[data-brand="100nl"] .bs-knob-logo { filter: drop-shadow(0 1px 6px rgba(0, 0, 0, 0.25)); }
+.bs-knob:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
+
+/* The pointer: a blue pill on the face that turns to the station */
+.bs-pointer-arm {
+  position: absolute; left: 50%; bottom: 0; width: 0; height: 0; pointer-events: none;
+  transform: rotate(var(--turn)); transition: transform 0.6s cubic-bezier(.3, 1.35, .5, 1);
+}
+.bs-pointer {
+  position: absolute; left: -5px; top: calc(var(--ring) / -2 + 30px); width: 10px; height: 34px; border-radius: 6px;
+  background: var(--blue);
+  box-shadow: 0 0 10px rgba(25, 0, 255, 0.7), 0 0 26px rgba(25, 0, 255, 0.35), inset 0 1px 0 rgba(255,255,255,0.45);
+}
+
+/* Station icons just outside the ring */
+.bs-station {
+  position: absolute; left: 50%; bottom: 0; width: 72px; height: 44px; margin-left: -36px; padding: 0;
+  border: 0; background: none; cursor: pointer; color: #fff; opacity: 0.4;
+  display: grid; place-items: center;
+  transform-origin: 50% 100%;
+  transform: rotate(var(--a)) translateY(calc(var(--ring) / -2 - 16px)) rotate(calc(var(--a) * -1));
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+.bs-station:hover { opacity: 0.75; }
+.bs-station[aria-current="true"] { opacity: 1; filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.18)); }
+.bs-station:focus-visible { outline: 2px solid #fff; outline-offset: 2px; border-radius: 8px; }
+/* Station marks: Joni's own SVGs (Assets/icons/stations), white, dimmed when not tuned in */
+.bs-station .ico { display: block; height: 30px; width: auto; }
+.bs-station[data-target="100nl"] .ico { height: 22px; }
+body[data-brand="slam"] .bs-station { color: #d9d9d9; }
+
+/* ---------- One brand: 100vh pinned + 300vh of scroll ---------- */
+.bs-brand { position: relative; height: 400vh; }
+.bs-stage {
+  position: sticky; top: 0; height: 100vh; overflow: hidden;
+  perspective: 1600px; perspective-origin: 50% 40%;
+}
+.bs-end { height: 30vh; }
+
+/* The rolodex: cards around a vertical axis, turning left → right */
+.bs-wheel {
+  --card: min(26vw, 320px);
+  --radius: calc(var(--card) * 2.1);
+  position: absolute; left: 50%; top: 40%;
+  width: var(--card); height: var(--card);
+  margin: calc(var(--card) / -2) 0 0 calc(var(--card) / -2);
+  transform-style: preserve-3d;
+  transform: rotateX(6deg) translateZ(calc(var(--radius) * -1));
+}
+.bs-card {
+  position: absolute; inset: 0; padding: 0; margin: 0; border: 0; cursor: pointer;
+  border-radius: 8px; overflow: hidden;
+  background: rgba(0, 0, 0, 0.22);
+  box-shadow: 0 24px 50px -18px rgba(0, 0, 0, 0.55);
+  backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  will-change: transform, opacity;
+}
+.bs-card img { display: block; width: 100%; height: 100%; object-fit: contain; pointer-events: none; }
+.bs-card:focus-visible { outline: 3px solid #fff; outline-offset: 4px; }
+.bs-card::after {
+  content: ""; position: absolute; left: 0; bottom: 0; height: 4px; width: 0;
+  background: #fff; opacity: 0.9;
+}
+.bs-card.is-arming::after { width: 100%; transition: width 1s linear; }
+
+/* The pulled-out card */
+.bs-pop {
+  /* Sits under the menu (z 40) and the dial (z 50), and only uses the space between them */
+  position: fixed; inset: 0; z-index: 35; display: grid; place-items: center;
+  padding: 104px 24px calc(var(--dial-space, 250px) + 12px);
+  background: rgba(0, 0, 0, 0.35);
+  opacity: 0; pointer-events: none; transition: opacity 0.25s ease;
+}
+.bs-pop img {
+  max-width: min(86vw, 1100px); max-height: calc(100vh - 104px - var(--dial-space, 250px) - 70px); width: auto; height: auto;
+  border-radius: 10px; box-shadow: 0 40px 90px -20px rgba(0, 0, 0, 0.6);
+  transform: scale(0.92) translateY(12px); transition: transform 0.35s cubic-bezier(.2, .8, .2, 1);
+}
+.bs-pop.is-open { opacity: 1; pointer-events: auto; }
+.bs-pop.is-open img { transform: none; }
+
+@media (max-width: 700px) {
+  .bs-radio { --ring: 260px; --knob: 140px; }
+  .bs-station .ico { height: 24px; } .bs-station[data-target="100nl"] .ico { height: 18px; }
+  .bs-wheel { --card: 58vw; top: 38%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body.brands-page, .bs-bg, .bs-radio, .bs-pointer-arm, .bs-pop, .bs-pop img { transition: none; }
+  .bs-brand { height: auto; padding: 14vh 6vw 30vh; }
+  .bs-stage { position: static; height: auto; overflow: visible; perspective: none; }
+  .bs-wheel { position: static; width: auto; height: auto; margin: 0; transform: none;
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; }
+  .bs-card { position: relative; inset: auto; aspect-ratio: 1; transform: none !important; opacity: 1 !important; }
+}
+
+/* ---------- Real liquid glass (Chromium): the rim bends the background like a lens ----------
+   Principles borrowed from Apple's Liquid Glass: glass refracts and catches light rather than
+   just blurring; tint only for prominence; it reacts when you touch it. */
+.has-lens .bs-ring {
+  background: rgba(255, 255, 255, 0.22);
+  backdrop-filter: url(#bs-lens) blur(6px) saturate(170%) brightness(1.06);
+}
+.has-lens .bs-knob {
+  backdrop-filter: url(#bs-lens) blur(10px) saturate(180%) brightness(1.04);
+}
+/* Specular highlight: a soft sheen across the top-left of the glass */
+.bs-ring::before, .bs-knob::before {
+  content: ""; position: absolute; inset: 0; border-radius: 50%; pointer-events: none;
+  background:
+    radial-gradient(120% 60% at 30% 8%, rgba(255,255,255,0.55), rgba(255,255,255,0) 45%),
+    radial-gradient(80% 40% at 75% 100%, rgba(255,255,255,0.18), rgba(255,255,255,0) 60%);
+  mix-blend-mode: screen;
+}
+.bs-knob { overflow: hidden; }
+/* Pressing the knob squishes the glass slightly, like Apple's interactive glass */
+.bs-knob:active { transform: scale(0.97); }
+
+/* ---------- Caption: glass pill (Joni's liquid glass text button) under the rolodex ---------- */
+.bs-caption {
+  position: fixed; left: 50%; top: calc(40vh + min(13vw, 160px) + 30px); z-index: 60;
+  margin: 0; max-width: 80vw; text-align: center;
+  font-size: 16px; font-weight: 500; letter-spacing: 0.01em; color: #fff;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.25);
+  transform: translate(-50%, 6px); opacity: 0; pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.25s ease;
+}
+.bs-caption.is-on { opacity: 0.95; transform: translate(-50%, 0); }
+.bs-pop figure { margin: 0; display: grid; justify-items: center; gap: 16px; }
+.bs-pop figcaption { font-size: 16px; font-weight: 500; color: #fff; text-shadow: 0 1px 12px rgba(0, 0, 0, 0.35); }
+.bs-pop figcaption:empty { display: none; }
+@media (max-width: 700px) { .bs-pop { --dial-space: 200px; } .bs-caption { top: calc(38vh + 29vw + 22px); font-size: 14px; } }
