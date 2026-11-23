@@ -6,13 +6,15 @@
   const radio = document.querySelector('.bs-radio');
   const stations = [...radio.querySelectorAll('.bs-station')];
   const knob = radio.querySelector('.bs-knob');
+  const knobLogos = [...radio.querySelectorAll('.bs-knob-logo')];
+  const bgs = [...document.querySelectorAll('.bs-bg')];
   const ANGLES = stations.map(b => parseFloat(b.style.getPropertyValue('--a')));
   const pop = document.querySelector('.bs-pop');
   const popImg = pop.querySelector('img');
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
 
-  const STEP = 24;      // degrees between cards on the wheel
+  const STEP = 22;      // degrees between cards on the wheel
   const VISIBLE = 4;    // how many cards you still see on each side
 
   function setColours() {
@@ -22,13 +24,17 @@
     body.style.setProperty('--bg', active.dataset.bg);
     body.style.setProperty('--ink', active.dataset.ink);
     const i = brands.indexOf(active);
+    const id = i >= 0 ? active.id : '';
+    body.dataset.brand = id;
     radio.classList.toggle('is-on', i >= 0);
-    stations.forEach(b => b.setAttribute('aria-current', i >= 0 && b.dataset.target === active.id ? 'true' : 'false'));
+    bgs.forEach(bg => bg.classList.toggle('is-on', bg.dataset.for === id));
+    knobLogos.forEach(l => l.classList.toggle('is-on', l.dataset.for === id));
+    stations.forEach(b => b.setAttribute('aria-current', b.dataset.target === id ? 'true' : 'false'));
     if (i >= 0) {
-      // Knob points at the station, drifting a little while you scroll through it (like fine-tuning)
+      // Pointer points at the station, drifting a little while you scroll through it (like fine-tuning)
       const r = active.getBoundingClientRect();
       const p = clamp(-r.top / (r.height - window.innerHeight), 0, 1);
-      knob.style.setProperty('--knob', `${ANGLES[i] + (p - 0.5) * 16}deg`);
+      radio.style.setProperty('--turn', `${ANGLES[i] + (p - 0.5) * 12}deg`);
     }
   }
 
@@ -45,7 +51,7 @@
         const d = i - f;                                       // + = still coming, – = already flipped past
         const angle = d * STEP;
         const fade = 1 - clamp((Math.abs(d) - 1) / VISIBLE, 0, 1);
-        card.style.transform = `rotateX(${angle}deg) translateZ(var(--radius))`;
+        card.style.transform = `rotateY(${-angle}deg) translateZ(var(--radius))`;   // upcoming on the left, past on the right
         card.style.opacity = String(0.25 + 0.75 * fade);
         card.style.pointerEvents = Math.abs(d) < 2.5 ? 'auto' : 'none';
         card.tabIndex = Math.abs(d) < 0.5 ? 0 : -1;
@@ -67,7 +73,7 @@
   const tuneTo = (id) => {
     const sec = document.getElementById(id);
     const i = brands.indexOf(sec);
-    knob.style.setProperty('--knob', `${ANGLES[i]}deg`);
+    radio.style.setProperty('--turn', `${ANGLES[i]}deg`);
     window.scrollTo({ top: sec.offsetTop + 2, behavior: reduce ? 'auto' : 'smooth' });
   };
   stations.forEach(b => b.addEventListener('click', () => tuneTo(b.dataset.target)));

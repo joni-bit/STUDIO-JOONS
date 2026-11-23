@@ -8,7 +8,7 @@
   <!-- PROTOTYPE: not linked from the site yet. -->
   <meta name="robots" content="noindex" />
   <link rel="stylesheet" href="css/style.css?v=20261123a" />
-  <link rel="stylesheet" href="css/brands.css?v=20261123c" />
+  <link rel="stylesheet" href="css/brands.css?v=20261123d" />
 </head>
 <body class="brands-page">
   <header class="topbar">
@@ -29,18 +29,30 @@
     </div>
   </header>
 
+  <!-- Brand backgrounds, cross-faded by script -->
+  <div class="bs-backdrop" aria-hidden="true">
+    <div class="bs-bg" data-for="veronica"></div>
+    <div class="bs-bg" data-for="100nl"></div>
+    <div class="bs-bg" data-for="slam"><span class="bs-stripes is-left"></span><span class="bs-stripes is-right"></span></div>
+  </div>
+
+  <!-- Radio dial: glass ring with a pointer; stations around it, the current logo in the middle -->
   <nav class="bs-radio" aria-label="Tune in to a brand">
-    <div class="bs-radio-face"></div>
-    <button class="bs-station" type="button" data-target="veronica" style="--a:-58deg">Veronica</button>
-    <button class="bs-station" type="button" data-target="100nl" style="--a:0deg">100% NL</button>
-    <button class="bs-station" type="button" data-target="slam" style="--a:58deg">SLAM!</button>
-    <button class="bs-knob" type="button" aria-label="Next station"></button>
+    <div class="bs-ring"></div>
+    <div class="bs-pointer-arm"><span class="bs-pointer"></span></div>
+    <button class="bs-knob" type="button" aria-label="Next station">
+      <img class="bs-knob-logo" data-for="veronica" src="Assets/icons/clients/radio-veronica.webp" alt="" />
+      <img class="bs-knob-logo is-dark" data-for="100nl" src="Assets/icons/clients/100pnl.webp" alt="" />
+      <img class="bs-knob-logo" data-for="slam" src="Assets/icons/clients/slam.webp" alt="" />
+    </button>
+    <button class="bs-station" type="button" data-target="veronica" style="--a:-50deg" aria-label="Radio Veronica"><span class="ico-v">V</span></button>
+    <button class="bs-station" type="button" data-target="100nl" style="--a:0deg" aria-label="100% NL"><span class="ico-100">100%</span></button>
+    <button class="bs-station" type="button" data-target="slam" style="--a:50deg" aria-label="SLAM!"><svg class="ico-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.8v14.4a1 1 0 0 0 1.5.86l12-7.2a1 1 0 0 0 0-1.72l-12-7.2A1 1 0 0 0 7 4.8z" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linejoin="round"/></svg></button>
   </nav>
 
   <main>
     <section class="bs-brand" id="veronica" data-bg="#1a9bff" data-ink="#ffffff" aria-label="Radio Veronica">
       <div class="bs-stage">
-        <img class="bs-logo" src="Assets/icons/clients/radio-veronica.webp" alt="Radio Veronica" />
         <div class="bs-wheel">
           <button class="bs-card" type="button" aria-label="Show De Beste Muziekquiz Allertijden"><img src="Assets/Projecten/MediahuisRadio/web/veronica-muziekquiz.webp" alt="De Beste Muziekquiz Allertijden" loading="lazy" /></button>
           <button class="bs-card" type="button" aria-label="Show Het Radio Veronica Café key visual"><img src="Assets/Projecten/MediahuisRadio/web/cafe-key-visual.webp" alt="Het Radio Veronica Café key visual" loading="lazy" /></button>
@@ -56,7 +68,6 @@
     </section>
     <section class="bs-brand" id="100nl" data-bg="#f07d00" data-ink="#141414" aria-label="100% NL">
       <div class="bs-stage">
-        <img class="bs-logo" src="Assets/icons/clients/100pnl.webp" alt="100% NL" style="filter: brightness(0);" />
         <div class="bs-wheel">
           <button class="bs-card" type="button" aria-label="Show Tijdmachine Jaren 80"><img src="Assets/Projecten/MediahuisRadio/web/tijdmachine-80.webp" alt="Tijdmachine Jaren 80" loading="lazy" /></button>
           <button class="bs-card" type="button" aria-label="Show Tijdmachine Jaren 90"><img src="Assets/Projecten/MediahuisRadio/web/tijdmachine-90.webp" alt="Tijdmachine Jaren 90" loading="lazy" /></button>
@@ -72,7 +83,6 @@
     </section>
     <section class="bs-brand" id="slam" data-bg="#121212" data-ink="#ffffff" aria-label="SLAM!">
       <div class="bs-stage">
-        <img class="bs-logo" src="Assets/icons/clients/slam.webp" alt="SLAM!" />
         <div class="bs-wheel">
           <button class="bs-card" type="button" aria-label="Show Festivalmaand 9:16"><img src="Assets/Projecten/MediahuisRadio/web/festivalmaand-story.webp" alt="Festivalmaand 9:16" loading="lazy" /></button>
           <button class="bs-card" type="button" aria-label="Show Summer 500"><img src="Assets/Projecten/MediahuisRadio/web/summer500-final.webp" alt="Summer 500" loading="lazy" /></button>
@@ -94,6 +104,6 @@
   <!-- Hover a card for 1 second (or click / Enter) and it comes out of the wheel -->
   <div class="bs-pop" aria-hidden="true"><img alt="" /></div>
 
-  <script src="css/js/brands.js?v=20261123b"></script>
+  <script src="css/js/brands.js?v=20261123c"></script>
 </body>
 </html>
