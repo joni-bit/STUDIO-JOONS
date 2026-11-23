@@ -12,7 +12,7 @@ function brandScrollHTML() {
   const esc = s => String(s || '').replace(/"/g, '&quot;');
   const cards = BRAND_SCROLL.flatMap(b => (brandsData[b.id] || []).map(it => {
     const alt = esc(it.alt || it.caption);
-    return `<button class="bs-card" type="button" data-brand="${b.id}" aria-label="Show ${alt}"${it.caption ? ` data-caption="${esc(it.caption)}"` : ''}><img src="${it.image}" alt="${alt}" loading="lazy" /></button>`;
+    return `<button class="bs-card" type="button" data-brand="${b.id}" data-full="${esc(it.full || it.image)}" aria-label="Show ${alt}"${it.caption ? ` data-caption="${esc(it.caption)}"` : ''}><img src="${it.image}" alt="${alt}" loading="lazy" /></button>`;
   }));
   // One rolodex for all brands: the scroll length grows with the number of cards
   return `
@@ -138,7 +138,7 @@ function initBrandScroll() {
       const d = k - f;                             // + = still coming, – = already flipped past
       const far = Math.abs(d) > VISIBLE + 0.5;
       const fade = 1 - clamp((Math.abs(d) - 1) / VISIBLE, 0, 1);
-      card.style.transform = `rotateY(${-d * STEP}deg) translateZ(var(--radius))`;   // upcoming on the left, past on the right
+      card.style.transform = `rotateY(${d * STEP}deg) translateZ(var(--radius))`;   // upcoming on the right, past on the left (reads left → right)
       card.style.opacity = far ? '0' : String(0.25 + 0.75 * fade);
       card.style.visibility = far ? 'hidden' : 'visible';
       card.style.pointerEvents = Math.abs(d) < 2.5 ? 'auto' : 'none';
@@ -170,11 +170,11 @@ function initBrandScroll() {
     tuneTo(stations[(cur + 1) % stations.length].dataset.target);
   });
 
-  // ---- Pull a card out: hover 1 second, or click / Enter ----
+  // ---- Pull a card out: hover 0.3 seconds, or click / Enter ----
   let timer = null;
   function openPop(card) {
     const img = card.querySelector('img');
-    popImg.src = img.currentSrc || img.src;
+    popImg.src = card.dataset.full || img.currentSrc || img.src;   // the original, uncropped
     popImg.alt = img.alt;
     popCap.textContent = card.dataset.caption || '';
     caption.classList.remove('is-on');
@@ -191,11 +191,10 @@ function initBrandScroll() {
     card.addEventListener('blur', () => caption.classList.remove('is-on'));
     card.addEventListener('mouseenter', () => {
       showCaption();
-      card.classList.add('is-arming');
-      timer = setTimeout(() => { card.classList.remove('is-arming'); openPop(card); }, 1000);
+      timer = setTimeout(() => openPop(card), 300);
     });
-    card.addEventListener('mouseleave', () => { clearTimeout(timer); card.classList.remove('is-arming'); caption.classList.remove('is-on'); });
-    card.addEventListener('click', () => { clearTimeout(timer); card.classList.remove('is-arming'); openPop(card); });
+    card.addEventListener('mouseleave', () => { clearTimeout(timer); caption.classList.remove('is-on'); });
+    card.addEventListener('click', () => { clearTimeout(timer); openPop(card); });
   });
   pop.addEventListener('click', closePop);
   pop.addEventListener('mouseleave', closePop);

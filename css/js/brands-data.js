@@ -2,7 +2,9 @@
   BRAND IN DAILY USE — the content of the rolodex.
 
   Per brand, top to bottom = the order on the wheel.
-  image:    the file (square, 1200 × 1200 px)
+  image:    the square version on the rolodex (1200 × 1200 px; trim or fill other sizes to fit)
+  full:     optional — the original at its own size (e.g. 1920 × 1080), shown when you hover.
+            Leave it out if the square is the original.
   caption:  the line shown when you hover the card. Leave it out (or "") for no caption.
   alt:      short description for screen readers (not shown).
 */
