@@ -184,7 +184,9 @@ body[data-brand="slam"] .bs-station { color: #d9d9d9; }
   border-radius: 10px; box-shadow: 0 40px 90px -20px rgba(0, 0, 0, 0.6);
   transform: scale(0.92) translateY(12px); transition: transform 0.35s cubic-bezier(.2, .8, .2, 1);
 }
-.bs-pop.is-open { opacity: 1; pointer-events: auto; }
+/* Only the enlarged image takes the mouse; the dim layer around it lets it through */
+.bs-pop.is-open { opacity: 1; pointer-events: none; }
+.bs-pop.is-open img { pointer-events: auto; cursor: zoom-out; }
 .bs-pop.is-open img { transform: none; }
 
 @media (max-width: 700px) {
