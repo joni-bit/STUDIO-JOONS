@@ -177,72 +177,10 @@ const projectsData = {
       { type: "section", text: [
         "Most days I'm making three very different radio brands work in a hundred small places: studio screens (static and animated), A0 posters, 9:16 screens, social ads, HTML5 banners, and the prizes listeners win, from mugs to greeting cards to socks. The job is to keep every piece unmistakably Veronica, SLAM! or 100% NL, and still make it feel made for its moment."
       ]},
-      { type: "grid", columns: 4, items: [
-        { src: "Assets/Projecten/MediahuisRadio/web/veronica-muziekquiz.webp", alt: "Radio Veronica De Beste Muziekquiz Allertijden" },
-        { src: "Assets/Projecten/MediahuisRadio/web/veronica-cafe.webp", alt: "Het Radio Veronica Café social post" },
-        { src: "Assets/Projecten/MediahuisRadio/web/veronica-efteling.webp", alt: "Radio Veronica x Efteling Love at First Ride" },
-        { src: "Assets/Projecten/MediahuisRadio/web/veronica-fluisteraar.webp", alt: "Radio Veronica De Fluisteraar" }
-      ], caption: "Radio Veronica" },
-      { type: "grid", columns: 4, items: [
-        { src: "Assets/Projecten/MediahuisRadio/web/slam-summer500.webp", alt: "SLAM! Summer 500" },
-        { src: "Assets/Projecten/MediahuisRadio/web/slam-alaafondshow.webp", alt: "SLAM! Alaafondshow" },
-        { src: "Assets/Projecten/MediahuisRadio/web/slam-gok-winners.webp", alt: "SLAM! Gok van je leven winners" },
-        { src: "Assets/Projecten/MediahuisRadio/web/slam-festivalmaand.webp", alt: "SLAM! Festivalmaand" }
-      ], caption: "SLAM!" },
-      { type: "grid", columns: 4, items: [
-        { src: "Assets/Projecten/MediahuisRadio/web/100nl-top1000.webp", alt: "100% NL Top 1000" },
-        { src: "Assets/Projecten/MediahuisRadio/web/100nl-sinterklaas.webp", alt: "100% NL Sinterklaas" },
-        { src: "Assets/Projecten/MediahuisRadio/web/100nl-somertijd.webp", alt: "100% NL Somertijd BBQ cards" },
-        { src: "Assets/Projecten/MediahuisRadio/web/100nl-tijdmachine.webp", alt: "100% NL Tijdmachine" }
-      ], caption: "100% NL" },
+      { type: "brandscroll" },
       { type: "section", heading: "Living a new identity", text: [
         "I started just as Radio Veronica rolled out a new visual identity. I didn't write the guidelines, but I helped bring them to life: updating visuals across every channel, keeping new work in line, and building each new campaign on top of the brand guide. On photoshoots I was second designer on set, checking that every shot fitted the new direction and that we caught the energy of each show."
       ]},
-      { type: "section", heading: "Highlights", list: [
-        "<strong>Radio Veronica — Het Radio Veronica Café:</strong> [one line — confirm which parts of the Café identity you designed].",
-        "<strong>100% NL — Tijdmachine:</strong> [one line].",
-        "<strong>SLAM! — Festivalmaand:</strong> [one line].",
-        "<strong>SLAM! — Summer 500:</strong> [one line].",
-        "<strong>SLAM! — Gok van je leven:</strong> my first big campaign at Mediahuis, as the sole designer.",
-        "<strong>Radio Veronica — De Beste Muziekquiz Allertijden:</strong> logo and digital campaign for the Top 3000 edition."
-      ]},
-      { type: "split", items: [
-        { src: "Assets/Projecten/MediahuisRadio/web/cafe-key-visual.webp", alt: "Het Radio Veronica Café key visual" },
-        { src: "Assets/Projecten/MediahuisRadio/web/cafe-coaster.webp", alt: "Het Radio Veronica Café coaster in the bar", caption: "In the bar. Photo: Bram Rietveld" }
-      ], caption: "Radio Veronica — Het Radio Veronica Café" },
-      { type: "hero", item: { src: "Assets/Projecten/MediahuisRadio/web/cafe-studio.webp", alt: "DJ live in the Café studio, in front of the shield", caption: "Live from the Café. Photo: Bram Rietveld" } },
-      { type: "hero", item: { src: "Assets/Projecten/MediahuisRadio/web/tijdmachine-concepts.webp", alt: "Four logo concepts for 100% NL Tijdmachine", caption: "Four logo concepts" } },
-      { type: "hero", item: { src: "Assets/Projecten/MediahuisRadio/web/tijdmachine-chosen.webp", alt: "The chosen Tijdmachine logo on orange", caption: "The chosen logo" } },
-      { type: "triptych", ratio: "9 / 16", items: [
-        { src: "Assets/Projecten/MediahuisRadio/web/tijdmachine-80.webp", alt: "Tijdmachine studio screen Jaren 80" },
-        { src: "Assets/Projecten/MediahuisRadio/web/tijdmachine-90.webp", alt: "Tijdmachine studio screen Jaren 90" },
-        { src: "Assets/Projecten/MediahuisRadio/web/tijdmachine-00.webp", alt: "Tijdmachine studio screen Jaren 00" }
-      ], caption: "100% NL — Tijdmachine: same frame, different decade" },
-      { type: "grid", columns: 4, items: [
-        { src: "Assets/Projecten/MediahuisRadio/web/festivalmaand-wip1.webp", alt: "Festivalmaand work in progress 1" },
-        { src: "Assets/Projecten/MediahuisRadio/web/festivalmaand-wip3.webp", alt: "Festivalmaand work in progress 3" },
-        { src: "Assets/Projecten/MediahuisRadio/web/festivalmaand-wip5.webp", alt: "Festivalmaand work in progress 5" },
-        { src: "Assets/Projecten/MediahuisRadio/web/festivalmaand-wip8.webp", alt: "Festivalmaand work in progress 8" }
-      ], caption: "SLAM! — Festivalmaand: the road to the logo" },
-      { type: "split", items: [
-        { src: "Assets/Projecten/MediahuisRadio/web/festivalmaand-wristband.webp", alt: "Festivalmaand wristband direction", caption: "The wristband direction" },
-        { src: "Assets/Projecten/MediahuisRadio/web/festivalmaand-story.webp", alt: "Final Festivalmaand 9:16 screen", caption: "Final — 9:16" }
-      ]},
-      { type: "triptych", ratio: "16 / 9", items: [
-        { src: "Assets/Projecten/MediahuisRadio/web/summer500-v1.webp", alt: "Summer 500 version 1" },
-        { src: "Assets/Projecten/MediahuisRadio/web/summer500-v3.webp", alt: "Summer 500 version 3" },
-        { src: "Assets/Projecten/MediahuisRadio/web/summer500-v4.webp", alt: "Summer 500 version 4" }
-      ], caption: "SLAM! — Summer 500: earlier versions" },
-      { type: "hero", item: { src: "Assets/Projecten/MediahuisRadio/web/summer500-final.webp", alt: "Final Summer 500 visual", caption: "Final version" } },
-      { type: "split", items: [
-        { src: "Assets/Projecten/MediahuisRadio/web/gok-post.webp", alt: "Gok van je leven social post", caption: "Social post" },
-        { src: "Assets/Projecten/MediahuisRadio/web/gok-story.webp", alt: "Gok van je leven story: win a trip to Las Vegas", caption: "Story" }
-      ], caption: "SLAM! — Gok van je leven" },
-      { type: "hero", item: { src: "Assets/Projecten/MediahuisRadio/web/gok-cheque.webp", alt: "The winners with the Gok van je leven cheque", caption: "The winners, with the cheque I designed" } },
-      { type: "split", ratio: "16 / 9", items: [
-        { src: "Assets/Projecten/MediahuisRadio/web/muziekquiz-logo.webp", alt: "De Beste Muziekquiz Allertijden logo", caption: "The logo" },
-        { src: "Assets/Projecten/MediahuisRadio/web/muziekquiz-top3000.webp", alt: "De Beste Muziekquiz Allertijden Top 3000 edition", caption: "Top 3000 edition" }
-      ], caption: "Radio Veronica — De Beste Muziekquiz Allertijden" },
       { type: "section", heading: "Branded content: from idea to pitch", text: [
         "Next to design, I come up with branded content concepts: ways to weave an advertiser's message into the radio, so it feels like content instead of an ad. I pitch them to station directors, marketing directors and account managers. They range from radio games to large productions like Jumbo × 100% NL's <em>Het Super Kerstdiner</em>: a full Christmas dinner for 100 listeners inside a Jumbo supermarket.",
         "One of my favourites is <em>The Best Best Man</em> for SLAM! × OFM. In the morning show, Anoûl & Marijn go looking for the most loyal best man in the country. Every day they call a groom and his best man, and both have to pick up with “Ja, ik wil”. Three best men make it to the final, where they anonymously hold up a sign for every dare: would you shave your head for your groom? Get a tattoo? Drink beer from a shoe? Whoever goes furthest wins a bachelor party and an OFM wedding suit for the groom. The twist: none of the dares ever have to happen. It was only ever about how far you'd go."
