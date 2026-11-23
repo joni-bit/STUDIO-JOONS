@@ -8,7 +8,7 @@
   <!-- PROTOTYPE: not linked from the site yet. -->
   <meta name="robots" content="noindex" />
   <link rel="stylesheet" href="css/style.css?v=20261123a" />
-  <link rel="stylesheet" href="css/brands.css?v=20261123e" />
+  <link rel="stylesheet" href="css/brands.css?v=20261123f" />
 </head>
 <body class="brands-page">
   <header class="topbar">
@@ -38,12 +38,12 @@
 
   <!-- Radio dial: glass ring with a pointer; stations around it, the current logo in the middle -->
   <nav class="bs-radio" aria-label="Tune in to a brand">
-    <div class="bs-ring"></div>
+    <div class="bs-ring"><span class="bs-tick" style="--a:-50deg"></span><span class="bs-tick" style="--a:0deg"></span><span class="bs-tick" style="--a:50deg"></span></div>
     <div class="bs-pointer-arm"><span class="bs-pointer"></span></div>
     <button class="bs-knob" type="button" aria-label="Next station">
-      <img class="bs-knob-logo" data-for="veronica" src="Assets/icons/clients/radio-veronica.webp" alt="" />
-      <img class="bs-knob-logo is-dark" data-for="100nl" src="Assets/icons/clients/100pnl.webp" alt="" />
-      <img class="bs-knob-logo" data-for="slam" src="Assets/icons/clients/slam.webp" alt="" />
+      <span class="bs-knob-logo is-mask" data-for="veronica" style="-webkit-mask-image: url('Assets/icons/stations/logo-radio-veronica.png'); mask-image: url('Assets/icons/stations/logo-radio-veronica.png'); --tint: #0a8bff; aspect-ratio: 2655 / 921;"></span>
+      <img class="bs-knob-logo" data-for="100nl" src="Assets/icons/stations/logo-100pnl.png" alt="" />
+      <span class="bs-knob-logo is-mask" data-for="slam" style="-webkit-mask-image: url('Assets/icons/stations/logo-slam.png'); mask-image: url('Assets/icons/stations/logo-slam.png'); --tint: #1e1e1e; aspect-ratio: 1489 / 303;"></span>
     </button>
     <button class="bs-station" type="button" data-target="veronica" style="--a:-50deg" aria-label="Radio Veronica"><svg class="ico" aria-hidden="true" width="33" height="36" viewBox="0 0 33 36" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M26.5188 5.38426C26.9747 5.39215 27.3161 5.49209 27.884 5.77876C28.6307 6.15485 28.692 6.18378 28.9746 6.25479C29.1533 6.2995 29.3533 6.3258 29.5746 6.32843C31.1745 6.35736 32.3505 5.10548 32.3852 3.33551C32.4198 1.46296 30.9906 0.0375094 29.0466 0.000689614C27.4281 -0.0282402 25.6868 0.855434 24.7135 2.20198C23.6842 3.6248 22.7483 5.80506 21.2737 10.2261L16.4259 23.6258L11.9968 10.5417C11.6261 9.44495 11.5061 8.7033 11.5061 8.14574C11.5061 7.06745 12.2874 6.10225 13.618 5.53154V5.29747H0V5.53154C1.51726 5.84714 2.49322 6.37314 3.21585 7.26207C3.91448 8.1247 4.69578 9.57382 5.33042 11.2965L14.0233 35.3029L23.3082 9.00312C24.2975 6.40207 25.2575 5.36322 26.5188 5.38689V5.38426Z" fill="currentColor"/>
@@ -113,6 +113,6 @@
   <!-- Hover a card for 1 second (or click / Enter) and it comes out of the wheel -->
   <div class="bs-pop" aria-hidden="true"><img alt="" /></div>
 
-  <script src="css/js/brands.js?v=20261123c"></script>
+  <script src="css/js/brands.js?v=20261123d"></script>
 </body>
 </html>

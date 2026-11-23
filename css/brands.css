@@ -38,11 +38,15 @@ body.brands-page main { position: relative; z-index: 1; }
   mask-image: linear-gradient(270deg, rgba(0,0,0,0.9), transparent);
 }
 
-/* ---------- Radio dial (liquid glass) ---------- */
+/* ---------- Radio dial (liquid glass) ----------
+   Style taken from Joni's "Button – Liquid Glass – Text": milky white glass (65%),
+   a soft 30px drop shadow, no hard outline. Portfolio blue (#1900ff) is the one accent:
+   the pointer glows blue, like the light on an old tuner. */
 .bs-radio {
   --ring: 340px;
-  --knob: 180px;
+  --knob: 176px;
   --turn: 0deg;
+  --blue: #1900ff;
   position: fixed; left: 50%; bottom: 0; z-index: 50;
   width: var(--ring); height: calc(var(--ring) / 2 + 80px);
   transform: translateX(-50%);
@@ -50,51 +54,75 @@ body.brands-page main { position: relative; z-index: 1; }
 }
 .bs-radio.is-on { opacity: 1; pointer-events: auto; }
 .bs-ring, .bs-knob { position: absolute; left: 50%; border-radius: 50%; }
+
+/* Outer ring: the glass dial face */
 .bs-ring {
   width: var(--ring); height: var(--ring); bottom: calc(var(--ring) / -2); margin-left: calc(var(--ring) / -2);
-  background: linear-gradient(160deg, rgba(255,255,255,0.24), rgba(255,255,255,0.05) 60%);
-  backdrop-filter: blur(16px) saturate(160%); -webkit-backdrop-filter: blur(16px) saturate(160%);
-  border: 1px solid rgba(255,255,255,0.85);
-  box-shadow: inset 0 1px 1px rgba(255,255,255,0.7), 0 -10px 40px -20px rgba(0,0,0,0.25);
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(24px) saturate(180%); -webkit-backdrop-filter: blur(24px) saturate(180%);
+  box-shadow:
+    0 6px 30px rgba(0, 0, 0, 0.12),               /* the button's drop shadow */
+    inset 0 1.5px 0 rgba(255, 255, 255, 0.95),     /* light catching the top edge */
+    inset 0 -18px 40px -24px rgba(25, 0, 255, 0.18), /* a faint blue glow inside the glass */
+    inset 0 0 0 1px rgba(255, 255, 255, 0.45);
 }
+/* Tick marks on the face, one per station; the active one lights up blue */
+.bs-tick {
+  position: absolute; left: 50%; bottom: 50%; width: 3px; height: 12px; margin-left: -1.5px; border-radius: 2px;
+  background: rgba(50, 50, 50, 0.22);
+  transform-origin: 50% 100%;
+  transform: rotate(var(--a)) translateY(calc(var(--ring) / -2 + 10px));
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+.bs-tick.is-on { background: var(--blue); box-shadow: 0 0 8px rgba(25, 0, 255, 0.6); }
+
+/* Inner knob: brighter glass, lifted off the face */
 .bs-knob {
   width: var(--knob); height: var(--knob); bottom: calc(var(--knob) / -2); margin-left: calc(var(--knob) / -2);
-  padding: 0; cursor: pointer;
-  background: linear-gradient(160deg, rgba(255,255,255,0.3), rgba(255,255,255,0.08) 60%);
-  backdrop-filter: blur(22px) saturate(180%); -webkit-backdrop-filter: blur(22px) saturate(180%);
-  border: 1px solid rgba(255,255,255,0.9);
-  box-shadow: inset 0 1px 1px rgba(255,255,255,0.8), 0 -6px 30px -12px rgba(0,0,0,0.3);
+  padding: 0; border: 0; cursor: pointer;
+  background: rgba(247, 247, 247, 0.82);
+  backdrop-filter: blur(28px) saturate(180%); -webkit-backdrop-filter: blur(28px) saturate(180%);
+  box-shadow:
+    0 -6px 30px rgba(0, 0, 0, 0.12),
+    inset 0 1.5px 0 rgba(255, 255, 255, 1),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.6);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
+.bs-knob:hover { transform: translateY(-2px); box-shadow: 0 -8px 34px rgba(0, 0, 0, 0.14), 0 0 0 4px rgba(25, 0, 255, 0.08), inset 0 1.5px 0 #fff, inset 0 0 0 1px rgba(255,255,255,0.6); }
 .bs-knob-logo {
-  position: absolute; left: 50%; top: 27%; width: 64%; height: auto; transform: translate(-50%, -50%);
+  position: absolute; left: 50%; top: 27%; width: 60%; height: auto; transform: translate(-50%, -50%);
   opacity: 0; transition: opacity 0.4s ease;
 }
-.bs-knob-logo.is-dark { filter: brightness(0); }
+/* White logo files, coloured in their brand colour so they read on white glass */
+.bs-knob-logo.is-mask {
+  display: block; background: var(--tint);
+  -webkit-mask-position: center; mask-position: center; -webkit-mask-size: contain; mask-size: contain; -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+}
 .bs-knob-logo.is-on { opacity: 1; }
-.bs-knob:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
+.bs-knob:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
 
-/* The pointer sits on the ring and turns with the station */
+/* The pointer: a blue pill on the face that turns to the station */
 .bs-pointer-arm {
   position: absolute; left: 50%; bottom: 0; width: 0; height: 0; pointer-events: none;
   transform: rotate(var(--turn)); transition: transform 0.6s cubic-bezier(.3, 1.35, .5, 1);
 }
 .bs-pointer {
-  position: absolute; left: -6px; top: calc(var(--ring) / -2 + 14px); width: 12px; height: 38px; border-radius: 7px;
-  border: 1.5px solid rgba(255,255,255,0.95); background: rgba(255,255,255,0.22);
-  box-shadow: 0 0 14px rgba(255,255,255,0.35);
+  position: absolute; left: -5px; top: calc(var(--ring) / -2 + 30px); width: 10px; height: 34px; border-radius: 6px;
+  background: var(--blue);
+  box-shadow: 0 0 10px rgba(25, 0, 255, 0.7), 0 0 26px rgba(25, 0, 255, 0.35), inset 0 1px 0 rgba(255,255,255,0.45);
 }
 
 /* Station icons just outside the ring */
 .bs-station {
   position: absolute; left: 50%; bottom: 0; width: 72px; height: 44px; margin-left: -36px; padding: 0;
-  border: 0; background: none; cursor: pointer; color: #fff; opacity: 0.32;
+  border: 0; background: none; cursor: pointer; color: #fff; opacity: 0.4;
   display: grid; place-items: center;
   transform-origin: 50% 100%;
   transform: rotate(var(--a)) translateY(calc(var(--ring) / -2 - 16px)) rotate(calc(var(--a) * -1));
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease, filter 0.3s ease;
 }
-.bs-station:hover { opacity: 0.7; }
-.bs-station[aria-current="true"] { opacity: 1; }
+.bs-station:hover { opacity: 0.75; }
+.bs-station[aria-current="true"] { opacity: 1; filter: drop-shadow(0 2px 10px rgba(0, 0, 0, 0.18)); }
 .bs-station:focus-visible { outline: 2px solid #fff; outline-offset: 2px; border-radius: 8px; }
 /* Station marks: Joni's own SVGs (Assets/icons/stations), white, dimmed when not tuned in */
 .bs-station .ico { display: block; height: 30px; width: auto; }

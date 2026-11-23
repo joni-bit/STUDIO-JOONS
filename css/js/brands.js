@@ -7,6 +7,7 @@
   const stations = [...radio.querySelectorAll('.bs-station')];
   const knob = radio.querySelector('.bs-knob');
   const knobLogos = [...radio.querySelectorAll('.bs-knob-logo')];
+  const ticks = [...radio.querySelectorAll('.bs-tick')];
   const bgs = [...document.querySelectorAll('.bs-bg')];
   const ANGLES = stations.map(b => parseFloat(b.style.getPropertyValue('--a')));
   const pop = document.querySelector('.bs-pop');
@@ -30,6 +31,7 @@
     bgs.forEach(bg => bg.classList.toggle('is-on', bg.dataset.for === id));
     knobLogos.forEach(l => l.classList.toggle('is-on', l.dataset.for === id));
     stations.forEach(b => b.setAttribute('aria-current', b.dataset.target === id ? 'true' : 'false'));
+    ticks.forEach((t, k) => t.classList.toggle('is-on', k === i));
     if (i >= 0) {
       // Pointer points at the station, drifting a little while you scroll through it (like fine-tuning)
       const r = active.getBoundingClientRect();
