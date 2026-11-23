@@ -91,7 +91,7 @@ body.brands-page main { position: relative; z-index: 1; }
 }
 .bs-knob:hover { transform: translateY(-2px); box-shadow: 0 -8px 34px rgba(0, 0, 0, 0.14), 0 0 0 4px rgba(25, 0, 255, 0.08), inset 0 1.5px 0 #fff, inset 0 0 0 1px rgba(255,255,255,0.6); }
 .bs-knob-logo {
-  position: absolute; left: 50%; top: 27%; width: 60%; height: auto; transform: translate(-50%, -50%);
+  position: absolute; left: 50%; top: 33%; width: 56%; height: auto; transform: translate(-50%, -50%);
   opacity: 0; transition: opacity 0.4s ease;
 }
 /* White logo files, coloured in their brand colour so they read on white glass */
