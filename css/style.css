@@ -2785,3 +2785,10 @@ mark.fill-in { background: rgba(255, 196, 0, 0.28); color: inherit; border-radiu
 .project-hero-image .block-caption { margin: 10px 0 0; position: relative; }
 /* Hero: the image keeps its own rounded corners, so the box no longer clips the caption underneath */
 .project-hero-image { overflow: visible; border-radius: 0; }
+
+/* ===== One page margin across the site =====
+   Same as About: content lines up with the name/photo in the top left
+   (32px from the edge on desktop, 16px on mobile, set by .page-shell / .about-shell, max 1440px). */
+.project-main { max-width: none; padding: 80px 0 60px; }
+/* Long text keeps a comfortable line length inside the wider column */
+.project-intro, .case-section, .project-main .project-text { max-width: 680px; }
