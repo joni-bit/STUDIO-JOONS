@@ -105,8 +105,10 @@ body.brands-page main { position: relative; z-index: 1; }
    light glass for 100% NL (its logo has its own dark plate) */
 body[data-brand="veronica"] .bs-knob { --knob-glass: rgba(40, 70, 140, 0.42); }
 body[data-brand="slam"]     .bs-knob { --knob-glass: rgba(90, 90, 96, 0.55); }
+body[data-brand="100nl"]    .bs-knob { --knob-glass: rgba(150, 70, 0, 0.42); }
 body[data-brand="veronica"] .bs-knob-logo,
-body[data-brand="slam"] .bs-knob-logo { filter: drop-shadow(0 1px 6px rgba(0, 0, 0, 0.25)); }
+body[data-brand="slam"] .bs-knob-logo,
+body[data-brand="100nl"] .bs-knob-logo { filter: drop-shadow(0 1px 6px rgba(0, 0, 0, 0.25)); }
 .bs-knob:focus-visible { outline: 2px solid var(--blue); outline-offset: 4px; }
 
 /* The pointer: a blue pill on the face that turns to the station */
