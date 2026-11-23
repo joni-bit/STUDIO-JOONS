@@ -2783,3 +2783,5 @@ mark.fill-in { background: rgba(255, 196, 0, 0.28); color: inherit; border-radiu
 
 /* Caption under a project hero: clear gap below the image (was overlapping it) */
 .project-hero-image .block-caption { margin: 10px 0 0; position: relative; }
+/* Hero: the image keeps its own rounded corners, so the box no longer clips the caption underneath */
+.project-hero-image { overflow: visible; border-radius: 0; }

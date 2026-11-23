@@ -140,7 +140,9 @@ body[data-brand="100nl"] .bs-knob-logo { filter: drop-shadow(0 1px 6px rgba(0, 0
 body[data-brand="slam"] .bs-station { color: #d9d9d9; }
 
 /* ---------- One brand: 100vh pinned + 300vh of scroll ---------- */
-.bs-brand { position: relative; height: 400vh; }
+/* One rolodex for all brands: 100vh pinned + ~35vh of scroll per card */
+.bs-brand { position: relative; height: calc(100vh + var(--cards, 24) * 35vh); }
+.bs-anchor { position: absolute; top: 0; }
 .bs-stage {
   position: sticky; top: 0; height: 100vh; overflow: hidden;
   perspective: 1600px; perspective-origin: 50% 40%;
