@@ -226,20 +226,15 @@ body[data-brand="slam"] .bs-station { color: #d9d9d9; }
 
 /* ---------- Caption: glass pill (Joni's liquid glass text button) under the rolodex ---------- */
 .bs-caption {
-  position: fixed; left: 50%; top: calc(40vh + min(13vw, 160px) + 34px); z-index: 60;
-  margin: 0; padding: 12px 24px; border-radius: 999px; max-width: 80vw; white-space: nowrap;
-  font-size: 15px; font-weight: 500; letter-spacing: 0.005em; color: #323232;
-  background: rgba(247, 247, 247, 0.72);
-  backdrop-filter: blur(20px) saturate(170%); -webkit-backdrop-filter: blur(20px) saturate(170%);
-  box-shadow: 0 6px 30px rgba(0, 0, 0, 0.12), inset 0 1.5px 0 rgba(255, 255, 255, 0.95);
+  position: fixed; left: 50%; top: calc(40vh + min(13vw, 160px) + 30px); z-index: 60;
+  margin: 0; max-width: 80vw; text-align: center;
+  font-size: 16px; font-weight: 500; letter-spacing: 0.01em; color: #fff;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.25);
   transform: translate(-50%, 6px); opacity: 0; pointer-events: none;
   transition: opacity 0.2s ease, transform 0.25s ease;
 }
-.bs-caption.is-on { opacity: 1; transform: translate(-50%, 0); }
+.bs-caption.is-on { opacity: 0.95; transform: translate(-50%, 0); }
 .bs-pop figure { margin: 0; display: grid; justify-items: center; gap: 16px; }
-.bs-pop figcaption {
-  padding: 10px 22px; border-radius: 999px; font-size: 15px; font-weight: 500; color: #323232;
-  background: rgba(247, 247, 247, 0.8); box-shadow: 0 6px 30px rgba(0, 0, 0, 0.12), inset 0 1.5px 0 #fff;
-}
+.bs-pop figcaption { font-size: 16px; font-weight: 500; color: #fff; text-shadow: 0 1px 12px rgba(0, 0, 0, 0.35); }
 .bs-pop figcaption:empty { display: none; }
-@media (max-width: 700px) { .bs-caption { top: calc(38vh + 29vw + 24px); font-size: 14px; white-space: normal; text-align: center; } }
+@media (max-width: 700px) { .bs-caption { top: calc(38vh + 29vw + 22px); font-size: 14px; } }

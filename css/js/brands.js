@@ -1,5 +1,16 @@
 // Brand in daily use — rolodex scroll (prototype)
 (function () {
+  // Build the cards from brands-data.js
+  Object.entries(brandsData).forEach(([id, items]) => {
+    const wheel = document.querySelector('#' + CSS.escape(id) + ' .bs-wheel');
+    if (!wheel) return;
+    wheel.innerHTML = items.map(it => {
+      const cap = (it.caption || '').replace(/"/g, '&quot;');
+      const alt = (it.alt || it.caption || '').replace(/"/g, '&quot;');
+      return `<button class="bs-card" type="button" aria-label="Show ${alt}"${cap ? ` data-caption="${cap}"` : ''}><img src="${it.image}" alt="${alt}" loading="lazy" /></button>`;
+    }).join('');
+  });
+
   const body = document.body;
   const brands = [...document.querySelectorAll('.bs-brand')];
   const colourBlocks = [...document.querySelectorAll('[data-bg]')];
