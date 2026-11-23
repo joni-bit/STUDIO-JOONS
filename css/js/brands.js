@@ -10,13 +10,16 @@ const BRAND_SCROLL = [
 // The brand sections (one pinned stage + rolodex per brand)
 function brandScrollHTML() {
   const esc = s => String(s || '').replace(/"/g, '&quot;');
-  return BRAND_SCROLL.map(b => `
-    <section class="bs-brand" id="${b.id}" aria-label="${b.label}">
-      <div class="bs-stage"><div class="bs-wheel">${(brandsData[b.id] || []).map(it => {
-        const alt = esc(it.alt || it.caption);
-        return `<button class="bs-card" type="button" aria-label="Show ${alt}"${it.caption ? ` data-caption="${esc(it.caption)}"` : ''}><img src="${it.image}" alt="${alt}" loading="lazy" /></button>`;
-      }).join('')}</div></div>
-    </section>`).join('');
+  const cards = BRAND_SCROLL.flatMap(b => (brandsData[b.id] || []).map(it => {
+    const alt = esc(it.alt || it.caption);
+    return `<button class="bs-card" type="button" data-brand="${b.id}" aria-label="Show ${alt}"${it.caption ? ` data-caption="${esc(it.caption)}"` : ''}><img src="${it.image}" alt="${alt}" loading="lazy" /></button>`;
+  }));
+  // One rolodex for all brands: the scroll length grows with the number of cards
+  return `
+    <section class="bs-brand" aria-label="Radio Veronica, 100% NL and SLAM!" style="--cards: ${cards.length}">
+      ${BRAND_SCROLL.map(b => `<span class="bs-anchor" id="${b.id}"></span>`).join('')}
+      <div class="bs-stage"><div class="bs-wheel">${cards.join('')}</div></div>
+    </section>`;
 }
 
 // Backgrounds, glass lens filter, radio dial, pulled-out card and caption (added once to <body>)
@@ -87,16 +90,32 @@ function initBrandScroll() {
   if (navigator.userAgentData && navigator.userAgentData.brands.some(b => /Chromium/.test(b.brand))) document.documentElement.classList.add('has-lens');
   const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
 
-  const STEP = 22;      // degrees between cards on the wheel
-  const VISIBLE = 4;    // how many cards you still see on each side
+  // Cards sit on a cylinder (radius = 2.4 × card). 30° apart leaves a clear gap between cards,
+  // so neighbours never cut through each other.
+  const STEP = 30;      // degrees between cards on the wheel
+  const VISIBLE = 3;    // how many cards you still see on each side
 
-  function setColours() {
+  const sec = brands[0];
+  const cards = [...sec.querySelectorAll('.bs-card')];
+  const order = BRAND_SCROLL.map(b => b.id);
+  // first and last card index per brand
+  const range = {};
+  cards.forEach((c, k) => { const id = c.dataset.brand; range[id] = range[id] || [k, k]; range[id][1] = k; });
+  const progress = () => {
+    const r = sec.getBoundingClientRect();
+    return clamp(-r.top / (r.height - window.innerHeight), 0, 1);
+  };
+
+  function setColours(f) {
     const mid = window.innerHeight * 0.5;
-    let active = null;
-    [...colourBlocks, ...brands].forEach(el => { const r = el.getBoundingClientRect(); if (r.top <= mid && r.bottom > mid) active = el; });
-    if (active && active.dataset.bg) { body.style.setProperty('--bg', active.dataset.bg); body.style.setProperty('--ink', active.dataset.ink); }
-    const i = brands.indexOf(active);
-    const id = i >= 0 ? active.id : '';
+    let block = null;
+    colourBlocks.forEach(el => { const r = el.getBoundingClientRect(); if (r.top <= mid && r.bottom > mid) block = el; });
+    const r = sec.getBoundingClientRect();
+    const inBrands = r.top <= mid && r.bottom > mid;
+    if (!inBrands && block && block.dataset.bg) { body.style.setProperty('--bg', block.dataset.bg); body.style.setProperty('--ink', block.dataset.ink); }
+    // The brand of the card in front decides the background: it changes the moment the next brand's card arrives
+    const id = inBrands ? cards[clamp(Math.round(f), 0, cards.length - 1)].dataset.brand : '';
+    const i = order.indexOf(id);
     body.dataset.brand = id;
     radio.classList.toggle('is-on', i >= 0);
     bgs.forEach(bg => bg.classList.toggle('is-on', bg.dataset.for === id));
@@ -104,32 +123,27 @@ function initBrandScroll() {
     stations.forEach(b => b.setAttribute('aria-current', b.dataset.target === id ? 'true' : 'false'));
     ticks.forEach((t, k) => t.classList.toggle('is-on', k === i));
     if (i >= 0) {
-      // Pointer points at the station, drifting a little while you scroll through it (like fine-tuning)
-      const r = active.getBoundingClientRect();
-      const p = clamp(-r.top / (r.height - window.innerHeight), 0, 1);
-      radio.style.setProperty('--turn', `${ANGLES[i] + (p - 0.5) * 12}deg`);
+      // Pointer points at the station, drifting a little across that brand's cards (like fine-tuning)
+      const [s, e] = range[id];
+      const local = e > s ? clamp((f - s) / (e - s), 0, 1) : 0.5;
+      radio.style.setProperty('--turn', `${ANGLES[i] + (local - 0.5) * 12}deg`);
     }
   }
 
   function frame() {
-    setColours();
+    const f = progress() * (cards.length - 1);   // which card faces you right now
+    setColours(f);
     if (reduce) return;
-    const vh = window.innerHeight;
-    brands.forEach(sec => {
-      const r = sec.getBoundingClientRect();
-      const p = clamp(-r.top / (r.height - vh), 0, 1);       // 0 → 1 while this brand is pinned
-      const cards = sec.querySelectorAll('.bs-card');
-      const f = p * (cards.length - 1);                        // which card faces you right now
-      cards.forEach((card, i) => {
-        const d = i - f;                                       // + = still coming, – = already flipped past
-        const angle = d * STEP;
-        const fade = 1 - clamp((Math.abs(d) - 1) / VISIBLE, 0, 1);
-        card.style.transform = `rotateY(${-angle}deg) translateZ(var(--radius))`;   // upcoming on the left, past on the right
-        card.style.opacity = String(0.25 + 0.75 * fade);
-        card.style.pointerEvents = Math.abs(d) < 2.5 ? 'auto' : 'none';
-        card.tabIndex = Math.abs(d) < 0.5 ? 0 : -1;
-        card.style.zIndex = String(100 - Math.round(Math.abs(d) * 10));
-      });
+    cards.forEach((card, k) => {
+      const d = k - f;                             // + = still coming, – = already flipped past
+      const far = Math.abs(d) > VISIBLE + 0.5;
+      const fade = 1 - clamp((Math.abs(d) - 1) / VISIBLE, 0, 1);
+      card.style.transform = `rotateY(${-d * STEP}deg) translateZ(var(--radius))`;   // upcoming on the left, past on the right
+      card.style.opacity = far ? '0' : String(0.25 + 0.75 * fade);
+      card.style.visibility = far ? 'hidden' : 'visible';
+      card.style.pointerEvents = Math.abs(d) < 2.5 ? 'auto' : 'none';
+      card.tabIndex = Math.abs(d) < 0.5 ? 0 : -1;
+      card.style.zIndex = String(100 - Math.round(Math.abs(d) * 10));
     });
   }
 
@@ -144,10 +158,11 @@ function initBrandScroll() {
 
   // ---- Radio: click a station (or the knob for the next one) to tune in ----
   const tuneTo = (id) => {
-    const sec = document.getElementById(id);
-    const i = brands.indexOf(sec);
+    const i = order.indexOf(id);
     radio.style.setProperty('--turn', `${ANGLES[i]}deg`);
-    window.scrollTo({ top: sec.offsetTop + 2, behavior: reduce ? 'auto' : 'smooth' });
+    const top = sec.getBoundingClientRect().top + window.pageYOffset;
+    const y = top + (range[id][0] / (cards.length - 1)) * (sec.offsetHeight - window.innerHeight);
+    window.scrollTo({ top: y + 2, behavior: reduce ? 'auto' : 'smooth' });
   };
   stations.forEach(b => b.addEventListener('click', () => tuneTo(b.dataset.target)));
   knob.addEventListener('click', () => {
