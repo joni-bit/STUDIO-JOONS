@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="css/style.css?v=20261124e" />
+    <link rel="stylesheet" href="css/style.css?v=20261124h" />
     <link rel="stylesheet" href="css/brands.css?v=20261123v" />
     <link rel="stylesheet" href="css/banners.css?v=20261124f" />
     <!-- Lottie speler script -->
@@ -73,7 +73,7 @@
     </div>
 
     <!-- Data en Script -->
-    <script src="css/js/projects.js?v=20261124g"></script>
+    <script src="css/js/projects.js?v=20261124i"></script>
     <script src="css/js/brands-data.js?v=20261123y"></script>
     <script src="css/js/brands.js?v=20261124b"></script>
     <script src="css/js/banners-data.js?v=20261124e"></script>
@@ -186,7 +186,10 @@
           const media = (item, ratio) => {
             if (!item) return '';
             if (!item.src) return placeholder(item.label, ratio);
-            if (/\.(mp4|webm)$/i.test(item.src)) {
+            if (/\.json(\?.*)?$/i.test(item.src)) {   // Lottie animation (Bodymovin export), optional bg behind it
+              return `<div class="block-media block-lottie" data-lottie="${item.src}" role="img" aria-label="${item.alt || project.title}" style="aspect-ratio: ${item.ratio || ratio || '16 / 9'};${item.bg ? ` background: ${item.bg};` : ''}"></div>`;
+            }
+            if (/\.(mp4|webm)(\?.*)?$/i.test(item.src)) {
               return `<video class="block-media" src="${item.src}" loop muted playsinline preload="${item.poster ? 'none' : 'metadata'}" data-inview${item.poster ? ` poster="${item.poster}"` : ''}></video>`;
             }
             return `<img class="block-media" src="${item.src}" alt="${item.alt || item.label || project.title}" loading="lazy" decoding="async" />`;
@@ -311,6 +314,26 @@
           container.innerHTML = html;
           if (window.initBrandScroll && container.querySelector('.bs-scroll')) initBrandScroll();
           if (window.initBanners && container.querySelector('.bn-wall')) initBanners();
+
+          // Lottie animations: load the player once, play while on screen
+          const lotties = container.querySelectorAll('[data-lottie]');
+          if (lotties.length) {
+            const start = () => {
+              const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+              const lio = new IntersectionObserver(entries => entries.forEach(e => {
+                const a = e.target._anim; if (!a) return;
+                if (e.isIntersecting && !reduce) a.play(); else a.pause();
+              }), { threshold: 0.25 });
+              lotties.forEach(el => {
+                el._anim = lottie.loadAnimation({ container: el, renderer: 'svg', loop: true, autoplay: false, path: el.dataset.lottie,
+                  rendererSettings: { preserveAspectRatio: 'xMidYMid meet' } });
+                if (reduce) el._anim.addEventListener('DOMLoaded', () => el._anim.goToAndStop(el._anim.totalFrames - 1, true));
+                lio.observe(el);
+              });
+            };
+            if (window.lottie) start();
+            else { const sc = document.createElement('script'); sc.src = 'css/js/vendor/lottie.min.js'; sc.onload = start; document.head.appendChild(sc); }
+          }
 
           // Videos in the case play only while they are on screen
           const vids = container.querySelectorAll('video[data-inview]');
