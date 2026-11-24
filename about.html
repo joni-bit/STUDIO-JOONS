@@ -11,7 +11,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="css/style.css?v=20261124t" />
+    <link rel="stylesheet" href="css/style.css?v=20261124v" />
     <link rel="icon" type="image/png" sizes="32x32" href="Assets/Images/favicon.png">
   </head>
   <body class="about-page">
@@ -222,9 +222,10 @@
 
         <!-- Contact Section with Dynamic Status Panel -->
         <section class="contact-section fade-in" id="contact" aria-labelledby="contact-title">
-          <h2 id="contact-title">Let’s chat!</h2>
+          <h2 id="contact-title" class="visually-hidden">Let’s chat!</h2>
           <p class="contact-intro">I'm open for freelance projects, feel free to email me to see how we can collaborate.</p>
           
+          <div class="contact-layout">
           <form class="contact-form" action="https://formspree.io/f/moeqzynq" method="POST" novalidate>
             <label for="contact-name">
               Name
@@ -244,6 +245,8 @@
             </button>
             <div id="form-feedback" class="form-feedback is-hidden" role="alert" aria-live="polite"></div>
           </form>
+          <img class="contact-graphic" src="Assets/icons/lets-chat.svg" alt="" width="612" height="457" loading="lazy" />
+          </div>
         </section>
       </main>
 
