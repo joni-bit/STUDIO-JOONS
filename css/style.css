@@ -2817,3 +2817,26 @@ mark.fill-in { background: rgba(255, 196, 0, 0.28); color: inherit; border-radiu
 @media (max-width: 900px) {
   .case-aside-wrap { grid-template-columns: 1fr; gap: 8px; }
 }
+
+/* Links inside case text */
+.case-section .project-text a { color: var(--accent, #1900ff); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.case-section .project-text a:hover { text-decoration-thickness: 2px; }
+.case-cta { margin-top: 4px; gap: 8px; text-decoration: none; }
+
+/* About: the big intro line sits right above the Contact button */
+.hero-banner__copy h1 + .hero-actions { margin-top: 28px; }
+
+/* Contact: the fields fill the card from left to right */
+.contact-form { max-width: none; }
+
+/* Availability label on the contact card: data-available="true" = green and pulsing */
+.availability {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin: 0 0 16px; padding: 7px 14px 7px 12px; border-radius: 999px;
+  font-size: 13px; font-weight: 600; line-height: 1;
+  color: var(--ink, #121212); background: #fff; border: 1px solid rgba(18, 18, 18, 0.1);
+}
+.availability__dot { width: 8px; height: 8px; border-radius: 50%; background: #f29a2e; flex: none; }
+.availability[data-available="true"] .availability__dot { background: #1fb45a; box-shadow: 0 0 0 0 rgba(31, 180, 90, 0.5); animation: availabilityPulse 2s ease-out infinite; }
+@keyframes availabilityPulse { to { box-shadow: 0 0 0 8px rgba(31, 180, 90, 0); } }
+@media (prefers-reduced-motion: reduce) { .availability__dot { animation: none !important; } }
