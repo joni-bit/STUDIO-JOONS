@@ -156,14 +156,14 @@ const projectsData = {
     ]
   },
   "mediahuis-radio": {
-    title: "Brand in daily use",
+    title: "Non-Stop",
     status: "live",
     category: "campaign",
     card: {
-      title: "Mediahuis Radio — Brand in daily use",
+      title: "Mediahuis Radio — Non-Stop",
       eyebrow: "Campaigns",
       image: "Assets/Projecten/MediahuisRadio/web/mhr-illustration.webp",
-      description: "Keeping Radio Veronica, SLAM! and 100% NL recognisable everywhere, and dreaming up the branded content around them.",
+      description: "Three radio brands, every day: keeping Veronica, SLAM! and 100% NL recognisable in everything they put out, and creating the branded content around them.",
       tint: "cyan"
     },
     year: "2025",
@@ -177,16 +177,18 @@ const projectsData = {
     hook: "Not every brief is a billboard.",
     blocks: [
       { type: "section", text: [
-        "Most days I'm making three very different radio brands work in a hundred small places: studio screens (static and animated), A0 posters, 9:16 screens, social ads, HTML5 banners, and the prizes listeners win, from mugs to greeting cards to socks. The job is to keep every piece unmistakably Veronica, SLAM! or 100% NL, and still make it feel made for its moment."
+        "Most days I'm keeping three very different radio brands, Radio Veronica, SLAM! and 100% NL, consistent in everything they put out. One day that's a social post made together with the social team, the next a full-page newspaper ad for a Radio Veronica campaign, or flyers for a 100% NL event.",
+        "In between, I update existing work to the latest brand standards and keep new things coming: studio screens, 9:16 screens, HTML5 banners, and the prizes listeners win, from mugs to socks. Every piece has to be unmistakably its brand, and still feel made for its moment.",
+        "A lot of it moves, too. <a href=\"project.html?id=motion\">See the studio screens, banners and animations on the Motion page →</a>"
       ]},
       { type: "brandscroll" },
-      { type: "section", heading: "Living a new identity", text: [
-        "I started just as Radio Veronica rolled out a new visual identity. I didn't write the guidelines, but I helped bring them to life: updating visuals across every channel, keeping new work in line, and building each new campaign on top of the brand guide. On photoshoots I was second designer on set, checking that every shot fitted the new direction and that we caught the energy of each show."
-      ]},
       { type: "section", heading: "Branded content: from idea to pitch", text: [
         "Next to design, I come up with branded content concepts: ways to weave an advertiser's message into the radio, so it feels like content instead of an ad. I pitch them to station directors, marketing directors and account managers. They range from small radio games to big productions, like a full Christmas dinner for a hundred listeners in the middle of a supermarket.",
         "One of my favourites is a morning-show game about friendship. The hosts go looking for the most loyal best man in the country. In the final, three best men anonymously answer one dare after another: would you shave your head for your groom? Get a tattoo? Whoever goes furthest wins. The twist: none of the dares ever have to happen. It was only ever about how far you'd go."
       ], aside: { label: "Illustration — branded content (general, no brands)", ratio: "4 / 5" } },   // text only, no names: concepts involve several partners and aren't cleared for publication
+      { type: "section", heading: "Making the system better", text: [
+        "I'm building an AI-assisted workflow that takes a finished key visual and adapts it to every format, so the designer's time goes to the idea, not the resizing. And I'm redesigning how briefs come in, how work gets checked, and when each team joins."
+      ]}
     ]
   },
   "domibo": {

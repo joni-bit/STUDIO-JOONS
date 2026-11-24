@@ -2817,3 +2817,7 @@ mark.fill-in { background: rgba(255, 196, 0, 0.28); color: inherit; border-radiu
 @media (max-width: 900px) {
   .case-aside-wrap { grid-template-columns: 1fr; gap: 8px; }
 }
+
+/* Links inside case text */
+.case-section .project-text a { color: var(--accent, #1900ff); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+.case-section .project-text a:hover { text-decoration-thickness: 2px; }
