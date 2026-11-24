@@ -122,7 +122,7 @@ const projectsData = {
       ["Deliverables", "Logo, campaign identity, print, display, social, studio screens, web, branded beer and champagne bottles"]
     ],
     hero: { src: "Assets/Projecten/Vriendenweekend/web/logo-hero.webp", alt: "Het Nationale Vriendenweekend logo on Veronica blue" },
-    hook: "No more endless planning. The first weekend of November is ours.",
+    hook: "No more endless planning. The first weekend of November belongs to the friend group.",
     blocks: [
       { type: "section", heading: "The campaign", text: [
         "Everyone knows the group chat: eight friends, three date polls, six months later still nothing planned. Radio Veronica decided to fix it for the whole country by claiming the first weekend of November as <em>Het Nationale Vriendenweekend</em>. In the first edition, ten friend groups won a weekend at EuroParcs Hindeloopen with Veronica's DJs, a barbecue, a party and live radio from the park."
