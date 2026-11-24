@@ -2805,3 +2805,7 @@ mark.fill-in { background: rgba(255, 196, 0, 0.28); color: inherit; border-radiu
 }
 .block-lottie { overflow: hidden; }
 .block-lottie svg { display: block; }
+
+/* The floating nav sits above everything on every page (the header used to trap it at z-index 1) */
+.topbar { z-index: 1000; }
+.block-center { max-width: min(560px, 100%); margin-left: auto; margin-right: auto; }

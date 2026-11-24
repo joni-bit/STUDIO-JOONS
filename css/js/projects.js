@@ -22,6 +22,7 @@
               hero / breakdown / canvas  one wide image      { item: {...} }
               split     2 side by side                       { items: [a, b] }
               triptych  3 in a row                           { items: [a, b, c], ratio: "4 / 5" or "9 / 16" }
+              center    one smaller piece, centred (e.g. a square logo animation)  {item}
               phones    vertical (9:16) videos side by side, as large as the screen allows  {items}
               grid      3 or 4 columns of squares            { items: [...], columns: 3 }
               inset     1 large + 1 small                    { items: [large, small] }
@@ -315,18 +316,18 @@ const projectsData = {
     },
     year: "2026",
     facts: [],
-    hero: { src: "Assets/Projecten/Stop520/web/stop520-logo-animation.json?v=2", bg: "linear-gradient(180deg, #17a5fd 0%, #168be2 18%, #116ec5 37%, #0d5cae 50%, #0d4799 65%, #062a7b 83%, #041564 100%)", ratio: "16 / 9", alt: "(S)Top 520 logo animation", caption: "Radio Veronica × War Child — (S)Top 520 logo animation" },
+    hero: { src: "Assets/Projecten/Motion/web/slam-festivalmaand-triple.mp4", poster: "Assets/Projecten/Motion/web/slam-festivalmaand-triple.webp", caption: "SLAM! Festivalmaand — triple digital screen, 3240 × 1920" },
     hook: "More and more of my work moves. To me, motion is a puzzle: how do you make a brand feel alive in five seconds?",
     blocks: [
       { type: "loops", items: [
         { src: "Assets/Projecten/Motion/web/veronica-join-the-club.mp4", poster: "Assets/Projecten/Motion/web/veronica-join-the-club.webp", caption: "Radio Veronica — Join the Club" },
         { src: "Assets/Projecten/Motion/web/100nl-rtl.mp4", poster: "Assets/Projecten/Motion/web/100nl-rtl.webp", caption: "100% NL — RTL" }
       ]},
-      { type: "canvas", ratio: "27 / 16", item: { src: "Assets/Projecten/Motion/web/slam-festivalmaand-triple.mp4", poster: "Assets/Projecten/Motion/web/slam-festivalmaand-triple.webp" }, caption: "SLAM! Festivalmaand — triple digital screen, 3240 × 1920" },
       { type: "phones", items: [
         { src: "Assets/Projecten/Motion/web/veronica-vriendenweekend.mp4?v=2", poster: "Assets/Projecten/Motion/web/veronica-vriendenweekend.webp?v=2", alt: "Radio Veronica Vriendenweekend promo" },
         { src: "Assets/Projecten/Motion/web/veronica-top1000-80s.mp4", poster: "Assets/Projecten/Motion/web/veronica-top1000-80s.webp", alt: "Radio Veronica Top 1000 van de 80s" }
       ], caption: "Radio Veronica — Vriendenweekend promo and Top 1000 van de 80s, 1080 × 1920" },
+      { type: "center", item: { src: "Assets/Projecten/Stop520/web/stop520-logo-animation.json?v=2", bg: "linear-gradient(180deg, #17a5fd 0%, #168be2 18%, #116ec5 37%, #0d5cae 50%, #0d4799 65%, #062a7b 83%, #041564 100%)", ratio: "1 / 1", alt: "(S)Top 520 logo animation" }, caption: "Radio Veronica × War Child — (S)Top 520 logo animation" },
       { type: "phones", items: [
         { src: "Assets/Projecten/Motion/web/100nl-sinterklaas-mijter.mp4", poster: "Assets/Projecten/Motion/web/100nl-sinterklaas-mijter.webp", alt: "100% NL Sinterklaas — mitre" },
         { src: "Assets/Projecten/Motion/web/100nl-sinterklaas-muts.mp4", poster: "Assets/Projecten/Motion/web/100nl-sinterklaas-muts.webp", alt: "100% NL Sinterklaas — hat" },

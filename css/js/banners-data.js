@@ -13,7 +13,7 @@
             Want it somewhere else? Add place: "top" | "inline" | "side".
   more:     optional — the other formats of the same campaign, behind an "All formats" button.
 
-  Each banner: { size: "300x250", src: "Assets/Banners/<campaign>/300x250/index.html" }
+  Each banner: { size: "300x250", src: "Assets/Projecten/Motion/html5/<campaign>/300-250/index.html" }
   Leave src out to show an empty slot of the right size.
 */
 const bannerSets = [
@@ -22,12 +22,12 @@ const bannerSets = [
     caption: "HTML5 banners, animated in After Effects and exported with Bodymovin",
     tint: "blue",
     set: [
-      { size: "970x250", src: "Assets/Banners/veronica-top1000-90s/970x250/index.html" },
-      { size: "300x250", src: "Assets/Banners/veronica-top1000-90s/300x250/index.html" }
+      { size: "970x250", src: "Assets/Projecten/Motion/html5/veronica-top1000-90s/970-250/index.html" },
+      { size: "300x250", src: "Assets/Projecten/Motion/html5/veronica-top1000-90s/300-250/index.html" }
     ],
     more: [
-      { size: "728x90",  src: "Assets/Banners/veronica-top1000-90s/728x90/index.html" },
-      { size: "336x280", src: "Assets/Banners/veronica-top1000-90s/336x280/index.html" }
+      { size: "728x90",  src: "Assets/Projecten/Motion/html5/veronica-top1000-90s/728-90/index.html" },
+      { size: "336x280", src: "Assets/Projecten/Motion/html5/veronica-top1000-90s/336-280/index.html" }
     ]
   },
   {
@@ -35,9 +35,9 @@ const bannerSets = [
     caption: "HTML5 banners",
     tint: "orange",
     set: [
-      { size: "728x90", src: "Assets/Banners/100nl/728x90/index.html" },
-      { size: "468x60", src: "Assets/Banners/100nl/468x60/index.html", place: "inline" },
-      { size: "300x50", src: "Assets/Banners/100nl/300x50/index.html", place: "side" }
+      { size: "728x90", src: "Assets/Projecten/Motion/html5/100nl/728-90/index.html" },
+      { size: "468x60", src: "Assets/Projecten/Motion/html5/100nl/468-60/index.html", place: "inline" },
+      { size: "300x50", src: "Assets/Projecten/Motion/html5/100nl/300-50/index.html", place: "side" }
     ]
   },
   {
@@ -45,9 +45,9 @@ const bannerSets = [
     caption: "HTML5 banners",
     tint: "dark",
     set: [
-      { size: "728x90", src: "Assets/Banners/slam/728x90/index.html" },
-      { size: "468x60", src: "Assets/Banners/slam/468x60/index.html", place: "inline" },
-      { size: "300x50", src: "Assets/Banners/slam/300x50/index.html", place: "side" }
+      { size: "728x90", src: "Assets/Projecten/Motion/html5/slam/728-90/index.html" },
+      { size: "468x60", src: "Assets/Projecten/Motion/html5/slam/468-60/index.html", place: "inline" },
+      { size: "300x50", src: "Assets/Projecten/Motion/html5/slam/300-50/index.html", place: "side" }
     ]
   }
 ];
