@@ -2840,3 +2840,13 @@ mark.fill-in { background: rgba(255, 196, 0, 0.28); color: inherit; border-radiu
 .availability[data-available="true"] .availability__dot { background: #1fb45a; box-shadow: 0 0 0 0 rgba(31, 180, 90, 0.5); animation: availabilityPulse 2s ease-out infinite; }
 @keyframes availabilityPulse { to { box-shadow: 0 0 0 8px rgba(31, 180, 90, 0); } }
 @media (prefers-reduced-motion: reduce) { .availability__dot { animation: none !important; } }
+
+/* Footer links wrap on small screens instead of pushing the page sideways */
+.footer-links { flex-wrap: wrap; row-gap: 8px; }
+@media (max-width: 480px) { .footer-links { gap: 8px 24px; } .footer-links a { font-size: 1.25rem; } }
+
+/* Work filter: all four tabs fit on a phone */
+@media (max-width: 480px) {
+  .segmented-control { max-width: 100%; }
+  .segment-tab, .segmented-control button { padding: 0 11px; font-size: 13px; }
+}
