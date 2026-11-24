@@ -122,7 +122,7 @@ const projectsData = {
       ["Deliverables", "Logo, campaign identity, print, display, social, studio screens, web, branded beer and champagne bottles"]
     ],
     hero: { src: "Assets/Projecten/Vriendenweekend/web/logo-hero.webp", alt: "Het Nationale Vriendenweekend logo on Veronica blue" },
-    hook: "No more date polls. We claimed one weekend and made it national.",
+    hook: "No more endless planning. The first weekend of November is ours.",
     blocks: [
       { type: "section", heading: "The campaign", text: [
         "Everyone knows the group chat: eight friends, three date polls, six months later still nothing planned. Radio Veronica decided to fix it for the whole country by claiming the first weekend of November as <em>Het Nationale Vriendenweekend</em>. In the first edition, ten friend groups won a weekend at EuroParcs Hindeloopen with Veronica's DJs, a barbecue, a party and live radio from the park."
@@ -180,7 +180,7 @@ const projectsData = {
         "Most days I'm keeping three very different radio brands, Radio Veronica, SLAM! and 100% NL, consistent in everything they put out. One day that's a social post made together with the social team, the next a full-page newspaper ad for a Radio Veronica campaign, or flyers for a 100% NL event.",
         "In between, I update existing work to the latest brand standards and keep new things coming: studio screens, 9:16 screens, HTML5 banners, and the prizes listeners win, from mugs to socks. Every piece has to be unmistakably its brand, and still feel made for its moment.",
         "A lot of it moves, too."
-      ], cta: { label: "See the studio screens, banners and animations →", href: "project.html?id=motion" } },
+      ], cta: { label: "See Motion →", href: "project.html?id=motion" } },
       { type: "brandscroll" },
       { type: "section", heading: "Branded content: from idea to pitch", text: [
         "Next to design, I come up with branded content concepts: ways to weave an advertiser's message into the radio, so it feels like content instead of an ad. I pitch them to station directors, marketing directors and account managers. They range from small radio games to big productions, like a full Christmas dinner for a hundred listeners in the middle of a supermarket.",
