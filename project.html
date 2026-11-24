@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css?v=20261123s" />
     <link rel="stylesheet" href="css/brands.css?v=20261123v" />
+    <link rel="stylesheet" href="css/banners.css?v=20261124b" />
     <!-- Lottie speler script -->
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
   </head>
@@ -72,9 +73,11 @@
     </div>
 
     <!-- Data en Script -->
-    <script src="css/js/projects.js?v=20261123a"></script>
+    <script src="css/js/projects.js?v=20261124a"></script>
     <script src="css/js/brands-data.js?v=20261123y"></script>
     <script src="css/js/brands.js?v=20261124b"></script>
+    <script src="css/js/banners-data.js?v=20261124a"></script>
+    <script src="css/js/banners.js?v=20261124b"></script>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const urlParams = new URLSearchParams(window.location.search);
@@ -197,6 +200,8 @@
             switch (block.type) {
               case 'brandscroll':  // Brand in daily use: radio dial + rolodex per brand (brands.js)
                 return `<div class="bs-scroll"></div>`;
+              case 'banners':      // HTML5 banner sets in a page sketch (banners-data.js + banners.js)
+                return `<div class="bn-wall"></div>`;
               case 'section':
                 return `<section class="case-section fade-in">
                   ${block.heading ? `<h3 class="case-heading">${block.heading}</h3>` : ''}
@@ -303,6 +308,7 @@
 
           container.innerHTML = html;
           if (window.initBrandScroll && container.querySelector('.bs-scroll')) initBrandScroll();
+          if (window.initBanners && container.querySelector('.bn-wall')) initBanners();
 
           const carousels = document.querySelectorAll('.project-carousel-wrapper');
           carousels.forEach(wrapper => {

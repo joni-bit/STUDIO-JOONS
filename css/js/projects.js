@@ -25,6 +25,8 @@
               grid      3 or 4 columns of squares            { items: [...], columns: 3 }
               inset     1 large + 1 small                    { items: [large, small] }
               loops     videos, 2 per row                    { items: [...] }
+              banners   HTML5 banner sets in a web page sketch  {}  (content: css/js/banners-data.js)
+              brandscroll  radio dial + rolodex              {}  (content: css/js/brands-data.js)
             Each image: { src, alt, caption }. No src yet? Use { label: "what goes here" }
             and a grey placeholder shows instead.
   Text in [square brackets] is shown highlighted: a fact still to fill in.
@@ -326,7 +328,7 @@ const projectsData = {
         { label: "100% NL — Sinterklaas animation, social", caption: "100% NL — Sinterklaas animation, social", ratio: "9 / 16" },
         { label: "Radio Veronica — 80s animation", caption: "Radio Veronica — 80s animation, [format]", ratio: "9 / 16" }
       ]},
-      { type: "canvas", item: { label: "HTML5 banner set — all sizes playing together (screen-record the Veronica Top 1000 van de 90s set)" }, caption: "SLAM! — HTML5 banner set, [x] sizes" },
+      { type: "banners" },   // HTML5 banner sets: content in css/js/banners-data.js
       { type: "section", heading: "Play (personal work)", text: [
         "Every year I draw and animate my own Christmas card. The one after a December trip to New York starred a row of nutcrackers."
       ]},
