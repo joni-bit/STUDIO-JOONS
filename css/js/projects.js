@@ -350,7 +350,7 @@ const projectsData = {
     client: "Conscious Hotels", 
     year: "2024",
     heroImage: "Assets/Projecten/DQDB/DQDB_1200_800_opt.webp", 
-    intro: "<span class='accent-text'>Visual identity</span> for a reoccurring <span class='accent-text'>Drag Queen Bingo event</span> at Barkantoor.<br><br><span style='font-size: 1rem; font-weight: normal;'>During my internship at Conscious Hotels, I had the exciting opportunity to work on branding for Drag Queen Disco Bingo (DQDB), a vibrant event introduced to bring energy, inclusivity, and fun to the community.</span>",
+    intro: "<span class='accent-text'>Visual identity</span> for a recurring <span class='accent-text'>Drag Queen Bingo event</span> at Bar Kantoor.<br><br><span style='font-size: 1rem; font-weight: normal;'>During my internship at Conscious Hotels, I had the exciting opportunity to work on branding for Drag Queen Disco Bingo (DQDB), a vibrant event introduced to bring energy, inclusivity, and fun to the community.</span>",
     content: [
       {
         type: "two-column",
