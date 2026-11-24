@@ -72,7 +72,7 @@ const projectsData = {
         "Design the outside of the studio. The only reference was what other brands had built on the same spot, and one hard constraint: no full wrap, because the DJs needed to see out."
       ]},
       { type: "section", heading: "The idea", text: [
-        "Where does a child feel safe? In their own bedroom. So I drew the studio as a colouring page: a kid's bedroom where they make their own radio. The open black-and-white line work kept the windows clear for the DJs, and it turned the studio into something everyone recognises from childhood: innocent, hopeful and unfinished, waiting to be filled in."
+        "Drawing is something every child does, everywhere. It's how we all got our minds off things as kids and let our imagination run wild, and every child should get to do it, wherever they grow up. So I made the studio one big colouring page: a kid's bedroom where they make their own radio. Something that really grabs your attention. The open black-and-white line work kept the windows clear for the DJs, and turned the studio into something everyone recognises from childhood, waiting to be filled in."
       ]},
       { type: "split", items: [
         { src: "Assets/Projecten/Stop520/web/colouring-pages.webp", alt: "The two (S)Top 520 colouring pages", caption: "The drawing — colouring pages" },
@@ -85,7 +85,7 @@ const projectsData = {
       { type: "canvas", item: { src: "Assets/Projecten/Stop520/web/stop520-logo-animation.json?v=2", bg: "linear-gradient(180deg, #17a5fd 0%, #168be2 18%, #116ec5 37%, #0d5cae 50%, #0d4799 65%, #062a7b 83%, #041564 100%)", ratio: "16 / 9", alt: "(S)Top 520 logo animation" }, caption: "The logo, animated" },
       { type: "canvas", item: { src: "Assets/Projecten/Stop520/web/rollout-canvas.webp", alt: "(S)Top 520 roll-out: key visual, studio, social, car wrap and coloured pages", caption: "Key visual, studio, social and the Bed Boys car wrap" } },
       { type: "section", heading: "What happened", text: [
-        "Kids came to the station with their parents just to get a colouring page. The studio drew crowds of travellers all week, De Telegraaf covered the campaign several times, and both Radio Veronica and War Child were beyond happy with how it looked. [Optional: “The list closed with John Lennon's Imagine at number one.”]"
+        "Kids came to the station with their parents just to get a colouring page, and we filled the whole studio with their drawings. The studio drew crowds of travellers all week, De Telegraaf covered the campaign several times, and both Radio Veronica and War Child were beyond happy with how it looked. The list closed with John Lennon's <em>Imagine</em> at number one."
       ]},
       { type: "split", items: [
         { src: "Assets/Projecten/Stop520/web/table-of-pages.webp", alt: "Coloured-in pages from kids", caption: "Coloured-in pages. Photo: Jeroen Zondag" },
@@ -119,7 +119,7 @@ const projectsData = {
       ["Client", "Radio Veronica"],
       ["Year", "2026"],
       ["My role", "Sole designer, visual concept and design (campaign concept by the Veronica team)"],
-      ["Deliverables", "Logo, campaign identity, print, display, social, studio screens, web, branded beer and champagne bottles"]
+      ["Deliverables", "Logo, campaign identity, print, display, social, studio screens, web, on-site branding and branded bottles"]
     ],
     hero: { src: "Assets/Projecten/Vriendenweekend/web/logo-hero.webp", alt: "Het Nationale Vriendenweekend logo on Veronica blue" },
     hook: "No more endless planning. The first weekend of November belongs to the friend group.",
@@ -131,7 +131,7 @@ const projectsData = {
         "Carte blanche: make the weekend feel like a national tradition from day one."
       ]},
       { type: "section", heading: "The idea", text: [
-        "Three holiday houses huddled together under a golden ribbon, like an official seal: part holiday-park sign, part national holiday. I explored four directions, each built on a different side of a weekend away: the house, the roof over everyone, the packed weekend bag and the group itself. The one we chose got the strongest reaction, and the logo was approved at the first pitch with no changes."
+        "I explored four directions, each built on a different side of a weekend away: the house, the roof over everyone, the packed weekend bag and the group itself. The one we chose got the strongest reaction, and the logo was approved at the first pitch with no changes."
       ]},
       { type: "grid", columns: 4, items: [
         { src: "Assets/Projecten/Vriendenweekend/web/direction-1.webp", alt: "Chosen direction: houses under a golden ribbon" },
@@ -168,27 +168,25 @@ const projectsData = {
     },
     year: "2025",
     facts: [
-      ["Brands", "Radio Veronica, SLAM!, 100% NL"],
+      ["Brands", "Radio Veronica, SLAM!, 100% NL, Sublime"],
       ["Since", "November 2025"],
-      ["Role", "Junior Creative Designer & creative concepter, in-house"],
+      ["Role", "Junior Creative Designer & concepter, in-house"],
       ["Output", "Studio screens, print up to A0, 9:16 digital, social ads, HTML5 banners, merch and prizes"]
     ],
     hero: { src: "Assets/Projecten/MediahuisRadio/web/mhr-illustration.webp", alt: "Mediahuis Radio illustration: listeners of SLAM!, 100% NL, Sublime and Radio Veronica", caption: "Mediahuis Radio — illustrated by me" },
     hook: "Not every brief is a billboard.",
     blocks: [
       { type: "section", text: [
-        "Most days I'm keeping three very different radio brands, Radio Veronica, SLAM! and 100% NL, consistent in everything they put out. One day that's a social post made together with the social team, the next a full-page newspaper ad for a Radio Veronica campaign, or flyers for a 100% NL event.",
-        "In between, I update existing work to the latest brand standards and keep new things coming: studio screens, 9:16 screens, HTML5 banners, and the prizes listeners win, from mugs to socks. Every piece has to be unmistakably its brand, and still feel made for its moment.",
+        "Most days I'm keeping four different radio brands, Radio Veronica, SLAM!, 100% NL and Sublime, consistent in everything they put out. One day that's a social post made together with the social team, the next a full-page newspaper ad for a Radio Veronica campaign, or flyers for a 100% NL event.",
+        "In between, I update existing work to the latest brand standards and keep new things coming: studio screens, 9:16 screens, HTML5 banners, and the prizes listeners win, from mugs to socks. Some of it never leaves the office, but every piece stays true to the brand: what we say, and how we say it. And next to the design work, I come up with branded content: ideas that turn an advertiser's message into something that fits who we are and stays fun for our listeners.",
         "A lot of it moves, too."
       ], cta: { label: "See Motion →", href: "project.html?id=motion" } },
       { type: "brandscroll" },
       { type: "section", heading: "Branded content: from idea to pitch", text: [
         "Next to design, I come up with branded content concepts: ways to weave an advertiser's message into the radio, so it feels like content instead of an ad. I pitch them to station directors, marketing directors and account managers. They range from small radio games to big productions, like a full Christmas dinner for a hundred listeners in the middle of a supermarket.",
-        "One of my favourites is a morning-show game about friendship. The hosts go looking for the most loyal best man in the country. In the final, three best men anonymously answer one dare after another: would you shave your head for your groom? Get a tattoo? Whoever goes furthest wins. The twist: none of the dares ever have to happen. It was only ever about how far you'd go."
-      ], aside: { label: "Illustration — branded content (general, no brands)", ratio: "4 / 5" } },   // text only, no names: concepts involve several partners and aren't cleared for publication
-      { type: "section", heading: "Making the system better", text: [
-        "I'm building an AI-assisted workflow that takes a finished key visual and adapts it to every format, so the designer's time goes to the idea, not the resizing. And I'm redesigning how briefs come in, how work gets checked, and when each team joins."
-      ]}
+        "One of my favourites is a morning-show game about friendship. The hosts go looking for the most loyal best man in the country. In the final, three best men anonymously answer one dare after another: would you shave your head for your groom? Get a tattoo? Whoever goes furthest wins. The twist: none of the dares ever have to happen. It was only ever about how far you'd go.",
+        "Most of these concepts involve partners, so I can't show them all here. But I'd love to tell you more. Just send me a message :)"
+      ], aside: { label: "Illustration — branded content (general, no brands)", ratio: "4 / 5" } }   // text only, no names: concepts involve several partners and aren't cleared for publication
     ]
   },
   "domibo": {
@@ -269,10 +267,10 @@ const projectsData = {
     hook: "Small canvas, big character.",
     blocks: [
       { type: "section", heading: "How it started", text: [
-        "A colleague from my graduation internship runs a patch company and asked me to design for his clients. Carnaval patches are tiny brand pieces: they need to read from across a packed café, survive being embroidered, and make people laugh."
+        "A colleague from my graduation internship runs a patch company and asked me to design for his clients. Carnaval patches are tiny brand pieces: they need to read from across a packed café and make people laugh."
       ]},
       { type: "section", heading: "How I work", text: [
-        "Some clients arrive with a clear idea, some with nothing at all. I always start with a conversation about what they want and the do's and don'ts, then show 3–5 concepts. We talk through what works, and I refine from there. For Familie Kesbeke I designed four patches, two of which went into production: pickles with attitude, in their own Brabant dialect (“Heé Slappe!”, “Kiek nie zo zuur”)."
+        "Some clients arrive with a clear idea, some with nothing at all. I always start with a conversation about what they want and the do's and don'ts, then show 3–5 concepts. We talk through what works, and I refine from there. For Familie Kesbeke I designed four patches, two of which went into production: pickles with the same Amsterdam attitude, but with a Brabant twist (“Heé Slappe!”, “Kiek nie zo zuur”)."
       ]},
       { type: "breakdown", item: { src: "Assets/Projecten/Patches/web/kesbeke-concepts.webp", alt: "Four Familie Kesbeke patch designs; the two produced ones glow blue", caption: "Familie Kesbeke — four designs, the two produced ones marked in blue" } },
       { type: "triptych", ratio: "1 / 1", items: [
@@ -286,7 +284,7 @@ const projectsData = {
         { src: "Assets/Projecten/Patches/web/100nl.webp", alt: "100% NL patch: Maakt je dag!" }
       ], caption: "Bakkerijt · SKD Kozijnen · 100% NL" },
       { type: "section", heading: "Studio Joons", text: [
-        "I also wanted to learn everything that happens after the design: production, pricing, selling. So I started my own small label. The first patches are fried snacks with a wink at <em>Ex on the Beach</em> (FREAKandel, BitterB00Bs), sold at carnaval in Brabant and in <a href=\"shop\">the shop</a>."
+        "I also wanted to learn everything that happens after the design: production, pricing, selling. So when I had a fun idea, I decided to make it something you can actually hold, and started my own small label as a hobby next to my job. The first patches are fried snacks with a wink (FREAKandel, BitterB00Bs), sold at carnaval in Brabant and in <a href=\"shop\">the shop</a>."
       ]},
       { type: "split", items: [
         { src: "Assets/Projecten/Patches/web/freakandel-design.webp", alt: "FREAKandel patch design", caption: "FREAKandel — design" },
