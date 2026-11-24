@@ -1,4 +1,7 @@
 /*
+  Note: no 'banner' in file paths, no ad-sized width/height attributes on the iframes —
+  ad blockers hide those, and the work would vanish for many visitors.
+
   HTML5 banner sets — each campaign shown in a sketch of a web page, banners in their real slots.
   Content lives in banners-data.js. Used by the { type: "banners" } block in projects.js.
 */
@@ -12,7 +15,7 @@
   const slot = (b, i) => {
     const { w, h } = parse(b.size);
     const inner = b.src
-      ? `<iframe data-src="${b.src}" width="${w}" height="${h}" title="Banner ${w} × ${h}" scrolling="no" loading="lazy"
+      ? `<iframe data-src="${b.src}" title="HTML5 animation ${w} × ${h}" scrolling="no"
            sandbox="allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>`
       : `<div class="bn-empty" style="--i:${i}"><span class="bn-wipe"></span><span class="bn-size">${w} × ${h}</span></div>`;
     return `<div class="bn-fit" data-w="${w}" data-h="${h}"><div class="bn-slot" style="width:${w}px;height:${h}px">${inner}</div></div>`;

@@ -22,6 +22,7 @@
               hero / breakdown / canvas  one wide image      { item: {...} }
               split     2 side by side                       { items: [a, b] }
               triptych  3 in a row                           { items: [a, b, c], ratio: "4 / 5" or "9 / 16" }
+              center    one smaller piece, centred (e.g. a square logo animation)  {item}
               phones    vertical (9:16) videos side by side, as large as the screen allows  {items}
               grid      3 or 4 columns of squares            { items: [...], columns: 3 }
               inset     1 large + 1 small                    { items: [large, small] }
@@ -183,13 +184,9 @@ const projectsData = {
         "I started just as Radio Veronica rolled out a new visual identity. I didn't write the guidelines, but I helped bring them to life: updating visuals across every channel, keeping new work in line, and building each new campaign on top of the brand guide. On photoshoots I was second designer on set, checking that every shot fitted the new direction and that we caught the energy of each show."
       ]},
       { type: "section", heading: "Branded content: from idea to pitch", text: [
-        "Next to design, I come up with branded content concepts: ways to weave an advertiser's message into the radio, so it feels like content instead of an ad. I pitch them to station directors, marketing directors and account managers. They range from radio games to large productions like Jumbo × 100% NL's <em>Het Super Kerstdiner</em>: a full Christmas dinner for 100 listeners inside a Jumbo supermarket.",
-        "One of my favourites is <em>The Best Best Man</em> for SLAM! × OFM. In the morning show, Anoûl & Marijn go looking for the most loyal best man in the country. Every day they call a groom and his best man, and both have to pick up with “Ja, ik wil”. Three best men make it to the final, where they anonymously hold up a sign for every dare: would you shave your head for your groom? Get a tattoo? Drink beer from a shoe? Whoever goes furthest wins a bachelor party and an OFM wedding suit for the groom. The twist: none of the dares ever have to happen. It was only ever about how far you'd go."
-      ]},
-      { type: "split", items: [
-        { src: "Assets/Projecten/MediahuisRadio/web/best-best-man.webp", alt: "SLAM! concept board The Best Best Man", caption: "SLAM! × OFM — The Best Best Man (concept)" },
-        { src: "Assets/Projecten/MediahuisRadio/web/jumbo-kerstdiner.webp", alt: "Jumbo x 100% NL Het Super Kerstdiner concept board", caption: "Jumbo × 100% NL — Het Super Kerstdiner" }
-      ]}
+        "Next to design, I come up with branded content concepts: ways to weave an advertiser's message into the radio, so it feels like content instead of an ad. I pitch them to station directors, marketing directors and account managers. They range from small radio games to big productions, like a full Christmas dinner for a hundred listeners in the middle of a supermarket.",
+        "One of my favourites is a morning-show game about friendship. The hosts go looking for the most loyal best man in the country. In the final, three best men anonymously answer one dare after another: would you shave your head for your groom? Get a tattoo? Whoever goes furthest wins. The twist: none of the dares ever have to happen. It was only ever about how far you'd go."
+      ], aside: { label: "Illustration — branded content (general, no brands)", ratio: "4 / 5" } },   // text only, no names: concepts involve several partners and aren't cleared for publication
     ]
   },
   "domibo": {
@@ -315,7 +312,7 @@ const projectsData = {
     },
     year: "2026",
     facts: [],
-    hero: { src: "Assets/Projecten/Stop520/web/stop520-logo-animation.json?v=2", bg: "linear-gradient(180deg, #17a5fd 0%, #168be2 18%, #116ec5 37%, #0d5cae 50%, #0d4799 65%, #062a7b 83%, #041564 100%)", ratio: "16 / 9", alt: "(S)Top 520 logo animation", caption: "Radio Veronica × War Child — (S)Top 520 logo animation" },
+    hero: { label: "Opening piece for the Motion page — coming soon", ratio: "16 / 9" },
     hook: "More and more of my work moves. To me, motion is a puzzle: how do you make a brand feel alive in five seconds?",
     blocks: [
       { type: "loops", items: [
@@ -327,6 +324,7 @@ const projectsData = {
         { src: "Assets/Projecten/Motion/web/veronica-vriendenweekend.mp4?v=2", poster: "Assets/Projecten/Motion/web/veronica-vriendenweekend.webp?v=2", alt: "Radio Veronica Vriendenweekend promo" },
         { src: "Assets/Projecten/Motion/web/veronica-top1000-80s.mp4", poster: "Assets/Projecten/Motion/web/veronica-top1000-80s.webp", alt: "Radio Veronica Top 1000 van de 80s" }
       ], caption: "Radio Veronica — Vriendenweekend promo and Top 1000 van de 80s, 1080 × 1920" },
+      { type: "center", item: { src: "Assets/Projecten/Stop520/web/stop520-logo-animation.json?v=2", bg: "linear-gradient(180deg, #17a5fd 0%, #168be2 18%, #116ec5 37%, #0d5cae 50%, #0d4799 65%, #062a7b 83%, #041564 100%)", ratio: "1 / 1", alt: "(S)Top 520 logo animation" }, caption: "Radio Veronica × War Child — (S)Top 520 logo animation" },
       { type: "phones", items: [
         { src: "Assets/Projecten/Motion/web/100nl-sinterklaas-mijter.mp4", poster: "Assets/Projecten/Motion/web/100nl-sinterklaas-mijter.webp", alt: "100% NL Sinterklaas — mitre" },
         { src: "Assets/Projecten/Motion/web/100nl-sinterklaas-muts.mp4", poster: "Assets/Projecten/Motion/web/100nl-sinterklaas-muts.webp", alt: "100% NL Sinterklaas — hat" },

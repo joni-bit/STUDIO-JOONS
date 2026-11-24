@@ -243,7 +243,8 @@ body[data-brand="slam"] .bs-station { color: #d9d9d9; }
 
 /* ---------- On the project page (Brand in daily use) ---------- */
 body.project-page { overflow-x: clip; }
-body.project-page .project-main, body.project-page .topbar { position: relative; z-index: 1; }
+body.project-page .project-main { position: relative; z-index: 1; }
+body.project-page .topbar { position: relative; z-index: 1000; }   /* nav above everything, incl. the rolodex pop-up */
 /* Full width, out of the 900px text column */
 .project-page .bs-scroll { width: 100vw; margin-left: calc(50% - 50vw); }
 /* Fade in from the page colour: the backdrop only shows while a brand is on screen */

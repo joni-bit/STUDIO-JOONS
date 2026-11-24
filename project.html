@@ -8,8 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="css/style.css?v=20261124h" />
-    <link rel="stylesheet" href="css/brands.css?v=20261123v" />
+    <link rel="stylesheet" href="css/style.css?v=20261124n" />
+    <link rel="stylesheet" href="css/brands.css?v=20261124j" />
     <link rel="stylesheet" href="css/banners.css?v=20261124f" />
     <!-- Lottie speler script -->
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
@@ -73,11 +73,11 @@
     </div>
 
     <!-- Data en Script -->
-    <script src="css/js/projects.js?v=20261124i"></script>
+    <script src="css/js/projects.js?v=20261124n"></script>
     <script src="css/js/brands-data.js?v=20261123y"></script>
     <script src="css/js/brands.js?v=20261124b"></script>
-    <script src="css/js/banners-data.js?v=20261124e"></script>
-    <script src="css/js/banners.js?v=20261124g"></script>
+    <script src="css/js/banners-data.js?v=20261124j"></script>
+    <script src="css/js/banners.js?v=20261124j"></script>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const urlParams = new URLSearchParams(window.location.search);
@@ -205,12 +205,17 @@
                 return `<div class="bs-scroll"></div>`;
               case 'banners':      // HTML5 banner sets in a page sketch (banners-data.js + banners.js)
                 return `<div class="bn-wall"></div>`;
-              case 'section':
-                return `<section class="case-section fade-in">
+              case 'section': {
+                const body = `<section class="case-section fade-in">
                   ${block.heading ? `<h3 class="case-heading">${block.heading}</h3>` : ''}
                   ${(block.text || []).map(t => `<p class="project-text">${fill(t)}</p>`).join('')}
                   ${block.list ? `<ul class="case-list">${block.list.map(li => `<li>${fill(li)}</li>`).join('')}</ul>` : ''}
                 </section>`;
+                // aside: an image to the right of the text
+                return block.aside
+                  ? `<div class="case-aside-wrap">${body}<div class="case-aside fade-in">${figure(block.aside, block.aside.ratio || '4 / 5')}</div></div>`
+                  : body;
+              }
               case 'hero':      // A
               case 'breakdown': // D
               case 'canvas':    // E
@@ -223,6 +228,8 @@
                 return `<div class="case-block block-grid cols-${block.columns || 3} fade-in">${items.map(i => figure(i, block.ratio || '1 / 1')).join('')}</div>${caption(block)}`;
               case 'inset':     // G
                 return `<div class="case-block block-inset fade-in">${figure(items[0], block.ratio || '4 / 3')}${figure(items[1], '4 / 5')}</div>${caption(block)}`;
+              case 'center':    // one smaller piece, centred
+                return `<div class="case-block block-center fade-in">${figure(items[0], block.ratio || '1 / 1')}${caption(block)}</div>`;
               case 'phones':    // vertical 9:16 pieces side by side, sized to fit the screen
                 return `<div class="case-block block-phones fade-in">${items.map(i => figure(i, '9 / 16')).join('')}</div>${caption(block)}`;
               case 'loops':     // H
