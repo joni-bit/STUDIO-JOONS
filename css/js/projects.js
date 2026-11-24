@@ -186,11 +186,7 @@ const projectsData = {
       { type: "section", heading: "Branded content: from idea to pitch", text: [
         "Next to design, I come up with branded content concepts: ways to weave an advertiser's message into the radio, so it feels like content instead of an ad. I pitch them to station directors, marketing directors and account managers. They range from radio games to large productions like Jumbo × 100% NL's <em>Het Super Kerstdiner</em>: a full Christmas dinner for 100 listeners inside a Jumbo supermarket.",
         "One of my favourites is <em>The Best Best Man</em> for SLAM! × OFM. In the morning show, Anoûl & Marijn go looking for the most loyal best man in the country. Every day they call a groom and his best man, and both have to pick up with “Ja, ik wil”. Three best men make it to the final, where they anonymously hold up a sign for every dare: would you shave your head for your groom? Get a tattoo? Drink beer from a shoe? Whoever goes furthest wins a bachelor party and an OFM wedding suit for the groom. The twist: none of the dares ever have to happen. It was only ever about how far you'd go."
-      ]},
-      { type: "split", items: [
-        { src: "Assets/Projecten/MediahuisRadio/web/best-best-man.webp", alt: "SLAM! concept board The Best Best Man", caption: "SLAM! × OFM — The Best Best Man (concept)" },
-        { src: "Assets/Projecten/MediahuisRadio/web/jumbo-kerstdiner.webp", alt: "Jumbo x 100% NL Het Super Kerstdiner concept board", caption: "Jumbo × 100% NL — Het Super Kerstdiner" }
-      ]}
+      ]}   // text only: concepts involve several partners and aren't cleared for publication
     ]
   },
   "domibo": {
