@@ -82,7 +82,7 @@ const projectsData = {
       { type: "section", heading: "The system", text: [
         "From that drawing I built the whole campaign identity: the (S)Top 520 logo, the key visual, social templates and posts, ads and print. And real colouring pages to take home."
       ]},
-      { type: "canvas", item: { src: "Assets/Projecten/Stop520/web/stop520-logo-animation.json?v=2", bg: "linear-gradient(180deg, #17a5fd 0%, #168be2 18%, #116ec5 37%, #0d5cae 50%, #0d4799 65%, #062a7b 83%, #041564 100%)", ratio: "16 / 9", alt: "(S)Top 520 logo animation" }, caption: "The logo, animated" },
+      { type: "center", item: { src: "Assets/Projecten/Stop520/web/stop520-logo-square.mp4", poster: "Assets/Projecten/Stop520/web/stop520-logo-square.webp", alt: "(S)Top 520 logo animation" }, caption: "The logo, animated" },
       { type: "canvas", item: { src: "Assets/Projecten/Stop520/web/rollout-canvas.webp", alt: "(S)Top 520 roll-out: key visual, studio, social, car wrap and coloured pages", caption: "Key visual, studio, social and the Bed Boys car wrap" } },
       { type: "section", heading: "What happened", text: [
         "Kids came to the station with their parents just to get a colouring page, and we filled the whole studio with their drawings. The studio drew crowds of travellers all week, De Telegraaf covered the campaign several times, and both Radio Veronica and War Child were beyond happy with how it looked. The list closed with John Lennon's <em>Imagine</em> at number one."
@@ -324,7 +324,7 @@ const projectsData = {
         { src: "Assets/Projecten/Motion/web/veronica-vriendenweekend.mp4?v=2", poster: "Assets/Projecten/Motion/web/veronica-vriendenweekend.webp?v=2", alt: "Radio Veronica Vriendenweekend promo" },
         { src: "Assets/Projecten/Motion/web/veronica-top1000-80s.mp4", poster: "Assets/Projecten/Motion/web/veronica-top1000-80s.webp", alt: "Radio Veronica Top 1000 van de 80s" }
       ], caption: "Radio Veronica — Vriendenweekend promo and Top 1000 van de 80s, 1080 × 1920" },
-      { type: "center", item: { src: "Assets/Projecten/Stop520/web/stop520-logo-animation.json?v=2", bg: "linear-gradient(180deg, #17a5fd 0%, #168be2 18%, #116ec5 37%, #0d5cae 50%, #0d4799 65%, #062a7b 83%, #041564 100%)", ratio: "1 / 1", alt: "(S)Top 520 logo animation" }, caption: "Radio Veronica × War Child — (S)Top 520 logo animation" },
+      { type: "center", item: { src: "Assets/Projecten/Stop520/web/stop520-logo-square.mp4", poster: "Assets/Projecten/Stop520/web/stop520-logo-square.webp", alt: "(S)Top 520 logo animation" }, caption: "Radio Veronica × War Child — (S)Top 520 logo animation" },
       { type: "phones", items: [
         { src: "Assets/Projecten/Motion/web/100nl-sinterklaas-mijter.mp4", poster: "Assets/Projecten/Motion/web/100nl-sinterklaas-mijter.webp", alt: "100% NL Sinterklaas — mitre" },
         { src: "Assets/Projecten/Motion/web/100nl-sinterklaas-muts.mp4", poster: "Assets/Projecten/Motion/web/100nl-sinterklaas-muts.webp", alt: "100% NL Sinterklaas — hat" },
