@@ -64,21 +64,27 @@
   };
 
   // Scale the page sketch (and any banner too wide for its spot) to the space available
+  const NARROW = 720;   // below this width the sets stack (mobile); above it they sit behind tabs
+
   function fit(set) {
+    const wall = set.parentElement;
     const vp = set.querySelector('.bn-viewport');
     const page = set.querySelector('.bn-page');
-    const stacked = set.clientWidth < 720;
+    const stacked = wall.clientWidth < NARROW;
     set.classList.toggle('is-stacked', stacked);
-    if (stacked) { page.style.transform = ''; page.style.width = ''; vp.style.height = ''; }
-    else {
-      const s = Math.min(1, vp.clientWidth / PAGE);
-      page.style.width = `${Math.max(PAGE, vp.clientWidth)}px`;   // wider screens: the sketch fills the window, banners stay real size
-      page.style.transform = s < 1 ? `scale(${s})` : '';
+    if (stacked) { page.style.transform = ''; page.style.width = ''; vp.style.height = ''; set.style.removeProperty('--bn-w'); }
+    else if (set.offsetParent) {
+      // Desktop: the whole page sketch fits on screen at once; the banners scale with it
+      page.style.width = `${PAGE}px`; page.style.transform = '';
+      const room = innerHeight - 38 - 210;                    // browser bar + tabs + caption row
+      const s = Math.min(1, wall.clientWidth / PAGE, Math.max(320, room) / page.offsetHeight);
+      page.style.transform = `scale(${s})`;
       vp.style.height = `${page.offsetHeight * s}px`;
+      set.style.setProperty('--bn-w', `${PAGE * s}px`);
     }
     set.querySelectorAll(stacked ? '.bn-fit' : '.bn-more .bn-fit').forEach(f => {
       const w = +f.dataset.w, h = +f.dataset.h;
-      const room = f.parentElement.clientWidth || w;
+      const room = Math.min(f.parentElement.clientWidth || w, stacked ? page.clientWidth - 40 : Infinity);
       const s = Math.min(1, room / w);
       f.style.width = `${w * s}px`; f.style.height = `${h * s}px`;
       f.firstElementChild.style.transform = s < 1 ? `scale(${s})` : '';
@@ -96,11 +102,36 @@
     document.querySelectorAll('.bn-wall').forEach(wall => {
       if (wall.dataset.ready || typeof bannerSets === 'undefined') return;
       wall.dataset.ready = '1';
-      wall.innerHTML = bannerSets.map(setHTML).join('');
+      wall.innerHTML =
+        `<div class="bn-tabs" role="tablist" aria-label="Banner campaigns">${bannerSets.map((c, i) =>
+          `<button type="button" class="bn-tab" role="tab" data-n="${i}" aria-selected="${i === 0}">${c.title || `Campaign ${i + 1}`}</button>`).join('')}</div>` +
+        bannerSets.map(setHTML).join('');
       const sets = [...wall.querySelectorAll('.bn-set')];
+      const tabs = [...wall.querySelectorAll('.bn-tab')];
+      sets.forEach((s, i) => s.classList.toggle('is-active', i === 0));
 
-      const ro = new ResizeObserver(entries => entries.forEach(e => fit(e.target)));
-      sets.forEach(s => { fit(s); ro.observe(s); });
+      const fitAll = () => { wall.classList.toggle('is-tabbed', wall.clientWidth >= NARROW); sets.forEach(fit); };
+      new ResizeObserver(fitAll).observe(wall);
+      addEventListener('resize', fitAll);
+      fitAll();
+
+      // Desktop: one page sketch, the tabs swap the campaign in it
+      const show = (n) => {
+        tabs.forEach((t, i) => t.setAttribute('aria-selected', String(i === n)));
+        sets.forEach((s, i) => s.classList.toggle('is-active', i === n));
+        fit(sets[n]);
+        sets[n].dataset.played = '1';
+        play(sets[n].querySelector('.bn-browser'));
+      };
+      wall.querySelector('.bn-tabs').addEventListener('click', e => {
+        const t = e.target.closest('.bn-tab'); if (t) show(+t.dataset.n);
+      });
+      wall.querySelector('.bn-tabs').addEventListener('keydown', e => {
+        if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+        const cur = tabs.findIndex(t => t.getAttribute('aria-selected') === 'true');
+        const n = (cur + (e.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
+        show(n); tabs[n].focus();
+      });
 
       const io = new IntersectionObserver(entries => entries.forEach(e => {
         if (e.isIntersecting && !e.target.dataset.played) { e.target.dataset.played = '1'; play(e.target.querySelector('.bn-browser')); }

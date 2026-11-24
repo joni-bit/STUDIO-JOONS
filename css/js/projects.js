@@ -81,6 +81,7 @@ const projectsData = {
       { type: "section", heading: "The system", text: [
         "From that drawing I built the whole campaign identity: the (S)Top 520 logo, the key visual, social templates and posts, ads and print. And real colouring pages to take home."
       ]},
+      { type: "canvas", item: { src: "Assets/Projecten/Stop520/web/stop520-logo-animation.json?v=2", bg: "linear-gradient(180deg, #17a5fd 0%, #168be2 18%, #116ec5 37%, #0d5cae 50%, #0d4799 65%, #062a7b 83%, #041564 100%)", ratio: "16 / 9", alt: "(S)Top 520 logo animation" }, caption: "The logo, animated" },
       { type: "canvas", item: { src: "Assets/Projecten/Stop520/web/rollout-canvas.webp", alt: "(S)Top 520 roll-out: key visual, studio, social, car wrap and coloured pages", caption: "Key visual, studio, social and the Bed Boys car wrap" } },
       { type: "section", heading: "What happened", text: [
         "Kids came to the station with their parents just to get a colouring page. The studio drew crowds of travellers all week, De Telegraaf covered the campaign several times, and both Radio Veronica and War Child were beyond happy with how it looked. [Optional: “The list closed with John Lennon's Imagine at number one.”]"
@@ -90,10 +91,7 @@ const projectsData = {
         { src: "Assets/Projecten/Stop520/web/wall-of-pages.webp", alt: "A wall full of coloured-in pages in the studio", caption: "The studio wall filling up. Photo: Lars Goosselink" }
       ]},
       { type: "hero", item: { src: "Assets/Projecten/Stop520/web/djs-live.webp", alt: "The DJs live in the studio, with the Instagram story next to it", caption: "Live on air, and on Instagram. Photo: Emma Pot" } },
-      { type: "inset", items: [
-        { src: "Assets/Projecten/Stop520/web/station-hall-wide.webp", alt: "The studio in the station hall", caption: "The studio in Utrecht Centraal. Photo: Emma Pot" },
-        { label: "Telegraaf clipping, small" }
-      ]}
+      { type: "hero", item: { src: "Assets/Projecten/Stop520/web/station-hall-wide.webp", alt: "The studio in the station hall", caption: "The studio in Utrecht Centraal. Photo: Emma Pot" } }
     ]
   },
   "vriendenweekend": {
@@ -317,7 +315,7 @@ const projectsData = {
     },
     year: "2026",
     facts: [],
-    hero: { src: "Assets/Projecten/Stop520/web/stop520-logo-animation.mp4", caption: "Radio Veronica × War Child — (S)Top 520 logo animation" },
+    hero: { src: "Assets/Projecten/Stop520/web/stop520-logo-animation.json?v=2", bg: "linear-gradient(180deg, #17a5fd 0%, #168be2 18%, #116ec5 37%, #0d5cae 50%, #0d4799 65%, #062a7b 83%, #041564 100%)", ratio: "16 / 9", alt: "(S)Top 520 logo animation", caption: "Radio Veronica × War Child — (S)Top 520 logo animation" },
     hook: "More and more of my work moves. To me, motion is a puzzle: how do you make a brand feel alive in five seconds?",
     blocks: [
       { type: "loops", items: [
@@ -326,7 +324,7 @@ const projectsData = {
       ]},
       { type: "canvas", ratio: "27 / 16", item: { src: "Assets/Projecten/Motion/web/slam-festivalmaand-triple.mp4", poster: "Assets/Projecten/Motion/web/slam-festivalmaand-triple.webp" }, caption: "SLAM! Festivalmaand — triple digital screen, 3240 × 1920" },
       { type: "phones", items: [
-        { src: "Assets/Projecten/Motion/web/veronica-vriendenweekend.mp4", poster: "Assets/Projecten/Motion/web/veronica-vriendenweekend.webp", alt: "Radio Veronica Vriendenweekend promo" },
+        { src: "Assets/Projecten/Motion/web/veronica-vriendenweekend.mp4?v=2", poster: "Assets/Projecten/Motion/web/veronica-vriendenweekend.webp?v=2", alt: "Radio Veronica Vriendenweekend promo" },
         { src: "Assets/Projecten/Motion/web/veronica-top1000-80s.mp4", poster: "Assets/Projecten/Motion/web/veronica-top1000-80s.webp", alt: "Radio Veronica Top 1000 van de 80s" }
       ], caption: "Radio Veronica — Vriendenweekend promo and Top 1000 van de 80s, 1080 × 1920" },
       { type: "phones", items: [

@@ -2803,3 +2803,5 @@ mark.fill-in { background: rgba(255, 196, 0, 0.28); color: inherit; border-radiu
   .block-phones { flex-wrap: wrap; gap: 12px; }
   .block-phones .block-figure { flex: 0 1 calc(50% - 6px); }
 }
+.block-lottie { overflow: hidden; }
+.block-lottie svg { display: block; }
