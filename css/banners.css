@@ -100,3 +100,23 @@
 @media (prefers-reduced-motion: reduce) {
   .bn-empty.is-playing .bn-wipe, .bn-empty.is-playing .bn-size { animation: none; }
 }
+
+/* Desktop: campaigns behind tabs, one page sketch that fits the screen */
+.bn-tabs { display: none; }
+.bn-wall.is-tabbed { gap: 0; }
+.bn-wall.is-tabbed .bn-tabs { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 20px; }
+.bn-wall.is-tabbed .bn-set:not(.is-active) { display: none; }
+.bn-wall.is-tabbed .bn-browser,
+.bn-wall.is-tabbed .bn-foot,
+.bn-wall.is-tabbed .bn-more { max-width: var(--bn-w, 100%); margin-left: auto; margin-right: auto; }
+.bn-wall.is-tabbed .bn-more { box-sizing: border-box; }
+.bn-tab {
+  font: inherit; font-size: 14px; font-weight: 500; line-height: 1;
+  padding: 11px 18px; border-radius: 999px; cursor: pointer;
+  color: var(--color-text-primary, #121212); background: transparent;
+  border: 1px solid var(--border, rgba(18,18,18,0.12));
+  transition: background .2s, border-color .2s, color .2s;
+}
+.bn-tab:hover { border-color: var(--color-text-primary, #121212); }
+.bn-tab[aria-selected="true"] { background: var(--color-text-primary, #121212); border-color: var(--color-text-primary, #121212); color: #fff; }
+.bn-tab:focus-visible { outline: 2px solid var(--accent, #1900ff); outline-offset: 2px; }
