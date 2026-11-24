@@ -2705,6 +2705,7 @@ body.theme-dark .segmented-control button.active {
 .block-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
 .block-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
 .block-grid.cols-5 { grid-template-columns: repeat(5, 1fr); }
+.block-grid.cols-6 { grid-template-columns: repeat(6, 1fr); }
 .block-inset { grid-template-columns: 2fr 1fr; align-items: end; }
 .block-loops { grid-template-columns: 1fr 1fr; align-items: start; }
 
@@ -2731,7 +2732,7 @@ mark.fill-in { background: rgba(255, 196, 0, 0.28); color: inherit; border-radiu
 @media (max-width: 700px) {
   .case-block { gap: 8px; }
   .block-split, .block-triptych, .block-inset, .block-loops { grid-template-columns: 1fr; }
-  .block-grid.cols-3, .block-grid.cols-4, .block-grid.cols-5 { grid-template-columns: 1fr 1fr; }
+  .block-grid.cols-3, .block-grid.cols-4, .block-grid.cols-5, .block-grid.cols-6 { grid-template-columns: 1fr 1fr; }
   .project-meta div { padding: 8px 14px; border-radius: 18px; }
   .project-meta div.is-long { grid-template-columns: 1fr; gap: 4px; padding: 10px 0 0; }
 }

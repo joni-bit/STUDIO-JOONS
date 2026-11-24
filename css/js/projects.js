@@ -311,7 +311,7 @@ const projectsData = {
     card: {
       title: "Motion & Play",
       eyebrow: "Motion",
-      description: "Logos that move, HTML5 banners, and a hand-drawn Christmas card every year.",
+      description: "Logos that move, social loops and HTML5 banners.",
       tint: "cyan"
     },
     year: "2026",
@@ -324,22 +324,16 @@ const projectsData = {
         { src: "Assets/Projecten/Motion/web/100nl-rtl.mp4", poster: "Assets/Projecten/Motion/web/100nl-rtl.webp", caption: "100% NL — RTL" }
       ]},
       { type: "canvas", ratio: "27 / 16", item: { src: "Assets/Projecten/Motion/web/slam-festivalmaand-triple.mp4", poster: "Assets/Projecten/Motion/web/slam-festivalmaand-triple.webp" }, caption: "SLAM! Festivalmaand — triple digital screen, 3240 × 1920" },
-      { type: "grid", columns: 5, ratio: "9 / 16", items: [
+      { type: "grid", columns: 6, ratio: "9 / 16", items: [
+        { src: "Assets/Projecten/Motion/web/veronica-vriendenweekend.mp4", poster: "Assets/Projecten/Motion/web/veronica-vriendenweekend.webp", alt: "Radio Veronica Vriendenweekend promo" },
         { src: "Assets/Projecten/Motion/web/veronica-top1000-80s.mp4", poster: "Assets/Projecten/Motion/web/veronica-top1000-80s.webp", alt: "Radio Veronica Top 1000 van de 80s" },
         { src: "Assets/Projecten/Motion/web/100nl-sinterklaas-mijter.mp4", poster: "Assets/Projecten/Motion/web/100nl-sinterklaas-mijter.webp", alt: "100% NL Sinterklaas — mitre" },
         { src: "Assets/Projecten/Motion/web/100nl-sinterklaas-muts.mp4", poster: "Assets/Projecten/Motion/web/100nl-sinterklaas-muts.webp", alt: "100% NL Sinterklaas — hat" },
         { src: "Assets/Projecten/Motion/web/100nl-sinterklaas-staf.mp4", poster: "Assets/Projecten/Motion/web/100nl-sinterklaas-staf.webp", alt: "100% NL Sinterklaas — staff" },
         { src: "Assets/Projecten/Motion/web/100nl-sinterklaas-opeten.mp4", poster: "Assets/Projecten/Motion/web/100nl-sinterklaas-opeten.webp", alt: "100% NL Sinterklaas — eaten" }
-      ], caption: "Social, 1080 × 1920 — Radio Veronica Top 1000 van de 80s, and four 100% NL Sinterklaas loops" },
+      ], caption: "Social, 1080 × 1920 — Radio Veronica Vriendenweekend promo and Top 1000 van de 80s, and four 100% NL Sinterklaas loops" },
       { type: "hero", item: { src: "Assets/Projecten/Motion/web/100nl-luistersessie.mp4", poster: "Assets/Projecten/Motion/web/100nl-luistersessie.webp" }, caption: "100% NL — visuals for a listening session" },
       { type: "banners" },   // HTML5 banner sets: content in css/js/banners-data.js
-      { type: "section", heading: "Play (personal work)", text: [
-        "Every year I draw and animate my own Christmas card. The one after a December trip to New York starred a row of nutcrackers."
-      ]},
-      { type: "loops", items: [
-        { label: "Christmas card — New York nutcrackers", caption: "Personal — Christmas card [year]: New York nutcrackers, illustrated and animated", ratio: "4 / 5" },
-        { label: "Next year's card", ratio: "4 / 5" }
-      ]}
     ]
   },
   "dqdb": {
