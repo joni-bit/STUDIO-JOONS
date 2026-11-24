@@ -1,5 +1,5 @@
 /*
-  HTML5 BANNERS — the content of the banner block on the Motion & Play page.
+  HTML5 BANNERS — the content of the banner block on the Motion page.
 
   One entry per campaign, top to bottom = the order on the page.
   title:    campaign name, shown under the page sketch

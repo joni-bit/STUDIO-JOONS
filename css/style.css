@@ -2794,3 +2794,12 @@ mark.fill-in { background: rgba(255, 196, 0, 0.28); color: inherit; border-radiu
 .project-main { max-width: none; padding: 80px 0 60px; }
 /* Long text keeps a comfortable line length inside the wider column */
 .project-intro, .case-section, .project-main .project-text { max-width: 680px; }
+
+/* Vertical (9:16) videos side by side — each as tall as the screen allows, never wider than its share */
+.block-phones { display: flex; justify-content: center; gap: 20px; }
+.block-phones .block-figure { flex: 0 1 calc(min(82vh, 760px) * 9 / 16); min-width: 0; margin: 0; }
+.block-phones .block-media { width: 100%; height: auto; aspect-ratio: 9 / 16; object-fit: cover; }
+@media (max-width: 700px) {
+  .block-phones { flex-wrap: wrap; gap: 12px; }
+  .block-phones .block-figure { flex: 0 1 calc(50% - 6px); }
+}

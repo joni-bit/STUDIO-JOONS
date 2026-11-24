@@ -22,6 +22,7 @@
               hero / breakdown / canvas  one wide image      { item: {...} }
               split     2 side by side                       { items: [a, b] }
               triptych  3 in a row                           { items: [a, b, c], ratio: "4 / 5" or "9 / 16" }
+              phones    vertical (9:16) videos side by side, as large as the screen allows  {items}
               grid      3 or 4 columns of squares            { items: [...], columns: 3 }
               inset     1 large + 1 small                    { items: [large, small] }
               loops     videos, 2 per row                    { items: [...] }
@@ -305,11 +306,11 @@ const projectsData = {
     ]
   },
   "motion": {
-    title: "Motion & Play",
+    title: "Motion",
     status: "live",
     category: "motion",
     card: {
-      title: "Motion & Play",
+      title: "Motion",
       eyebrow: "Motion",
       description: "Logos that move, social loops and HTML5 banners.",
       tint: "cyan"
@@ -324,14 +325,16 @@ const projectsData = {
         { src: "Assets/Projecten/Motion/web/100nl-rtl.mp4", poster: "Assets/Projecten/Motion/web/100nl-rtl.webp", caption: "100% NL — RTL" }
       ]},
       { type: "canvas", ratio: "27 / 16", item: { src: "Assets/Projecten/Motion/web/slam-festivalmaand-triple.mp4", poster: "Assets/Projecten/Motion/web/slam-festivalmaand-triple.webp" }, caption: "SLAM! Festivalmaand — triple digital screen, 3240 × 1920" },
-      { type: "grid", columns: 6, ratio: "9 / 16", items: [
+      { type: "phones", items: [
         { src: "Assets/Projecten/Motion/web/veronica-vriendenweekend.mp4", poster: "Assets/Projecten/Motion/web/veronica-vriendenweekend.webp", alt: "Radio Veronica Vriendenweekend promo" },
-        { src: "Assets/Projecten/Motion/web/veronica-top1000-80s.mp4", poster: "Assets/Projecten/Motion/web/veronica-top1000-80s.webp", alt: "Radio Veronica Top 1000 van de 80s" },
+        { src: "Assets/Projecten/Motion/web/veronica-top1000-80s.mp4", poster: "Assets/Projecten/Motion/web/veronica-top1000-80s.webp", alt: "Radio Veronica Top 1000 van de 80s" }
+      ], caption: "Radio Veronica — Vriendenweekend promo and Top 1000 van de 80s, 1080 × 1920" },
+      { type: "phones", items: [
         { src: "Assets/Projecten/Motion/web/100nl-sinterklaas-mijter.mp4", poster: "Assets/Projecten/Motion/web/100nl-sinterklaas-mijter.webp", alt: "100% NL Sinterklaas — mitre" },
         { src: "Assets/Projecten/Motion/web/100nl-sinterklaas-muts.mp4", poster: "Assets/Projecten/Motion/web/100nl-sinterklaas-muts.webp", alt: "100% NL Sinterklaas — hat" },
         { src: "Assets/Projecten/Motion/web/100nl-sinterklaas-staf.mp4", poster: "Assets/Projecten/Motion/web/100nl-sinterklaas-staf.webp", alt: "100% NL Sinterklaas — staff" },
         { src: "Assets/Projecten/Motion/web/100nl-sinterklaas-opeten.mp4", poster: "Assets/Projecten/Motion/web/100nl-sinterklaas-opeten.webp", alt: "100% NL Sinterklaas — eaten" }
-      ], caption: "Social, 1080 × 1920 — Radio Veronica Vriendenweekend promo and Top 1000 van de 80s, and four 100% NL Sinterklaas loops" },
+      ], caption: "100% NL — Sinterklaas social loops, 1080 × 1920" },
       { type: "hero", item: { src: "Assets/Projecten/Motion/web/100nl-luistersessie.mp4", poster: "Assets/Projecten/Motion/web/100nl-luistersessie.webp" }, caption: "100% NL — visuals for a listening session" },
       { type: "banners" },   // HTML5 banner sets: content in css/js/banners-data.js
     ]
