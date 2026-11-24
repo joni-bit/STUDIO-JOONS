@@ -326,7 +326,7 @@ const projectsData = {
       ]},
       { type: "canvas", ratio: "27 / 16", item: { src: "Assets/Projecten/Motion/web/slam-festivalmaand-triple.mp4", poster: "Assets/Projecten/Motion/web/slam-festivalmaand-triple.webp" }, caption: "SLAM! Festivalmaand — triple digital screen, 3240 × 1920" },
       { type: "phones", items: [
-        { src: "Assets/Projecten/Motion/web/veronica-vriendenweekend.mp4", poster: "Assets/Projecten/Motion/web/veronica-vriendenweekend.webp", alt: "Radio Veronica Vriendenweekend promo" },
+        { src: "Assets/Projecten/Motion/web/veronica-vriendenweekend.mp4?v=2", poster: "Assets/Projecten/Motion/web/veronica-vriendenweekend.webp?v=2", alt: "Radio Veronica Vriendenweekend promo" },
         { src: "Assets/Projecten/Motion/web/veronica-top1000-80s.mp4", poster: "Assets/Projecten/Motion/web/veronica-top1000-80s.webp", alt: "Radio Veronica Top 1000 van de 80s" }
       ], caption: "Radio Veronica — Vriendenweekend promo and Top 1000 van de 80s, 1080 × 1920" },
       { type: "phones", items: [
