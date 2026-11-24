@@ -142,7 +142,7 @@ const projectsData = {
       { type: "section", heading: "The roll-out", text: [
         "From one logo to everything the weekend touched: print, display and social campaigns, studio screens, web, and branded beer and champagne bottles for the weekend itself."
       ]},
-      { type: "canvas", item: { src: "Assets/Projecten/Vriendenweekend/web/rollout-canvas.webp", alt: "The weekend in photos: studio, house, bingo, bottles and friends", caption: "The weekend itself. Photos: Jeroen Zondag" } },
+      { type: "canvas", item: { src: "Assets/Projecten/Vriendenweekend/web/rollout-canvas.webp?v=2", alt: "The weekend in photos: studio, house, bingo, bottles and friends", caption: "The weekend itself. Photos: Jeroen Zondag" } },
       { type: "split", items: [
         { src: "Assets/Projecten/Vriendenweekend/web/bingo-table.webp", alt: "Bingo board, welcome card, coaster and cava on the table", caption: "Bingo board, welcome card and coaster" },
         { src: "Assets/Projecten/Vriendenweekend/web/signs-easels.webp", alt: "Pitch & Putt and Escape signs on easels", caption: "Activity signs" }
