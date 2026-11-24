@@ -8,8 +8,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="css/style.css?v=20261123s" />
+    <link rel="stylesheet" href="css/style.css?v=20261124e" />
     <link rel="stylesheet" href="css/brands.css?v=20261123v" />
+    <link rel="stylesheet" href="css/banners.css?v=20261124b" />
     <!-- Lottie speler script -->
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
   </head>
@@ -72,9 +73,11 @@
     </div>
 
     <!-- Data en Script -->
-    <script src="css/js/projects.js?v=20261123a"></script>
+    <script src="css/js/projects.js?v=20261124e"></script>
     <script src="css/js/brands-data.js?v=20261123y"></script>
     <script src="css/js/brands.js?v=20261124b"></script>
+    <script src="css/js/banners-data.js?v=20261124e"></script>
+    <script src="css/js/banners.js?v=20261124c"></script>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const urlParams = new URLSearchParams(window.location.search);
@@ -184,7 +187,7 @@
             if (!item) return '';
             if (!item.src) return placeholder(item.label, ratio);
             if (/\.(mp4|webm)$/i.test(item.src)) {
-              return `<video class="block-media" src="${item.src}" autoplay loop muted playsinline${item.poster ? ` poster="${item.poster}"` : ''}></video>`;
+              return `<video class="block-media" src="${item.src}" loop muted playsinline preload="${item.poster ? 'none' : 'metadata'}" data-inview${item.poster ? ` poster="${item.poster}"` : ''}></video>`;
             }
             return `<img class="block-media" src="${item.src}" alt="${item.alt || item.label || project.title}" loading="lazy" decoding="async" />`;
           };
@@ -197,6 +200,8 @@
             switch (block.type) {
               case 'brandscroll':  // Brand in daily use: radio dial + rolodex per brand (brands.js)
                 return `<div class="bs-scroll"></div>`;
+              case 'banners':      // HTML5 banner sets in a page sketch (banners-data.js + banners.js)
+                return `<div class="bn-wall"></div>`;
               case 'section':
                 return `<section class="case-section fade-in">
                   ${block.heading ? `<h3 class="case-heading">${block.heading}</h3>` : ''}
@@ -215,6 +220,8 @@
                 return `<div class="case-block block-grid cols-${block.columns || 3} fade-in">${items.map(i => figure(i, block.ratio || '1 / 1')).join('')}</div>${caption(block)}`;
               case 'inset':     // G
                 return `<div class="case-block block-inset fade-in">${figure(items[0], block.ratio || '4 / 3')}${figure(items[1], '4 / 5')}</div>${caption(block)}`;
+              case 'phones':    // vertical 9:16 pieces side by side, sized to fit the screen
+                return `<div class="case-block block-phones fade-in">${items.map(i => figure(i, '9 / 16')).join('')}</div>${caption(block)}`;
               case 'loops':     // H
                 return `<div class="case-block block-loops fade-in">${items.map(i => figure(i, i.ratio || '16 / 9')).join('')}</div>${caption(block)}`;
               default:
@@ -303,6 +310,17 @@
 
           container.innerHTML = html;
           if (window.initBrandScroll && container.querySelector('.bs-scroll')) initBrandScroll();
+          if (window.initBanners && container.querySelector('.bn-wall')) initBanners();
+
+          // Videos in the case play only while they are on screen
+          const vids = container.querySelectorAll('video[data-inview]');
+          if (vids.length) {
+            const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const vio = new IntersectionObserver(entries => entries.forEach(e => {
+              if (e.isIntersecting && !reduce) e.target.play().catch(() => {}); else e.target.pause();
+            }), { threshold: 0.25 });
+            vids.forEach(v => vio.observe(v));
+          }
 
           const carousels = document.querySelectorAll('.project-carousel-wrapper');
           carousels.forEach(wrapper => {

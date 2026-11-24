@@ -2704,6 +2704,8 @@ body.theme-dark .segmented-control button.active {
 .block-triptych { grid-template-columns: repeat(3, 1fr); align-items: start; }
 .block-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
 .block-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+.block-grid.cols-5 { grid-template-columns: repeat(5, 1fr); }
+.block-grid.cols-6 { grid-template-columns: repeat(6, 1fr); }
 .block-inset { grid-template-columns: 2fr 1fr; align-items: end; }
 .block-loops { grid-template-columns: 1fr 1fr; align-items: start; }
 
@@ -2730,7 +2732,7 @@ mark.fill-in { background: rgba(255, 196, 0, 0.28); color: inherit; border-radiu
 @media (max-width: 700px) {
   .case-block { gap: 8px; }
   .block-split, .block-triptych, .block-inset, .block-loops { grid-template-columns: 1fr; }
-  .block-grid.cols-3, .block-grid.cols-4 { grid-template-columns: 1fr 1fr; }
+  .block-grid.cols-3, .block-grid.cols-4, .block-grid.cols-5, .block-grid.cols-6 { grid-template-columns: 1fr 1fr; }
   .project-meta div { padding: 8px 14px; border-radius: 18px; }
   .project-meta div.is-long { grid-template-columns: 1fr; gap: 4px; padding: 10px 0 0; }
 }
@@ -2792,3 +2794,12 @@ mark.fill-in { background: rgba(255, 196, 0, 0.28); color: inherit; border-radiu
 .project-main { max-width: none; padding: 80px 0 60px; }
 /* Long text keeps a comfortable line length inside the wider column */
 .project-intro, .case-section, .project-main .project-text { max-width: 680px; }
+
+/* Vertical (9:16) videos side by side — each as tall as the screen allows, never wider than its share */
+.block-phones { display: flex; justify-content: center; gap: 20px; }
+.block-phones .block-figure { flex: 0 1 calc(min(82vh, 760px) * 9 / 16); min-width: 0; margin: 0; }
+.block-phones .block-media { width: 100%; height: auto; aspect-ratio: 9 / 16; object-fit: cover; }
+@media (max-width: 700px) {
+  .block-phones { flex-wrap: wrap; gap: 12px; }
+  .block-phones .block-figure { flex: 0 1 calc(50% - 6px); }
+}

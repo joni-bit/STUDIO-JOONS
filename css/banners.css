@@ -1,0 +1,102 @@
+/* HTML5 banner sets in a page sketch — see css/js/banners.js */
+
+.bn-wall { display: grid; grid-template-columns: minmax(0, 1fr); gap: 72px; margin: 8px 0 48px; }
+.bn-set { min-width: 0; }
+.bn-set { --tint: var(--accent, #1900ff); --tint-ink: #fff; }
+.bn-set[data-tint="orange"] { --tint: var(--accent-orange, #ff5b23); }
+.bn-set[data-tint="cyan"]   { --tint: var(--accent-cyan, #00d4ff); --tint-ink: #121212; }
+.bn-set[data-tint="dark"]   { --tint: #161616; }
+
+/* The browser window */
+.bn-browser {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 1px 0 rgba(18,18,18,0.06), 0 24px 60px rgba(18,18,18,0.10);
+  overflow: hidden;
+}
+.bn-bar { display: flex; align-items: center; gap: 7px; height: 38px; padding: 0 14px; background: #efede8; }
+.bn-bar > i { width: 11px; height: 11px; border-radius: 50%; background: #d8d5ce; }
+.bn-url { flex: 0 1 360px; height: 20px; margin: 0 auto; border-radius: 6px; background: #fff; }
+.bn-viewport { position: relative; overflow: hidden; }
+.bn-page { transform-origin: 0 0; padding: 0 32px 36px; box-sizing: border-box; }
+
+/* Grey stand-ins for the site's own content */
+.bn-site { display: flex; align-items: center; gap: 40px; height: 64px; border-bottom: 1px solid #eee; margin-bottom: 20px; }
+.bn-logo { width: 120px; height: 22px; border-radius: 5px; background: #cfccc5; }
+.bn-nav { display: flex; gap: 18px; flex: 1; }
+.bn-nav .bn-line { width: 64px !important; margin: 0; }
+.bn-line { display: block; height: 9px; border-radius: 5px; background: #ebe9e4; margin: 0 0 11px; }
+.bn-kicker { display: block; width: 90px; height: 10px; border-radius: 5px; background: #d8d5ce; margin-bottom: 14px; }
+.bn-title { display: block; width: 92%; height: 26px; border-radius: 7px; background: #dedbd4; margin-bottom: 10px; }
+.bn-photo { height: 220px; border-radius: 10px; background: #f1efea; margin: 18px 0 22px; }
+.bn-text { margin-bottom: 18px; }
+.bn-thumb { height: 120px; border-radius: 8px; background: #f1efea; margin-bottom: 10px; }
+.bn-teaser { margin-top: 22px; }
+
+.bn-top { display: flex; justify-content: center; gap: 20px; margin-bottom: 24px; }
+.bn-cols { display: grid; grid-template-columns: 1fr auto; gap: 40px; align-items: start; }
+.bn-article { min-width: 0; }
+.bn-inline { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; padding: 18px 0 22px; margin-bottom: 18px; border-top: 1px solid #f0eee9; border-bottom: 1px solid #f0eee9; }
+.bn-side { display: flex; flex-direction: column; align-items: center; gap: 20px; min-width: 300px; }
+.bn-side .bn-teaser { align-self: stretch; }
+
+/* One banner */
+.bn-fit { position: relative; flex: none; }
+.bn-slot { position: relative; transform-origin: 0 0; background: #f6f5f2; overflow: hidden; }
+.bn-slot iframe { display: block; border: 0; width: 100%; height: 100%; }
+
+/* Empty slot: a little intro animation in the campaign colour, so the sync + replay can be judged */
+.bn-empty { position: absolute; inset: 0; display: grid; place-items: center; background: color-mix(in srgb, var(--tint) 10%, #f6f5f2); overflow: hidden; }
+.bn-wipe { position: absolute; inset: 0; background: var(--tint); transform: scaleX(0); transform-origin: 0 50%; }
+.bn-size { position: relative; font-size: 13px; font-weight: 600; letter-spacing: 0.02em; color: var(--tint); opacity: 0.55; }
+.bn-empty.is-playing .bn-wipe { animation: bnWipe 2.6s cubic-bezier(.65,0,.35,1) calc(var(--i, 0) * 0.18s) both; }
+.bn-empty.is-playing .bn-size { animation: bnInk 2.6s cubic-bezier(.65,0,.35,1) calc(var(--i, 0) * 0.18s) both; }
+@keyframes bnWipe {
+  0%   { transform: scaleX(0); transform-origin: 0 50%; }
+  35%  { transform: scaleX(1); transform-origin: 0 50%; }
+  65%  { transform: scaleX(1); transform-origin: 100% 50%; }
+  100% { transform: scaleX(0); transform-origin: 100% 50%; }
+}
+@keyframes bnInk { 0%, 25% { opacity: 0; color: var(--tint-ink); } 30%, 62% { opacity: 1; color: var(--tint-ink); } 75%, 100% { opacity: 0.55; color: var(--tint); } }
+
+/* Under the sketch */
+.bn-foot { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-top: 16px; }
+.bn-label { margin: 0; font-size: 15px; line-height: 1.45; color: var(--color-text-primary, #121212); }
+.bn-label span { display: block; font-size: 13px; color: var(--color-text-tertiary, #8a8a94); }
+.bn-actions { display: flex; gap: 8px; flex: none; }
+.bn-btn {
+  font: inherit; font-size: 13px; font-weight: 500; line-height: 1;
+  padding: 10px 16px; border-radius: 999px; cursor: pointer;
+  color: var(--color-text-primary, #121212); background: #fff;
+  border: 1px solid var(--border, rgba(18,18,18,0.12));
+  transition: background .2s, border-color .2s, color .2s;
+}
+.bn-btn:hover { border-color: var(--accent, #1900ff); color: var(--accent, #1900ff); }
+.bn-btn:focus-visible { outline: 2px solid var(--accent, #1900ff); outline-offset: 2px; }
+
+/* All formats, at real size (scaled down only when they don't fit) */
+.bn-more { display: flex; flex-wrap: wrap; align-items: flex-end; gap: 28px; margin-top: 28px; padding: 28px; border-radius: 14px; background: var(--color-surface-sunken, #edeae3); }
+.bn-more[hidden] { display: none; }
+.bn-more figure { margin: 0; max-width: 100%; }
+.bn-more figcaption { margin-top: 8px; font-size: 12px; color: var(--color-text-tertiary, #8a8a94); }
+
+/* Narrow screens: no page sketch, the set stacks */
+.bn-set.is-stacked .bn-bar,
+.bn-set.is-stacked .bn-site,
+.bn-set.is-stacked .bn-kicker,
+.bn-set.is-stacked .bn-title,
+.bn-set.is-stacked .bn-photo,
+.bn-set.is-stacked .bn-text,
+.bn-set.is-stacked .bn-teaser { display: none; }
+.bn-set.is-stacked .bn-browser { background: var(--color-surface-sunken, #edeae3); box-shadow: none; }
+.bn-set.is-stacked .bn-page { width: auto !important; padding: 20px; }
+.bn-set.is-stacked .bn-top,
+.bn-set.is-stacked .bn-cols,
+.bn-set.is-stacked .bn-side,
+.bn-set.is-stacked .bn-inline { display: flex; flex-direction: column; align-items: center; gap: 20px; margin: 0; padding: 0; border: 0; min-width: 0; }
+.bn-set.is-stacked .bn-cols { margin-top: 20px; }
+.bn-set.is-stacked .bn-foot { flex-direction: column; }
+
+@media (prefers-reduced-motion: reduce) {
+  .bn-empty.is-playing .bn-wipe, .bn-empty.is-playing .bn-size { animation: none; }
+}

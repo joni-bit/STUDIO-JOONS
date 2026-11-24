@@ -22,9 +22,12 @@
               hero / breakdown / canvas  one wide image      { item: {...} }
               split     2 side by side                       { items: [a, b] }
               triptych  3 in a row                           { items: [a, b, c], ratio: "4 / 5" or "9 / 16" }
+              phones    vertical (9:16) videos side by side, as large as the screen allows  {items}
               grid      3 or 4 columns of squares            { items: [...], columns: 3 }
               inset     1 large + 1 small                    { items: [large, small] }
               loops     videos, 2 per row                    { items: [...] }
+              banners   HTML5 banner sets in a web page sketch  {}  (content: css/js/banners-data.js)
+              brandscroll  radio dial + rolodex              {}  (content: css/js/brands-data.js)
             Each image: { src, alt, caption }. No src yet? Use { label: "what goes here" }
             and a grey placeholder shows instead.
   Text in [square brackets] is shown highlighted: a fact still to fill in.
@@ -303,13 +306,13 @@ const projectsData = {
     ]
   },
   "motion": {
-    title: "Motion & Play",
+    title: "Motion",
     status: "live",
     category: "motion",
     card: {
-      title: "Motion & Play",
+      title: "Motion",
       eyebrow: "Motion",
-      description: "Logos that move, HTML5 banners, and a hand-drawn Christmas card every year.",
+      description: "Logos that move, social loops and HTML5 banners.",
       tint: "cyan"
     },
     year: "2026",
@@ -318,22 +321,22 @@ const projectsData = {
     hook: "More and more of my work moves. To me, motion is a puzzle: how do you make a brand feel alive in five seconds?",
     blocks: [
       { type: "loops", items: [
-        { label: "Radio Veronica — logo animation, studio screen", caption: "Radio Veronica — logo animation, studio screen" },
-        { label: "SLAM! — logo animation, studio screen", caption: "SLAM! — logo animation, studio screen" }
+        { src: "Assets/Projecten/Motion/web/veronica-join-the-club.mp4", poster: "Assets/Projecten/Motion/web/veronica-join-the-club.webp", caption: "Radio Veronica — Join the Club" },
+        { src: "Assets/Projecten/Motion/web/100nl-rtl.mp4", poster: "Assets/Projecten/Motion/web/100nl-rtl.webp", caption: "100% NL — RTL" }
       ]},
-      { type: "hero", ratio: "32 / 9", item: { label: "SLAM! — triple digital screen", caption: "SLAM! — triple digital screen" } },
-      { type: "loops", items: [
-        { label: "100% NL — Sinterklaas animation, social", caption: "100% NL — Sinterklaas animation, social", ratio: "9 / 16" },
-        { label: "Radio Veronica — 80s animation", caption: "Radio Veronica — 80s animation, [format]", ratio: "9 / 16" }
-      ]},
-      { type: "canvas", item: { label: "HTML5 banner set — all sizes playing together (screen-record the Veronica Top 1000 van de 90s set)" }, caption: "SLAM! — HTML5 banner set, [x] sizes" },
-      { type: "section", heading: "Play (personal work)", text: [
-        "Every year I draw and animate my own Christmas card. The one after a December trip to New York starred a row of nutcrackers."
-      ]},
-      { type: "loops", items: [
-        { label: "Christmas card — New York nutcrackers", caption: "Personal — Christmas card [year]: New York nutcrackers, illustrated and animated", ratio: "4 / 5" },
-        { label: "Next year's card", ratio: "4 / 5" }
-      ]}
+      { type: "canvas", ratio: "27 / 16", item: { src: "Assets/Projecten/Motion/web/slam-festivalmaand-triple.mp4", poster: "Assets/Projecten/Motion/web/slam-festivalmaand-triple.webp" }, caption: "SLAM! Festivalmaand — triple digital screen, 3240 × 1920" },
+      { type: "phones", items: [
+        { src: "Assets/Projecten/Motion/web/veronica-vriendenweekend.mp4", poster: "Assets/Projecten/Motion/web/veronica-vriendenweekend.webp", alt: "Radio Veronica Vriendenweekend promo" },
+        { src: "Assets/Projecten/Motion/web/veronica-top1000-80s.mp4", poster: "Assets/Projecten/Motion/web/veronica-top1000-80s.webp", alt: "Radio Veronica Top 1000 van de 80s" }
+      ], caption: "Radio Veronica — Vriendenweekend promo and Top 1000 van de 80s, 1080 × 1920" },
+      { type: "phones", items: [
+        { src: "Assets/Projecten/Motion/web/100nl-sinterklaas-mijter.mp4", poster: "Assets/Projecten/Motion/web/100nl-sinterklaas-mijter.webp", alt: "100% NL Sinterklaas — mitre" },
+        { src: "Assets/Projecten/Motion/web/100nl-sinterklaas-muts.mp4", poster: "Assets/Projecten/Motion/web/100nl-sinterklaas-muts.webp", alt: "100% NL Sinterklaas — hat" },
+        { src: "Assets/Projecten/Motion/web/100nl-sinterklaas-staf.mp4", poster: "Assets/Projecten/Motion/web/100nl-sinterklaas-staf.webp", alt: "100% NL Sinterklaas — staff" },
+        { src: "Assets/Projecten/Motion/web/100nl-sinterklaas-opeten.mp4", poster: "Assets/Projecten/Motion/web/100nl-sinterklaas-opeten.webp", alt: "100% NL Sinterklaas — eaten" }
+      ], caption: "100% NL — Sinterklaas social loops, 1080 × 1920" },
+      { type: "hero", item: { src: "Assets/Projecten/Motion/web/100nl-luistersessie.mp4", poster: "Assets/Projecten/Motion/web/100nl-luistersessie.webp" }, caption: "100% NL — visuals for a listening session" },
+      { type: "banners" },   // HTML5 banner sets: content in css/js/banners-data.js
     ]
   },
   "dqdb": {
