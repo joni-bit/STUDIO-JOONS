@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="css/style.css?v=20261124p" />
+    <link rel="stylesheet" href="css/style.css?v=20261124q" />
     <link rel="stylesheet" href="css/brands.css?v=20261124j" />
     <link rel="stylesheet" href="css/banners.css?v=20261124f" />
     <!-- Lottie speler script -->
@@ -73,7 +73,7 @@
     </div>
 
     <!-- Data en Script -->
-    <script src="css/js/projects.js?v=20261124p"></script>
+    <script src="css/js/projects.js?v=20261124q"></script>
     <script src="css/js/brands-data.js?v=20261123y"></script>
     <script src="css/js/brands.js?v=20261124b"></script>
     <script src="css/js/banners-data.js?v=20261124j"></script>
@@ -210,6 +210,7 @@
                   ${block.heading ? `<h3 class="case-heading">${block.heading}</h3>` : ''}
                   ${(block.text || []).map(t => `<p class="project-text">${fill(t)}</p>`).join('')}
                   ${block.list ? `<ul class="case-list">${block.list.map(li => `<li>${fill(li)}</li>`).join('')}</ul>` : ''}
+                  ${block.cta ? `<a class="btn btn-primary case-cta" href="${block.cta.href}">${block.cta.label}</a>` : ''}
                 </section>`;
                 // aside: an image to the right of the text
                 return block.aside

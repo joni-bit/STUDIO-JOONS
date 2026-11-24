@@ -2821,3 +2821,4 @@ mark.fill-in { background: rgba(255, 196, 0, 0.28); color: inherit; border-radiu
 /* Links inside case text */
 .case-section .project-text a { color: var(--accent, #1900ff); text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
 .case-section .project-text a:hover { text-decoration-thickness: 2px; }
+.case-cta { margin-top: 4px; gap: 8px; text-decoration: none; }
