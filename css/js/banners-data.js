@@ -10,6 +10,7 @@
               wide (e.g. 728x90, 970x250)          → top of the page
               tall (e.g. 300x600, 160x600, 320x480) → side column
               anything else (e.g. 300x250)          → in the article
+            Want it somewhere else? Add place: "top" | "inline" | "side".
   more:     optional — the other formats of the same campaign, behind an "All formats" button.
 
   Each banner: { size: "300x250", src: "Assets/Banners/<campaign>/300x250/index.html" }
@@ -17,27 +18,36 @@
 */
 const bannerSets = [
   {
-    title: "Campaign one",
-    caption: "Empty slots for now: the real banners go here",
+    title: "Radio Veronica — Top 1000 van de 90s",
+    caption: "HTML5 banners, animated in After Effects and exported with Bodymovin",
     tint: "blue",
     set: [
-      { size: "728x90" },
-      { size: "300x250" },
-      { size: "300x600" }
+      { size: "970x250", src: "Assets/Banners/veronica-top1000-90s/970x250/index.html" },
+      { size: "300x250", src: "Assets/Banners/veronica-top1000-90s/300x250/index.html" }
     ],
     more: [
-      { size: "320x50" },
-      { size: "320x480" },
-      { size: "160x600" }
+      { size: "728x90",  src: "Assets/Banners/veronica-top1000-90s/728x90/index.html" },
+      { size: "336x280", src: "Assets/Banners/veronica-top1000-90s/336x280/index.html" }
     ]
   },
   {
-    title: "Campaign two",
+    title: "100% NL",
+    caption: "HTML5 banners",
     tint: "orange",
     set: [
-      { size: "970x250" },
-      { size: "300x250" },
-      { size: "160x600" }
+      { size: "728x90", src: "Assets/Banners/100nl/728x90/index.html" },
+      { size: "468x60", src: "Assets/Banners/100nl/468x60/index.html", place: "inline" },
+      { size: "300x50", src: "Assets/Banners/100nl/300x50/index.html", place: "side" }
+    ]
+  },
+  {
+    title: "SLAM!",
+    caption: "HTML5 banners",
+    tint: "dark",
+    set: [
+      { size: "728x90", src: "Assets/Banners/slam/728x90/index.html" },
+      { size: "468x60", src: "Assets/Banners/slam/468x60/index.html", place: "inline" },
+      { size: "300x50", src: "Assets/Banners/slam/300x50/index.html", place: "side" }
     ]
   }
 ];

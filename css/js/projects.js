@@ -320,14 +320,18 @@ const projectsData = {
     hook: "More and more of my work moves. To me, motion is a puzzle: how do you make a brand feel alive in five seconds?",
     blocks: [
       { type: "loops", items: [
-        { label: "Radio Veronica — logo animation, studio screen", caption: "Radio Veronica — logo animation, studio screen" },
-        { label: "SLAM! — logo animation, studio screen", caption: "SLAM! — logo animation, studio screen" }
+        { src: "Assets/Projecten/Motion/web/veronica-join-the-club.mp4", poster: "Assets/Projecten/Motion/web/veronica-join-the-club.webp", caption: "Radio Veronica — Join the Club" },
+        { src: "Assets/Projecten/Motion/web/100nl-rtl.mp4", poster: "Assets/Projecten/Motion/web/100nl-rtl.webp", caption: "100% NL — RTL" }
       ]},
-      { type: "hero", ratio: "32 / 9", item: { label: "SLAM! — triple digital screen", caption: "SLAM! — triple digital screen" } },
-      { type: "loops", items: [
-        { label: "100% NL — Sinterklaas animation, social", caption: "100% NL — Sinterklaas animation, social", ratio: "9 / 16" },
-        { label: "Radio Veronica — 80s animation", caption: "Radio Veronica — 80s animation, [format]", ratio: "9 / 16" }
-      ]},
+      { type: "canvas", ratio: "27 / 16", item: { src: "Assets/Projecten/Motion/web/slam-festivalmaand-triple.mp4", poster: "Assets/Projecten/Motion/web/slam-festivalmaand-triple.webp" }, caption: "SLAM! Festivalmaand — triple digital screen, 3240 × 1920" },
+      { type: "grid", columns: 5, ratio: "9 / 16", items: [
+        { src: "Assets/Projecten/Motion/web/veronica-top1000-80s.mp4", poster: "Assets/Projecten/Motion/web/veronica-top1000-80s.webp", alt: "Radio Veronica Top 1000 van de 80s" },
+        { src: "Assets/Projecten/Motion/web/100nl-sinterklaas-mijter.mp4", poster: "Assets/Projecten/Motion/web/100nl-sinterklaas-mijter.webp", alt: "100% NL Sinterklaas — mitre" },
+        { src: "Assets/Projecten/Motion/web/100nl-sinterklaas-muts.mp4", poster: "Assets/Projecten/Motion/web/100nl-sinterklaas-muts.webp", alt: "100% NL Sinterklaas — hat" },
+        { src: "Assets/Projecten/Motion/web/100nl-sinterklaas-staf.mp4", poster: "Assets/Projecten/Motion/web/100nl-sinterklaas-staf.webp", alt: "100% NL Sinterklaas — staff" },
+        { src: "Assets/Projecten/Motion/web/100nl-sinterklaas-opeten.mp4", poster: "Assets/Projecten/Motion/web/100nl-sinterklaas-opeten.webp", alt: "100% NL Sinterklaas — eaten" }
+      ], caption: "Social, 1080 × 1920 — Radio Veronica Top 1000 van de 80s, and four 100% NL Sinterklaas loops" },
+      { type: "hero", item: { src: "Assets/Projecten/Motion/web/100nl-luistersessie.mp4", poster: "Assets/Projecten/Motion/web/100nl-luistersessie.webp" }, caption: "100% NL — visuals for a listening session" },
       { type: "banners" },   // HTML5 banner sets: content in css/js/banners-data.js
       { type: "section", heading: "Play (personal work)", text: [
         "Every year I draw and animate my own Christmas card. The one after a December trip to New York starred a row of nutcrackers."

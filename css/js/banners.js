@@ -23,7 +23,8 @@
 
   const setHTML = (s, n) => {
     const byShape = { wide: [], box: [], tall: [] };
-    s.set.forEach((b, i) => byShape[shape(parse(b.size))].push(slot(b, i)));
+    const PLACE = { top: 'wide', inline: 'box', side: 'tall' };
+    s.set.forEach((b, i) => byShape[PLACE[b.place] || shape(parse(b.size))].push(slot(b, i)));
     const more = s.more || [];
     return `
       <div class="bn-set" data-tint="${s.tint || 'blue'}" data-n="${n}">
