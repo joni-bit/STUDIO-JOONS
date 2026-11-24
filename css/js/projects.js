@@ -316,13 +316,14 @@ const projectsData = {
     },
     year: "2026",
     facts: [],
-    hero: { src: "Assets/Projecten/Motion/web/slam-festivalmaand-triple.mp4", poster: "Assets/Projecten/Motion/web/slam-festivalmaand-triple.webp", caption: "SLAM! Festivalmaand — triple digital screen, 3240 × 1920" },
+    hero: { label: "Opening piece for the Motion page — coming soon", ratio: "16 / 9" },
     hook: "More and more of my work moves. To me, motion is a puzzle: how do you make a brand feel alive in five seconds?",
     blocks: [
       { type: "loops", items: [
         { src: "Assets/Projecten/Motion/web/veronica-join-the-club.mp4", poster: "Assets/Projecten/Motion/web/veronica-join-the-club.webp", caption: "Radio Veronica — Join the Club" },
         { src: "Assets/Projecten/Motion/web/100nl-rtl.mp4", poster: "Assets/Projecten/Motion/web/100nl-rtl.webp", caption: "100% NL — RTL" }
       ]},
+      { type: "canvas", ratio: "27 / 16", item: { src: "Assets/Projecten/Motion/web/slam-festivalmaand-triple.mp4", poster: "Assets/Projecten/Motion/web/slam-festivalmaand-triple.webp" }, caption: "SLAM! Festivalmaand — triple digital screen, 3240 × 1920" },
       { type: "phones", items: [
         { src: "Assets/Projecten/Motion/web/veronica-vriendenweekend.mp4?v=2", poster: "Assets/Projecten/Motion/web/veronica-vriendenweekend.webp?v=2", alt: "Radio Veronica Vriendenweekend promo" },
         { src: "Assets/Projecten/Motion/web/veronica-top1000-80s.mp4", poster: "Assets/Projecten/Motion/web/veronica-top1000-80s.webp", alt: "Radio Veronica Top 1000 van de 80s" }
