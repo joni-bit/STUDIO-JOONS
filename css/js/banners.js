@@ -62,6 +62,7 @@
             ${more.length ? `<button type="button" class="bn-btn" data-act="more" aria-expanded="false">All formats (${s.set.length + more.length})</button>` : ''}
           </div>
         </div>
+        <p class="bn-blocked-note" role="status" hidden>Banners not showing? An ad blocker might be hiding them. Pause it for this site to see them play.</p>
         ${more.length ? `<div class="bn-more" hidden>${more.map((b, i) => `<figure>${slot(b, i)}<figcaption>${b.size.replace('x', ' × ')}</figcaption></figure>`).join('')}</div>` : ''}
       </div>`;
   };
@@ -97,8 +98,29 @@
 
   // Start every banner of the set at the same moment
   function play(scope) {
-    scope.querySelectorAll('iframe[data-src]').forEach(f => { f.src = f.dataset.src; });
+    const frames = [...scope.querySelectorAll('iframe[data-src]')];
+    frames.forEach(f => { f.src = f.dataset.src; });
     scope.querySelectorAll('.bn-empty').forEach(e => { e.classList.remove('is-playing'); void e.offsetWidth; e.classList.add('is-playing'); });
+    if (frames.length) setTimeout(() => checkBlocked(scope.closest('.bn-set'), frames), 5000);
+  }
+
+  // Ad blockers hide or block banner-sized iframes. If a banner hasn't shown up after a few seconds,
+  // mark its slot and explain under the set. Visitors without a blocker never see any of this.
+  function shows(f) {
+    const cs = getComputedStyle(f);
+    if (cs.display === 'none' || cs.visibility === 'hidden' || +cs.opacity === 0 || !f.getClientRects().length) return false;
+    try { return !!f.contentDocument.querySelector('#anim svg, svg, canvas, img'); } catch (e) { return false; }
+  }
+  function checkBlocked(set, frames) {
+    if (!set) return;
+    let blocked = 0;
+    frames.forEach(f => {
+      const ok = shows(f);
+      f.closest('.bn-slot').classList.toggle('is-blocked', !ok);
+      if (!ok) blocked++;
+    });
+    const note = set.querySelector('.bn-blocked-note');
+    if (note) note.hidden = !set.querySelector('.bn-slot.is-blocked');
   }
 
   window.initBanners = function () {

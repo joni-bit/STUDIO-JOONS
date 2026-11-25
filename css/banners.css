@@ -120,3 +120,9 @@
 .bn-tab:hover { border-color: var(--color-text-primary, #121212); }
 .bn-tab[aria-selected="true"] { background: var(--color-text-primary, #121212); border-color: var(--color-text-primary, #121212); color: #fff; }
 .bn-tab:focus-visible { outline: 2px solid var(--accent, #1900ff); outline-offset: 2px; }
+
+/* Shown only when an ad blocker hides or blocks a banner */
+.bn-slot.is-blocked { background: repeating-linear-gradient(135deg, #f1efea 0 10px, #e9e6df 10px 20px); }
+.bn-blocked-note { margin: 12px 0 0; font-size: 13px; line-height: 1.45; color: var(--color-text-secondary, #55555c); }
+.bn-blocked-note[hidden] { display: none; }
+.bn-wall.is-tabbed .bn-blocked-note { max-width: var(--bn-w, 100%); margin-left: auto; margin-right: auto; }
