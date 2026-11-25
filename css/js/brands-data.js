@@ -47,10 +47,14 @@ const brandsData = {
       alt: "Het Radio Veronica Café key visual" }
   ],
   "100nl": [   // 100% NL
-    { image: "Assets/Projecten/MediahuisRadio/web/rolodex/100nl-01-somertijd.webp",
-      full: "Assets/Projecten/MediahuisRadio/web/rolodex/100nl-01-somertijd-full.webp",
-      caption: "Somertijd BBQ — voetbalkaartjes",
-      alt: "Somertijd BBQ football cards" },
+    { image: "Assets/Projecten/MediahuisRadio/web/rolodex/100nl-01b-somertijd-bbq.webp",
+      full: "Assets/Projecten/MediahuisRadio/web/rolodex/100nl-01b-somertijd-bbq-full.webp",
+      caption: "Somertijd BBQ — de voetbalkaartjes in het echt",
+      alt: "Somertijd football cards held up at the Somertijd BBQ" },
+    { image: "Assets/Projecten/MediahuisRadio/web/rolodex/100nl-01c-somertijd-kaartje.webp",
+      full: "Assets/Projecten/MediahuisRadio/web/rolodex/100nl-01c-somertijd-kaartje-full.webp",
+      caption: "Somertijd BBQ — de achterkant van een voetbalkaartje",
+      alt: "The back of a Somertijd football card with the barbecue illustration" },
     { image: "Assets/Projecten/MediahuisRadio/web/rolodex/100nl-02-rtl.webp",
       full: "Assets/Projecten/MediahuisRadio/web/rolodex/100nl-02-rtl-full.webp",
       caption: "Still uit de RTL-animatie",
