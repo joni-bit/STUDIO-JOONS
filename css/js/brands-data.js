@@ -98,7 +98,7 @@ const brandsData = {
       alt: "Alaafondshow logo" },
     { image: "Assets/Projecten/MediahuisRadio/web/rolodex/slam-07-dj-sets.webp",
       full: "Assets/Projecten/MediahuisRadio/web/rolodex/slam-07-dj-sets-full.webp",
-      caption: "SLAM! DJ Sets — key visual voor de fast channels",
+      caption: "SLAM! DJ Sets — key visual voor de fast channels, gemaakt met behulp van AI",
       alt: "SLAM! DJ Sets key visual with four DJ screens on a stage" }
   ]
 };
