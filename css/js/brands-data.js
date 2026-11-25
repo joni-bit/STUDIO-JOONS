@@ -95,6 +95,10 @@ const brandsData = {
       alt: "Festivalmaand wristband concept" },
     { image: "Assets/Projecten/MediahuisRadio/web/rolodex/slam-06-alaafondshow.webp",
       caption: "Alaafondshow",
-      alt: "Alaafondshow logo" }
+      alt: "Alaafondshow logo" },
+    { image: "Assets/Projecten/MediahuisRadio/web/rolodex/slam-07-dj-sets.webp",
+      full: "Assets/Projecten/MediahuisRadio/web/rolodex/slam-07-dj-sets-full.webp",
+      caption: "SLAM! DJ Sets — key visual voor de fast channels",
+      alt: "SLAM! DJ Sets key visual with four DJ screens on a stage" }
   ]
 };
