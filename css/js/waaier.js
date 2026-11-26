@@ -142,14 +142,15 @@
       if (busy || n < 2) return;
       busy = true; hovered = null;
       const top = order.at(-1);
-      // Duim omhoog (positief = duimtop omhoog), blijft op terwijl de patch wordt weggestoken,
-      // en zakt daarna rustig terug. Geen doorschieten naar beneden.
+      // Vingerflik: duimtop snel omhoog (positief = omhoog), heel even vasthouden terwijl
+      // de patch wegschiet, dan snel terug naar beneden met een klein naveren.
       duim([
         { transform: `rotate(${thumbRest}deg)`, offset: 0, easing: 'cubic-bezier(.2,.8,.3,1)' },
-        { transform: `rotate(${DUIM_LOS}deg) translate(0px, -2px)`, offset: .22 },
-        { transform: `rotate(${DUIM_LOS}deg) translate(0px, -2px)`, offset: .55, easing: 'cubic-bezier(.4,0,.2,1)' },
+        { transform: `rotate(${DUIM_LOS}deg) translate(0px, -2px)`, offset: .2 },
+        { transform: `rotate(${DUIM_LOS}deg) translate(0px, -2px)`, offset: .4, easing: 'cubic-bezier(.6,0,1,1)' },
+        { transform: 'rotate(-0.4deg)', offset: .6, easing: 'cubic-bezier(.2,.8,.3,1)' },
         { transform: 'rotate(0deg)', offset: 1 },
-      ], LIFT_MS + SHIFT_MS + 200, 'linear');
+      ], 560, 'linear');
       thumbRest = 0;
 
       layout();
