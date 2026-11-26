@@ -6,7 +6,7 @@
    <link rel="icon" type="image/png" sizes="32x32" href="Assets/Images/favicon.png">
   <title>Joni Godwin — Selected Works</title>
   <meta name="description" content="Selected graphic design, digital interfaces, branding systems, and visual activations by Joni Godwin." />
-  <link rel="stylesheet" href="css/style.css?v=20261124z" />
+  <link rel="stylesheet" href="css/style.css?v=20261126a" />
  
 </head>
 <body class="projects-page">
@@ -152,7 +152,7 @@
     </footer>
   </div>
 
-  <script src="css/js/projects.js?v=20261124zy"></script>
+  <script src="css/js/projects.js?v=20261126a"></script>
   <script>
     // Build project cards from projects.js. Only "live" projects are shown.
     (function buildProjectGrid() {
@@ -166,7 +166,7 @@
         return `
         <a href="project.html?id=${encodeURIComponent(id)}" class="apple-gradient-card project-card-item fade-in" data-category="${p.category}"${i ? ` style="transition-delay: ${Math.min(i, 4) * 0.15}s;"` : ''} aria-label="View ${title} project">
           <div class="card-media-backdrop">
-            ${(c.image || p.heroImage) ? `<img src="${c.image || p.heroImage}" alt="${title} preview" loading="lazy" />` : `<div class="card-placeholder">Card image coming soon</div>`}
+            ${c.lottie ? `<div class="card-lottie" data-card-lottie="${c.lottie}" role="img" aria-label="${title} preview"></div>` : (c.image || p.heroImage) ? `<img src="${c.image || p.heroImage}" alt="${title} preview" loading="lazy" />` : `<div class="card-placeholder">Card image coming soon</div>`}
           </div>
           <div class="card-gradient-scrim"></div>
           <div class="card-gradient-tint tint-${c.tint || 'blue'}"></div>
@@ -182,6 +182,22 @@
           </div>
         </a>`;
       }).join(''));
+
+      // Lottie card previews: rest on the last frame, play from the start on hover/focus
+      const lotties = grid.querySelectorAll('[data-card-lottie]');
+      if (lotties.length) {
+        const start = () => lotties.forEach(el => {
+          const anim = lottie.loadAnimation({ container: el, renderer: 'svg', loop: false, autoplay: false, path: el.dataset.cardLottie,
+            rendererSettings: { preserveAspectRatio: 'xMidYMid meet' } });
+          anim.addEventListener('DOMLoaded', () => anim.goToAndStop(anim.totalFrames - 1, true));
+          const card = el.closest('a');
+          const play = () => { if (!matchMedia('(prefers-reduced-motion: reduce)').matches) anim.goToAndPlay(0, true); };
+          card.addEventListener('mouseenter', play);
+          card.addEventListener('focus', play);
+        });
+        if (window.lottie) start();
+        else { const sc = document.createElement('script'); sc.src = 'css/js/vendor/lottie.min.js'; sc.onload = start; document.head.appendChild(sc); }
+      }
 
       // Archive list
       const archived = Object.entries(projectsData).filter(([, p]) => p.status === 'archive');
