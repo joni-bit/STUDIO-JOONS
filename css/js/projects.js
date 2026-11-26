@@ -309,11 +309,11 @@ const projectsData = {
       eyebrow: "Motion",
       description: "Logos that move, social loops and HTML5 banners.",
       tint: "cyan",
-      lottie: "Assets/Projecten/Motion/web/studio-joons-logo.json"   // card shows the last frame, plays on hover
+      lottie: "Assets/Projecten/Motion/web/studio-joons-logo.json?v=3"   // card shows the last frame, plays on hover
     },
     year: "2026",
     facts: [],
-    hero: { src: "Assets/Projecten/Motion/web/studio-joons-logo.json", ratio: "16 / 9", alt: "Studio Joons logo animation" },
+    hero: { src: "Assets/Projecten/Motion/web/studio-joons-logo.json?v=3", ratio: "16 / 9", alt: "Studio Joons logo animation" },
     hook: "More and more of my work moves. To me, motion is a puzzle: how do you make a brand feel alive in five seconds?",
     blocks: [
       { type: "loops", items: [
