@@ -171,7 +171,7 @@ const projectsData = {
       ["Brands", "Radio Veronica, SLAM!, 100% NL, Sublime"],
       ["Since", "November 2025"],
       ["Role", "Junior Creative Designer & concepter, in-house"],
-      ["Output", "Studio screens, print up to A0, 9:16 digital, social ads, HTML5 banners, merch and prizes"]
+      ["Output", "Studio screens, print up to A0, digital, social ads, HTML5 banners, merch and prizes"]
     ],
     hero: { src: "Assets/Projecten/MediahuisRadio/web/mhr-illustration.webp", alt: "Mediahuis Radio illustration: listeners of SLAM!, 100% NL, Sublime and Radio Veronica", caption: "Mediahuis Radio — illustrated by me" },
     hook: "Not every brief is a billboard.",
@@ -320,7 +320,7 @@ const projectsData = {
         { src: "Assets/Projecten/Motion/web/veronica-join-the-club.mp4", poster: "Assets/Projecten/Motion/web/veronica-join-the-club.webp", caption: "Radio Veronica — Join the Club" },
         { src: "Assets/Projecten/Motion/web/100nl-rtl.mp4", poster: "Assets/Projecten/Motion/web/100nl-rtl.webp", caption: "100% NL —  De hits van Nederland (RTL)" }
       ]},
-      { type: "canvas", ratio: "27 / 16", item: { src: "Assets/Projecten/Motion/web/slam-festivalmaand-triple.mp4", poster: "Assets/Projecten/Motion/web/slam-festivalmaand-triple.webp" }, caption: "SLAM! Festivalmaand — triple digital screen, 3240 × 1920" },
+      { type: "canvas", ratio: "27 / 16", item: { src: "Assets/Projecten/Motion/web/slam-festivalmaand-triple.mp4", poster: "Assets/Projecten/Motion/web/slam-festivalmaand-triple.webp" }, caption: "SLAM! Festivalmaand — triple digital OOH, 3240 × 1920" },
       { type: "phones", items: [
         { src: "Assets/Projecten/Motion/web/veronica-vriendenweekend.mp4?v=2", poster: "Assets/Projecten/Motion/web/veronica-vriendenweekend.webp?v=2", alt: "Radio Veronica Vriendenweekend promo" },
         { src: "Assets/Projecten/Motion/web/veronica-top1000-80s.mp4", poster: "Assets/Projecten/Motion/web/veronica-top1000-80s.webp", alt: "Radio Veronica Top 1000 van de 80s" }
