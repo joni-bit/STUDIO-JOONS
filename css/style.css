@@ -2850,3 +2850,7 @@ mark.fill-in { background: rgba(255, 196, 0, 0.28); color: inherit; border-radiu
   .segmented-control { max-width: 100%; }
   .segment-tab, .segmented-control button { padding: 0 11px; font-size: 13px; }
 }
+
+/* Work card with a Lottie preview (Motion) */
+.card-lottie { position: absolute; inset: 0; background: #ffffff; display: flex; align-items: center; justify-content: center; }
+.card-lottie svg { width: 100% !important; height: 100% !important; }
