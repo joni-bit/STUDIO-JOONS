@@ -2814,6 +2814,7 @@ mark.fill-in { background: rgba(255, 196, 0, 0.28); color: inherit; border-radiu
 .case-aside-wrap { display: grid; grid-template-columns: minmax(0, 640px) minmax(0, 420px); gap: 64px; align-items: start; }
 .case-aside-wrap .case-section { margin-bottom: 0; }
 .case-aside { margin-top: 24px; }
+.case-aside .block-media { background: none; border-radius: 0; }
 @media (max-width: 900px) {
   .case-aside-wrap { grid-template-columns: 1fr; gap: 8px; }
 }
