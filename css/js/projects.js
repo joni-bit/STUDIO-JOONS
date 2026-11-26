@@ -324,7 +324,7 @@ const projectsData = {
       { type: "phones", items: [
         { src: "Assets/Projecten/Motion/web/veronica-vriendenweekend.mp4?v=2", poster: "Assets/Projecten/Motion/web/veronica-vriendenweekend.webp?v=2", alt: "Radio Veronica Vriendenweekend promo" },
         { src: "Assets/Projecten/Motion/web/veronica-top1000-80s.mp4", poster: "Assets/Projecten/Motion/web/veronica-top1000-80s.webp", alt: "Radio Veronica Top 1000 van de 80s" }
-      ], caption: "Radio Veronica — Vriendenweekend promo and Top 1000 van de 80s, 1080 × 1920" },
+      ], caption: "Radio Veronica — Vriendenweekend promo |  Top 1000 van de 80s, Digital OOH 1080 × 1920" },
       { type: "center", item: { src: "Assets/Projecten/Stop520/web/stop520-logo-square.mp4", poster: "Assets/Projecten/Stop520/web/stop520-logo-square.webp", alt: "(S)Top 520 logo animation" }, caption: "Radio Veronica × War Child — (S)Top 520 logo animation" },
       { type: "phones", items: [
         { src: "Assets/Projecten/Motion/web/100nl-sinterklaas-mijter.mp4", poster: "Assets/Projecten/Motion/web/100nl-sinterklaas-mijter.webp", alt: "100% NL Sinterklaas — mitre" },
