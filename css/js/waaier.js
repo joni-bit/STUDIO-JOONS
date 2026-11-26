@@ -26,7 +26,7 @@
   const LIFT_UIT   = 150;
   const LIFT_MS    = 260;
   const SHIFT_MS   = 450;
-  const DUIM_LOS   = 1.5;         // graden omhoog bij klikken
+  const DUIM_LOS   = 2;           // graden omhoog bij klikken
   const DUIM_HOVER = 0.4;         // graden omhoog bij hover
   const INTRO_DREMPEL = 0.35;     // deel van de sectie dat zichtbaar moet zijn voor de intro start
   const VIEWBOX   = '-160 -230 877.77 784.69';  // ruimte boven/links voor de emblemen
@@ -101,21 +101,39 @@
       place(el, slots[k], el === hovered ? outward(slots[k], HOVER_UIT) : undefined);
       el.classList.toggle('is-hover', el === hovered);
     });
-    const showCaption = () => {
-      if (!caption) return;
-      const { titel = '', tekst = '' } = (hovered ?? order.at(-1))._info;
+    // Alle bijschriften staan op dezelfde plek op elkaar (CSS-grid), alleen de actieve is zichtbaar.
+    // Zo is het bijschrift altijd zo hoog als het langste, en verspringen hand en pagina niet.
+    const live = document.createElement('div');
+    live.className = 'waaier-sr'; live.setAttribute('aria-live', 'polite');
+    if (caption) {
+      caption.removeAttribute('aria-live');
+      caption.setAttribute('aria-hidden', 'true');
+      caption.classList.add('waaier-caption');
       caption.innerHTML = '';
-      const t = document.createElement('strong'); t.textContent = titel;
-      const p = document.createElement('span');   p.textContent = tekst;
-      caption.append(t, p);
+      cards.forEach(c => {
+        const item = document.createElement('div');
+        item.className = 'waaier-cap';
+        const t = document.createElement('strong'); t.textContent = c._info.titel || '';
+        const p = document.createElement('span');   p.textContent = c._info.tekst || '';
+        item.append(t, p);
+        c._cap = item;
+        caption.append(item);
+      });
+      caption.after(live);
+    }
+    const showCaption = () => {
+      const active = hovered ?? order.at(-1);
+      cards.forEach(c => c._cap && c._cap.classList.toggle('is-actief', c === active));
+      const { titel = '', tekst = '' } = active._info;
+      if (live.textContent !== `${titel}. ${tekst}`) live.textContent = `${titel}. ${tekst}`;
       root.setAttribute('aria-label', `Patch: ${titel}. Activate to show the next patch.`);
     };
-    const duim = (frames, ms) => !reduce &&
-      thumb.animate(frames, { duration: ms, easing: 'cubic-bezier(.3,.7,.3,1)', fill: 'forwards' });
+    const duim = (frames, ms, easing = 'cubic-bezier(.3,.7,.3,1)') => !reduce &&
+      thumb.animate(frames, { duration: ms, easing, fill: 'forwards' });
 
     function duimHover(on) {
       if (busy) return;
-      const to = on ? -DUIM_HOVER : 0;
+      const to = on ? DUIM_HOVER : 0;      // positief = duimtop omhoog
       duim([{ transform: `rotate(${thumbRest}deg)` }, { transform: `rotate(${to}deg)` }], 300);
       thumbRest = to;
     }
@@ -124,13 +142,14 @@
       if (busy || n < 2) return;
       busy = true; hovered = null;
       const top = order.at(-1);
+      // Duim omhoog (positief = duimtop omhoog), blijft op terwijl de patch wordt weggestoken,
+      // en zakt daarna rustig terug. Geen doorschieten naar beneden.
       duim([
-        { transform: `rotate(${thumbRest}deg)`, offset: 0 },
-        { transform: `rotate(${-DUIM_LOS}deg) translate(0px, -2px)`, offset: .25 },
-        { transform: `rotate(${-DUIM_LOS}deg) translate(0px, -2px)`, offset: .45 },
-        { transform: 'rotate(0.3deg)', offset: .75 },
+        { transform: `rotate(${thumbRest}deg)`, offset: 0, easing: 'cubic-bezier(.2,.8,.3,1)' },
+        { transform: `rotate(${DUIM_LOS}deg) translate(0px, -2px)`, offset: .22 },
+        { transform: `rotate(${DUIM_LOS}deg) translate(0px, -2px)`, offset: .55, easing: 'cubic-bezier(.4,0,.2,1)' },
         { transform: 'rotate(0deg)', offset: 1 },
-      ], LIFT_MS + SHIFT_MS);
+      ], LIFT_MS + SHIFT_MS + 200, 'linear');
       thumbRest = 0;
 
       layout();
