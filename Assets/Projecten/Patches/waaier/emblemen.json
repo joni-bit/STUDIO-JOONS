@@ -1,0 +1,52 @@
+{
+  "emblemen": [
+    {
+      "src": "emblemen/patch-01-freakandel.svg",
+      "titel": "FREAKandel",
+      "tekst": "STUDIO Joons · 2026 — Own design from the Snacks on the Beach series: a frikandel in sunglasses, soaking up the sun.",
+      "alt": "'Snacks on the Beach' patch with a frikandel in sunglasses, lying back",
+      "breedte": 213,
+      "hoogte": 159
+    },
+    {
+      "src": "emblemen/patch-02-kesbeke.svg",
+      "titel": "Heé Slappe!",
+      "tekst": "Kesbeke · 2025 — Two pickles with attitude around the classic Kesbeke label. Cheeky, recognisable and a little bit Dutch.",
+      "alt": "Familie Kesbeke patch with two pickles and the text 'Heé slappe!'",
+      "breedte": 165,
+      "hoogte": 202
+    },
+    {
+      "src": "emblemen/patch-03-100pnl.svg",
+      "titel": "100%NL",
+      "tekst": "100% NL · 2025 — For the 100%NL morning show: Giorgio and Ingrid celebrate carnaval for the first time!",
+      "alt": "100%NL patch with two laughing party-goers dressed in orange and the text 'Maakt je dag!'",
+      "breedte": 171,
+      "hoogte": 212
+    },
+    {
+      "src": "emblemen/patch-04-bitterboobs.svg",
+      "titel": "BitterB00Bs",
+      "tekst": "STUDIO Joons · 2026 — Own design from the Snacks on the Beach series: two bitterballen with dripping mustard, with a wink.",
+      "alt": "'Snacks on the Beach' patch with two bitterballen and mustard",
+      "breedte": 203,
+      "hoogte": 165
+    },
+    {
+      "src": "emblemen/patch-05-kesbeke3.svg",
+      "titel": "Kèkt nie zo zuur",
+      "tekst": "Kesbeke · 2025 — Patch 2 of 4 from the series for Kesbeke × Kruikenemblemen.",
+      "alt": "Patch shaped like a Kesbeke pickle jar with two pickles and the text 'Kèkt nie zo zuur'",
+      "breedte": 130,
+      "hoogte": 207
+    },
+    {
+      "src": "emblemen/patch-06-skd.svg",
+      "titel": "Dak eraf",
+      "tekst": "SKD Kozijnen · 2026 — 'Hier gaot 't dak d'r pas écht af!' (This is where the roof really comes off!)",
+      "alt": "SKD patch with a building, a construction crane and the text 'Hier gaot 't dak d'r pas écht af!'",
+      "breedte": 170,
+      "hoogte": 130
+    }
+  ]
+}

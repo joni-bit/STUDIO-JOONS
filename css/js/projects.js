@@ -29,6 +29,9 @@
               loops     videos, 2 per row                    { items: [...] }
               banners   HTML5 banner sets in a web page sketch  {}  (content: css/js/banners-data.js)
               brandscroll  radio dial + rolodex              {}  (content: css/js/brands-data.js)
+              fan       text sections left, a hand holding a fan of patches right
+                        { sections: [{ heading, text }], hand, emblemen, shift }  (css/js/waaier.js;
+                        the patches, titles and captions live in the emblemen JSON file)
             Each image: { src, alt, caption }. No src yet? Use { label: "what goes here" }
             and a grey placeholder shows instead.
   Text in [square brackets] is shown highlighted: a fact still to fill in.
@@ -266,11 +269,17 @@ const projectsData = {
     hero: { src: "Assets/Projecten/Patches/web/macro.webp", alt: "Two Snacks on the Beach patches on navy jackets, stitching up close" },
     hook: "Small canvas, big character.",
     blocks: [
-      { type: "section", heading: "How it started", text: [
+      { type: "fan",
+        hand: "Assets/Projecten/Patches/waaier/hand.svg",
+        emblemen: "Assets/Projecten/Patches/waaier/emblemen.json",
+        shift: 0.2,
+        sections: [
+      { heading: "How it started", text: [
         "A colleague from my graduation internship runs a patch company and asked me to design for his clients. Carnaval patches are tiny brand pieces: they need to read from across a packed café and make people laugh."
       ]},
-      { type: "section", heading: "How I work", text: [
+      { heading: "How I work", text: [
         "Some clients arrive with a clear idea, some with nothing at all. I always start with a conversation about what they want and the do's and don'ts, then show 3–5 concepts. We talk through what works, and I refine from there. For Familie Kesbeke I designed four patches, two of which went into production: pickles with the same Amsterdam attitude, but with a Brabant twist (“Heé Slappe!”, “Kiek nie zo zuur”)."
+      ]}
       ]},
       { type: "breakdown", item: { src: "Assets/Projecten/Patches/web/kesbeke-concepts.webp", alt: "Four Familie Kesbeke patch designs; the two produced ones glow blue", caption: "Familie Kesbeke — four designs, the two produced ones marked in blue" } },
       { type: "triptych", ratio: "1 / 1", items: [
