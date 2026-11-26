@@ -186,7 +186,7 @@ const projectsData = {
         "Next to design, I come up with branded content concepts: ways to weave an advertiser's message into the radio, so it feels like content instead of an ad. I pitch them to station directors, marketing directors and account managers. They range from small radio games to big productions, like a full Christmas dinner for a hundred listeners in the middle of a supermarket.",
         "One of my favourites is a morning-show game about friendship. The hosts go looking for the most loyal best man in the country. In the final, three best men anonymously answer one dare after another: would you shave your head for your groom? Get a tattoo? Whoever goes furthest wins. The twist: none of the dares ever have to happen. It was only ever about how far you'd go.",
         "Most of these concepts involve partners, so I can't show them all here. But I'd love to tell you more. Just <a href=\"about.html#contact\">send me a message</a> :)"
-      ], aside: { label: "Illustration — branded content (general, no brands)", ratio: "4 / 5" } }   // text only, no names: concepts involve several partners and aren't cleared for publication
+      ], aside: { src: "Assets/Projecten/MediahuisRadio/web/branded-content-illustration.svg", alt: "Illustration: a curly-haired character surrounded by ideas: a light bulb, a thought cloud, a puzzle piece and a pencil" } }   // text only, no names: concepts involve several partners and aren't cleared for publication
     ]
   },
   "domibo": {
