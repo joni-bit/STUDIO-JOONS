@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/style.css?v=20261126a" />
     <link rel="stylesheet" href="css/brands.css?v=20261124j" />
     <link rel="stylesheet" href="css/banners.css?v=20261125e" />
+    <link rel="stylesheet" href="css/waaier.css?v=20261126a" />
     <!-- Lottie speler script -->
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
   </head>
@@ -73,11 +74,12 @@
     </div>
 
     <!-- Data en Script -->
-    <script src="css/js/projects.js?v=20261126c"></script>
+    <script src="css/js/projects.js?v=20261126d"></script>
     <script src="css/js/brands-data.js?v=20261125d"></script>
     <script src="css/js/brands.js?v=20261124b"></script>
     <script src="css/js/banners-data.js?v=20261124j"></script>
     <script src="css/js/banners.js?v=20261125e"></script>
+    <script src="css/js/waaier.js?v=20261126a"></script>
     <script>
       document.addEventListener("DOMContentLoaded", () => {
         const urlParams = new URLSearchParams(window.location.search);
@@ -217,6 +219,16 @@
                   ? `<div class="case-aside-wrap">${body}<div class="case-aside fade-in">${figure(block.aside, block.aside.ratio || '4 / 5')}</div></div>`
                   : body;
               }
+              case 'fan': {        // text sections left, a hand holding a fan of patches right (waaier.js)
+                return `<div class="patches-intro">
+                  <div class="patches-intro__tekst">${(block.sections || []).map(sec => renderBlock({ ...sec, type: 'section' })).join('')}</div>
+                  <div class="patches-intro__waaier">
+                    <div data-waaier-caption aria-live="polite"></div>
+                    <div class="waaier" data-waaier data-bleed="right" data-shift="${block.shift ?? 0.2}"
+                         data-hand="${block.hand}" data-emblemen="${block.emblemen}"></div>
+                  </div>
+                </div>`;
+              }
               case 'hero':      // A
               case 'breakdown': // D
               case 'canvas':    // E
@@ -322,6 +334,7 @@
           container.innerHTML = html;
           if (window.initBrandScroll && container.querySelector('.bs-scroll')) initBrandScroll();
           if (window.initBanners && container.querySelector('.bn-wall')) initBanners();
+          if (window.initWaaier && container.querySelector('[data-waaier]')) initWaaier();
 
           // Lottie animations: load the player once, play while on screen
           const lotties = container.querySelectorAll('[data-lottie]');
