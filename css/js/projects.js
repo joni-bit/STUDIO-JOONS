@@ -331,7 +331,7 @@ const projectsData = {
         { src: "Assets/Projecten/Motion/web/100nl-sinterklaas-muts.mp4", poster: "Assets/Projecten/Motion/web/100nl-sinterklaas-muts.webp", alt: "100% NL Sinterklaas — hat" },
         { src: "Assets/Projecten/Motion/web/100nl-sinterklaas-staf.mp4", poster: "Assets/Projecten/Motion/web/100nl-sinterklaas-staf.webp", alt: "100% NL Sinterklaas — staff" },
         { src: "Assets/Projecten/Motion/web/100nl-sinterklaas-opeten.mp4", poster: "Assets/Projecten/Motion/web/100nl-sinterklaas-opeten.webp", alt: "100% NL Sinterklaas — eaten" }
-      ], caption: "100% NL — Sinterklaas social loops, 1080 × 1920" },
+      ], caption: "100% NL — Sinterklaas studio screen animated loop, 1080 × 1920" },
       { type: "hero", item: { src: "Assets/Projecten/Motion/web/100nl-luistersessie.mp4", poster: "Assets/Projecten/Motion/web/100nl-luistersessie.webp" }, caption: "100% NL — visuals for a listening session" },
       { type: "banners" },   // HTML5 banner sets: content in css/js/banners-data.js
     ]
